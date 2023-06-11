@@ -32,25 +32,17 @@ namespace Main_Real_estate.English.Main_Application
 
         protected void Ownership_List_BindData(string sortExpression = null)
         {
-            //try
-            //{
-                using (MySqlCommand cmd = new MySqlCommand("Details_All_ownership", _sqlCon))
+            using (MySqlCommand cmd = new MySqlCommand("Details_All_ownership", _sqlCon))
+            {
+                using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                 {
-                    using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        ownership_List.DataSource = dt;
-                        ownership_List.DataBind();
-                    }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    ownership_List.DataSource = dt;
+                    ownership_List.DataBind();
                 }
-            //}
-            //catch
-            //{
-            //    Response.Write(
-            //        @"<script language='javascript'>alert('OOPS!!! The Ownership List Cannt Display')</script>");
-            //}
+            }
         }
 
         protected void Edit_Ownership(object sender, EventArgs e)

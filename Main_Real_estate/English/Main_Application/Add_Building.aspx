@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style> .width{height: 75px;}  </style>
+    <style> .width{}  </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <link href="../CSS/DDL.css" rel="stylesheet" /> 
@@ -35,10 +35,10 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
+                                    <asp:Label ID="lbl_En_Bilding_Name" runat="server" Text="Building Name"></asp:Label>
                                     <asp:RegularExpressionValidator ID="Reg_Exp_En_Bilding_Name" runat="server" ControlToValidate="txt_En_Bilding_Name"
                                         EnableClientScript="True" ErrorMessage="Only English" ForeColor="#fc544b"
                                         ValidationExpression="[0-9 a-z A-Z]+"></asp:RegularExpressionValidator>
-                                    <asp:Label ID="lbl_En_Bilding_Name" runat="server" Text="Building Name"></asp:Label>
                                     <asp:TextBox ID="txt_En_Bilding_Name" runat="server" CssClass="form-control"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="Req_Val_En_Bilding_Name" ControlToValidate="txt_En_Bilding_Name"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
@@ -62,7 +62,7 @@
                                     <asp:DropDownList ID="Building_Condition_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Condition_Req_Val" ControlToValidate="Building_Condition_DropDownList"
-                                        InitialValue="اختر حالة البناء ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -71,7 +71,7 @@
                                     <asp:DropDownList ID="Building_Type_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Type_Req_Val" ControlToValidate="Building_Type_DropDownList"
-                                        InitialValue="إختر نوع البناء ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Building_Value" runat="server" Text="قيمة البناء"></asp:Label>
                                     <asp:RegularExpressionValidator ID="Reg_Exp_Building_Value" runat="server" ControlToValidate="txt_Building_Value"
-                                        EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="#fc544b"
+                                        EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="#fc544b" Font-Size="13px"
                                         ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Building_Value" runat="server" CssClass="form-control"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="Building_Value_Req_Field_Val" ControlToValidate="txt_Building_Value"
@@ -135,7 +135,7 @@
                                     <asp:DropDownList ID="ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="ownership_Name_Req_Val" ControlToValidate="ownership_Name_DropDownList"
-                                        InitialValue="أختر إسم الملكية...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -153,13 +153,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group" style="text-align: center">
                                     <asp:Label ID="lbl_Street_No" runat="server" Text=" الشارع" ForeColor="White"></asp:Label>
-                                    <asp:TextBox ID="txt_Street_No" style="text-align:center" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txt_Street_No" style="text-align:center" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group" style="text-align: center">
                                     <asp:Label ID="lbl_Zone_No" runat="server" Text=" المنطقة" ForeColor="White"></asp:Label>
-                                    <asp:TextBox ID="txt_Zone_No" style="text-align:center" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txt_Zone_No" style="text-align:center" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
         <div class="row">
           </div>
           <div class="col-lg-12" style="border-style: solid; border-radius: 10px; width: 1221px;">
-                <h3>مرفقات البناء</h3>
+                <h3><asp:Label ID="lbl_Building_Att" runat="server" /></h3>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3">
@@ -261,7 +261,7 @@
                 <h1 class="h3 mb-0 text-gray-800">
                     <asp:Label ID="lbl_Add_New_Unit" runat="server"></asp:Label>
                     <asp:Label ID="Added_Building_Id" runat="server" Visible="false"></asp:Label>
-                    <asp:Label ID="lbl_Success_Add_Unit" runat="server" ForeColor="#66bb6a"></asp:Label>
+                    <asp:Label ID="lbl_Success_Add_Unit" runat="server"  ForeColor="#66bb6a"></asp:Label>
                 </h1>
             </div>
 
@@ -270,50 +270,55 @@
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <%--**--%>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Unit_Type" runat="server" Text="نوع الوحدة"></asp:Label>
-                                                <asp:DropDownList ID="Unit_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Unit_Type_DropDownList_SelectedIndexChanged">
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Unit_Type_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="Unit_Type_DropDownList"
-                                                    InitialValue="إختر نوع الوحدة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Unit_Type" runat="server" Text="نوع الوحدة"></asp:Label>
+                                                        <asp:DropDownList ID="Unit_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Unit_Type_DropDownList_SelectedIndexChanged">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Unit_Type_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="Unit_Type_DropDownList"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4" id="div_Furniture_case" runat="server" visible="false">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Furniture_case" runat="server" Text="الفرش"></asp:Label>
+                                                        <asp:DropDownList ID="Furniture_case_DropDownList" runat="server" CssClass="form-control">
+                                                            <asp:ListItem Value="1" Text="مفروش"></asp:ListItem>
+                                                            <asp:ListItem Value="2" Text="نصف مفروش"></asp:ListItem>
+                                                            <asp:ListItem Value="3" Text="غير مفروش"></asp:ListItem>
+                                                            <asp:ListItem Enabled="false" Value="4" Text="غير محدد"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Furniture_case_RequiredFieldValidator" ValidationGroup="Unit_Req" ControlToValidate="Furniture_case_DropDownList"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Unit_Condition" runat="server" Text="الحالة الإيجارية"></asp:Label>
+                                                        <asp:DropDownList ID="Unit_Condition_DropDownList" runat="server" CssClass="form-control">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Unit_Condition_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="Unit_Condition_DropDownList"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Unit_Detail" runat="server" Text="تفاصيل الوحدة"></asp:Label>
+                                                        <asp:DropDownList ID="Unit_Detail_DropDownList" runat="server" CssClass="form-control">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Unit_Detail_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="Unit_Detail_DropDownList"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Unit_Condition" runat="server" Text="الحالة الإيجارية"></asp:Label>
-                                                <asp:DropDownList ID="Unit_Condition_DropDownList" runat="server" CssClass="form-control">
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Unit_Condition_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="Unit_Condition_DropDownList"
-                                                    InitialValue="إختر حالة الوحدة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Unit_Detail" runat="server" Text="تفاصيل الوحدة"></asp:Label>
-                                                <asp:DropDownList ID="Unit_Detail_DropDownList" runat="server" CssClass="form-control">
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Unit_Detail_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="Unit_Detail_DropDownList"
-                                                    InitialValue="إختر تفاصيل الوحدة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4" id="div_Furniture_case" runat="server" visible="false">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Furniture_case" runat="server" Text="الفرش"></asp:Label>
-                                                <asp:DropDownList ID="Furniture_case_DropDownList" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="1" Text="مفروش"></asp:ListItem>
-                                                    <asp:ListItem Value="2" Text="نصف مفروش"></asp:ListItem>
-                                                    <asp:ListItem Value="3" Text="غير مفروش"></asp:ListItem>
-                                                    <asp:ListItem Enabled="false" Value="4" Text="غير محدد"></asp:ListItem>
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Furniture_case_RequiredFieldValidator" ValidationGroup="Unit_RequiredField" ControlToValidate="Furniture_case_DropDownList"
-                                                    InitialValue="إختر الفرش ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="Unit_Type_DropDownList" EventName="SelectedIndexChanged" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
 
                                     <div class="row">
                                         <div class="col-lg-4">
@@ -323,8 +328,6 @@
                                                     EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="#fc544b"
                                                     ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                                 <asp:TextBox ID="txt_Unit_Space" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <%--<asp:RequiredFieldValidator ID="Unit_Space_Req_Val" ControlToValidate="txt_Unit_Space"
-                                                            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                             </div>
                                         </div>
 
@@ -342,7 +345,7 @@
                                                 EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="#fc544b"
                                                 ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                                 <asp:TextBox ID="txt_virtual_Value" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="virtual_ValueReq_Field_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="txt_virtual_Value"
+                                                <asp:RequiredFieldValidator ID="virtual_ValueReq_Field_Val" ValidationGroup="Unit_Req" ControlToValidate="txt_virtual_Value"
                                                  runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -388,7 +391,7 @@
                                                 <asp:Label ID="lbl_Building_Name" runat="server" Text="اسم البناء"></asp:Label>
                                                 <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Building_Name_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="Building_Name_DropDownList"
+                                                <asp:RequiredFieldValidator ID="Building_Name_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="Building_Name_DropDownList"
                                                 InitialValue="إختر إسم البناء ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -400,7 +403,7 @@
                                             <div class="form-group" style="text-align: center">
                                                 <asp:Label ID="lbl_Unit_NO" runat="server" Text="رقم الوحدة" ForeColor="White"></asp:Label>
                                                 <asp:TextBox ID="txt_Unit_NO" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="Unit_NO_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="txt_Unit_NO"
+                                                <asp:RequiredFieldValidator ID="Unit_NO_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="txt_Unit_NO"
                                                 runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -408,7 +411,7 @@
                                             <div class="form-group" style="text-align: center">
                                                 <asp:Label ID="lbl_Floor_NO" runat="server" Text="رقم الطابق" ForeColor="White"></asp:Label>
                                                 <asp:TextBox ID="txt_Floor_NO" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="Floor_NO_Req_Val" ValidationGroup="Unit_RequiredField" ControlToValidate="txt_Floor_NO"
+                                                <asp:RequiredFieldValidator ID="Floor_NO_Req_Val" ValidationGroup="Unit_Req" ControlToValidate="txt_Floor_NO"
                                                     runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -447,7 +450,7 @@
 
                 <div class="row">
                     <div class="col-lg-12" style="border-style: solid; border-radius: 10px; width: 1221px;">
-                        <h3>مرفقات الوحدة</h3>
+                        <h3><asp:Label ID="lbl_Unit_File" runat="server"/></h3>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-3">
@@ -483,7 +486,7 @@
             <br />
         </div>
         <div class="col-lg-4">
-            <asp:Button ID="btn_Add_Unit" runat="server" Text="إضافة وحدة" CssClass="btn  mb-1" BackColor="#52a2da" ForeColor="White" OnClick="btn_Add_Unit_Click" />
+            <asp:Button ID="btn_Add_Unit" runat="server" Text="إضافة وحدة" CssClass="btn  mb-1" BackColor="#52a2da" ValidationGroup="Unit_Req" ForeColor="White" OnClick="btn_Add_Unit_Click" />
             &nbsp;&nbsp;
                     <asp:Button ID="btn_Back_To_Unit" CssClass="btn btn-light mb-1" runat="server" Text="العودة لقائمة الأبنية" ValidationGroup="x" />
         </div>

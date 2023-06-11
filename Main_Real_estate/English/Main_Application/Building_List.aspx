@@ -22,7 +22,7 @@
                     /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -57,7 +57,7 @@
          <div class="row">
             <div class="col-lg-2 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Building_List" runat="server" Text="قائمة  الأبنية"></asp:Label>
+                    <asp:Label ID="lbl_titel_Building_List" runat="server"></asp:Label>
                 </h1>
             </div>
             <div class="col-lg-3 mb-3">
@@ -83,15 +83,15 @@
                             <table  cellspacing="0" style="width: 100%; font-size:11px" class="datatable table table-striped table-bordered">
                                 <thead>
                                     <th>#</th>
-                                    <th>اسم الملكية</th>
-                                    <th>البناء</th>
-                                    <th>رقم البناء</th>
-                                    <th>مساحة البناء </th>
-                                    <th>وضع الصيانة</th>
-                                    <th>حالة البناء</th>
-                                    <th>نوع البناء</th>
-                                    <th>قيمة البناء</th>
-                                    <th>صورة البناء</th>
+                                    <th><asp:Label ID="lbl_Titel_Owner_Ship_Name" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Name" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_NO" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Area" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Maintenance_status" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Condition" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Type" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Value" runat="server" /></th>
+                                    <th><asp:Label ID="lbl_Titel_Building_Photo" runat="server" /></th>
                                     <th style="text-align:right; width: 100px"></th>
                                     <th style="width: 50px"></th>
                                 </thead>
@@ -101,9 +101,13 @@
                             <tr>
                                 <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Bond_NO" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                    <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_zone_number" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_zone_arabic_name" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
                                 <td>
@@ -113,9 +117,13 @@
                                     <asp:Label ID="lbl_PIN_Number" runat="server" Text='<%# Eval("Maintenance_status") %>' /></td>
                                 
                                 <td>
-                                    <asp:Label ID="lbl_Parcel_Area" runat="server" Text='<%# Eval("Building_Arabic_Condition") %>' /></td>
+                                    <asp:Label ID="Building_Arabic_Condition" runat="server" Text='<%# Eval("Building_Arabic_Condition") %>' />
+                                    <asp:Label ID="Building_English_Condition" runat="server" Text='<%# Eval("Building_English_Condition") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Building_Arabic_Type" runat="server" Text='<%# Eval("Building_Arabic_Type") %>' /></td>
+                                    <asp:Label ID="lbl_Building_Arabic_Type" runat="server" Text='<%# Eval("Building_Arabic_Type") %>' />
+                                    <asp:Label ID="lbl_Building_English_Type" runat="server" Text='<%# Eval("Building_English_Type") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Building_Value" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Building_Value")))%>' /></td>
 

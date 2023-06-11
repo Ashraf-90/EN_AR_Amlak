@@ -31,7 +31,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                
+                language();
                 // Fill Year &Mounth  DropDownList
                 int year = DateTime.Now.Year; int Mounth = DateTime.Now.Month;
                 for (int i = year - 50; i <= year + 10; i++)
@@ -40,50 +40,7 @@ namespace Main_Real_estate.English.Main_Application
                     Construction_Completion_Date_DropDownList.Items.Add(li);
                 }
                 Construction_Completion_Date_DropDownList.Items.FindByText(year.ToString()).Selected = true;
-                //    //Get Building_Condition DropDownList
-                using (MySqlCommand getBuildingConditionDropDownListCmd =
-                       new MySqlCommand("SELECT * FROM building_condition"))
-                {
-                    getBuildingConditionDropDownListCmd.CommandType = CommandType.Text;
-                    getBuildingConditionDropDownListCmd.Connection = _sqlCon;
-                    _sqlCon.Open();
-                    Building_Condition_DropDownList.DataSource =
-                        getBuildingConditionDropDownListCmd.ExecuteReader();
-                    Building_Condition_DropDownList.DataTextField = "Building_Arabic_Condition";
-                    Building_Condition_DropDownList.DataValueField = "Building_Condition_Id";
-                    Building_Condition_DropDownList.DataBind();
-                    Building_Condition_DropDownList.Items.Insert(0, "اختر حالة البناء ....");
-                    _sqlCon.Close();
-                }
-
-                //    //Get Building_Type  DropDownList
-                using (MySqlCommand getBuildingTypeDropDownListCmd =
-                       new MySqlCommand("SELECT * FROM building_type"))
-                {
-                    getBuildingTypeDropDownListCmd.CommandType = CommandType.Text;
-                    getBuildingTypeDropDownListCmd.Connection = _sqlCon;
-                    _sqlCon.Open();
-                    Building_Type_DropDownList.DataSource = getBuildingTypeDropDownListCmd.ExecuteReader();
-                    Building_Type_DropDownList.DataTextField = "Building_Arabic_Type";
-                    Building_Type_DropDownList.DataValueField = "Building_Type_Id";
-                    Building_Type_DropDownList.DataBind();
-                    Building_Type_DropDownList.Items.Insert(0, "إختر نوع البناء ....");
-                    _sqlCon.Close();
-                }
-
-                //Get ownership_Name DropDownList
-                using (MySqlCommand getOwnershipNameDropDownListCmd = new MySqlCommand("SELECT * FROM owner_ship"))
-                {
-                    getOwnershipNameDropDownListCmd.CommandType = CommandType.Text;
-                    getOwnershipNameDropDownListCmd.Connection = _sqlCon;
-                    _sqlCon.Open();
-                    ownership_Name_DropDownList.DataSource = getOwnershipNameDropDownListCmd.ExecuteReader();
-                    ownership_Name_DropDownList.DataTextField = "Owner_Ship_AR_Name";
-                    ownership_Name_DropDownList.DataValueField = "Owner_Ship_Id";
-                    ownership_Name_DropDownList.DataBind();
-                    ownership_Name_DropDownList.Items.Insert(0, "أختر إسم الملكية....");
-                    _sqlCon.Close();
-                }
+              
 
                 string buildingId = Request.QueryString["Id"];
                 DataTable getBuildingDt = new DataTable();
@@ -95,10 +52,20 @@ namespace Main_Real_estate.English.Main_Application
                 getBuildingDa.Fill(getBuildingDt);
                 if (getBuildingDt.Rows.Count > 0)
                 {
-                    txt_En_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_English_Name"].ToString();
-                    lbl_Name_Of_Building.Text = getBuildingDt.Rows[0]["Building_Arabic_Name"].ToString();
-                    txt_Ar_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_Arabic_Name"].ToString();
-                    txt_electricity_meter.Text = getBuildingDt.Rows[0]["electricity_meter"].ToString();
+                    
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        txt_En_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_English_Name"].ToString();
+                        lbl_Name_Of_Building.Text = getBuildingDt.Rows[0]["Building_English_Name"].ToString();
+                        txt_Ar_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_Arabic_Name"].ToString();
+                    }
+                    else
+                    {
+                        txt_En_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_English_Name"].ToString();
+                        lbl_Name_Of_Building.Text = getBuildingDt.Rows[0]["Building_Arabic_Name"].ToString();
+                        txt_Ar_Bilding_Name.Text = getBuildingDt.Rows[0]["Building_Arabic_Name"].ToString();
+                    }
+                        txt_electricity_meter.Text = getBuildingDt.Rows[0]["electricity_meter"].ToString();
                     txt_Water_meter.Text = getBuildingDt.Rows[0]["Water_meter"].ToString();
                     txt_Building_NO.Text = getBuildingDt.Rows[0]["Building_NO"].ToString();
                     txt_Construction_Area.Text = getBuildingDt.Rows[0]["Construction_Area"].ToString();
@@ -198,23 +165,39 @@ namespace Main_Real_estate.English.Main_Application
 
                 Zone_Street();
 
-
-                if (Session["B_Back"].ToString() == "1")
+                if (Session["Langues"].ToString() == "1")
                 {
-                    btn_Back_To_Building.Text = "العودة لقائمة الأبنية";
-                }
-                else if (Session["B_Back"].ToString() == "2")
-                {
-                    btn_Back_To_Building.Text = "العودة لعمليات الملكيات";
-                }
-                else if (Session["B_Back"].ToString() == "3")
-                {
-                    btn_Back_To_Building.Text = "العودة لكشف النواقص";
+                    if (Session["B_Back"].ToString() == "1")
+                    {
+                        btn_Back_To_Building.Text = "Back To Building List";
+                    }
+                    
+                    else if (Session["B_Back"].ToString() == "3")
+                    {
+                        btn_Back_To_Building.Text = "Back To Missing Fields";
+                    }
+                    else
+                    {
+                        btn_Back_To_Building.Text = "Back To Building List";
+                    }
                 }
                 else
                 {
-                    btn_Back_To_Building.Text = "العودة لقائمة الأبنية";
+                    if (Session["B_Back"].ToString() == "1")
+                    {
+                        btn_Back_To_Building.Text = "العودة لقائمة الأبنية";
+                    }
+                   
+                    else if (Session["B_Back"].ToString() == "3")
+                    {
+                        btn_Back_To_Building.Text = "العودة لكشف النواقص";
+                    }
+                    else
+                    {
+                        btn_Back_To_Building.Text = "العودة لقائمة الأبنية";
+                    }
                 }
+                    
             }
         }
 
@@ -223,66 +206,37 @@ namespace Main_Real_estate.English.Main_Application
             if (Page.IsValid)
             {
                 string buildingId = Request.QueryString["ID"];
-                string updateBuildingQuery = "UPDATE building SET " +
-                                             "owner_ship_Owner_Ship_Id =@owner_ship_Owner_Ship_Id , " +
-                                             "building_condition_Building_Condition_Id=@building_condition_Building_Condition_Id, " +
-                                             "building_type_Building_Type_Id=@building_type_Building_Type_Id, " +
-                                             "Building_English_Name = @Building_English_Name ," +
-                                             "Building_Arabic_Name=@Building_Arabic_Name," +
-                                             "electricity_meter = @electricity_meter ," +
-                                             "Water_meter =@Water_meter ," +
-                                             "Building_NO=@Building_NO , " +
-                                             "Construction_Area=@Construction_Area ," +
-                                             "Maintenance_status=@Maintenance_status ," +
-                                             "Building_Value=@Building_Value ," +
-                                             "Construction_Completion_Date=@Construction_Completion_Date ," +
-                                             "Building_Photo=@Building_Photo ," +
-                                             "Building_Photo_Path=@Building_Photo_Path ," +
-                                             "Entrance_Photo=@Entrance_Photo ," +
-                                             "Entrance_Photo_Path=@Entrance_Photo_Path ," +
-                                             "Statement=@Statement ," +
-                                             "Statement_Path=@Statement_Path ," +
-                                             "Building_Permit=@Building_Permit ," +
-                                             "Building_Permit_Path=@Building_Permit_Path ," +
-                                             "certificate_of_completion=@certificate_of_completion ," +
-                                             "certificate_of_completion_Path=@certificate_of_completion_Path ," +
-                                             "Image=@Image ," +
-                                             "Image_Path=@Image_Path ," +
-                                             "Map=@Map ," +
-                                             "Map_path=@Map_path ," +
-                                             "Plan=@Plan ," +
-                                             "Plano_Path=@Plano_Path " +
-                                             "Where Building_Id=@ID";
                 _sqlCon.Open();
-                MySqlCommand updateBuildingCmd = new MySqlCommand(updateBuildingQuery, _sqlCon);
-                updateBuildingCmd.Parameters.AddWithValue("@ID", buildingId);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_English_Name", txt_En_Bilding_Name.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Arabic_Name", txt_Ar_Bilding_Name.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@electricity_meter", txt_electricity_meter.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Water_meter", txt_Water_meter.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_NO", txt_Building_NO.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Construction_Area", txt_Construction_Area.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Maintenance_status", txt_Maintenance_status.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Value", txt_Building_Value.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Construction_Completion_Date", Construction_Completion_Date_DropDownList.SelectedItem.Text);
+                MySqlCommand cmd = new MySqlCommand("Edit_Building", _sqlCon);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID", buildingId);
+                cmd.Parameters.AddWithValue("@Building_English_Name", txt_En_Bilding_Name.Text);
+                cmd.Parameters.AddWithValue("@Building_Arabic_Name", txt_Ar_Bilding_Name.Text);
+                cmd.Parameters.AddWithValue("@electricity_meter", txt_electricity_meter.Text);
+                cmd.Parameters.AddWithValue("@Water_meter", txt_Water_meter.Text);
+                cmd.Parameters.AddWithValue("@Building_NO", txt_Building_NO.Text);
+                cmd.Parameters.AddWithValue("@Construction_Area", txt_Construction_Area.Text);
+                cmd.Parameters.AddWithValue("@Maintenance_status", txt_Maintenance_status.Text);
+                cmd.Parameters.AddWithValue("@Building_Value", txt_Building_Value.Text);
+                cmd.Parameters.AddWithValue("@Construction_Completion_Date", Construction_Completion_Date_DropDownList.SelectedItem.Text);
 
-                updateBuildingCmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", ownership_Name_DropDownList.SelectedValue);
-                updateBuildingCmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id",Building_Condition_DropDownList.SelectedValue);
-                updateBuildingCmd.Parameters.AddWithValue("@building_type_Building_Type_Id",Building_Type_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", ownership_Name_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id", Building_Condition_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@building_type_Building_Type_Id", Building_Type_DropDownList.SelectedValue);
 
                 if (Building_Photo_FileUpload.HasFile)
                 {
                     string fileName1 = Path.GetFileName(Building_Photo_FileUpload.PostedFile.FileName);
                     Building_Photo_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Building_Photo/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Photo", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path",
+                    cmd.Parameters.AddWithValue("@Building_Photo", fileName1);
+                    cmd.Parameters.AddWithValue("@Building_Photo_Path",
                         "/English/Main_Application/Building_File/Building_Photo/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Photo", Building_Photo.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path", Building_Photo_Path.Text);
+                    cmd.Parameters.AddWithValue("@Building_Photo", Building_Photo.Text);
+                    cmd.Parameters.AddWithValue("@Building_Photo_Path", Building_Photo_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -291,14 +245,14 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Statement_FileUpload.PostedFile.FileName);
                     Statement_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Statement/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Statement", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Statement_Path",
+                    cmd.Parameters.AddWithValue("@Statement", fileName1);
+                    cmd.Parameters.AddWithValue("@Statement_Path",
                         "/English/Main_Application/Building_File/Statement/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Statement", Statement.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Statement_Path", Statement_Path.Text);
+                    cmd.Parameters.AddWithValue("@Statement", Statement.Text);
+                    cmd.Parameters.AddWithValue("@Statement_Path", Statement_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -307,14 +261,14 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Building_Permit_FileUpload.PostedFile.FileName);
                     Building_Permit_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Building_Permit/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Permit", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path",
+                    cmd.Parameters.AddWithValue("@Building_Permit", fileName1);
+                    cmd.Parameters.AddWithValue("@Building_Permit_Path",
                         "/English/Main_Application/Building_File/Building_Permit/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Permit", Building_Permit.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path", Building_Permit_Path.Text);
+                    cmd.Parameters.AddWithValue("@Building_Permit", Building_Permit.Text);
+                    cmd.Parameters.AddWithValue("@Building_Permit_Path", Building_Permit_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -323,15 +277,15 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(certificate_of_completion_FileUpload.PostedFile.FileName);
                     certificate_of_completion_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/certificate_completion/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path",
+                    cmd.Parameters.AddWithValue("@certificate_of_completion", fileName1);
+                    cmd.Parameters.AddWithValue("@certificate_of_completion_Path",
                         "/English/Main_Application/Building_File/certificate_completion/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion",
+                    cmd.Parameters.AddWithValue("@certificate_of_completion",
                         certificate_of_completion.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path",
+                    cmd.Parameters.AddWithValue("@certificate_of_completion_Path",
                         certificate_of_completion_Path.Text);
                 }
 
@@ -341,14 +295,14 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Image_FileUpload.PostedFile.FileName);
                     Image_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Image/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Image", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Image_Path",
+                    cmd.Parameters.AddWithValue("@Image", fileName1);
+                    cmd.Parameters.AddWithValue("@Image_Path",
                         "/English/Main_Application/Building_File/Image/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Image", Image.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Image_Path", Image_Path.Text);
+                    cmd.Parameters.AddWithValue("@Image", Image.Text);
+                    cmd.Parameters.AddWithValue("@Image_Path", Image_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -357,14 +311,14 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Maps_FileUpload.PostedFile.FileName);
                     Maps_FileUpload.PostedFile.SaveAs(Server.MapPath("/English/Main_Application/Building_File/Map/") +
                                                       fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Map", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Map_Path",
+                    cmd.Parameters.AddWithValue("@Map", fileName1);
+                    cmd.Parameters.AddWithValue("@Map_Path",
                         "/English/Main_Application/Building_File/Map/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Map", Maps.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Map_Path", Maps_Path.Text);
+                    cmd.Parameters.AddWithValue("@Map", Maps.Text);
+                    cmd.Parameters.AddWithValue("@Map_Path", Maps_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -373,14 +327,14 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Plan_FileUpload.PostedFile.FileName);
                     Plan_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Building_Plan/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Plan", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Plano_Path",
+                    cmd.Parameters.AddWithValue("@Plan", fileName1);
+                    cmd.Parameters.AddWithValue("@Plano_Path",
                         "/English/Main_Application/Building_File/Building_Plan/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Plan", Plan.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Plano_Path", Plan_Path.Text);
+                    cmd.Parameters.AddWithValue("@Plan", Plan.Text);
+                    cmd.Parameters.AddWithValue("@Plano_Path", Plan_Path.Text);
                 }
 
                 //**********************************************************************************************************************************************************
@@ -389,25 +343,21 @@ namespace Main_Real_estate.English.Main_Application
                     string fileName1 = Path.GetFileName(Entrance_picture_FileUpload.PostedFile.FileName);
                     Entrance_picture_FileUpload.PostedFile.SaveAs(
                         Server.MapPath("/English/Main_Application/Building_File/Entrace_Photo/") + fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", fileName1);
-                    updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path",
+                    cmd.Parameters.AddWithValue("@Entrance_Photo", fileName1);
+                    cmd.Parameters.AddWithValue("@Entrance_Photo_Path",
                         "/English/Main_Application/Building_File/Entrace_Photo/" + fileName1);
                 }
                 else
                 {
-                    updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", Entrance_picture.Text);
-                    updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path", Entrance_picture_Path.Text);
+                    cmd.Parameters.AddWithValue("@Entrance_Photo", Entrance_picture.Text);
+                    cmd.Parameters.AddWithValue("@Entrance_Photo_Path", Entrance_picture_Path.Text);
                 }
 
-                updateBuildingCmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 _sqlCon.Close();
-
-
-                Edit_Arcived_Building();
-
-
-
-                lbl_Success_Add_Building.Text = "تم التعديل بنجاح";
+                if (Session["Langues"].ToString() == "1"){ lbl_Success_Add_Building.Text = "Edit Successfully"; }
+                else { lbl_Success_Add_Building.Text = "تم التعديل بنجاح"; }
+                
             }
         }
 
@@ -662,186 +612,138 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-        protected void Edit_Arcived_Building()
+        
+
+
+
+
+        protected void language()
         {
-            string buildingId = Request.QueryString["ID"];
-            string updateBuildingQuery = "UPDATE arcive_building SET " +
-                                         "owner_ship_Owner_Ship_Id =@owner_ship_Owner_Ship_Id , " +
-                                         "building_condition_Building_Condition_Id=@building_condition_Building_Condition_Id, " +
-                                         "building_type_Building_Type_Id=@building_type_Building_Type_Id, " +
-                                         "Building_English_Name = @Building_English_Name ," +
-                                         "Building_Arabic_Name=@Building_Arabic_Name," +
-                                         "electricity_meter = @electricity_meter ," +
-                                         "Water_meter =@Water_meter ," +
-                                         "Building_NO=@Building_NO , " +
-                                         "Construction_Area=@Construction_Area ," +
-                                         "Maintenance_status=@Maintenance_status ," +
-                                         "Building_Value=@Building_Value ," +
-                                         "Construction_Completion_Date=@Construction_Completion_Date ," +
-                                         "Building_Photo=@Building_Photo ," +
-                                         "Building_Photo_Path=@Building_Photo_Path ," +
-                                         "Entrance_Photo=@Entrance_Photo ," +
-                                         "Entrance_Photo_Path=@Entrance_Photo_Path ," +
-                                         "Statement=@Statement ," +
-                                         "Statement_Path=@Statement_Path ," +
-                                         "Building_Permit=@Building_Permit ," +
-                                         "Building_Permit_Path=@Building_Permit_Path ," +
-                                         "certificate_of_completion=@certificate_of_completion ," +
-                                         "certificate_of_completion_Path=@certificate_of_completion_Path ," +
-                                         "Image=@Image ," +
-                                         "Image_Path=@Image_Path ," +
-                                         "Map=@Map ," +
-                                         "Map_path=@Map_path ," +
-                                         "Plan=@Plan ," +
-                                         "Plano_Path=@Plano_Path " +
-                                         "Where Building_Id=@ID";
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
             _sqlCon.Open();
-            MySqlCommand updateBuildingCmd = new MySqlCommand(updateBuildingQuery, _sqlCon);
-            updateBuildingCmd.Parameters.AddWithValue("@ID", buildingId);
-            updateBuildingCmd.Parameters.AddWithValue("@Building_English_Name", txt_En_Bilding_Name.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Building_Arabic_Name", txt_Ar_Bilding_Name.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@electricity_meter", txt_electricity_meter.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Water_meter", txt_Water_meter.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Building_NO", txt_Building_NO.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Construction_Area", txt_Construction_Area.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Maintenance_status", txt_Maintenance_status.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Building_Value", txt_Building_Value.Text);
-            updateBuildingCmd.Parameters.AddWithValue("@Construction_Completion_Date", Construction_Completion_Date_DropDownList.SelectedItem.Text);
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //************************************************* Building Labels ************************************************
 
-            updateBuildingCmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", ownership_Name_DropDownList.SelectedValue);
-            updateBuildingCmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id", Building_Condition_DropDownList.SelectedValue);
-            updateBuildingCmd.Parameters.AddWithValue("@building_type_Building_Type_Id", Building_Type_DropDownList.SelectedValue);
+                    //Get Building_Condition DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building_condition", _sqlCon, Building_Condition_DropDownList, "Building_English_Condition", "Building_Condition_Id");
+                    Building_Condition_DropDownList.Items.Insert(0, "...............");
 
-            if (Building_Photo_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Building_Photo_FileUpload.PostedFile.FileName);
-                Building_Photo_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Building_Photo/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Photo", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path",
-                    "/English/Main_Application/Building_File/Building_Photo/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Photo", Building_Photo.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path", Building_Photo_Path.Text);
-            }
+                    //Get Building_Type  DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building_type", _sqlCon, Building_Type_DropDownList, "Building_English_Type", "Building_Type_Id");
+                    Building_Type_DropDownList.Items.Insert(0, "...............");
 
-            //**********************************************************************************************************************************************************
-            if (Statement_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Statement_FileUpload.PostedFile.FileName);
-                Statement_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Statement/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Statement", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Statement_Path",
-                    "/English/Main_Application/Building_File/Statement/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Statement", Statement.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Statement_Path", Statement_Path.Text);
-            }
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    ownership_Name_DropDownList.Items.Insert(0, "...............");
 
-            //**********************************************************************************************************************************************************
-            if (Building_Permit_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Building_Permit_FileUpload.PostedFile.FileName);
-                Building_Permit_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Building_Permit/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Permit", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path",
-                    "/English/Main_Application/Building_File/Building_Permit/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Permit", Building_Permit.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path", Building_Permit_Path.Text);
-            }
 
-            //**********************************************************************************************************************************************************
-            if (certificate_of_completion_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(certificate_of_completion_FileUpload.PostedFile.FileName);
-                certificate_of_completion_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/certificate_completion/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path",
-                    "/English/Main_Application/Building_File/certificate_completion/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion",
-                    certificate_of_completion.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path",
-                    certificate_of_completion_Path.Text);
-            }
+                    lbl_Add_New_Building.Text = Dt.Rows[99]["EN"].ToString();
+                    lbl_Ar_Bildingp_Name.Text = Dt.Rows[59]["EN"].ToString() + "(Ar)";
+                    lbl_En_Bilding_Name.Text = Dt.Rows[59]["EN"].ToString() + "(En)";
+                    lbl_Construction_Area.Text = Dt.Rows[60]["EN"].ToString();
+                    lbl_Building_Condition.Text = Dt.Rows[61]["EN"].ToString();
+                    lbl_Building_Type.Text = Dt.Rows[62]["EN"].ToString();
+                    lbl_Maintenance_status.Text = Dt.Rows[63]["EN"].ToString();
+                    lbl_Water_meter.Text = Dt.Rows[64]["EN"].ToString();
+                    lbl_electricity_meter.Text = Dt.Rows[65]["EN"].ToString();
+                    lbl_Building_Value.Text = Dt.Rows[76]["EN"].ToString();
+                    lbl_Construction_Completion_Date.Text = Dt.Rows[66]["EN"].ToString();
+                    lbl_ownership_Name.Text = Dt.Rows[44]["EN"].ToString();
+                    lbl_Building_NO.Text = Dt.Rows[67]["EN"].ToString();
+                    lbl_Zone_No.Text = Dt.Rows[36]["EN"].ToString();
+                    lbl_Street_No.Text = Dt.Rows[48]["EN"].ToString();
+                    lbl_Building_Photo.Text = Dt.Rows[68]["EN"].ToString();
+                    lbl_Plan.Text = Dt.Rows[69]["EN"].ToString();
+                    lbl_Statement.Text = Dt.Rows[70]["EN"].ToString();
+                    lbl_Maps.Text = Dt.Rows[71]["EN"].ToString();
+                    lbl_Building_Permit.Text = Dt.Rows[72]["EN"].ToString();
+                    lbl_certificate_of_completion.Text = Dt.Rows[73]["EN"].ToString();
+                    lbl_Entrance_picture.Text = Dt.Rows[74]["EN"].ToString();
+                    lbl_Image.Text = "Another image";
+                    lbl_Reason_Delete.Text = "Reason Of Delete";
+                    lbl_Building_Att.Text = "Building Attachments";
+                    btn_Add_Building.Text = Dt.Rows[99]["EN"].ToString();
+                    btn_Back_To_Building.Text = Dt.Rows[78]["EN"].ToString();
 
-            //**********************************************************************************************************************************************************
-            if (Image_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Image_FileUpload.PostedFile.FileName);
-                Image_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Image/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Image", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Image_Path",
-                    "/English/Main_Application/Building_File/Image/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Image", Image.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Image_Path", Image_Path.Text);
-            }
 
-            //**********************************************************************************************************************************************************
-            if (Maps_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Maps_FileUpload.PostedFile.FileName);
-                Maps_FileUpload.PostedFile.SaveAs(Server.MapPath("/English/Main_Application/Building_File/Map/") +
-                                                  fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Map", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Map_Path",
-                    "/English/Main_Application/Building_File/Map/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Map", Maps.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Map_Path", Maps_Path.Text);
-            }
+                    Reg_Exp_En_Bilding_Name.ErrorMessage = Dt.Rows[56]["EN"].ToString();
+                    Reg_Ex_Ar_Bilding_Name.ErrorMessage = Dt.Rows[57]["EN"].ToString();
+                    Reg_Exp_Building_Value.ErrorMessage = Dt.Rows[58]["EN"].ToString();
+                    Delete_ReqFieVal.ErrorMessage = "The reason for the deletion must be explained";
 
-            //**********************************************************************************************************************************************************
-            if (Plan_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Plan_FileUpload.PostedFile.FileName);
-                Plan_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Building_Plan/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Plan", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Plano_Path",
-                    "/English/Main_Application/Building_File/Building_Plan/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Plan", Plan.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Plano_Path", Plan_Path.Text);
-            }
+                    Req_Val_Ar_Bilding_Name.ErrorMessage = "* Required ";
+                    Req_Val_En_Bilding_Name.ErrorMessage = "* Required ";
+                    Building_Condition_Req_Val.ErrorMessage = "* Required ";
+                    Building_Type_Req_Val.ErrorMessage = "* Required ";
+                    Building_Value_Req_Field_Val.ErrorMessage = "* Required ";
+                    ownership_Name_Req_Val.ErrorMessage = "* Required ";
+                }
+                else
+                {
 
-            //**********************************************************************************************************************************************************
-            if (Entrance_picture_FileUpload.HasFile)
-            {
-                string fileName1 = Path.GetFileName(Entrance_picture_FileUpload.PostedFile.FileName);
-                Entrance_picture_FileUpload.PostedFile.SaveAs(
-                    Server.MapPath("/English/Main_Application/Building_File/Entrace_Photo/") + fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", fileName1);
-                updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path",
-                    "/English/Main_Application/Building_File/Entrace_Photo/" + fileName1);
-            }
-            else
-            {
-                updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", Entrance_picture.Text);
-                updateBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path", Entrance_picture_Path.Text);
-            }
+                    //************************************************* Building Labels ************************************************
 
-            updateBuildingCmd.ExecuteNonQuery();
+                    //Get Building_Condition DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building_condition", _sqlCon, Building_Condition_DropDownList, "Building_Arabic_Condition", "Building_Condition_Id");
+                    Building_Condition_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Building_Type  DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building_type", _sqlCon, Building_Type_DropDownList, "Building_Arabic_Type", "Building_Type_Id");
+                    Building_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Add_New_Building.Text = Dt.Rows[99]["AR"].ToString();
+                    lbl_Ar_Bildingp_Name.Text = Dt.Rows[59]["AR"].ToString() + "(بالعربية)";
+                    lbl_En_Bilding_Name.Text = Dt.Rows[59]["AR"].ToString() + "(بالإنكليزية)";
+                    lbl_Construction_Area.Text = Dt.Rows[60]["AR"].ToString();
+                    lbl_Building_Condition.Text = Dt.Rows[61]["AR"].ToString();
+                    lbl_Building_Type.Text = Dt.Rows[62]["AR"].ToString();
+                    lbl_Maintenance_status.Text = Dt.Rows[63]["AR"].ToString();
+                    lbl_Water_meter.Text = Dt.Rows[64]["AR"].ToString();
+                    lbl_electricity_meter.Text = Dt.Rows[65]["AR"].ToString();
+                    lbl_Building_Value.Text = Dt.Rows[76]["AR"].ToString();
+                    lbl_Construction_Completion_Date.Text = Dt.Rows[66]["AR"].ToString();
+                    lbl_ownership_Name.Text = Dt.Rows[44]["AR"].ToString();
+                    lbl_Building_NO.Text = Dt.Rows[67]["AR"].ToString();
+                    lbl_Zone_No.Text = Dt.Rows[36]["AR"].ToString();
+                    lbl_Street_No.Text = Dt.Rows[48]["AR"].ToString();
+                    lbl_Building_Photo.Text = Dt.Rows[68]["AR"].ToString();
+                    lbl_Plan.Text = Dt.Rows[69]["AR"].ToString();
+                    lbl_Statement.Text = Dt.Rows[70]["AR"].ToString();
+                    lbl_Maps.Text = Dt.Rows[71]["AR"].ToString();
+                    lbl_Building_Permit.Text = Dt.Rows[72]["AR"].ToString();
+                    lbl_certificate_of_completion.Text = Dt.Rows[73]["AR"].ToString();
+                    lbl_Entrance_picture.Text = Dt.Rows[74]["AR"].ToString();
+                    lbl_Image.Text = "Another image";
+                    lbl_Building_Att.Text = "مرفقات البناء";
+                    lbl_Reason_Delete.Text = "سبب الحذف";
+                    btn_Add_Building.Text = Dt.Rows[99]["AR"].ToString();
+                    btn_Back_To_Building.Text = Dt.Rows[78]["AR"].ToString();
+
+                    Reg_Exp_En_Bilding_Name.ErrorMessage = Dt.Rows[56]["AR"].ToString();
+                    Reg_Ex_Ar_Bilding_Name.ErrorMessage = Dt.Rows[57]["AR"].ToString();
+                    Reg_Exp_Building_Value.ErrorMessage = Dt.Rows[58]["AR"].ToString();
+                    Delete_ReqFieVal.ErrorMessage = "يجب توضيح سبب الحذف";
+
+                    Req_Val_Ar_Bilding_Name.ErrorMessage = "* حقل مطلوب ";
+                    Req_Val_En_Bilding_Name.ErrorMessage = "* حقل مطلوب ";
+                    Building_Condition_Req_Val.ErrorMessage = "* حقل مطلوب ";
+                    Building_Type_Req_Val.ErrorMessage = "* حقل مطلوب ";
+                    Building_Value_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    ownership_Name_Req_Val.ErrorMessage = "* حقل مطلوب ";
+                }
+            }
             _sqlCon.Close();
         }
     }

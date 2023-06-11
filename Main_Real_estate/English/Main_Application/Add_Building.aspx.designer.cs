@@ -78,15 +78,6 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Req_Val_Ar_Bilding_Name;
 
         /// <summary>
-        /// Reg_Exp_En_Bilding_Name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Reg_Exp_En_Bilding_Name;
-
-        /// <summary>
         /// lbl_En_Bilding_Name control.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_En_Bilding_Name;
+
+        /// <summary>
+        /// Reg_Exp_En_Bilding_Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Reg_Exp_En_Bilding_Name;
 
         /// <summary>
         /// txt_En_Bilding_Name control.
@@ -393,6 +393,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Zone_No;
 
         /// <summary>
+        /// lbl_Building_Att control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Building_Att;
+
+        /// <summary>
         /// lbl_Building_Photo control.
         /// </summary>
         /// <remarks>
@@ -609,6 +618,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Success_Add_Unit;
 
         /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+
+        /// <summary>
         /// lbl_Unit_Type control.
         /// </summary>
         /// <remarks>
@@ -634,6 +652,42 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Unit_Type_Req_Val;
+
+        /// <summary>
+        /// div_Furniture_case control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Furniture_case;
+
+        /// <summary>
+        /// lbl_Furniture_case control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Furniture_case;
+
+        /// <summary>
+        /// Furniture_case_DropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Furniture_case_DropDownList;
+
+        /// <summary>
+        /// Furniture_case_RequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Furniture_case_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Unit_Condition control.
@@ -688,42 +742,6 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Unit_Detail_Req_Val;
-
-        /// <summary>
-        /// div_Furniture_case control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Furniture_case;
-
-        /// <summary>
-        /// lbl_Furniture_case control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Furniture_case;
-
-        /// <summary>
-        /// Furniture_case_DropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Furniture_case_DropDownList;
-
-        /// <summary>
-        /// Furniture_case_RequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Furniture_case_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Unit_Space control.
@@ -1003,6 +1021,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
+
+        /// <summary>
+        /// lbl_Unit_File control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Unit_File;
 
         /// <summary>
         /// lbl_Image_One control.

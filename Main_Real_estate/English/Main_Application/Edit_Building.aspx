@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style> .width{height: 75px;}  </style>
+    <style> .width{}  </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <link href="../CSS/DDL.css" rel="stylesheet" /> 
@@ -36,10 +36,10 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
+                                    <asp:Label ID="lbl_En_Bilding_Name" runat="server" Text="Building Name"></asp:Label>
                                     <asp:RegularExpressionValidator ID="Reg_Exp_En_Bilding_Name" runat="server" ControlToValidate="txt_En_Bilding_Name"
                                         EnableClientScript="True" ErrorMessage="Only English" ForeColor="#fc544b"
                                         ValidationExpression="[0-9 a-z A-Z]+"></asp:RegularExpressionValidator>
-                                    <asp:Label ID="lbl_En_Bilding_Name" runat="server" Text="Building Name"></asp:Label>
                                     <asp:TextBox ID="txt_En_Bilding_Name" runat="server" CssClass="form-control"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="Req_Val_En_Bilding_Name" ControlToValidate="txt_En_Bilding_Name"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
@@ -63,7 +63,7 @@
                                     <asp:DropDownList ID="Building_Condition_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Condition_Req_Val" ControlToValidate="Building_Condition_DropDownList"
-                                        InitialValue="اختر حالة البناء ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -72,7 +72,7 @@
                                     <asp:DropDownList ID="Building_Type_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Type_Req_Val" ControlToValidate="Building_Type_DropDownList"
-                                        InitialValue="إختر نوع البناء ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -102,7 +102,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Building_Value" runat="server" Text="قيمة البناء"></asp:Label>
                                     <asp:RegularExpressionValidator ID="Reg_Exp_Building_Value" runat="server" ControlToValidate="txt_Building_Value"
-                                        EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="#fc544b"
+                                        EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="#fc544b" Font-Size="13px"
                                         ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Building_Value" runat="server" CssClass="form-control"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="Building_Value_Req_Field_Val" ControlToValidate="txt_Building_Value"
@@ -133,7 +133,7 @@
                                     <asp:DropDownList ID="ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="ownership_Name_Req_Val" ControlToValidate="ownership_Name_DropDownList"
-                                        InitialValue="أختر إسم الملكية...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
 
         <div class="row">
             <div class="col-lg-12" style="border-style: solid; border-radius: 10px; width: 1221px;">
-                <h3>مرفقات البناء</h3>
+                <h3><asp:Label ID="lbl_Building_Att" runat="server"/></h3>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3">
@@ -191,7 +191,7 @@
                                         <asp:Label ID="lbl_Link_Building_Photo" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Building_Photo" runat="server" OnClick="Btn_Remove_Link_Building_Photo_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                    <asp:LinkButton ID="Remove_Link_Building_Photo" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Building_Photo_Click">
+                                    <asp:LinkButton ID="Remove_Link_Building_Photo" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Building_Photo_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -212,7 +212,7 @@
                                         <asp:Label ID="lbl_Link_Plan" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Plan" runat="server" OnClick="Btn_Remove_Link_Plan_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                     <asp:LinkButton ID="Remove_Link_Plan" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Plan_Click">
+                                     <asp:LinkButton ID="Remove_Link_Plan" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Plan_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -232,7 +232,7 @@
                                         <asp:Label ID="lbl_Link_Statement" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Statement" runat="server" OnClick="Btn_Remove_Link_Statement_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                       <asp:LinkButton ID="Remove_Link_Statement" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Statement_Click">
+                                       <asp:LinkButton ID="Remove_Link_Statement" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Statement_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -252,7 +252,7 @@
                                         <asp:Label ID="lbl_Link_Maps" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Maps" runat="server" OnClick="Btn_Remove_Link_Maps_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                     <asp:LinkButton ID="Remove_Link_Maps" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Maps_Click">
+                                     <asp:LinkButton ID="Remove_Link_Maps" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Maps_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -276,7 +276,7 @@
                                         <asp:Label ID="lbl_Link_Permit" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Permit" runat="server" OnClick="Btn_Remove_Link_Permit_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                    <asp:LinkButton ID="Remove_Link_Permit" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Permit_Click">
+                                    <asp:LinkButton ID="Remove_Link_Permit" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Permit_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -296,7 +296,7 @@
                                         <asp:Label ID="lbl_Link_certificate_of_completion" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_certificate_of_completion" OnClick="Btn_Remove_Link_certificate_of_completion_Click" runat="server" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                    <asp:LinkButton ID="Remove_Link_certificate_of_completion" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_certificate_of_completion_Click">
+                                    <asp:LinkButton ID="Remove_Link_certificate_of_completion" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_certificate_of_completion_Click">
                                             <i class="fa fa-trash" style="font-size:15px;"></i>
                                         </asp:LinkButton>
                                 </div>
@@ -316,7 +316,7 @@
                                         <asp:Label ID="lbl_Link_Entrance_picture" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Entrance_picture" OnClick="Btn_Remove_Link_Entrance_picture_Click" runat="server" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                     <asp:LinkButton ID="Remove_Link_Entrance_picture" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Entrance_picture_Click">
+                                     <asp:LinkButton ID="Remove_Link_Entrance_picture" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Entrance_picture_Click">
                                         <i class="fa fa-trash" style="font-size:15px;"></i>
                                     </asp:LinkButton>
                                 </div>
@@ -336,7 +336,7 @@
                                         <asp:Label ID="lbl_Link_Image" runat="server" Text=""></asp:Label>
                                     </a>
                                     <%--<asp:ImageButton ID="Btn_Remove_Link_Image" runat="server" OnClick="Btn_Remove_Link_Image_Click" Width="10px" Height="10px" ImageUrl="Main_Image/bin.png" />--%>
-                                     <asp:LinkButton ID="Remove_Link_Image" runat="server" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  OnClick="Btn_Remove_Link_Image_Click">
+                                     <asp:LinkButton ID="Remove_Link_Image" runat="server" OnClientClick="return confirm('Are you sure you want to delete?');"  OnClick="Btn_Remove_Link_Image_Click">
                                         <i class="fa fa-trash" style="font-size:15px;"></i>
                                     </asp:LinkButton>
                                 </div>
@@ -361,11 +361,11 @@
             </div>
             <div >
                 <br />
-                <asp:LinkButton ID="Delete_Building"  runat="server" ValidationGroup="Delete" OnClick="Delete_Building_Click" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"  ><i class="fa fa-trash" style="font-size:40px; color:#0779c9"></i></asp:LinkButton>
+                <asp:LinkButton ID="Delete_Building"  runat="server" ValidationGroup="Delete" OnClick="Delete_Building_Click" OnClientClick="return confirm('Are you sure you want to delete?');"  ><i class="fa fa-trash" style="font-size:40px; color:#0779c9"></i></asp:LinkButton>
             </div>
             <div class="col-lg-5">
                 <div class="form-group" runat="server" id="Delete_Reason">
-                    <asp:Label ID="lbl_Reason_Delete" runat="server" Text="سبب الحذف" ></asp:Label>
+                    <asp:Label ID="lbl_Reason_Delete" runat="server" ></asp:Label>
                     <asp:TextBox ID="txt_Reason_Delete" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="Delete_ReqFieVal" ControlToValidate="txt_Reason_Delete"
                     runat="server" ErrorMessage="* يرجى توضيح سبب الحذف" ForeColor="#fc544b" ValidationGroup="Delete"></asp:RequiredFieldValidator>
