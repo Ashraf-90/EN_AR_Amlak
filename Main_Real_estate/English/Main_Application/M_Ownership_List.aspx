@@ -98,7 +98,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#M_Ownership" aria-expanded="true"
                     aria-controls="M_Ownership" style="width: 270px;">
                     <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
-                    <span style="font-size: 18px;">إضافة الملكيات المرهونة</span>
+                    <span style="font-size: 18px;"><asp:Label ID="lbl_Titel_Add_M_Ownership" runat="server" Font-Size="18px"/></span>
                 </a>
                 <div id="M_Ownership" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="row">
@@ -112,7 +112,7 @@
                                                 <asp:DropDownList ID="ownership_Name_DropDownList" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="ownership_Name_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="أختر إسم الملكية...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -121,7 +121,7 @@
                                                 <asp:DropDownList ID="Bank_Name_DropDownList" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="Bank_Name_Req_Field_Val" ControlToValidate="Bank_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="أختر جهة الرهن...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
 
@@ -148,8 +148,8 @@
                                                     <asp:ListItem Value="1" Text="شهري"></asp:ListItem>
                                                     <asp:ListItem Value="2" Text="ربع سنوي"></asp:ListItem>
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="أختر دورة السداد...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="Paymen_Type_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
+                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
 

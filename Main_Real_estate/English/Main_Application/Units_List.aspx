@@ -8,13 +8,11 @@
                 /*lengthChange: false,*/
                 "pageLength": 10000,
                 buttons: [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
                     /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -43,7 +41,7 @@
         <div class="row">
             <div class="col-lg-2 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Building_List" runat="server" Text="قائمة الوحدات"></asp:Label>
+                    <asp:Label ID="lbl_titel_Unit_List" runat="server" Text="قائمة الوحدات"></asp:Label>
                 </h1>
             </div>
             <div class="col-lg-3 mb-3">
@@ -64,17 +62,17 @@
                             <table  cellspacing="0" style="width: 100%; font-size:11px" class="datatable table table-striped table-bordered">
                                 <thead>
                                     <th style="vertical-align: middle;">#</th>
-                                    <th style="vertical-align: middle;">رمز الملكية</th>
-                                    <th style="vertical-align: middle;">اسم الملكية</th>
-                                    <th style="vertical-align: middle;">اسم البناء</th>
-                                    <th style="vertical-align: middle;">رقم الوحدة</th>
-                                    <th style="vertical-align: middle;">مساحة الوحدة</th>
-                                    <th style="vertical-align: middle;">رقم الطابق </th>
-                                    <th style="vertical-align: middle;">وضع الصيانة</th>
-                                    <th style="vertical-align: middle;">نوع الوحدة</th>
-                                    <th style="vertical-align: middle;">الحالة الإيجارية</th>
-                                    <th style="vertical-align: middle;">القيمة الإفتراضية</th>
-                                    <th style=" text-align: center;vertical-align: middle;">تفاصيل الوحدة</th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_owner_ship_Code" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Owner_Ship_Name" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Building_Name" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Unit_Number" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Unit_Space" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Floor_Number" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_current_situation" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Unit_Type" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Unit_Condition" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_virtual_Value" runat="server" /></th>
+                                    <th style="vertical-align: middle;"><asp:Label ID="lbl_Unit_Detail" runat="server" /></th>
                                     <th style="width:50px"></th>
                                 </thead>
                             <tbody>
@@ -82,28 +80,33 @@
                         <ItemTemplate>
                             <tr>
                                 <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
-                                 <td>
-                                    <asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
+                                 <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                    <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                </td>
+
+                                <td><asp:Label ID="lbl_Unit_number" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
+                                <td><asp:Label ID="lbl_Unit_Space" runat="server" Text='<%# Eval("Unit_Space") %>' /></td>
+                                <td><asp:Label ID="lbl_Floor_Number" runat="server" Text='<%# Eval("Floor_Number") %>' /></td>
+                                <td><asp:Label ID="lbl_current_situation" runat="server" Text='<%# Eval("current_situation") %>' /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Unit_number" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
+                                    <asp:Label ID="lbl_Unit_Arabic_Type" runat="server" Text='<%# Eval("Unit_Arabic_Type") %>' />
+                                    <asp:Label ID="lbl_Unit_English_Type" runat="server" Text='<%# Eval("Unit_English_Type") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Unit_Space" runat="server"  Text='<%# Eval("Unit_Space") %>'/></td>
+                                    <asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_Arabic_Condition") %>' />
+                                    <asp:Label ID="lbl_Unit_English_Condition" runat="server" Text='<%# Eval("Unit_English_Condition") %>' />
+                                </td>
+                                <td><asp:Label ID="lbl_virtual_Value" runat="server" Text='<%# Eval("virtual_Value") %>' /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Floor_Number" runat="server" Text='<%# Eval("Floor_Number") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_current_situation" runat="server" Text='<%# Eval("current_situation") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Unit_Arabic_Type" runat="server" Text='<%# Eval("Unit_Arabic_Type") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_Arabic_Condition") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_virtual_Value" runat="server"  Text='<%# Eval("virtual_Value") %>'/></td>
-                                <td>
-                                    <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_Arabic_Detail") %>' /></td>
+                                    <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_Arabic_Detail") %>' />
+                                    <asp:Label ID="lbl_Unit_English_Detail" runat="server" Text='<%# Eval("Unit_English_Detail") %>' />
+                                </td>
                                 
                                 <td>
                                     <asp:LinkButton ID="Edit" ForeColor="#0779c9" runat="server" CommandArgument='<%# Eval("Unit_Id") %>' OnClick="Edit_Unit" > <i class="fa fa-pencil" style="font-size:18px;"></i> </asp:LinkButton>

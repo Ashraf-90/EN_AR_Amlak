@@ -25,15 +25,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                //Fill Ownership Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship ", _sqlCon, ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                ownership_Name_DropDownList.Items.Insert(0, "أختر إسم الملكية....");
-
-                //Fill Bank Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
-                Bank_Name_DropDownList.Items.Insert(0, "أختر جهة الرهن....");
-
-
+                language();
                 BindData();
             }
         }
@@ -327,6 +319,112 @@ namespace Main_Real_estate.English.Main_Application
             }
         }
 
-       
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship ", _sqlCon, ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Bank Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Name_DropDownList, "Bank_English_Name", "Bank_Id");
+                    Bank_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Get Paymen_Type_DropDownList DropDownList
+                    Paymen_Type_DropDownList.Items.Clear();
+                    Paymen_Type_DropDownList.Items.Add(new ListItem("Monthly", "1"));
+                    Paymen_Type_DropDownList.Items.Add(new ListItem("Quarterly", "2"));
+                    Paymen_Type_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Titel_Add_M_Ownership.Text = "Add a Mortgage";
+                    lbl_ownership_Name.Text = Dt.Rows[44]["EN"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[108]["EN"].ToString();
+                    lbl_Mortgage_Value.Text = Dt.Rows[107]["EN"].ToString();
+                    lbl_Paymen_Type.Text = Dt.Rows[106]["EN"].ToString();
+                    lbl_Installment_Value.Text = Dt.Rows[105]["EN"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[103]["EN"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[102]["EN"].ToString();
+                    Add.Text = "Add";
+                    Start_Date_Chosee.Text= Dt.Rows[109]["EN"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[109]["EN"].ToString();
+                    Label1.Text = Dt.Rows[101]["EN"].ToString();
+
+                    ownership_Name_Req_Field_Val.ErrorMessage = "* Required ";
+                    Bank_Name_Req_Field_Val.ErrorMessage = "* Required ";
+                    Mortgage_Value_Req_Field_Val.ErrorMessage = "* Required ";
+                    Paymen_Type_Req_Field_Val.ErrorMessage = "* Required ";
+                    Installment_Value_Req_Field_Val.ErrorMessage = "* Required ";
+                    Start_Date_Req_Field_Val.ErrorMessage = "* Required ";
+                    End_Date_Req_Field_Val.ErrorMessage = "* Required ";
+
+                    Installment_Value_Reg_Exp_Vali.ErrorMessage = Dt.Rows[58]["EN"].ToString();
+                    Mortgage_Value_Reg_Exp_Vali.ErrorMessage = Dt.Rows[58]["EN"].ToString();
+
+
+                }
+                else
+                {
+
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship ", _sqlCon, ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Bank Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
+                    Bank_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Paymen_Type_DropDownList DropDownList
+                    Paymen_Type_DropDownList.Items.Clear();
+                    Paymen_Type_DropDownList.Items.Add(new ListItem("شهري", "1"));
+                    Paymen_Type_DropDownList.Items.Add(new ListItem("ربع سنوي", "2"));
+                    Paymen_Type_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Titel_Add_M_Ownership.Text = "إضافة رهن ";
+                    lbl_ownership_Name.Text = Dt.Rows[44]["AR"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[108]["AR"].ToString();
+                    lbl_Mortgage_Value.Text = Dt.Rows[107]["AR"].ToString();
+                    lbl_Paymen_Type.Text = Dt.Rows[106]["AR"].ToString();
+                    lbl_Installment_Value.Text = Dt.Rows[105]["AR"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[103]["AR"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[102]["AR"].ToString();
+                    Add.Text = "إضافة";
+                    Start_Date_Chosee.Text = Dt.Rows[109]["AR"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[109]["AR"].ToString();
+                    Label1.Text = Dt.Rows[101]["AR"].ToString();
+
+                    ownership_Name_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    Bank_Name_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    Mortgage_Value_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    Paymen_Type_Req_Field_Val.ErrorMessage = "* Required ";
+                    Installment_Value_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    Start_Date_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+                    End_Date_Req_Field_Val.ErrorMessage = "* حقل مطلوب ";
+
+                    Installment_Value_Reg_Exp_Vali.ErrorMessage = Dt.Rows[58]["AR"].ToString();
+                    Mortgage_Value_Reg_Exp_Vali.ErrorMessage = Dt.Rows[58]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+        }
+
+
     }
 }

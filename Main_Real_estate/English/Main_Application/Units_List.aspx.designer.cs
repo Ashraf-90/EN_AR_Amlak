@@ -15,13 +15,13 @@ namespace Main_Real_estate.English.Main_Application
     {
 
         /// <summary>
-        /// lbl_titel_Building_List control.
+        /// lbl_titel_Unit_List control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Building_List;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Unit_List;
 
         /// <summary>
         /// Add control.

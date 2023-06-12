@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Main_Real_estate.English.Master_Panal;
+using iTextSharp.tool.xml.html;
 
 namespace Main_Real_estate.English.Main_Application
 {
@@ -21,11 +22,12 @@ namespace Main_Real_estate.English.Main_Application
             catch { Response.Redirect("Log_In.aspx"); }
             
             Unit_Detail();
+            language();
         }
 
         protected void Unit_Detail()
         {
-            T_U_D.Text = "تفاصيل الوحدة :";
+            
             string ID = Request.QueryString["Id"];
             using (MySqlCommand Cmd = new MySqlCommand("Unit_Details", _sqlCon))
             {
@@ -38,6 +40,51 @@ namespace Main_Real_estate.English.Main_Application
                 Unit_Details.DataBind();
                 _sqlCon.Close();
             }
+        }
+
+        protected void Unit_Details_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Titel_Floor_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Floor_Number");
+                var lbl_Titel_Unit_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Unit_Number");
+                var lbl_Titel_Water_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Water_Number");
+                var lbl_Titel_Electrcity_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Electrcity_Number");
+                var lbl_Titel_Oreedo_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Oreedo_Number");
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_Titel_Floor_Number.Text = Dt.Rows[87]["EN"].ToString();
+                        lbl_Titel_Unit_Number.Text = Dt.Rows[86]["EN"].ToString();
+                        lbl_Titel_Water_Number.Text = Dt.Rows[64]["EN"].ToString();
+                        lbl_Titel_Electrcity_Number.Text = Dt.Rows[65]["EN"].ToString();
+                        lbl_Titel_Oreedo_Number.Text = Dt.Rows[85]["EN"].ToString();
+
+                    }
+                    else
+                    {
+                        lbl_Titel_Floor_Number.Text = Dt.Rows[87]["AR"].ToString();
+                        lbl_Titel_Unit_Number.Text = Dt.Rows[86]["AR"].ToString();
+                        lbl_Titel_Water_Number.Text = Dt.Rows[64]["AR"].ToString();
+                        lbl_Titel_Electrcity_Number.Text = Dt.Rows[65]["AR"].ToString();
+                        lbl_Titel_Oreedo_Number.Text = Dt.Rows[85]["AR"].ToString();
+
+                    }
+                }
+            }
+        }
+
+        protected void language()
+        {
+            if (Session["Langues"].ToString() == "1") { T_U_D.Text = "Details Of Unit :"; btn_Back_To_Building_List.Text = "Bacl To Units List"; }
+            else { T_U_D.Text = "تفاصيل الوحدة :"; btn_Back_To_Building_List.Text = "العودة لقائمة الوحدات"; }
         }
     }
 }

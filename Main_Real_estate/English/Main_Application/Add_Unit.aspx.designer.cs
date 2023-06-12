@@ -438,6 +438,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Zone_No;
 
         /// <summary>
+        /// lbl_Unit_File control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Unit_File;
+
+        /// <summary>
         /// lbl_Image_One control.
         /// </summary>
         /// <remarks>

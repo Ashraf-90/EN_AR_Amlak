@@ -87,9 +87,6 @@ namespace Main_Real_estate.English.Main_Application
         {
             if (Page.IsValid)
             {
-
-
-
                 _sqlCon.Open();
                 MySqlCommand cmd = new MySqlCommand("Add_Building", _sqlCon);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -105,6 +102,8 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("owner_ship_Owner_Ship_Id", ownership_Name_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("building_condition_Building_Condition_Id", Building_Condition_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("building_type_Building_Type_Id", Building_Type_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("Active", "1");
+                cmd.Parameters.AddWithValue("IsRealEsataeInvesment", "0");
 
                 //*************************************** Add The File Uploads ************************************************************************************************
                 if (Building_Photo_FileUpload.HasFile)
@@ -219,41 +218,34 @@ namespace Main_Real_estate.English.Main_Application
                     cmd.Parameters.AddWithValue("@Entrance_Photo_Path", "No File");
                 }
                 cmd.ExecuteNonQuery();
+                //********************************* Get Building ID To Add it in Half_Building_ID Col and Using it in New Units *******************************************
+                using (MySqlCommand Get_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building ", _sqlCon))
+                {
+                    _sqlCon.Open();
+                    Get_Building_ID.CommandType = CommandType.Text;
+                    object Building_ID = Get_Building_ID.ExecuteScalar();
+                    if (Building_ID != null) { Building_id.Text = Building_ID.ToString(); }
+                    _sqlCon.Close();
+                }
+
+                string updateHalf_Building_IdQuary = "UPDATE building SET Half_Building_ID=@Half_Building_ID  WHERE Building_Id=@ID ";
+                _sqlCon.Open();
+                MySqlCommand updateHalf_Building_IdCmd = new MySqlCommand(updateHalf_Building_IdQuary, _sqlCon);
+                updateHalf_Building_IdCmd.Parameters.AddWithValue("@ID", Building_id.Text);
+                updateHalf_Building_IdCmd.Parameters.AddWithValue("@Half_Building_ID", Building_id.Text);
+                updateHalf_Building_IdCmd.ExecuteNonQuery();
+                _sqlCon.Close();
 
                 if (Session["Langues"].ToString() == "1") { lbl_Success_Add_Building.Text = "Building Added Successfully"; }
                 else { lbl_Success_Add_Building.Text = "تمت إضافة البناء بنجاح"; }
 
-                string buildingId;
-                DataTable getAddedBuildingDt = new DataTable();
-                if (_sqlCon.State != ConnectionState.Open)
-                {
-                    _sqlCon.Open(); // Wherever you are trying to open the connection,  do this.
-                    //Do the same for close connection
-                }
 
-                MySqlCommand getAddedBuildingCmd = new MySqlCommand(
-                    "SELECT Building_Arabic_Name , Building_English_Name , Building_Id FROM building where Building_NO = '" +
-                    txt_Building_NO.Text + "' And owner_ship_Owner_Ship_Id='" +
-                    ownership_Name_DropDownList.SelectedValue + "'", _sqlCon);
-                MySqlDataAdapter getAddedBuildingDa = new MySqlDataAdapter(getAddedBuildingCmd);
-                getAddedBuildingDa.Fill(getAddedBuildingDt);
-                buildingId = getAddedBuildingDt.Rows[0]["Building_Id"].ToString();
-                Added_Building_Id.Text = buildingId;
-
-
-                
-                if (Session["Langues"].ToString() == "1") { lbl_Add_New_Unit.Text = "Add Units To Building : " + getAddedBuildingDt.Rows[0]["Building_English_Name"].ToString(); }
-                else { lbl_Add_New_Unit.Text = " إضافة وحدة لبناء : " + getAddedBuildingDt.Rows[0]["Building_Arabic_Name"].ToString(); }
+                if (Session["Langues"].ToString() == "1") { lbl_Add_New_Unit.Text = "Add Units To Building" + txt_En_Bilding_Name.Text; }
+                else { lbl_Add_New_Unit.Text = " إضافة وحدة لبناء : " + txt_En_Bilding_Name.Text; }
 
                 Button3.Visible = true;
                 Button4.Visible = true;
-                if (_sqlCon.State != ConnectionState.Closed)
-                {
-                    _sqlCon.Close();
-                }
-
-
-
+                _sqlCon.Close();
                 Page.SetFocus(Button3.ClientID);
             }
         }
@@ -274,6 +266,8 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("@Electricityt_Number", txt_Electricityt_Number.Text);
                 cmd.Parameters.AddWithValue("@Water_Number", txt_Water_Number.Text);
                 cmd.Parameters.AddWithValue("@virtual_Value", txt_virtual_Value.Text);
+                cmd.Parameters.AddWithValue("@Half", "0");
+                cmd.Parameters.AddWithValue("@Active", "0");
                 if (
                    Unit_Type_DropDownList.SelectedValue == "1" || Unit_Type_DropDownList.SelectedValue == "4" ||
                    Unit_Type_DropDownList.SelectedValue == "5" || Unit_Type_DropDownList.SelectedValue == "6" ||
@@ -289,7 +283,7 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("@unit_condition_Unit_Condition_Id", Unit_Condition_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@unit_detail_Unit_Detail_Id", Unit_Detail_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@unit_type_Unit_Type_Id", Unit_Type_DropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@building_Building_Id", Added_Building_Id.Text);
+                cmd.Parameters.AddWithValue("@building_Building_Id", Building_id.Text);
 
                 //*************************************** Add The File Uploads ************************************************************************************************
                 if (Image_One_FileUpload.HasFile)
@@ -432,7 +426,7 @@ namespace Main_Real_estate.English.Main_Application
             using (MySqlCommand buildingDetailsCmd = new MySqlCommand("Building_Details", _sqlCon))
             {
                 buildingDetailsCmd.CommandType = CommandType.StoredProcedure;
-                buildingDetailsCmd.Parameters.AddWithValue("@Id", Added_Building_Id.Text);
+                buildingDetailsCmd.Parameters.AddWithValue("@Id", Building_id.Text);
                 using (MySqlDataAdapter buildingDetailsSda = new MySqlDataAdapter(buildingDetailsCmd))
                 {
                     DataTable bulidingDetailsDt = new DataTable();
@@ -445,260 +439,6 @@ namespace Main_Real_estate.English.Main_Application
             }
             _sqlCon.Close();
         }
-
-
-
-        //*****************************************************************************************************************************
-        //*********************************************************** أرشفة البناء ***************************************************
-
-        protected void Arcive_Building()
-        {
-            string addBuildingQuery = "Insert Into arcive_building (" +
-                                            "owner_ship_Owner_Ship_Id  ,   " +
-                                            "building_condition_Building_Condition_Id  ,  " +
-                                            "building_type_Building_Type_Id , " +
-                                            "Building_English_Name," +
-                                            "Building_Arabic_Name ," +
-                                            "electricity_meter, " +
-                                            "Water_meter , " +
-                                            "Building_NO," +
-                                            "Construction_Area , " +
-                                            "Maintenance_status , " +
-                                            "Building_Value , " +
-                                            "Construction_Completion_Date , " +
-                                            "Active , " +
-                                            "Building_Photo , " +
-                                            "Building_Photo_Path , " +
-                                            "Statement , " +
-                                            "Statement_Path , " +
-                                            "Building_Permit , " +
-                                            "Building_Permit_Path , " +
-                                            "certificate_of_completion , " +
-                                            "certificate_of_completion_Path , " +
-                                            "Image , " +
-                                            "Image_Path , " +
-                                            "Map , " +
-                                            "Map_path , " +
-                                            "Plan , " +
-                                            "Plano_Path , " +
-                                            "Entrance_Photo , " +
-                                            "Entrance_Photo_Path , IsRealEsataeInvesment)" +
-                                            " VALUES (" +
-                                            "@owner_ship_Owner_Ship_Id  ,   " +
-                                            "@building_condition_Building_Condition_Id  ,  " +
-                                            "@building_type_Building_Type_Id , " +
-                                            "@Building_English_Name," +
-                                            "@Building_Arabic_Name ," +
-                                            "@electricity_meter, " +
-                                            "@Water_meter , " +
-                                            "@Building_NO," +
-                                            "@Construction_Area , " +
-                                            "@Maintenance_status , " +
-                                            "@Building_Value , " +
-                                            "@Construction_Completion_Date , " +
-                                            "@Active , " +
-                                            "@Building_Photo , " +
-                                            "@Building_Photo_Path , " +
-                                            "@Statement , " +
-                                            "@Statement_Path , " +
-                                            "@Building_Permit , " +
-                                            "@Building_Permit_Path , " +
-                                            "@certificate_of_completion , " +
-                                            "@certificate_of_completion_Path , " +
-                                            "@Image , " +
-                                            "@Image_Path , " +
-                                            "@Map , " +
-                                            "@Map_path , " +
-                                            "@Plan , " +
-                                            "@Plano_Path , " +
-                                            "@Entrance_Photo , " +
-                                            "@Entrance_Photo_Path , @IsRealEsataeInvesment)";
-            if (_sqlCon.State != ConnectionState.Open)
-            {
-                _sqlCon.Open(); // Wherever you are trying to open the connection,  do this.
-                                //Do the same for close connection
-            }
-
-            using (MySqlCommand addBuildingCmd = new MySqlCommand(addBuildingQuery, _sqlCon))
-            {
-                addBuildingCmd.Parameters.AddWithValue("@Building_English_Name", txt_En_Bilding_Name.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Building_Arabic_Name", txt_Ar_Bilding_Name.Text);
-                addBuildingCmd.Parameters.AddWithValue("@electricity_meter", txt_electricity_meter.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Water_meter", txt_Water_meter.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Building_NO", txt_Building_NO.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Construction_Area", txt_Construction_Area.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Maintenance_status", txt_Maintenance_status.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Building_Value", txt_Building_Value.Text);
-                addBuildingCmd.Parameters.AddWithValue("@Construction_Completion_Date", Construction_Completion_Date_DropDownList.SelectedItem.Text);
-                addBuildingCmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", ownership_Name_DropDownList.SelectedValue);
-                addBuildingCmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id", Building_Condition_DropDownList.SelectedValue);
-                addBuildingCmd.Parameters.AddWithValue("@building_type_Building_Type_Id", Building_Type_DropDownList.SelectedValue);
-                addBuildingCmd.Parameters.AddWithValue("@Active", "1");
-                addBuildingCmd.Parameters.AddWithValue("@IsRealEsataeInvesment", "0");
-
-                //*************************************** Add The File Uploads ************************************************************************************************
-                if (Building_Photo_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Building_Photo_FileUpload.PostedFile.FileName);
-                    Building_Photo_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Building_Photo/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Photo", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path", "/English/Main_Application/Building_File/Building_Photo/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Photo", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Photo_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Statement_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Statement_FileUpload.PostedFile.FileName);
-                    Statement_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Statement/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Statement", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Statement_Path",
-                        "/English/Main_Application/Building_File/Statement/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Statement", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Statement_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Building_Permit_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Building_Permit_FileUpload.PostedFile.FileName);
-                    Building_Permit_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Building_Permit/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Permit", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path",
-                        "/English/Main_Application/Building_File/Building_Permit/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Permit", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Building_Permit_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (certificate_of_completion_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(certificate_of_completion_FileUpload.PostedFile.FileName);
-                    certificate_of_completion_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/certificate_completion/") +
-                        fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@certificate_of_completion", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path",
-                        "/English/Main_Application/Building_File/certificate_completion/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@certificate_of_completion", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@certificate_of_completion_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Image_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Image_FileUpload.PostedFile.FileName);
-                    Image_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Image/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Image", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Image_Path",
-                        "/English/Main_Application/Building_File/Image/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Image", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Image_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Maps_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Maps_FileUpload.PostedFile.FileName);
-                    Maps_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Map/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Map", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Map_Path",
-                        "/English/Main_Application/Building_File/Map/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Map", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Map_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Plan_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Plan_FileUpload.PostedFile.FileName);
-                    Plan_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Building_Plan/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Plan", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Plano_Path",
-                        "/English/Main_Application/Building_File/Building_Plan/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Plan", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Plano_Path", "No File");
-                }
-
-                //**********************************************************************************************************************************************************
-                if (Entrance_picture_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Entrance_picture_FileUpload.PostedFile.FileName);
-                    Entrance_picture_FileUpload.PostedFile.SaveAs(
-                        Server.MapPath("/English/Main_Application/Building_File/Entrace_Photo/") + fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", fileName1);
-                    addBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path",
-                        "/English/Main_Application/Building_File/Entrace_Photo/" + fileName1);
-                }
-                else
-                {
-                    addBuildingCmd.Parameters.AddWithValue("@Entrance_Photo", "No File");
-                    addBuildingCmd.Parameters.AddWithValue("@Entrance_Photo_Path", "No File");
-                }
-
-                addBuildingCmd.ExecuteNonQuery();
-                if (_sqlCon.State != ConnectionState.Closed)
-                {
-                    _sqlCon.Close();
-                }
-
-
-
-                using (MySqlCommand Get_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building ", _sqlCon))
-                {
-                    _sqlCon.Open();
-                    Get_Building_ID.CommandType = CommandType.Text;
-                    object Building_ID = Get_Building_ID.ExecuteScalar();
-                    if (Building_ID != null)
-                    {
-                        Building_id.Text = Building_ID.ToString();
-                    }
-
-                    _sqlCon.Close();
-                }
-
-                string updateHalf_Building_IdQuary = "UPDATE building SET Half_Building_ID=@Half_Building_ID  WHERE Building_Id=@ID ";
-                _sqlCon.Open();
-                MySqlCommand updateHalf_Building_IdCmd = new MySqlCommand(updateHalf_Building_IdQuary, _sqlCon);
-                updateHalf_Building_IdCmd.Parameters.AddWithValue("@ID", Building_id.Text);
-                updateHalf_Building_IdCmd.Parameters.AddWithValue("@Half_Building_ID", Building_id.Text);
-
-                updateHalf_Building_IdCmd.ExecuteNonQuery();
-                _sqlCon.Close();
-            }
-        }
-
-
-
-
 
         //******************************************************************************************************************************************
         //************************************************** languages ****************************************************************

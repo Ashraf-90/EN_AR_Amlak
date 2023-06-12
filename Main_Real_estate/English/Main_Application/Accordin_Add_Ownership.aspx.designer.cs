@@ -528,6 +528,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label Added_Ownership_Id;
 
         /// <summary>
+        /// Building_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Building_id;
+
+        /// <summary>
         /// lbl_Ar_Bildingp_Name control.
         /// </summary>
         /// <remarks>

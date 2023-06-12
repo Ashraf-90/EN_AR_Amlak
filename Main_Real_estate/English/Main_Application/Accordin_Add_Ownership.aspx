@@ -234,6 +234,7 @@
                 <h1 class="h3 mb-0 text-gray-800">
                     <asp:Label ID="lbl_Add_New_Building" runat="server"></asp:Label>
                     <asp:Label ID="Added_Ownership_Id" runat="server" Visible="false"></asp:Label>
+                    <asp:Label ID="Building_id" runat="server" Visible="false"></asp:Label>
                 </h1>
             </div>
             <div class="row">

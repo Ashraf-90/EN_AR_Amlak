@@ -41,7 +41,7 @@
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            z-index: 9999; /* Sit on top */
             padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
@@ -129,13 +129,13 @@
      <%--*************************************************************************************************************************************************************************************************************--%>
     <div class="container-fluid">
                     <asp:Label Font-Size="25px" ID="T_U_D"  runat="server" />
-                    <asp:Repeater ID="Unit_Details" runat="server" ClientIDMode="Static">
+                    <asp:Repeater ID="Unit_Details" runat="server" ClientIDMode="Static" OnItemDataBound="Unit_Details_ItemDataBound">
                         <ItemTemplate>
                             <asp:Label ID="lbl_Details_Unit_Name" Font-Size="25px" runat="server" Text= '<%# Eval("Unit_Number") %>'/>
                             <div class="row">
                                 <div class="col-lg-12 main_div">
                                     <div class="row" style="text-align: center; color: white">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4" style="direction: rtl;">
                                             <div class="row" style="background-color: #015997; border-style: solid; border-radius: 10px; border-color: black; padding: 10px">
                                                 <div class="col-lg-4" style="border-left-style: solid; border-color: white">
                                                     <asp:Label ID="lbl_Titel_Floor_Number" runat="server" Font-Size="23px" Text="رقم الطابق" /><br />

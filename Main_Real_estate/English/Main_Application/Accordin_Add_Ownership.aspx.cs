@@ -219,31 +219,19 @@ namespace Main_Real_estate.English.Main_Application
                     cmd.Parameters.AddWithValue("Property_Scheme_Image_Path", "No File");
                 }
                 cmd.ExecuteNonQuery();
-                // ******************  Fetch Added Ownership ID ************************************************
                 lbl_Success_Add_New_Ownership.Visible = true;
                 Button1.Visible = true; Button2.Visible = true;
-                string pinNo;  string ownershiId;
-                char[] pinNoArray = txt_PIN_Number.Text.ToCharArray();
-                if (pinNoArray.Length == 8)
+
+                //********************************* Get Ownership ID To  Using it in New Building *******************************************
+                using (MySqlCommand Get_Ownership_ID = new MySqlCommand("SELECT MAX(Owner_Ship_Id) AS LastInsertedID from owner_ship ", _sqlCon))
                 {
-                    pinNo = txt_PIN_Number.Text;
-                }
-                else
-                {
-                    int numberDifference = 8 - pinNoArray.Length;
-                    string countOfZeros = new string('0', numberDifference);
-                    pinNo = countOfZeros + txt_PIN_Number.Text;
+                    Get_Ownership_ID.CommandType = CommandType.Text;
+                    object Ownership_ID = Get_Ownership_ID.ExecuteScalar();
+                    if (Ownership_ID != null) { Added_Ownership_Id.Text = Ownership_ID.ToString(); }
                 }
 
-                DataTable getOwnershipDt = new DataTable();
-                MySqlCommand command =new MySqlCommand("SELECT Owner_Ship_EN_Name , Owner_Ship_AR_Name , Owner_Ship_Id FROM owner_ship where PIN_Number='" + pinNo + "'", _sqlCon);
-                MySqlDataAdapter getOwnershipDa = new MySqlDataAdapter(command);
-                getOwnershipDa.Fill(getOwnershipDt);
-                ownershiId = getOwnershipDt.Rows[0]["Owner_Ship_Id"].ToString();
-                Added_Ownership_Id.Text = ownershiId;
-
-                if (Session["Langues"].ToString() == "1") { lbl_Add_New_Building.Text = "Add BBuilding To Property :" + getOwnershipDt.Rows[0]["Owner_Ship_EN_Name"].ToString(); }
-                else { lbl_Add_New_Building.Text = " إضافة بناء للملكية : " + getOwnershipDt.Rows[0]["Owner_Ship_AR_Name"].ToString(); }
+                if (Session["Langues"].ToString() == "1") { lbl_Add_New_Building.Text = "Add BBuilding To Property :" + txt_En_Ownership_Name.Text; }
+                else { lbl_Add_New_Building.Text = " إضافة بناء للملكية : " + txt_Ar_Ownership_Name.Text; }
                     
                 Page.SetFocus(Button1.ClientID);
                 _sqlCon.Close();
@@ -271,6 +259,8 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("owner_ship_Owner_Ship_Id", Added_Ownership_Id.Text);
                 cmd.Parameters.AddWithValue("building_condition_Building_Condition_Id", Building_Condition_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("building_type_Building_Type_Id", Building_Type_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("Active", "1");
+                cmd.Parameters.AddWithValue("IsRealEsataeInvesment", "0");
 
                 //*************************************** Add The File Uploads ************************************************************************************************
                 if (Building_Photo_FileUpload.HasFile)
@@ -385,23 +375,30 @@ namespace Main_Real_estate.English.Main_Application
                     cmd.Parameters.AddWithValue("@Entrance_Photo_Path", "No File");
                 }
                 cmd.ExecuteNonQuery();
+
+                //********************************* Get Building ID To Add it in Half_Building_ID Col and Using it in New Units *******************************************
+                using (MySqlCommand Get_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building ", _sqlCon))
+                {
+                    Get_Building_ID.CommandType = CommandType.Text;
+                    object Building_ID = Get_Building_ID.ExecuteScalar();
+                    if (Building_ID != null) {Building_id.Text = Building_ID.ToString(); }
+                }
+
+                string updateHalf_Building_IdQuary = "UPDATE building SET Half_Building_ID=@Half_Building_ID  WHERE Building_Id=@ID ";
+                MySqlCommand updateHalf_Building_IdCmd = new MySqlCommand(updateHalf_Building_IdQuary, _sqlCon);
+                updateHalf_Building_IdCmd.Parameters.AddWithValue("@ID", Building_id.Text);
+                updateHalf_Building_IdCmd.Parameters.AddWithValue("@Half_Building_ID", Building_id.Text);
+                updateHalf_Building_IdCmd.ExecuteNonQuery();
+                
+                
+                _sqlCon.Close();
                 if (Session["Langues"].ToString() == "1") { lbl_Success_Add_Building.Text = "Building Added Successfully";  }
                 else { lbl_Success_Add_Building.Text = "تمت إضافة البناء بنجاح"; }
                     
             }
             //**********************************************************************************************************************************************************
-            string buildingId;
-            DataTable getAddedBuildingDt = new DataTable();
-            MySqlCommand getAddedBuildingCmd = new MySqlCommand("SELECT Building_English_Name , Building_Arabic_Name , Building_Id FROM building where Building_NO = '" + txt_Building_NO.Text + "' And owner_ship_Owner_Ship_Id='" + Added_Ownership_Id.Text + "'",_sqlCon);
-            MySqlDataAdapter getAddedBuildingDa = new MySqlDataAdapter(getAddedBuildingCmd);
-            getAddedBuildingDa.Fill(getAddedBuildingDt);
-            buildingId = getAddedBuildingDt.Rows[0]["Building_Id"].ToString();
-            Added_Building_Id.Text = buildingId;
-            
-
-
-            if (Session["Langues"].ToString() == "1") { lbl_Add_New_Unit.Text = "Add Units To Building" + getAddedBuildingDt.Rows[0]["Building_English_Name"].ToString(); }
-            else { lbl_Add_New_Unit.Text = " إضافة وحدة لبناء : " + getAddedBuildingDt.Rows[0]["Building_Arabic_Name"].ToString(); }
+            if (Session["Langues"].ToString() == "1") { lbl_Add_New_Unit.Text = "Add Units To Building" + txt_En_Bilding_Name.Text; }
+            else { lbl_Add_New_Unit.Text = " إضافة وحدة لبناء : " + txt_En_Bilding_Name.Text; }
 
             Button3.Visible = true;
             Button4.Visible = true;
@@ -426,6 +423,8 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("@Electricityt_Number", txt_Electricityt_Number.Text);
                 cmd.Parameters.AddWithValue("@Water_Number", txt_Water_Number.Text);
                 cmd.Parameters.AddWithValue("@virtual_Value", txt_virtual_Value.Text);
+                cmd.Parameters.AddWithValue("@Half", "0");
+                cmd.Parameters.AddWithValue("@Active", "0");
                 if (
                    Unit_Type_DropDownList.SelectedValue == "1" || Unit_Type_DropDownList.SelectedValue == "4" ||
                    Unit_Type_DropDownList.SelectedValue == "5" || Unit_Type_DropDownList.SelectedValue == "6" ||
@@ -441,7 +440,7 @@ namespace Main_Real_estate.English.Main_Application
                 cmd.Parameters.AddWithValue("@unit_condition_Unit_Condition_Id",Unit_Condition_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@unit_detail_Unit_Detail_Id", Unit_Detail_DropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@unit_type_Unit_Type_Id", Unit_Type_DropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@building_Building_Id", Added_Building_Id.Text);
+                cmd.Parameters.AddWithValue("@building_Building_Id", Building_id.Text);
 
                 //*************************************** Add The File Uploads ************************************************************************************************
                 if (Image_One_FileUpload.HasFile)
@@ -573,17 +572,11 @@ namespace Main_Real_estate.English.Main_Application
             txt_electricity_meter.Text = "";
             txt_Water_meter.Text = "";
 
-            //    //Get Building_Condition DropDownList
+            //Get Building_Condition DropDownList
+            Helper.LoadDropDownList("SELECT * FROM building_condition", _sqlCon, Building_Condition_DropDownList,"Building_Arabic_Condition", "Building_Condition_Id");
 
-            Helper.LoadDropDownList("SELECT * FROM building_condition", _sqlCon, Building_Condition_DropDownList,
-                "Building_Arabic_Condition",
-                "Building_Condition_Id");
-
-            //    //Get Building_Type  DropDownList
-
-            Helper.LoadDropDownList("SELECT * FROM building_type", _sqlCon, Building_Type_DropDownList,
-                "Building_Arabic_Type",
-                "Building_Type_Id");
+           //Get Building_Type  DropDownList
+            Helper.LoadDropDownList("SELECT * FROM building_type", _sqlCon, Building_Type_DropDownList, "Building_Arabic_Type", "Building_Type_Id");
         }
 
         protected void btn_Back_To_OwnerShip_List_Click(object sender, EventArgs e)
@@ -670,7 +663,7 @@ namespace Main_Real_estate.English.Main_Application
             using (MySqlCommand buildingDetailsCmd = new MySqlCommand("Building_Details", _sqlCon))
             {
                 buildingDetailsCmd.CommandType = CommandType.StoredProcedure;
-                buildingDetailsCmd.Parameters.AddWithValue("@Id", Added_Building_Id.Text);
+                buildingDetailsCmd.Parameters.AddWithValue("@Id", Building_id.Text);
                 using (MySqlDataAdapter buildingDetailsSda = new MySqlDataAdapter(buildingDetailsCmd))
                 {
                     DataTable bulidingDetailsDt = new DataTable();

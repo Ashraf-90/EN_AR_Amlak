@@ -33,6 +33,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ownership_Div;
 
         /// <summary>
+        /// lbl_Titel_Add_M_Ownership control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Add_M_Ownership;
+
+        /// <summary>
         /// lbl_ownership_Name control.
         /// </summary>
         /// <remarks>
@@ -141,13 +150,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Paymen_Type_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Paymen_Type_Req_Field_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Paymen_Type_Req_Field_Val;
 
         /// <summary>
         /// lbl_Installment_Value control.
