@@ -266,7 +266,7 @@
         </ul>
     </div>
     <br />
-        <hr /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        <hr /> 
     <div class="container-fluid" id="container-wrapper" >
         <!----------------------------------------------------------------------------------------------------------->
         <div class="row">
@@ -285,7 +285,7 @@
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
                                 <asp:Label ID="Label2" runat="server"></asp:Label>
-                                <asp:Repeater ID="M_Ownership_Repeater" runat="server" ClientIDMode="Static" OnItemCreated="M_Ownership_Repeater_ItemCreated">
+                                <asp:Repeater ID="M_Ownership_Repeater" runat="server" ClientIDMode="Static" OnItemCreated="M_Ownership_Repeater_ItemCreated" OnItemDataBound="M_Ownership_Repeater_ItemDataBound">
                                     <HeaderTemplate>
                                         <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                             <thead>
@@ -300,7 +300,7 @@
                                                 <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Remaining_Installments" runat="server" /></th>
                                                 <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Start_Date" runat="server" /></th>
                                                 <th style="vertical-align: middle;"> <asp:Label ID="lbl_Titel_End_Date" runat="server" /></th>
-                                                <th style="width: 50px"></th>
+                                                <th></th>
                                             </thead>
                                             <tbody>
                                     </HeaderTemplate>
@@ -326,7 +326,7 @@
                                             <td>
                                                 <asp:LinkButton ID="Edit" ForeColor="#0779c9" runat="server" OnClick="Edit_Click" OnClientClick="Open()" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>'> <i class="fa fa-pencil" style="font-size:18px;"></i> </asp:LinkButton>
                                                 &nbsp;&nbsp;
-                                                <asp:LinkButton ID="Delete"  runat="server" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>' OnClientClick="Confirm()" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="Delete"  runat="server" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>' OnClientClick="return confirm('Are you sure you want to delete?');" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
                                             </td>
                                         </tr>
                                     </ItemTemplate>
@@ -354,15 +354,6 @@
                 scrollTop: $('#container-wrapper').offset().top
             }, 'slow');//w  w w.j a v a 2s.com
 
-            /*--------------------------------------------------------*/
-            var lbl = document.getElementById('<%=lbl_Titel_Add_M_Ownership.ClientID%>');
-            if (document.dir == "ltr") {
-                return confirm('Are you sure you want to delete?');
-            }
-            else {
-                return confirm('هل أنت متأكد أنك تريد حذف؟');
-            }
-
         });
 
         function Open() {
@@ -388,15 +379,6 @@
             /*---------------------------------------------------------------*/
             var lbl = document.getElementById('<%=Add.ClientID%>').style.display = "none";
             var lbl = document.getElementById('<%=Edit.ClientID%>').style.display = "block";
-        };
-
-        function Confirm() {
-            if (document.dir == "ltr") {
-                return confirm('Are you sure you want to delete?');
-            }
-            else {
-                return confirm('هل أنت متأكد أنك تريد حذف؟');
-            }
         };
     </script>
 </asp:Content>

@@ -299,6 +299,92 @@ namespace Main_Real_estate.English.Main_Application
             }
         }
 
-        
+        protected void M_Ownership_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var lbl_Owner_Ship_AR_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Owner_Ship_AR_Name");
+            var lbl_Owner_Ship_EN_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Owner_Ship_EN_Name");
+            var lbl_Bank_Arabic_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Bank_Arabic_Name");
+            var lbl_Bank_English_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Bank_English_Name");
+            var lbl_Paymen_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Paymen_Type");
+
+
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                LinkButton Edit = e.Item.FindControl("Edit") as LinkButton;
+                Utilities.Roles.Edit_permission(_sqlCon, Session["Role"].ToString(), "properties", Edit);
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Owner_Ship_AR_Name.Visible = false; lbl_Owner_Ship_EN_Name.Visible = true;
+                    lbl_Bank_Arabic_Name.Visible = false; lbl_Bank_English_Name.Visible = true;
+
+                    if(lbl_Paymen_Type.Text== "شهري") { lbl_Paymen_Type.Text = "Monthly"; }
+                    if (lbl_Paymen_Type.Text == "ربع سنوي") { lbl_Paymen_Type.Text = "Quarterly"; }
+
+                }
+                else
+                {
+                    lbl_Owner_Ship_AR_Name.Visible = true; lbl_Owner_Ship_EN_Name.Visible = false;
+                    lbl_Bank_Arabic_Name.Visible = true; lbl_Bank_English_Name.Visible = false;
+
+                    if (lbl_Paymen_Type.Text == "Monthly") { lbl_Paymen_Type.Text = "شهري"; }
+                    if (lbl_Paymen_Type.Text == "Quarterly") { lbl_Paymen_Type.Text = "ربع سنوي"; }
+                }
+            }
+
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                var lbl_OwnerShip_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_OwnerShip_Name");
+                var lbl_Titel_Bank_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Bank_Name");
+                var lbl_Titel_Mortgage_Value = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Mortgage_Value");
+                var lbl_Titel_Installment_Value = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Installment_Value");
+                var lbl_Titel_Payment_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Payment_Type");
+                var lbl_Titel_Amount_Paid = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Amount_Paid");
+                var lbl_Titel_Remaining_Amount = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Remaining_Amount");
+                var lbl_Titel_Remaining_Installments = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Remaining_Installments");
+                var lbl_Titel_Start_Date = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Start_Date");
+                var lbl_Titel_End_Date = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_End_Date");
+
+
+
+
+
+                _sqlCon.Open();
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_OwnerShip_Name.Text = Dt.Rows[44]["EN"].ToString();
+                        lbl_Titel_Bank_Name.Text = Dt.Rows[108]["EN"].ToString();
+                        lbl_Titel_Mortgage_Value.Text = Dt.Rows[107]["EN"].ToString();
+                        lbl_Titel_Installment_Value.Text = Dt.Rows[105]["EN"].ToString();
+                        lbl_Titel_Payment_Type.Text = Dt.Rows[106]["EN"].ToString();
+                        lbl_Titel_Amount_Paid.Text = Dt.Rows[112]["EN"].ToString();
+                        lbl_Titel_Remaining_Amount.Text = Dt.Rows[111]["EN"].ToString();
+                        lbl_Titel_Remaining_Installments.Text = "Remaining Installments";
+                        lbl_Titel_Start_Date.Text = Dt.Rows[103]["EN"].ToString();
+                        lbl_Titel_End_Date.Text = Dt.Rows[102]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_OwnerShip_Name.Text = Dt.Rows[44]["AR"].ToString();
+                        lbl_Titel_Bank_Name.Text = Dt.Rows[108]["AR"].ToString();
+                        lbl_Titel_Mortgage_Value.Text = Dt.Rows[107]["AR"].ToString();
+                        lbl_Titel_Installment_Value.Text = Dt.Rows[105]["AR"].ToString();
+                        lbl_Titel_Payment_Type.Text = Dt.Rows[106]["AR"].ToString();
+                        lbl_Titel_Amount_Paid.Text = Dt.Rows[112]["AR"].ToString();
+                        lbl_Titel_Remaining_Amount.Text = Dt.Rows[111]["AR"].ToString();
+                        lbl_Titel_Remaining_Installments.Text = "الأقساط المتبقية";
+                        lbl_Titel_Start_Date.Text = Dt.Rows[103]["AR"].ToString();
+                        lbl_Titel_End_Date.Text = Dt.Rows[102]["AR"].ToString();
+                    }
+                }
+                _sqlCon.Close();
+            }
+        }
     }
 }
