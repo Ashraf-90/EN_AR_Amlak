@@ -1,5 +1,6 @@
 ﻿using Main_Real_estate.Utilities;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Crmf;
 using System;
 using System.Data;
 using System.Drawing;
@@ -29,7 +30,32 @@ namespace Main_Real_estate.English.Main_Application
                 BindData();
             }
         }
+        protected void Edit_Click(object sender, EventArgs e)
+        {
+            string id = (sender as LinkButton).CommandArgument;
+            //Response.Redirect("M_Ownership_List.aspx?Id=" + id);
+            Label2.Text = id;
+            DataTable Dt = new DataTable();
+            _sqlCon.Open();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM mortgaged_wonership WHERE Mortgaged_Wonership_Id = @ID", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Cmd.Parameters.AddWithValue("@ID", Label2.Text);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                ownership_Name_DropDownList.SelectedValue = Dt.Rows[0]["Ownership_Id"].ToString();
+                Bank_Name_DropDownList.SelectedValue = Dt.Rows[0]["Bank_Id"].ToString();
+                txt_Mortgage_Value.Text = Dt.Rows[0]["Mortgage_Value"].ToString();
+                if (Dt.Rows[0]["Paymen_Type"].ToString() == "Monthly" || Dt.Rows[0]["Paymen_Type"].ToString() == "شهري") { Paymen_Type_DropDownList.SelectedValue = "1"; }
+                else if (Dt.Rows[0]["Paymen_Type"].ToString() == "Quarterly" || Dt.Rows[0]["Paymen_Type"].ToString() == "ربع سنوي") { Paymen_Type_DropDownList.SelectedValue = "2"; }
+                txt_Installment_Value.Text = Dt.Rows[0]["Installment_Value"].ToString();
+                txt_Start_Date.Text = Dt.Rows[0]["Start_Date"].ToString();
+                txt_End_Date.Text = Dt.Rows[0]["End_Date"].ToString();
 
+            }
+            _sqlCon.Close();
+
+        }
         protected void btn_Add_M_OwnerShip_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -52,8 +78,79 @@ namespace Main_Real_estate.English.Main_Application
                 Response.Redirect("M_Ownership_List.aspx");
             }
         }
+        protected void btn_Edit_M_OwnerShip_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string Quary =
+                    "UPDATE mortgaged_wonership SET " +
+                    "Ownership_Id=@Ownership_Id , " +
+                    "Bank_Id=@Bank_Id , " +
+                    "Mortgage_Value=@Mortgage_Value , " +
+                    "Installment_Value=@Installment_Value , " +
+                    "Paymen_Type=@Paymen_Type , " +
+                    "Start_Date=@Start_Date , " +
+                    "End_Date=@End_Date " +
+                    "WHERE Mortgaged_Wonership_Id=@ID ";
+                _sqlCon.Open();
+                MySqlCommand Cmd = new MySqlCommand(Quary, _sqlCon);
+                Cmd.Parameters.AddWithValue("@ID", Label2.Text);
+                Cmd.Parameters.AddWithValue("@Ownership_Id", ownership_Name_DropDownList.SelectedValue);
+                Cmd.Parameters.AddWithValue("@Bank_Id", Bank_Name_DropDownList.SelectedValue);
+                Cmd.Parameters.AddWithValue("@Mortgage_Value", txt_Mortgage_Value.Text);
+                Cmd.Parameters.AddWithValue("@Installment_Value", txt_Installment_Value.Text);
+                Cmd.Parameters.AddWithValue("@Paymen_Type", Paymen_Type_DropDownList.SelectedItem.Text.Trim());
+                Cmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
+                Cmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
+                Cmd.ExecuteNonQuery();
+                _sqlCon.Close();
+            }
+            Response.Redirect(Request.RawUrl);
+        }
+        protected void Delete(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = (sender as LinkButton).CommandArgument;
+                _sqlCon.Open();
+                string quary1 = "DELETE FROM mortgaged_wonership WHERE Mortgaged_Wonership_Id=@ID ";
+                MySqlCommand mySqlCmd = new MySqlCommand(quary1, _sqlCon);
+                mySqlCmd.Parameters.AddWithValue("@ID", id);
+                mySqlCmd.ExecuteNonQuery();
+                _sqlCon.Close();
+                Response.Redirect(Request.RawUrl);
+            }
+            catch
+            {
+                if (Session["Langues"].ToString() == "1") { Response.Write(@"<script language='javascript'>alert('Cannot delete')</script>"); }
+                else { Response.Write(@"<script language='javascript'>alert('لا يمكن الحذف')</script>"); }
+
+            };
+        }
 
 
+
+        protected void BindData(string sortExpression = null)
+        {
+            
+            using (MySqlCommand cmd = new MySqlCommand("M_OwnerShip", _sqlCon))
+            {
+                using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    M_Ownership_Repeater.DataSource = dt;
+                    M_Ownership_Repeater.DataBind();
+                }
+            }
+        }
+
+        
+
+
+
+        //**************************************************** Clanders **************************************************************************
         //******************  Start_Date ***************************************************
         protected void Start_Date_Calendar_SelectionChanged2(object sender, EventArgs e)
         {
@@ -65,31 +162,16 @@ namespace Main_Real_estate.English.Main_Application
                 ImageButton2.Visible = false;
             }
         }
-
         protected void Start_Date_Chosee_Click(object sender, EventArgs e)
-        {
-            Start_Date_Div.Visible = true;
-            ImageButton2.Visible = true;
-        }
-
+        { Utilities.Helper.Date_Chosee_Click(ImageButton2, Start_Date_Div); }
         protected void ImageButton2_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Start_Date_Div.Visible = false;
-            ImageButton2.Visible = false;
-        }
+        { Utilities.Helper.cal_Close(ImageButton2, Start_Date_Div); }
 
         //******************  End_Date ***************************************************
         protected void End_Date_Chosee_Click(object sender, EventArgs e)
-        {
-            End_Date_Div.Visible = true;
-            ImageButton3.Visible = true;
-        }
-
+        { Utilities.Helper.Date_Chosee_Click(ImageButton3, End_Date_Div); }
         protected void ImageButton3_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            End_Date_Div.Visible = false;
-            ImageButton3.Visible = false;
-        }
+        { Utilities.Helper.cal_Close(ImageButton3, End_Date_Div); }
 
         protected void End_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
         {
@@ -101,227 +183,6 @@ namespace Main_Real_estate.English.Main_Application
                 ImageButton3.Visible = false;
             }
         }
-
-
-        protected void BindData(string sortExpression = null)
-        {
-            //try
-            //{
-                using (MySqlCommand cmd = new MySqlCommand("M_OwnerShip", _sqlCon))
-                {
-                    using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        M_OwnerSip_GV.DataSource = dt;
-                        M_OwnerSip_GV.DataBind();
-                    }
-                }
-            //}
-            //catch
-            //{
-            //    Response.Write(
-            //        @"<script language='javascript'>alert('OOPS!!! The Building List Cannt Display')</script>");
-            //}
-        }
-
-        protected void M_OwnerSip_GV_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton Delete = (e.Row.FindControl("Delete") as LinkButton);
-                Utilities.Roles.Delete_permission(_sqlCon, Session["Role"].ToString(), "properties", Delete);
-            }
-            
-
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                for (int i = 0; i < e.Row.Cells.Count; i++)
-                {
-                    decimal value;
-                    if (decimal.TryParse(e.Row.Cells[10].Text.Trim(), out value))
-                    {
-                        e.Row.Cells[10].Text = Math.Round(value, 2).ToString();
-                    }
-                }
-            }
-
-
-            if (e.Row.RowType == DataControlRowType.DataRow && M_OwnerSip_GV.EditIndex == e.Row.RowIndex)
-            {
-                DropDownList ddl_Bank_Name = (DropDownList)e.Row.FindControl("bank_DropDownList");
-                string Bank_Name_query = "SELECT * FROM bank";
-                using (MySqlDataAdapter sda = new MySqlDataAdapter(Bank_Name_query, _sqlCon))
-                {
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.Fill(dt);
-                        ddl_Bank_Name.DataSource = dt;
-                        ddl_Bank_Name.DataTextField = "Bank_Arabic_Name";
-                        ddl_Bank_Name.DataValueField = "Bank_Id";
-                        ddl_Bank_Name.DataBind();
-                        string selected_Cheque_Type = DataBinder.Eval(e.Row.DataItem, "Bank_Id").ToString();
-                        ddl_Bank_Name.Items.FindByValue(selected_Cheque_Type).Selected = true;
-                    }
-                }
-            }
-
-
-            if (e.Row.RowType == DataControlRowType.DataRow && M_OwnerSip_GV.EditIndex == e.Row.RowIndex)
-            {
-                DropDownList ddl_OwnerShip = (DropDownList)e.Row.FindControl("OwnerShip_DropDownList");
-                string OwnerShip_Name_query = "SELECT * FROM owner_ship";
-                using (MySqlDataAdapter sda = new MySqlDataAdapter(OwnerShip_Name_query, _sqlCon))
-                {
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.Fill(dt);
-                        ddl_OwnerShip.DataSource = dt;
-                        ddl_OwnerShip.DataTextField = "Owner_Ship_AR_Name";
-                        ddl_OwnerShip.DataValueField = "Owner_Ship_Id";
-                        ddl_OwnerShip.DataBind();
-                        string selected_Cheque_Type = DataBinder.Eval(e.Row.DataItem, "Ownership_Id").ToString();
-                        ddl_OwnerShip.Items.FindByValue(selected_Cheque_Type).Selected = true;
-                    }
-                }
-            }
-
-
-            if (e.Row.RowType == DataControlRowType.DataRow && M_OwnerSip_GV.EditIndex == e.Row.RowIndex)
-            {
-                DropDownList PaymenType_DropDownList = (DropDownList)e.Row.FindControl("PaymenType_DropDownList");
-
-                string selected_PaymenType = DataBinder.Eval(e.Row.DataItem, "Paymen_Type").ToString();
-                if(selected_PaymenType == "شهري")
-                {
-                    PaymenType_DropDownList.SelectedValue = "1";
-                }
-                else
-                {
-                    PaymenType_DropDownList.SelectedValue = "2";
-                }
-            }
-
-
-        }
-
-        protected void M_OwnerSip_GV_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            M_OwnerSip_GV.EditIndex = e.NewEditIndex; this.BindData();
-        }
-        protected void M_OwnerSip_GV_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            M_OwnerSip_GV.EditIndex = -1; this.BindData();
-        }
-
-        protected void M_OwnerSip_GV_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string lbl_Mortgaged_Wonership_Id = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("lbl_Mortgaged_Wonership_Id") as Label).Text;
-            _sqlCon.Open();
-            MySqlCommand cmd = new MySqlCommand("delete from mortgaged_wonership where Mortgaged_Wonership_Id =@Mortgaged_Wonership_Id", _sqlCon);
-            cmd.Parameters.AddWithValue("Mortgaged_Wonership_Id", lbl_Mortgaged_Wonership_Id);
-            cmd.ExecuteNonQuery();
-            _sqlCon.Close();
-            BindData();
-        }
-
-
-        protected void Delete(object sender, EventArgs e)
-        {
-            string id = (sender as LinkButton).CommandArgument;
-            _sqlCon.Open();
-            string quary1 = "DELETE FROM mortgaged_wonership WHERE Mortgaged_Wonership_Id=@ID ";
-            MySqlCommand MYSqlCmd = new MySqlCommand(quary1, _sqlCon);
-            MYSqlCmd.Parameters.AddWithValue("@ID", id);
-            MYSqlCmd.ExecuteNonQuery();
-            _sqlCon.Close();
-            Response.Redirect(Request.RawUrl);
-        }
-        protected void M_OwnerSip_GV_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            string lbl_Mortgaged_Wonership_Id = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("lbl_Mortgaged_Wonership_Id") as Label).Text;
-
-
-            string bank_DropDownList = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("bank_DropDownList") as DropDownList).SelectedItem.Value;
-
-            string PaymenType_DropDownList = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("PaymenType_DropDownList") as DropDownList).SelectedItem.Text;
-
-            string OwnerShip_DropDownList = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("OwnerShip_DropDownList") as DropDownList).SelectedItem.Value;
-            string txt_Mortgage_Value = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("txt_Mortgage_Value") as TextBox).Text;
-            string txt_Installment_Value = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("txt_Installment_Value") as TextBox).Text;
-
-
-            System.Web.UI.WebControls.Calendar Start_Date_Calendar = new System.Web.UI.WebControls.Calendar();
-            Start_Date_Calendar = (System.Web.UI.WebControls.Calendar)M_OwnerSip_GV.Rows[e.RowIndex].FindControl("Start_Date_Calendar");
-            string Start_calendar = Start_Date_Calendar.SelectedDate.ToString("yyyy-MM-dd");
-            string lbl_StartDate = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("lbl_Start_Date") as Label).Text;
-
-
-
-            System.Web.UI.WebControls.Calendar End_Date_Calendar = new System.Web.UI.WebControls.Calendar();
-            End_Date_Calendar = (System.Web.UI.WebControls.Calendar)M_OwnerSip_GV.Rows[e.RowIndex].FindControl("End_Date_Calendar");
-            string End_calendar = End_Date_Calendar.SelectedDate.ToString("yyyy-MM-dd");
-            string lbl_EndDate = (M_OwnerSip_GV.Rows[e.RowIndex].FindControl("lbl_End_Date") as Label).Text;
-
-
-
-            string query = "UPDATE mortgaged_wonership SET" +
-                           " Ownership_Id = @Ownership_Id ," +
-                           " Bank_Id = @Bank_Id ," +
-                           " Mortgage_Value = @Mortgage_Value ," +
-                           " Installment_Value = @Installment_Value ," +
-                           " Start_Date = @Start_Date , " +
-                           " End_Date = @End_Date , " +
-                           " Paymen_Type = @Paymen_Type  " +
-                           "WHERE Mortgaged_Wonership_Id = @Mortgaged_Wonership_Id";
-            using (MySqlCommand cmd = new MySqlCommand(query, _sqlCon))
-            {
-                cmd.Parameters.AddWithValue("@Mortgaged_Wonership_Id", lbl_Mortgaged_Wonership_Id);
-
-                cmd.Parameters.AddWithValue("@Ownership_Id", OwnerShip_DropDownList);
-                cmd.Parameters.AddWithValue("@Bank_Id", bank_DropDownList);
-                cmd.Parameters.AddWithValue("@Mortgage_Value", txt_Mortgage_Value);
-                cmd.Parameters.AddWithValue("@Installment_Value", txt_Installment_Value);
-                cmd.Parameters.AddWithValue("@Paymen_Type", PaymenType_DropDownList);
-
-
-                if (Start_calendar != "0001-01-01")
-                {
-                    cmd.Parameters.AddWithValue("@Start_Date", Start_calendar);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Start_Date", lbl_StartDate);
-                }
-
-
-                if (End_calendar != "0001-01-01")
-                {
-                    cmd.Parameters.AddWithValue("@End_Date", End_calendar);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@End_Date", lbl_EndDate);
-                }
-
-
-
-
-
-
-                _sqlCon.Open();
-                cmd.ExecuteNonQuery();
-                _sqlCon.Close();
-                //Response.Redirect(Request.RawUrl);
-                M_OwnerSip_GV.EditIndex = -1; this.BindData();
-            }
-        }
-
-
-
-
         //******************************************************************************************************************************************
         //************************************************** languages ****************************************************************
         //******************************************************************************************************************************************
@@ -363,6 +224,7 @@ namespace Main_Real_estate.English.Main_Application
                     lbl_Start_Date.Text = Dt.Rows[103]["EN"].ToString();
                     lbl_End_Date.Text = Dt.Rows[102]["EN"].ToString();
                     Add.Text = "Add";
+                    Edit.Text = "Edit";
                     Start_Date_Chosee.Text= Dt.Rows[109]["EN"].ToString();
                     End_Date_Chosee.Text = Dt.Rows[109]["EN"].ToString();
                     Label1.Text = Dt.Rows[101]["EN"].ToString();
@@ -406,6 +268,7 @@ namespace Main_Real_estate.English.Main_Application
                     lbl_Start_Date.Text = Dt.Rows[103]["AR"].ToString();
                     lbl_End_Date.Text = Dt.Rows[102]["AR"].ToString();
                     Add.Text = "إضافة";
+                    Edit.Text = "تعديل";
                     Start_Date_Chosee.Text = Dt.Rows[109]["AR"].ToString();
                     End_Date_Chosee.Text = Dt.Rows[109]["AR"].ToString();
                     Label1.Text = Dt.Rows[101]["AR"].ToString();
@@ -425,6 +288,17 @@ namespace Main_Real_estate.English.Main_Application
             _sqlCon.Close();
         }
 
+        protected void M_Ownership_Repeater_ItemCreated(object sender, RepeaterItemEventArgs e)
+        {
+            ScriptManager scriptMan = ScriptManager.GetCurrent(this);
+            LinkButton btn = e.Item.FindControl("Edit") as LinkButton;
+            if (btn != null)
+            {
+                btn.Click += Edit_Click;
+                scriptMan.RegisterAsyncPostBackControl(btn);
+            }
+        }
 
+        
     }
 }

@@ -92,13 +92,13 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="Top">
         <ul style="background-color: #efefef; min-height: 0px; width: 100%" class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
             <li class="nav-item" style="padding-bottom: 10px;" runat="server" id="Ownership_Div">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#M_Ownership" aria-expanded="true"
                     aria-controls="M_Ownership" style="width: 270px;">
                     <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
-                    <span style="font-size: 18px;"><asp:Label ID="lbl_Titel_Add_M_Ownership" runat="server" Font-Size="18px"/></span>
+                    <span style="font-size: 18px;"><asp:Label ID="lbl_Titel_Add_M_Ownership" runat="server" Font-Size="18px" ClientIDMode="Static"/></span>
                 </a>
                 <div id="M_Ownership" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="row">
@@ -106,71 +106,93 @@
                             <div class="card mb-12">
                                 <div class="card-body">
                                     <div class="row">
+                                        
                                         <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_ownership_Name" runat="server" Text="اسم الملكية"></asp:Label>
-                                                <asp:DropDownList ID="ownership_Name_DropDownList" runat="server" CssClass="form-control">
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="ownership_Name_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Bank_Name" runat="server" Text="جهة الرهن"></asp:Label>
-                                                <asp:DropDownList ID="Bank_Name_DropDownList" runat="server" CssClass="form-control">
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Bank_Name_Req_Field_Val" ControlToValidate="Bank_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_ownership_Name" runat="server" Text="اسم الملكية"></asp:Label>
+                                                        <asp:DropDownList ID="ownership_Name_DropDownList" runat="server" CssClass="form-control">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="ownership_Name_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
 
                                         <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Mortgage_Value" runat="server" Text="قيمة الرهن"></asp:Label>
-                                                &nbsp;<asp:RegularExpressionValidator ID="Mortgage_Value_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Mortgage_Value"
-                                                    EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="#fc544b"
-                                                    ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
-                                                <asp:TextBox ID="txt_Mortgage_Value" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="Mortgage_Value_Req_Field_Val" ValidationGroup="Mortgage_GV" ControlToValidate="txt_Mortgage_Value"
-                                                    runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
+                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Bank_Name" runat="server" Text="جهة الرهن"></asp:Label>
+                                                        <asp:DropDownList ID="Bank_Name_DropDownList" runat="server" CssClass="form-control">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Bank_Name_Req_Field_Val" ControlToValidate="Bank_Name_DropDownList" ValidationGroup="Mortgage_GV"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+
+
+
+                                        <div class="col-lg-4">
+                                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Mortgage_Value" runat="server" Text="قيمة الرهن"></asp:Label>
+                                                        &nbsp;<asp:RegularExpressionValidator ID="Mortgage_Value_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Mortgage_Value"
+                                                            EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="#fc544b"
+                                                            ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
+                                                        <asp:TextBox ID="txt_Mortgage_Value" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="Mortgage_Value_Req_Field_Val" ValidationGroup="Mortgage_GV" ControlToValidate="txt_Mortgage_Value"
+                                                            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                     <%--------------------------------------------------------------------------------------------------------------------------------------------------------------%>
                                     <div class="row">
-
-
-                                          <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Paymen_Type" runat="server" Text="دورة السداد"></asp:Label>
-                                                <asp:DropDownList ID="Paymen_Type_DropDownList" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="1" Text="شهري"></asp:ListItem>
-                                                    <asp:ListItem Value="2" Text="ربع سنوي"></asp:ListItem>
-                                                </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="Paymen_Type_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
-                                                    InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-
-
-
                                         <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <asp:Label ID="lbl_Installment_Value" runat="server" Text="قيمة القسط"></asp:Label>
-                                                &nbsp;<asp:RegularExpressionValidator ID="Installment_Value_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Installment_Value"
-                                                    EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="#fc544b"
-                                                    ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
-                                                <asp:TextBox ID="txt_Installment_Value" runat="server" CssClass="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="Installment_Value_Req_Field_Val" ValidationGroup="Mortgage_GV" ControlToValidate="txt_Installment_Value"
-                                                    runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
-                                            </div>
+                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Paymen_Type" runat="server" Text="دورة السداد"></asp:Label>
+                                                        <asp:DropDownList ID="Paymen_Type_DropDownList" runat="server" CssClass="form-control">
+                                                            <asp:ListItem Value="1" Text="شهري"></asp:ListItem>
+                                                            <asp:ListItem Value="2" Text="ربع سنوي"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="Paymen_Type_Req_Field_Val" ControlToValidate="ownership_Name_DropDownList" ValidationGroup="Mortgage_GV"
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
+                                        
+                                        <div class="col-lg-3">
+                                            <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lbl_Installment_Value" runat="server" Text="قيمة القسط"></asp:Label>
+                                                        &nbsp;<asp:RegularExpressionValidator ID="Installment_Value_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Installment_Value"
+                                                            EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="#fc544b"
+                                                            ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
+                                                        <asp:TextBox ID="txt_Installment_Value" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="Installment_Value_Req_Field_Val" ValidationGroup="Mortgage_GV" ControlToValidate="txt_Installment_Value"
+                                                            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+                                            
+
                                         <div class="col-lg-3">
                                             <asp:UpdatePanel ID="Start_Date_UpdatePanel" runat="server">
                                                 <ContentTemplate>
                                                     <asp:Label ID="lbl_Start_Date" runat="server" Text="تاريخ البدء"></asp:Label>&nbsp;
-                                        <asp:TextBox ID="txt_Start_Date" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                                     <asp:TextBox ID="txt_Start_Date" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     <asp:Button ID="Start_Date_Chosee" runat="server" Text="إختر التاريخ" OnClick="Start_Date_Chosee_Click" />
                                                     <asp:ImageButton ID="ImageButton2" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="ImageButton2_Click" runat="server" />
                                                     <asp:RequiredFieldValidator ID="Start_Date_Req_Field_Val" ValidationGroup="Mortgage_GV" ControlToValidate="txt_Start_Date"
@@ -230,8 +252,8 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <br />
-                                                <%--<asp:Button ID="btn_Add_M_OwnerShip" runat="server" Text="إضافة" CssClass="btn btn" BackColor="#52a2da" ValidationGroup="Mortgage_GV" ForeColor="White" Width="248px" OnClick="btn_Add_M_OwnerShip_Click" />--%>
-                                                <asp:LinkButton ID="Add" runat="server" CssClass="btn btn" BackColor="#52a2da" ValidationGroup="Mortgage_GV" ForeColor="White" Width="248px" OnClick="btn_Add_M_OwnerShip_Click">إضافة</asp:LinkButton>
+                                                <asp:LinkButton ID="Add" runat="server" CssClass="btn btn" BackColor="#52a2da" ValidationGroup="Mortgage_GV" ForeColor="White" Width="248px" OnClick="btn_Add_M_OwnerShip_Click"></asp:LinkButton>
+                                                 <asp:LinkButton ID="Edit" runat="server" CssClass="btn btn" BackColor="#52a2da" ValidationGroup="Mortgage_GV" style="display:none" ForeColor="White" Width="248px" OnClick="btn_Edit_M_OwnerShip_Click"></asp:LinkButton>
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +266,7 @@
         </ul>
     </div>
     <br />
-        <hr />
+        <hr /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
     <div class="container-fluid" id="container-wrapper" >
         <!----------------------------------------------------------------------------------------------------------->
         <div class="row">
@@ -256,163 +278,66 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
                 <asp:Label ID="Label1" runat="server" Text=" الملكيات المرهونة "></asp:Label></h1>
+
+            
         </div>
         <!----------------------------------------------------------------------------------------------------------->
-        
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <div class="row">
-                                    <div class="table-responsive datatable table table-bordered"  id="M_OwnerShip">
-                                        <asp:GridView AutoGenerateColumns="false" ID="M_OwnerSip_GV" runat="server" 
-                                            OnRowEditing="M_OwnerSip_GV_RowEditing"
-                                            OnRowUpdating="M_OwnerSip_GV_RowUpdating"
-                                            OnRowCancelingEdit="M_OwnerSip_GV_RowCancelingEdit"
-                                            OnRowDeleting="M_OwnerSip_GV_RowDeleting"
-                                            OnRowDataBound="M_OwnerSip_GV_RowDataBound">
-
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="م" ItemStyle-CssClass="vetiacl" ItemStyle-Width="10%"  HeaderStyle-ForeColor="White">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="معرف الملكية المرهونة" Visible="false" >
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Mortgaged_Wonership_Id" runat="server" Text='<%# Eval("Mortgaged_Wonership_Id") %>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="تاريخ البدء" ItemStyle-Width="40%" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>'>  </asp:Label>
-                                                        <asp:Calendar ID="Start_Date_Calendar" runat="server">
-                                                           
-
-                                                            <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                            <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                            <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                            <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                            <WeekendDayStyle BackColor="#dfeef8" />
-
-                                                        </asp:Calendar>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>'>  </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="تاريخ التحرير" ItemStyle-Width="40%" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>'>  </asp:Label>
-                                                        <asp:Calendar ID="End_Date_Calendar" runat="server">
-                                                            <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                            <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                            <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                            <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                            <WeekendDayStyle BackColor="#dfeef8" />
-                                                        </asp:Calendar>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>'>  </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="اسم الملكية المرهونة" ItemStyle-Width="100%" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:DropDownList ID="OwnerShip_DropDownList" runat="server"></asp:DropDownList>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="جهة الرهن"  ItemStyle-Width="100%" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:DropDownList ID="bank_DropDownList" runat="server"></asp:DropDownList>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Arabic_Name") %>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="قيمة الرهن"  HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:TextBox ID="txt_Mortgage_Value" runat="server" Text='<%# Bind("Mortgage_Value") %>' Width="300px">  
-                                                        </asp:TextBox>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Mortgage_Value" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Mortgage_Value")))%>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="دورة السداد" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:DropDownList ID="PaymenType_DropDownList" runat="server">
-                                                            <asp:ListItem Value="1" Text="شهري"></asp:ListItem>
-                                                            <asp:ListItem Value="2" Text="ربع سنوي"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_PaymenType" runat="server" Text='<%# Eval("Paymen_Type") %>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="قيمة القسط" HeaderStyle-ForeColor="White">
-                                                    <EditItemTemplate>
-                                                        <asp:TextBox ID="txt_Installment_Value" runat="server" Text='<%# Bind("Installment_Value") %>' Width="300px">  
-                                                        </asp:TextBox>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Installment_Value" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Installment_Value")))%>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                               
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="المبلغ المسدد" HeaderStyle-ForeColor="White">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Amount_Paid" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Amount_Paid")))%>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="المبلغ المتبقي" HeaderStyle-ForeColor="White">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Remaining_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Remaining_Amount")))%>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="عدد الأقساط المتبقية" HeaderStyle-ForeColor="White">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl_Remaining_Time" runat="server" Text='<%# Eval("Remaining_Installments")%>'> </asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton  ID="Delete" runat="server" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>' OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete"><i class="fa fa-trash" style="font-size:30px"></i></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--------------------------------------------------------------------------------------------------%>
-
-                                                <%--<asp:CommandField ShowEditButton="false" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Delete.png" CancelText="إلغاء" UpdateText="تحديث" ShowDeleteButton="true"  ControlStyle-Width="30px"/>--%>
-                                            </Columns>
-                                            <EditRowStyle HorizontalAlign="Center" />
-                                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" HorizontalAlign="Center" />
-                                            <HeaderStyle BackColor="#52a2da" Font-Bold="false" ForeColor="#fff" Font-Size="13px" HorizontalAlign="Center" VerticalAlign="Middle"/>
-                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                                            <RowStyle HorizontalAlign="Center" />
-                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="false" ForeColor="White" />
-                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                            <SortedDescendingHeaderStyle BackColor="#242121" />
-                                        </asp:GridView>
-                                    </div>
-                                </div>
+                                <asp:Label ID="Label2" runat="server"></asp:Label>
+                                <asp:Repeater ID="M_Ownership_Repeater" runat="server" ClientIDMode="Static" OnItemCreated="M_Ownership_Repeater_ItemCreated">
+                                    <HeaderTemplate>
+                                        <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
+                                            <thead>
+                                                <th style="vertical-align: middle;">#</th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_OwnerShip_Name" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Bank_Name" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Mortgage_Value" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Installment_Value" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Payment_Type" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Amount_Paid" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Remaining_Amount" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Remaining_Installments" runat="server" /></th>
+                                                <th style="vertical-align: middle;"><asp:Label ID="lbl_Titel_Start_Date" runat="server" /></th>
+                                                <th style="vertical-align: middle;"> <asp:Label ID="lbl_Titel_End_Date" runat="server" /></th>
+                                                <th style="width: 50px"></th>
+                                            </thead>
+                                            <tbody>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
+                                            <td>
+                                                <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                                <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Arabic_Name") %>' />
+                                                <asp:Label ID="lbl_Bank_English_Name" runat="server" Text='<%# Eval("Bank_English_Name") %>' />
+                                            </td>
+                                            <td><asp:Label ID="lbl_Mortgage_Value" runat="server" Text='<%# Eval("Mortgage_Value") %>' /></td>
+                                            <td><asp:Label ID="lbl_Installment_Value" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Installment_Value")))%>' /></td>
+                                            <td><asp:Label ID="lbl_Paymen_Type" runat="server" Text='<%# Eval("Paymen_Type") %>' /></td>
+                                            <td><asp:Label ID="lbl_Amount_Paid" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Amount_Paid")))%>' /></td>
+                                            <td><asp:Label ID="lbl_Remaining_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Remaining_Amount")))%>' /></td>
+                                            <td><asp:Label ID="lbl_Remaining_Installments" runat="server" Text='<%# Eval("Remaining_Installments") %>' /></td>
+                                            <td><asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
+                                            <td><asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
+                                            <td>
+                                                <asp:LinkButton ID="Edit" ForeColor="#0779c9" runat="server" OnClick="Edit_Click" OnClientClick="Open()" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>'> <i class="fa fa-pencil" style="font-size:18px;"></i> </asp:LinkButton>
+                                                &nbsp;&nbsp;
+                                                <asp:LinkButton ID="Delete"  runat="server" CommandArgument='<%# Eval("Mortgaged_Wonership_Id") %>' OnClientClick="Confirm()" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </tbody>
+                                        </table>
+                                    </FooterTemplate>
+                                </asp:Repeater>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        
                     </div>
                 </div>
             </div>
@@ -422,22 +347,56 @@
         <br />
     </div>
 
-
-    <%--<script>$('#<%= ownership_Name_DropDownList.ClientID %>').chosen();</script>
-    <script>$('#<%= Bank_Name_DropDownList.ClientID %>').chosen();</script>--%>
-
-
-
-
-
-
     <script type="text/javascript">
         $(document).ready(function () {
 
             $('html, body').animate({
-                scrollTop: $('#M_OwnerShip').offset().top
-            }, 'slow');//w  w w.j a v a 2s.com 
+                scrollTop: $('#container-wrapper').offset().top
+            }, 'slow');//w  w w.j a v a 2s.com
+
+            /*--------------------------------------------------------*/
+            var lbl = document.getElementById('<%=lbl_Titel_Add_M_Ownership.ClientID%>');
+            if (document.dir == "ltr") {
+                return confirm('Are you sure you want to delete?');
+            }
+            else {
+                return confirm('هل أنت متأكد أنك تريد حذف؟');
+            }
 
         });
+
+        function Open() {
+
+            $(document).ready(function () {
+
+                $('html, body').animate({
+                    scrollTop: $('#Top').offset().top
+                }, 'slow');//w  w w.j a v a 2s.com 
+            });
+            /*---------------------------------------------------------------*/
+
+            document.getElementById("M_Ownership").className = "collapse show";
+
+            /*---------------------------------------------------------------*/
+            var lbl = document.getElementById('<%=lbl_Titel_Add_M_Ownership.ClientID%>');
+            if (document.dir == "ltr") {
+                lbl.innerText = "Edit Mortgaged Property";
+            }
+            else {
+                lbl.innerText = "تعديل الملكية المرهونة";
+            }
+            /*---------------------------------------------------------------*/
+            var lbl = document.getElementById('<%=Add.ClientID%>').style.display = "none";
+            var lbl = document.getElementById('<%=Edit.ClientID%>').style.display = "block";
+        };
+
+        function Confirm() {
+            if (document.dir == "ltr") {
+                return confirm('Are you sure you want to delete?');
+            }
+            else {
+                return confirm('هل أنت متأكد أنك تريد حذف؟');
+            }
+        };
     </script>
 </asp:Content>

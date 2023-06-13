@@ -42,6 +42,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Titel_Add_M_Ownership;
 
         /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
         /// lbl_ownership_Name control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ownership_Name_Req_Field_Val;
 
         /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+
+        /// <summary>
         /// lbl_Bank_Name control.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Bank_Name_Req_Field_Val;
+
+        /// <summary>
+        /// UpdatePanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
 
         /// <summary>
         /// lbl_Mortgage_Value control.
@@ -132,6 +159,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Mortgage_Value_Req_Field_Val;
 
         /// <summary>
+        /// UpdatePanel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel5;
+
+        /// <summary>
         /// lbl_Paymen_Type control.
         /// </summary>
         /// <remarks>
@@ -157,6 +193,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Paymen_Type_Req_Field_Val;
+
+        /// <summary>
+        /// UpdatePanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel6;
 
         /// <summary>
         /// lbl_Installment_Value control.
@@ -348,6 +393,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.LinkButton Add;
 
         /// <summary>
+        /// Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Edit;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -366,12 +420,21 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// M_OwnerSip_GV control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView M_OwnerSip_GV;
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// M_Ownership_Repeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater M_Ownership_Repeater;
     }
 }
