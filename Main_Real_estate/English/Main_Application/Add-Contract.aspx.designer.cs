@@ -69,13 +69,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Contract_Templet_DropDownList;
 
         /// <summary>
-        /// Tenant_Type_RequiredFieldValidator control.
+        /// Contract_Templet_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Tenant_Type_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Contract_Templet_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Tenan_Name control.
@@ -231,13 +231,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Units_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Units_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Units_RequiredFieldValidator;
 
         /// <summary>
         /// XXXX control.

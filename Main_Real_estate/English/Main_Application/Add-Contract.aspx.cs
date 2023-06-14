@@ -1502,17 +1502,52 @@ namespace Main_Real_estate.English.Main_Application
                     transformation_Date_Button.Text = Dt.Rows[21]["EN"].ToString();
 
 
-                    Cheque_GridView.Columns[1].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[2].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[3].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[4].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[7].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[9].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[11].HeaderText = "Your Dynamic string";
-                    Cheque_GridView.Columns[12].HeaderText = "Your Dynamic string";
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[22]["EN"].ToString();
+                    Cheque_GridView.Columns[2].HeaderText = Dt.Rows[23]["EN"].ToString();
+                    Cheque_GridView.Columns[3].HeaderText = Dt.Rows[24]["EN"].ToString();
+                    Cheque_GridView.Columns[4].HeaderText = Dt.Rows[25]["EN"].ToString();
+                    Cheque_GridView.Columns[7].HeaderText = Dt.Rows[26]["EN"].ToString();
+                    Cheque_GridView.Columns[9].HeaderText = Dt.Rows[2]["EN"].ToString();
+                    Cheque_GridView.Columns[11].HeaderText = Dt.Rows[27]["EN"].ToString();
+                    Cheque_GridView.Columns[12].HeaderText = Dt.Rows[28]["EN"].ToString();
+
+                    transformation_GridView.Columns[0].HeaderText = Dt.Rows[29]["EN"].ToString();
+                    transformation_GridView.Columns[1].HeaderText = Dt.Rows[26]["EN"].ToString();
+                    transformation_GridView.Columns[3].HeaderText = Dt.Rows[30]["EN"].ToString();
+                    transformation_GridView.Columns[4].HeaderText = Dt.Rows[31]["EN"].ToString();
+                    transformation_GridView.Columns[5].HeaderText = Dt.Rows[2]["EN"].ToString();
+
+                    Cash_GridView.Columns[0].HeaderText = Dt.Rows[32]["EN"].ToString();
+                    Cash_GridView.Columns[1].HeaderText = Dt.Rows[33]["EN"].ToString();
+                    Cash_GridView.Columns[2].HeaderText = Dt.Rows[2]["EN"].ToString();
 
 
+                    Unit_GridView.Columns[4].HeaderText = Dt.Rows[36]["EN"].ToString();
+                    Unit_GridView.Columns[7].HeaderText = Dt.Rows[37]["EN"].ToString();
+                    Unit_GridView.Columns[8].HeaderText = Dt.Rows[38]["EN"].ToString();
+                    Unit_GridView.Columns[9].HeaderText = Dt.Rows[39]["EN"].ToString();
+                    Unit_GridView.Columns[10].HeaderText = Dt.Rows[40]["EN"].ToString();
+                    Unit_GridView.Columns[11].HeaderText = Dt.Rows[41]["EN"].ToString();
+                    Unit_GridView.Columns[12].HeaderText = Dt.Rows[42]["EN"].ToString();
+                    Unit_GridView.Columns[13].HeaderText = Dt.Rows[43]["EN"].ToString();
 
+                    Contract_Templet_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Com_Rep_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Units_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Reason_For_Rent_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Contract_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    No_Of_Months_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Amount_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Amount_L_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    maintenance_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Rental_allowed_Or_Not_allowed_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Paymen_Method_Req_Fiel_Val.ErrorMessage = "* Required ";
+                    Contract_Details_RegularExpressionValidator.ErrorMessage = "Only letters";
+                    Payment_Amount_RegularExpressionValidator.ErrorMessage = "Only Numbers";
 
                 }
                 else
@@ -1639,6 +1674,53 @@ namespace Main_Real_estate.English.Main_Application
                     btn_Add_Contract.Text = Dt.Rows[34]["AR"].ToString();
                     btn_Back_To_Contract_List.Text = Dt.Rows[35]["AR"].ToString();
 
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[22]["AR"].ToString();
+                    Cheque_GridView.Columns[2].HeaderText = Dt.Rows[23]["AR"].ToString();
+                    Cheque_GridView.Columns[3].HeaderText = Dt.Rows[24]["AR"].ToString();
+                    Cheque_GridView.Columns[4].HeaderText = Dt.Rows[25]["AR"].ToString();
+                    Cheque_GridView.Columns[7].HeaderText = Dt.Rows[26]["AR"].ToString();
+                    Cheque_GridView.Columns[9].HeaderText = Dt.Rows[2]["AR"].ToString();
+                    Cheque_GridView.Columns[11].HeaderText = Dt.Rows[27]["AR"].ToString();
+                    Cheque_GridView.Columns[12].HeaderText = Dt.Rows[28]["AR"].ToString();
+
+                    transformation_GridView.Columns[0].HeaderText = Dt.Rows[29]["AR"].ToString();
+                    transformation_GridView.Columns[1].HeaderText = Dt.Rows[26]["AR"].ToString();
+                    transformation_GridView.Columns[3].HeaderText = Dt.Rows[30]["AR"].ToString();
+                    transformation_GridView.Columns[4].HeaderText = Dt.Rows[31]["AR"].ToString();
+                    transformation_GridView.Columns[5].HeaderText = Dt.Rows[2]["AR"].ToString();
+
+                    Cash_GridView.Columns[0].HeaderText = Dt.Rows[32]["AR"].ToString();
+                    Cash_GridView.Columns[1].HeaderText = Dt.Rows[33]["AR"].ToString();
+                    Cash_GridView.Columns[2].HeaderText = Dt.Rows[2]["AR"].ToString();
+
+
+                    Unit_GridView.Columns[4].HeaderText = Dt.Rows[36]["AR"].ToString();
+                    Unit_GridView.Columns[7].HeaderText = Dt.Rows[37]["AR"].ToString();
+                    Unit_GridView.Columns[8].HeaderText = Dt.Rows[38]["AR"].ToString();
+                    Unit_GridView.Columns[9].HeaderText = Dt.Rows[39]["AR"].ToString();
+                    Unit_GridView.Columns[10].HeaderText = Dt.Rows[40]["AR"].ToString();
+                    Unit_GridView.Columns[11].HeaderText = Dt.Rows[41]["AR"].ToString();
+                    Unit_GridView.Columns[12].HeaderText = Dt.Rows[42]["AR"].ToString();
+                    Unit_GridView.Columns[13].HeaderText = Dt.Rows[43]["AR"].ToString();
+
+
+                    Contract_Templet_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Com_Rep_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Units_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Reason_For_Rent_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Contract_Type_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    No_Of_Months_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Type_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Amount_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Amount_L_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    maintenance_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Rental_allowed_Or_Not_allowed_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Paymen_Method_Req_Fiel_Val.ErrorMessage = "*مطلوب ";
+                    Contract_Details_RegularExpressionValidator.ErrorMessage = "أحرف فقط";
+                    Payment_Amount_RegularExpressionValidator.ErrorMessage = "أرقام فقط";
 
                 }
             }
