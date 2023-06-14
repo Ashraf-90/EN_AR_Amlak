@@ -123,7 +123,6 @@ namespace Main_Real_estate.English.Main_Application
                 }
 
                 cmd.ExecuteNonQuery();
-
                 _sqlCon.Close();
 
 
