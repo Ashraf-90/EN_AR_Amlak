@@ -45,17 +45,11 @@
 
                         <div class="row">
                             <div class="col-lg">
-                                <asp:Label ID="lbl_Employee_Name" runat="server" Text="اسم الموظف :"></asp:Label>
-                                <div class="form-group" style="border-style: solid; border-radius: 7px; border-width: 1px; background-color: #f3f3f3; padding: 5px;">
-                                    <asp:Label ID="txt_Dtl_Employee_Name" runat="server" Font-Size="25px"></asp:Label>
-                                </div>
-                            </div>
-                            <div class="col-lg">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" Text="نموذج العقد"></asp:Label>
+                                    <asp:Label ID="lbl_Contract_Type" runat="server" Text="نموذج العقد"></asp:Label>
                                     <asp:DropDownList ID="Contract_Templet_DropDownList" runat="server" Enabled="false" CssClass="form-control">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Templet_DropDownList"
+                                    <asp:RequiredFieldValidator ID="Contract_Templet_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Templet_DropDownList"
                                         InitialValue="إختر نموذج العقد ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -253,7 +247,7 @@
 
                             <div class="col-lg">
                                 <div class="form-group">
-                                    <asp:Label ID="LabelX" runat="server" Text="الوحدة الزمنية للتعاقد"></asp:Label>
+                                    <asp:Label ID="lbl_Contact_Period" runat="server" Text="الوحدة الزمنية للتعاقد"></asp:Label>
                                     <asp:DropDownList ID="Contract_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Contract_Type_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Contract_Type_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Type_DropDownList"
@@ -367,7 +361,7 @@
     </div>
     <div class="col-lg-3">
         <div class="form-group">
-            <asp:Label ID="Label4" runat="server" Text="نوع الدفعات"></asp:Label>
+            <asp:Label ID="lbl_Payment_Type" runat="server" Text="نوع الدفعات"></asp:Label>
             <asp:DropDownList ID="Payment_Type_DropDownList" runat="server" CssClass="form-control">
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="Payment_Type_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Payment_Type_DropDownList"
@@ -521,8 +515,7 @@
                                         <div class="row">
                                             <div class="table-responsive">
                                                 <asp:GridView ID="Contract_Cheque_List" DataKeyNames="Cheques_Id" runat="server" AutoGenerateColumns="false"
-                                                    OnRowEditing="EditCustomer" OnRowDataBound="RowDataBound" OnRowDeleting="Contract_Cheque_List_RowDeleting" OnRowUpdating="UpdateCustomer"
-                                                    OnRowCancelingEdit="CancelEdit">
+                                                     OnRowDataBound="RowDataBound" OnRowDeleting="Contract_Cheque_List_RowDeleting" >
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="#" ItemStyle-Width="10">
                                                             <ItemTemplate>
@@ -571,6 +564,7 @@
                                                         <asp:TemplateField HeaderText="نوع الشيك">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl_cheque_type" runat="server" Text='<%# Eval("Cheque_arabic_Type")%>'></asp:Label>
+                                                                <asp:Label ID="lbl_Cheque_English_Type" runat="server" Text='<%# Eval("Cheque_english_Type")%>'></asp:Label>
                                                             </ItemTemplate>
                                                             <EditItemTemplate>
                                                                 <asp:Label Visible="false" ID="lbl_cheque_Type" runat="server" Text='<%# Eval("Cheque_arabic_Type")%>'></asp:Label>
@@ -582,6 +576,7 @@
                                                         <asp:TemplateField HeaderText="اسم البنك">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl_bank" runat="server" Text='<%# Eval("Bank_Arabic_Name")%>'></asp:Label>
+                                                                <asp:Label ID="lbl_Bank_English_Name" runat="server" Text='<%# Eval("Bank_English_Name")%>'></asp:Label>
                                                             </ItemTemplate>
                                                             <EditItemTemplate>
                                                                 <asp:DropDownList ID="bank_DropDownList" runat="server">
@@ -623,13 +618,29 @@
                              <%--************************************************************** transformation Gridviwes *********************************************************************************************************************--%>
                             <div class="row">
                                 <div class="table-responsive">
-                                    <asp:GridView Width="100%" ID="transformation_GridView" DataKeyNames="transformation_Table_ID" runat="server" AutoGenerateColumns="false" OnRowDeleting="transformation_GridView_RowDeleting">
+                                    <asp:GridView Width="100%" ID="transformation_GridView" DataKeyNames="transformation_Table_ID" runat="server" AutoGenerateColumns="false" 
+                                        OnRowDeleting="transformation_GridView_RowDeleting" OnRowDataBound="transformation_GridView_RowDataBound">
                                         <Columns>
                                             <asp:BoundField DataField="transformation_No" HeaderText="رقم الحوالة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Bank_Name" HeaderText="اسم البنك" ItemStyle-Width="120" />
+                                          
+                                            <asp:TemplateField HeaderText="اسم البنك"><%--1--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_AR_Bank_Name" runat="server" Text='<%# Eval("Bank_Name") %>' />  
+                                                    <asp:Label ID="lbl_EN_Bank_Name" runat="server" Text='<%# Eval("Bank_Name_En") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+
                                             <asp:BoundField DataField="transformation_Date" HeaderText="تاريخ التحويل" ItemStyle-Width="120" />
                                             <asp:BoundField DataField="Amount" HeaderText="قيمة التحويل" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Tenants_Arabic_Name" HeaderText="اسم المستأجر " ItemStyle-Width="120" />
+                                            
+
+                                             <asp:TemplateField HeaderText="اسم المستأجر"><%--4--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />  
+                                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <%-------------------------------------------------------------------------------------------------%>
                                             <asp:CommandField ItemStyle-Width="10px" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Delete.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
                                         </Columns>
@@ -640,11 +651,19 @@
                             <%--************************************************************** Cash Gridviwes *********************************************************************************************************************--%>
                             <div class="row">
                                 <div class="table-responsive">
-                                    <asp:GridView Width="100%" ID="Cash_GridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Cash_Amount_ID" OnRowDeleting="Cash_GridView_RowDeleting">
+                                    <asp:GridView Width="100%" ID="Cash_GridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Cash_Amount_ID" 
+                                        OnRowDeleting="Cash_GridView_RowDeleting" OnRowDataBound="Cash_GridView_RowDataBound">
                                         <Columns>
                                             <asp:BoundField DataField="Cash_Amount" HeaderText="قيمة الدفعة" ItemStyle-Width="120" />
                                             <asp:BoundField DataField="Cash_Date" HeaderText="تاريخ الدفعة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Tenants_Arabic_Name" HeaderText="اسم المستأجر " ItemStyle-Width="120" />
+                                            
+
+                                            <asp:TemplateField HeaderText="اسم المستأجر"><%--2--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />  
+                                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <%-------------------------------------------------------------------------------------------------%>
                                             <asp:CommandField ItemStyle-Width="10px" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Delete.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
                                         </Columns>
@@ -774,13 +793,13 @@
 
                                         <table>
                                             <tr>
-                                                <th>رقم الشيك</th>
-                                                <th>تاريخ الشيك</th>
-                                                <th>قيمة الشيك</th>
-                                                <th>نوع الشيك</th>
-                                                <th>اسم البنك</th>
-                                                <th>صاحب الشيك</th>
-                                                <th> اسم المستفيد</th>
+                                                <th><asp:Label ID="lbl_Cheque_NO" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Date" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Value" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Type" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Bank_Name" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Owner" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_beneficiary" runat="server" /></th>
                                                 <th></th>
                                             </tr>
                                             <tr>

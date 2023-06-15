@@ -60,31 +60,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Success_Add_New_Contract;
 
         /// <summary>
-        /// lbl_Employee_Name control.
+        /// lbl_Contract_Type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Employee_Name;
-
-        /// <summary>
-        /// txt_Dtl_Employee_Name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_Dtl_Employee_Name;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Contract_Type;
 
         /// <summary>
         /// Contract_Templet_DropDownList control.
@@ -96,13 +78,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Contract_Templet_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Contract_Templet_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Contract_Templet_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Tenan_Name control.
@@ -285,13 +267,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Reason_For_Rent_RequiredFieldValidator;
 
         /// <summary>
-        /// LabelX control.
+        /// lbl_Contact_Period control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelX;
+        protected global::System.Web.UI.WebControls.Label lbl_Contact_Period;
 
         /// <summary>
         /// Contract_Type_DropDownList control.
@@ -537,13 +519,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Calendar End_Date_Calendar;
 
         /// <summary>
-        /// Label4 control.
+        /// lbl_Payment_Type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lbl_Payment_Type;
 
         /// <summary>
         /// Payment_Type_DropDownList control.
@@ -1183,6 +1165,69 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Worrnig_Cheque;
+
+        /// <summary>
+        /// lbl_Cheque_NO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cheque_NO;
+
+        /// <summary>
+        /// lbl_Cheque_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cheque_Date;
+
+        /// <summary>
+        /// lbl_Cheque_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cheque_Value;
+
+        /// <summary>
+        /// lbl_Cheque_Type control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cheque_Type;
+
+        /// <summary>
+        /// lbl_Bank_Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Bank_Name;
+
+        /// <summary>
+        /// lbl_Owner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Owner;
+
+        /// <summary>
+        /// lbl_beneficiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_beneficiary;
 
         /// <summary>
         /// txt_Cheque_NO control.

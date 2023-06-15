@@ -126,9 +126,9 @@ namespace Main_Real_estate.English.Main_Application
             if (serial_CheckBox.Checked==true)
             {
                 if (txt_Cheque_NO.Text != "" & txt_Cheque_Date.Text != ""
-                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "إخترنوع الشيك ...."
-                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "إختراسم البنك ...." &&
-                Tenan_Name_DropDownList.SelectedItem.Text != "إختر اسم المستأجر ...." && Cheque_Owner.Text != "")
+                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "..............."
+                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "..............." &&
+                Tenan_Name_DropDownList.SelectedItem.Text != "..............." && Cheque_Owner.Text != "")
                 {
                     for(int i = 0; i < Convert.ToInt32(txt_No_serial_Chques.Text); i++)
                     {
@@ -164,9 +164,9 @@ namespace Main_Real_estate.English.Main_Application
             else
             {
                 if (txt_Cheque_NO.Text != "" & txt_Cheque_Date.Text != ""
-               && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "إخترنوع الشيك ...."
-               && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "إختراسم البنك ...." &&
-               Tenan_Name_DropDownList.SelectedItem.Text != "إختر اسم المستأجر ...." && Cheque_Owner.Text != "")
+               && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "..............."
+               && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "..............." &&
+               Tenan_Name_DropDownList.SelectedItem.Text != "..............." && Cheque_Owner.Text != "")
                 {
                     DataTable dt1 = (DataTable)ViewState["Customers"];
                     dt1.Rows.Add
@@ -670,7 +670,7 @@ namespace Main_Real_estate.English.Main_Application
             }
             else if (Contract_Type_DropDownList.SelectedValue == "3")
             {
-                lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر";
+                if (Session["Langues"].ToString() == "1") { lbl_No_Of_Months_Or_Years.Text = "The Number Of Months"; } else { lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر"; }
                 txt_No_Of_Months_Or_Years.Text = "3";
                 txt_No_Of_Months_Or_Years.ReadOnly = true;
 
@@ -841,19 +841,19 @@ namespace Main_Real_estate.English.Main_Application
                     if (get_Tenant_Id_Dt.Rows[0]["tenant_type_Tenant_Type_Id"].ToString() == "2")
                     {
                         Com_Rep_Div.Visible = true;
-                    //    //Fill Com_Rep_DropDownList
-                    if (Session["Langues"].ToString() == "1")
-                    {
-                        string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
-                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_AR_Name", "Company_representative_Id");
-                        Com_Rep_DropDownList.Items.Insert(0, "...............");
-                    }
-                    else
-                    {
-                        string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
-                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                        Com_Rep_DropDownList.Items.Insert(0, "...............");
-                    }
+                        //    //Fill Com_Rep_DropDownList
+                        if (Session["Langues"].ToString() == "1")
+                        {
+                            string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                            Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_AR_Name", "Company_representative_Id");
+                            Com_Rep_DropDownList.Items.Insert(0, "...............");
+                        }
+                        else
+                        {
+                            string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                            Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                            Com_Rep_DropDownList.Items.Insert(0, "...............");
+                        }
                         
                     }
                     else
@@ -1182,189 +1182,189 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-        protected void Arciv_Half_Contact_Tempelet()
-        {
-            try
-            {
-                int count = 0;
-                foreach (GridViewRow gvrow in Unit_GridView.Rows)
-                {
-                    CheckBox chk = (CheckBox)gvrow.FindControl("CheckBox1");
-                    if (chk.Checked)
-                    {
-                        count++;
-                    }
-                    lblCheckItems.Text = Convert.ToString(count);
-                }
-                if (Contract_Templet_DropDownList.SelectedValue == "3")
-                {
-                    string building_condition_Building_Condition_Id = "0"; string building_type_Building_Type_Id = "0"; string Building_NO = "0";
-                    DataTable getbulidingDt = new DataTable();
-                    _sqlCon.Open();
-                    MySqlCommand getbulidingCmd = new MySqlCommand("SELECT * FROM building WHERE Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'", _sqlCon);
-                    MySqlDataAdapter getbulidingDa = new MySqlDataAdapter(getbulidingCmd);
-                    getbulidingDa.Fill(getbulidingDt);
-                    if (getbulidingDt.Rows.Count > 0)
-                    {
-                        building_condition_Building_Condition_Id = getbulidingDt.Rows[0]["building_condition_Building_Condition_Id"].ToString();
-                        building_type_Building_Type_Id = getbulidingDt.Rows[0]["building_type_Building_Type_Id"].ToString();
-                        Building_NO = getbulidingDt.Rows[0]["Building_NO"].ToString();
-                    }
-                    _sqlCon.Close();
+        //protected void Arciv_Half_Contact_Tempelet()
+        //{
+        //    try
+        //    {
+        //        int count = 0;
+        //        foreach (GridViewRow gvrow in Unit_GridView.Rows)
+        //        {
+        //            CheckBox chk = (CheckBox)gvrow.FindControl("CheckBox1");
+        //            if (chk.Checked)
+        //            {
+        //                count++;
+        //            }
+        //            lblCheckItems.Text = Convert.ToString(count);
+        //        }
+        //        if (Contract_Templet_DropDownList.SelectedValue == "3")
+        //        {
+        //            string building_condition_Building_Condition_Id = "0"; string building_type_Building_Type_Id = "0"; string Building_NO = "0";
+        //            DataTable getbulidingDt = new DataTable();
+        //            _sqlCon.Open();
+        //            MySqlCommand getbulidingCmd = new MySqlCommand("SELECT * FROM building WHERE Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'", _sqlCon);
+        //            MySqlDataAdapter getbulidingDa = new MySqlDataAdapter(getbulidingCmd);
+        //            getbulidingDa.Fill(getbulidingDt);
+        //            if (getbulidingDt.Rows.Count > 0)
+        //            {
+        //                building_condition_Building_Condition_Id = getbulidingDt.Rows[0]["building_condition_Building_Condition_Id"].ToString();
+        //                building_type_Building_Type_Id = getbulidingDt.Rows[0]["building_type_Building_Type_Id"].ToString();
+        //                Building_NO = getbulidingDt.Rows[0]["Building_NO"].ToString();
+        //            }
+        //            _sqlCon.Close();
 
 
-                    foreach (GridViewRow g1 in Unit_GridView.Rows)
-                    {
-                        var checkbox = g1.FindControl("CheckBox1") as CheckBox;
-                        if (checkbox.Checked == true)
-                        {
-                            Label Unit_Arabic_Type = g1.FindControl("Unit_Arabic_Type") as Label;
-                            XXXX.Text = Unit_Arabic_Type.Text;
-                        }
-                    }
+        //            foreach (GridViewRow g1 in Unit_GridView.Rows)
+        //            {
+        //                var checkbox = g1.FindControl("CheckBox1") as CheckBox;
+        //                if (checkbox.Checked == true)
+        //                {
+        //                    Label Unit_Arabic_Type = g1.FindControl("Unit_Arabic_Type") as Label;
+        //                    XXXX.Text = Unit_Arabic_Type.Text;
+        //                }
+        //            }
 
-                    string addHalf_BuildingQuary =
-                        "Insert Into arcive_building " +
-                        "(owner_ship_Owner_Ship_Id," +
-                        "Half_Building_ID," +
-                        "building_condition_Building_Condition_Id," +
-                        "building_type_Building_Type_Id , " +
-                        "Building_English_Name," +
-                        "Building_Arabic_Name , " +
-                        "Building_NO ," +
-                        "Active  ) " +
-                        "VALUES(" +
-                        "@owner_ship_Owner_Ship_Id," +
-                        "@Half_Building_ID," +
-                        "@building_condition_Building_Condition_Id," +
-                        "@building_type_Building_Type_Id," +
-                        "@Building_English_Name," +
-                        "@Building_Arabic_Name , " +
-                        "@Building_NO ," +
-                        "@Active ) ";
-                    _sqlCon.Open();
-                    MySqlCommand addHalf_BuildingCmd = new MySqlCommand(addHalf_BuildingQuary, _sqlCon);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", Ownership_Name_DropDownList.SelectedValue);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id", building_condition_Building_Condition_Id);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@building_type_Building_Type_Id", building_type_Building_Type_Id);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@Building_English_Name", "Half Building :" + Building_Name_DropDownList.SelectedItem.Text);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@Building_Arabic_Name", lblCheckItems.Text + " " + XXXX.Text + "  في البناء : " + Building_Name_DropDownList.SelectedItem.Text);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@Building_NO", Building_NO);
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@Active", "0");
-                    addHalf_BuildingCmd.Parameters.AddWithValue("@Half_Building_ID", Building_Name_DropDownList.SelectedValue);
-                    addHalf_BuildingCmd.ExecuteNonQuery();
-                    _sqlCon.Close();
-                }
-
-
-                //    Get The Added Half_Building Id
-                using (MySqlCommand Get_Half_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building", _sqlCon))
-                {
-                    _sqlCon.Open();
-                    Get_Half_Building_ID.CommandType = CommandType.Text;
-                    object Half_Building_ID = Get_Half_Building_ID.ExecuteScalar();
-                    if (Half_Building_ID != null)
-                    {
-                        Half_Building_id.Text = Half_Building_ID.ToString();
-                    }
-
-                    _sqlCon.Close();
-                }
-
-                foreach (GridViewRow g1 in Unit_GridView.Rows)
-                {
-                    var checkbox = g1.FindControl("CheckBox1") as CheckBox;
-                    if (checkbox.Checked == true)
-                    {
-                        var unit_condition_Unit_Condition_Id = g1.FindControl("unit_condition_Unit_Condition_Id") as Label;
-                        var unit_detail_Unit_Detail_Id = g1.FindControl("unit_detail_Unit_Detail_Id") as Label;
-                        var unit_type_Unit_Type_Id = g1.FindControl("unit_type_Unit_Type_Id") as Label;
-                        var building_Building_Id = g1.FindControl("building_Building_Id") as Label;
-                        var furniture_case_Furniture_case_Id = g1.FindControl("furniture_case_Furniture_case_Id") as Label;
-                        var Unit_Number = g1.FindControl("Unit_Number") as Label;
-                        var Floor_Number = g1.FindControl("Floor_Number") as Label;
-                        var Unit_Space = g1.FindControl("Unit_Space") as Label;
-                        var current_situation = g1.FindControl("current_situation") as Label;
-                        var Oreedo_Number = g1.FindControl("Oreedo_Number") as Label;
-                        var Electricityt_Number = g1.FindControl("Electricityt_Number") as Label;
-                        var Water_Number = g1.FindControl("Water_Number") as Label;
-                        var Active = g1.FindControl("Active") as Label;
+        //            string addHalf_BuildingQuary =
+        //                "Insert Into arcive_building " +
+        //                "(owner_ship_Owner_Ship_Id," +
+        //                "Half_Building_ID," +
+        //                "building_condition_Building_Condition_Id," +
+        //                "building_type_Building_Type_Id , " +
+        //                "Building_English_Name," +
+        //                "Building_Arabic_Name , " +
+        //                "Building_NO ," +
+        //                "Active  ) " +
+        //                "VALUES(" +
+        //                "@owner_ship_Owner_Ship_Id," +
+        //                "@Half_Building_ID," +
+        //                "@building_condition_Building_Condition_Id," +
+        //                "@building_type_Building_Type_Id," +
+        //                "@Building_English_Name," +
+        //                "@Building_Arabic_Name , " +
+        //                "@Building_NO ," +
+        //                "@Active ) ";
+        //            _sqlCon.Open();
+        //            MySqlCommand addHalf_BuildingCmd = new MySqlCommand(addHalf_BuildingQuary, _sqlCon);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@owner_ship_Owner_Ship_Id", Ownership_Name_DropDownList.SelectedValue);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@building_condition_Building_Condition_Id", building_condition_Building_Condition_Id);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@building_type_Building_Type_Id", building_type_Building_Type_Id);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@Building_English_Name", "Half Building :" + Building_Name_DropDownList.SelectedItem.Text);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@Building_Arabic_Name", lblCheckItems.Text + " " + XXXX.Text + "  في البناء : " + Building_Name_DropDownList.SelectedItem.Text);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@Building_NO", Building_NO);
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@Active", "0");
+        //            addHalf_BuildingCmd.Parameters.AddWithValue("@Half_Building_ID", Building_Name_DropDownList.SelectedValue);
+        //            addHalf_BuildingCmd.ExecuteNonQuery();
+        //            _sqlCon.Close();
+        //        }
 
 
+        //        //    Get The Added Half_Building Id
+        //        using (MySqlCommand Get_Half_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building", _sqlCon))
+        //        {
+        //            _sqlCon.Open();
+        //            Get_Half_Building_ID.CommandType = CommandType.Text;
+        //            object Half_Building_ID = Get_Half_Building_ID.ExecuteScalar();
+        //            if (Half_Building_ID != null)
+        //            {
+        //                Half_Building_id.Text = Half_Building_ID.ToString();
+        //            }
+
+        //            _sqlCon.Close();
+        //        }
+
+        //        foreach (GridViewRow g1 in Unit_GridView.Rows)
+        //        {
+        //            var checkbox = g1.FindControl("CheckBox1") as CheckBox;
+        //            if (checkbox.Checked == true)
+        //            {
+        //                var unit_condition_Unit_Condition_Id = g1.FindControl("unit_condition_Unit_Condition_Id") as Label;
+        //                var unit_detail_Unit_Detail_Id = g1.FindControl("unit_detail_Unit_Detail_Id") as Label;
+        //                var unit_type_Unit_Type_Id = g1.FindControl("unit_type_Unit_Type_Id") as Label;
+        //                var building_Building_Id = g1.FindControl("building_Building_Id") as Label;
+        //                var furniture_case_Furniture_case_Id = g1.FindControl("furniture_case_Furniture_case_Id") as Label;
+        //                var Unit_Number = g1.FindControl("Unit_Number") as Label;
+        //                var Floor_Number = g1.FindControl("Floor_Number") as Label;
+        //                var Unit_Space = g1.FindControl("Unit_Space") as Label;
+        //                var current_situation = g1.FindControl("current_situation") as Label;
+        //                var Oreedo_Number = g1.FindControl("Oreedo_Number") as Label;
+        //                var Electricityt_Number = g1.FindControl("Electricityt_Number") as Label;
+        //                var Water_Number = g1.FindControl("Water_Number") as Label;
+        //                var Active = g1.FindControl("Active") as Label;
 
 
-                        if (Page.IsValid)
-                        {
-                            string addUnitQuery = "Insert Into arcive_units (" +
-                                                    "unit_condition_Unit_Condition_Id  ,   " +
-                                                    "unit_detail_Unit_Detail_Id  ,  " +
-                                                    "unit_type_Unit_Type_Id , " +
-                                                    "building_Building_Id , " +
-                                                    "furniture_case_Furniture_case_Id , " +
-                                                    "Unit_Number," +
-                                                    "Floor_Number ," +
-                                                    "Unit_Space, " +
-                                                    "current_situation , " +
-                                                    "Oreedo_Number," +
-                                                    "Electricityt_Number , " +
-                                                    "Water_Number , " +
-                                                    "Active , " +
-                                                    "Half , " +
-                                                    "virtual_Value ) " +
-
-                                                    " VALUES (" +
-                                                    "@unit_condition_Unit_Condition_Id  ,   " +
-                                                    "@unit_detail_Unit_Detail_Id  ,  " +
-                                                    "@unit_type_Unit_Type_Id , " +
-                                                    "@building_Building_Id , " +
-                                                    "@furniture_case_Furniture_case_Id , " +
-                                                    "@Unit_Number," +
-                                                    "@Floor_Number ," +
-                                                    "@Unit_Space, " +
-                                                    "@current_situation , " +
-                                                    "@Oreedo_Number," +
-                                                    "@Electricityt_Number , " +
-                                                    "@Water_Number , " +
-                                                    "@Active , " +
-                                                    "@Half , " +
-                                                    "@virtual_Value ) ";
-
-                            _sqlCon.Open();
-
-                            using (MySqlCommand addUnitCmd = new MySqlCommand(addUnitQuery, _sqlCon))
-                            {
-                                addUnitCmd.Parameters.AddWithValue("@Unit_Number", Unit_Number.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Floor_Number", Floor_Number.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Unit_Space", Unit_Space.Text);
-                                addUnitCmd.Parameters.AddWithValue("@current_situation", current_situation.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Oreedo_Number", Oreedo_Number.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Electricityt_Number", Electricityt_Number.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Water_Number", Water_Number.Text);
-                                addUnitCmd.Parameters.AddWithValue("@virtual_Value", "");
-                                addUnitCmd.Parameters.AddWithValue("@furniture_case_Furniture_case_Id", furniture_case_Furniture_case_Id.Text);
-                                addUnitCmd.Parameters.AddWithValue("@unit_condition_Unit_Condition_Id", unit_condition_Unit_Condition_Id.Text);
-                                addUnitCmd.Parameters.AddWithValue("@unit_detail_Unit_Detail_Id", unit_detail_Unit_Detail_Id.Text);
-                                addUnitCmd.Parameters.AddWithValue("@unit_type_Unit_Type_Id", unit_type_Unit_Type_Id.Text);
-                                addUnitCmd.Parameters.AddWithValue("@building_Building_Id", Half_Building_id.Text);
-                                addUnitCmd.Parameters.AddWithValue("@Active", "0");
-                                addUnitCmd.Parameters.AddWithValue("@Half", "1");
-
-                                addUnitCmd.ExecuteNonQuery();
-                                _sqlCon.Close();
 
 
-                            }
-                        }
-                    }
+        //                if (Page.IsValid)
+        //                {
+        //                    string addUnitQuery = "Insert Into arcive_units (" +
+        //                                            "unit_condition_Unit_Condition_Id  ,   " +
+        //                                            "unit_detail_Unit_Detail_Id  ,  " +
+        //                                            "unit_type_Unit_Type_Id , " +
+        //                                            "building_Building_Id , " +
+        //                                            "furniture_case_Furniture_case_Id , " +
+        //                                            "Unit_Number," +
+        //                                            "Floor_Number ," +
+        //                                            "Unit_Space, " +
+        //                                            "current_situation , " +
+        //                                            "Oreedo_Number," +
+        //                                            "Electricityt_Number , " +
+        //                                            "Water_Number , " +
+        //                                            "Active , " +
+        //                                            "Half , " +
+        //                                            "virtual_Value ) " +
 
-                }
-            }
-            catch
-            {
-                Response.Write(@"<script language='javascript'>alert('تأكد من أن معلومات الوحدات و البناء مكتملة في الماستر بانال')</script>");
-            }
-            _sqlCon.Close();
-        }
+        //                                            " VALUES (" +
+        //                                            "@unit_condition_Unit_Condition_Id  ,   " +
+        //                                            "@unit_detail_Unit_Detail_Id  ,  " +
+        //                                            "@unit_type_Unit_Type_Id , " +
+        //                                            "@building_Building_Id , " +
+        //                                            "@furniture_case_Furniture_case_Id , " +
+        //                                            "@Unit_Number," +
+        //                                            "@Floor_Number ," +
+        //                                            "@Unit_Space, " +
+        //                                            "@current_situation , " +
+        //                                            "@Oreedo_Number," +
+        //                                            "@Electricityt_Number , " +
+        //                                            "@Water_Number , " +
+        //                                            "@Active , " +
+        //                                            "@Half , " +
+        //                                            "@virtual_Value ) ";
+
+        //                    _sqlCon.Open();
+
+        //                    using (MySqlCommand addUnitCmd = new MySqlCommand(addUnitQuery, _sqlCon))
+        //                    {
+        //                        addUnitCmd.Parameters.AddWithValue("@Unit_Number", Unit_Number.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Floor_Number", Floor_Number.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Unit_Space", Unit_Space.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@current_situation", current_situation.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Oreedo_Number", Oreedo_Number.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Electricityt_Number", Electricityt_Number.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Water_Number", Water_Number.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@virtual_Value", "");
+        //                        addUnitCmd.Parameters.AddWithValue("@furniture_case_Furniture_case_Id", furniture_case_Furniture_case_Id.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@unit_condition_Unit_Condition_Id", unit_condition_Unit_Condition_Id.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@unit_detail_Unit_Detail_Id", unit_detail_Unit_Detail_Id.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@unit_type_Unit_Type_Id", unit_type_Unit_Type_Id.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@building_Building_Id", Half_Building_id.Text);
+        //                        addUnitCmd.Parameters.AddWithValue("@Active", "0");
+        //                        addUnitCmd.Parameters.AddWithValue("@Half", "1");
+
+        //                        addUnitCmd.ExecuteNonQuery();
+        //                        _sqlCon.Close();
+
+
+        //                    }
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        Response.Write(@"<script language='javascript'>alert('تأكد من أن معلومات الوحدات و البناء مكتملة في الماستر بانال')</script>");
+        //    }
+        //    _sqlCon.Close();
+        //}
 
         protected void language()
         {

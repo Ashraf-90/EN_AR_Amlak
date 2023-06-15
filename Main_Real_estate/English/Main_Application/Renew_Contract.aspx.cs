@@ -25,66 +25,7 @@ namespace Main_Real_estate.English.Main_Application
             //{
             if (!this.IsPostBack)
             {
-                //   Fill Employee Name DropDownList
-                DataTable get_Employee_DataTable = new DataTable();
-                _sqlCon.Open();
-                MySqlCommand get_Employee_Cmd = new MySqlCommand("SELECT * FROM users WHERE Users_Name = @Users_Name", _sqlCon);
-                MySqlDataAdapter get_Employee_Da = new MySqlDataAdapter(get_Employee_Cmd);
-                get_Employee_Cmd.Parameters.AddWithValue("@Users_Name", Session["Users_Name"].ToString());
-                get_Employee_Da.Fill(get_Employee_DataTable);
-                if (get_Employee_DataTable.Rows.Count > 0)
-                {
-                    txt_Dtl_Employee_Name.Text = get_Employee_DataTable.Rows[0]["Users_Ar_First_Name"].ToString() + " " + get_Employee_DataTable.Rows[0]["Users_Ar_Last_Name"].ToString();
-                }
-                _sqlCon.Close();
-
-                //    //Fill Tenant Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Tenan_Name_DropDownList.Items.Insert(0, "إختر اسم المستأجر ....");
-
-                //    //Fill Ownership Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "إختر الملكية ....");
-
-                //    //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
-                //    //Fill Units Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM units", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
-                Units_DropDownList.Items.Insert(0, "إختر الوحدة ....");
-
-                //    //Fill contract_type DropDownList
-                Helper.LoadDropDownList("SELECT * FROM contract_type", _sqlCon, Contract_Type_DropDownList, "Contract_Arabic_Type", "Contract_Type_Id");
-                Contract_Type_DropDownList.Items.Insert(0, "إخترنوع العقد ....");
-
-                //    //Fill Contract templet DropDownList
-                Helper.LoadDropDownList("SELECT * FROM contract_template", _sqlCon, Contract_Templet_DropDownList, "Contract_Arabic_template", "Contract_template_Id");
-                Contract_Templet_DropDownList.Items.Insert(0, "إختر نموذج العقد ....");
-
-              
-
-                //    //Fill Paymaent Type DropDownList
-                Helper.LoadDropDownList("SELECT * FROM payment_type", _sqlCon, Payment_Type_DropDownList, "payment_Arabic_type", "payment_type_Id");
-                Payment_Type_DropDownList.Items.Insert(0, "إختر نوع الدفعات ....");
-
-                //    //Fill Cheque_type DropDownList
-                Helper.LoadDropDownList("SELECT * FROM cheque_type", _sqlCon, Cheque_Type_DropDownList, "Cheque_arabic_Type", "Cheque_Type_id");
-                Cheque_Type_DropDownList.Items.Insert(0, "إخترنوع الشيك ....");
-
-                //    //Fill Bank_Cheque_Name_DropDownList DropDownList
-                Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Cheque_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
-                Bank_Cheque_Name_DropDownList.Items.Insert(0, "إختراسم البنك ....");
-
-                //    //Fill Reason_For_Rent_DropDownList
-                Reason_For_Rent_DropDownList.Items.Insert(0, "إختر الغرض من الإيجار ....");
-
-
-                //    //Fill Tenant Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM transformation_bank", _sqlCon, transformation_Bank_DropDownList, "Bank_Name", "transformation_Bank_ID");
-                transformation_Bank_DropDownList.Items.Insert(0, "إختر اسم البنك ....");
-
-                _sqlCon.Close();
+                language();
 
                 //************************ get The Contract Information **************************************************
 
@@ -107,19 +48,19 @@ namespace Main_Real_estate.English.Main_Application
                     }
                     if (get_Contract_Dt.Rows[0]["contract_type_Contract_Type_Id"].ToString() == "1")
                     {
-                        lbl_No_Of_Months_Or_Years.Text = "عدد السنوات";
+                        if (Session["Langues"].ToString() == "1") { lbl_No_Of_Months_Or_Years.Text = "The Number Of Years"; } else { lbl_No_Of_Months_Or_Years.Text = "عدد السنوات"; }
                         txt_No_Of_Months_Or_Years.ReadOnly = true;
                         txt_No_Of_Months_Or_Years.Text = get_Contract_Dt.Rows[0]["Number_Of_Years"].ToString();
                     }
                     else if (get_Contract_Dt.Rows[0]["contract_type_Contract_Type_Id"].ToString() == "2" || get_Contract_Dt.Rows[0]["contract_type_Contract_Type_Id"].ToString() == "3")
                     {
-                        lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر";
+                        if (Session["Langues"].ToString() == "1") { lbl_No_Of_Months_Or_Years.Text = "The Number Of Months"; } else { lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر"; }
                         txt_No_Of_Months_Or_Years.ReadOnly = true;
                         txt_No_Of_Months_Or_Years.Text = get_Contract_Dt.Rows[0]["Number_Of_Mounth"].ToString();
                     }
                     else
                     {
-                        lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر";
+                        if (Session["Langues"].ToString() == "1") { lbl_No_Of_Months_Or_Years.Text = "The Number Of Months"; } else { lbl_No_Of_Months_Or_Years.Text = "عدد الأشهر"; }
                         txt_No_Of_Months_Or_Years.Text = get_Contract_Dt.Rows[0]["Number_Of_Mounth"].ToString();
                     }
                     txt_FREE_PERIOD.Text = get_Contract_Dt.Rows[0]["Start_Free_Period"].ToString();
@@ -166,18 +107,6 @@ namespace Main_Real_estate.English.Main_Application
                     Payment_Type_DropDownList.SelectedValue = get_Contract_Dt.Rows[0]["payment_type_payment_type_Id"].ToString();
                     lbl_Tenant_Name.Text = Tenan_Name_DropDownList.SelectedItem.Text;
 
-                    // ---------------------- get The user Name ----------------------------------------------------------------------------------
-                    string User_Id = get_Contract_Dt.Rows[0]["users_user_ID"].ToString();
-                    DataTable get_User_Dt = new DataTable();
-                    // _sqlCon.Open();
-                    MySqlCommand get_User_Cmd = new MySqlCommand("SELECT * FROM users WHERE user_ID = @ID", _sqlCon);
-                    MySqlDataAdapter get_User_Da = new MySqlDataAdapter(get_User_Cmd);
-                    get_User_Cmd.Parameters.AddWithValue("@ID", User_Id);
-                    get_User_Da.Fill(get_User_Dt);
-                    if (get_User_Dt.Rows.Count > 0)
-                    {
-                        txt_Dtl_Employee_Name.Text = get_User_Dt.Rows[0]["Users_Ar_First_Name"].ToString() + " " + get_User_Dt.Rows[0]["Users_Ar_Last_Name"].ToString();
-                    }
                     //----------------------------------------------------------------------------------------------------------------------------------------------
                 }
                 _sqlCon.Close();
@@ -237,10 +166,7 @@ namespace Main_Real_estate.English.Main_Application
                 ViewState["Cash_Customers"] = Ch_Dt;
                 this.BindGrid();
                 //-----------------------------------------------------------------------------------------------------
-                if (Cheque_GridView.Rows.Count == 0)
-                {
-                    lbl_Cheque.Text = " لا توجد شيكات مُدخلة";
-                }
+                
             }
             //}
             //catch
@@ -281,14 +207,7 @@ namespace Main_Real_estate.English.Main_Application
             ViewState["Customers"] = dt;
             BindGrid();
 
-            if (Cheque_GridView.Rows.Count == 0)
-            {
-                lbl_Cheque.Text = " لا توجد شيكات مُدخلة";
-            }
-            else
-            {
-                lbl_Cheque.Text = "عدد الشيكات المُدخلة :" + Cheque_GridView.Rows.Count.ToString();
-            }
+           
         }
 
         protected void transformation_GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -315,9 +234,9 @@ namespace Main_Real_estate.English.Main_Application
             if (serial_CheckBox.Checked == true)
             {
                 if (txt_Cheque_NO.Text != "" & txt_Cheque_Date.Text != ""
-                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "إخترنوع الشيك ...."
-                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "إختراسم البنك ...." &&
-                Tenan_Name_DropDownList.SelectedItem.Text != "إختر اسم المستأجر ...." && Cheque_Owner.Text != "")
+                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "..............."
+                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "..............." &&
+                Tenan_Name_DropDownList.SelectedItem.Text != "..............." && Cheque_Owner.Text != "")
                 {
                     for (int i = 0; i < Convert.ToInt32(txt_No_serial_Chques.Text); i++)
                     {
@@ -342,7 +261,6 @@ namespace Main_Real_estate.English.Main_Application
                         ); ;
                         ViewState["Customers"] = dt1;
                         this.BindGrid();
-                        lbl_Cheque.Text = "عدد الشيكات المُدخلة :" + Cheque_GridView.Rows.Count.ToString();
                         lbl_Worrnig_Cheque.Visible = false;
                     }
                 }
@@ -354,9 +272,9 @@ namespace Main_Real_estate.English.Main_Application
             else
             {
                 if (txt_Cheque_NO.Text != "" & txt_Cheque_Date.Text != ""
-               && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "إخترنوع الشيك ...."
-               && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "إختراسم البنك ...." &&
-               Tenan_Name_DropDownList.SelectedItem.Text != "إختر اسم المستأجر ...." && Cheque_Owner.Text != "")
+               && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "..............."
+               && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "..............." &&
+               Tenan_Name_DropDownList.SelectedItem.Text != "..............." && Cheque_Owner.Text != "")
                 {
                     DataTable dt1 = (DataTable)ViewState["Customers"];
                     dt1.Rows.Add
@@ -375,7 +293,6 @@ namespace Main_Real_estate.English.Main_Application
                     );
                     ViewState["Customers"] = dt1;
                     this.BindGrid();
-                    lbl_Cheque.Text = "عدد الشيكات المُدخلة :" + Cheque_GridView.Rows.Count.ToString();
                     lbl_Worrnig_Cheque.Visible = false;
                 }
                 else
@@ -442,141 +359,78 @@ namespace Main_Real_estate.English.Main_Application
         {
             if (Page.IsValid)
             {
-
+                _sqlCon.Open();
                 //  Update New_ReNewed_Expaired to 2 in Contract Table
                 string contractId = Request.QueryString["Id"];
                 string New_ReNewed_ExpairedQuery = "UPDATE contract SET New_ReNewed_Expaired=@New_ReNewed_Expaired  WHERE Contract_Id=@ID ";
-                _sqlCon.Open();
                 using (MySqlCommand UpdateContractCmd = new MySqlCommand(New_ReNewed_ExpairedQuery, _sqlCon))
                 {
                     UpdateContractCmd.Parameters.AddWithValue("@ID", contractId);
                     //Fill The Database with All DropDownLists Items
                     UpdateContractCmd.Parameters.AddWithValue("@New_ReNewed_Expaired", "2");
                     UpdateContractCmd.ExecuteNonQuery();
-                    _sqlCon.Close();
                 }
 
 
                 //  insert The Contract Information in Contract Tabel in DB
-                string RenewContractQuery = "Insert Into contract (" +
-                                          "Contract_Details , " +
-                                          "Payment_Amount  , " +
-                                          "Payment_Amount_L  , " +
-                                          "Date_Of_Sgin        , " +
-                                          "Start_Date       , " +
-                                          "End_Date         , " +
-                                          "users_user_ID , " +
-                                          "units_Unit_ID , " +
-                                          "New_ReNewed_Expaired , " +
-                                          "Start_Free_Period , " +
-                                          "Duration_free_period , " +
-                                          "maintenance , " +
-                                          "Rental_allowed_Or_Not_allowed , " +
-                                          "reason_for_rent_Reason_For_Rent_Id   , " +
-                                          "contract_type_Contract_Type_Id   , " +
-                                          "contract_template_Contract_template_Id , " +
-                                          "Number_Of_Mounth , " +
-                                          "Number_Of_Years , " +
-                                          "tenants_Tenants_ID , " +
-                                          "Com_rep ," +
-                                          "Paymen_Method ," +
-                                          "payment_type_payment_type_Id) " +
-                                          "VALUES( " +
-                                          "@Contract_Details , " +
-                                          "@Payment_Amount  , " +
-                                          "@Payment_Amount_L  , " +
-                                          "@Date_Of_Sgin        , " +
-                                          "@Start_Date       , " +
-                                          "@End_Date         , " +
-                                          "@users_user_ID , " +
-                                          "@units_Unit_ID , " +
-                                          "@New_ReNewed_Expaired , " +
-                                          "@Start_Free_Period , " +
-                                          "@Duration_free_period , " +
-                                          "@maintenance , " +
-                                          "@Rental_allowed_Or_Not_allowed , " +
-                                          "@reason_for_rent_Reason_For_Rent_Id   , " +
-                                          "@contract_type_Contract_Type_Id   , " +
-                                          "@contract_template_Contract_template_Id , " +
-                                          "@Number_Of_Mounth , " +
-                                          "@Number_Of_Years , " +
-                                          "@tenants_Tenants_ID , " +
-                                          "@Com_rep ," +
-                                          "@Paymen_Method ," +
-                                          "@payment_type_payment_type_Id ) ";
-                _sqlCon.Open();
-                using (MySqlCommand RenewContractCmd = new MySqlCommand(RenewContractQuery, _sqlCon))
+                MySqlCommand cmd = new MySqlCommand("Add_Singel_Contract", _sqlCon);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id", Contract_Type_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@contract_template_Contract_template_Id", Contract_Templet_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@tenants_Tenants_ID", Tenan_Name_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@payment_type_payment_type_Id", Payment_Type_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@Rented_Item", Units_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
+                cmd.Parameters.AddWithValue("@New_ReNewed_Expaired", "1");
+                cmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
+                cmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
+                cmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
+                cmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
+                cmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
+                //Fill The Database with All Textbox Items
+                cmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
+                cmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
+                cmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
+                cmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
+                cmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
+                cmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
+                if (Contract_Type_DropDownList.SelectedValue == "1")
                 {
-                    //Fill The Database with All DropDownLists Items
-                    RenewContractCmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id",
-                        Contract_Type_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@contract_template_Contract_template_Id",
-                        Contract_Templet_DropDownList.SelectedValue);
-                    //RenewContractCmd.Parameters.AddWithValue("@payment_frequency_Payment_Frequency_Id",
-                    //    Payment_Frquancy_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@tenants_Tenants_ID",  Tenan_Name_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@payment_type_payment_type_Id",  Payment_Type_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@units_Unit_ID", Units_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
-                    RenewContractCmd.Parameters.AddWithValue("@New_ReNewed_Expaired", "1");
-                    RenewContractCmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
-                    RenewContractCmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
-                    //Fill The Database with All Textbox Items
-                    RenewContractCmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
-                    if (Contract_Type_DropDownList.SelectedValue == "1")
-                    {
-                        RenewContractCmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
-                        RenewContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
-                    }
-                    else
-                    {
-                        RenewContractCmd.Parameters.AddWithValue("@Number_Of_Years", "");
-                        RenewContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
-                    }
-
-                    RenewContractCmd.ExecuteNonQuery();
-                    _sqlCon.Close();
+                    cmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
+                    cmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Number_Of_Years", "");
+                    cmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
                 }
 
+                cmd.ExecuteNonQuery();
 
-
-                Renew_Arcive_Contract();
+                
 
                 //    Get The Added Contract Id
                 using (MySqlCommand Get_Contract_ID = new MySqlCommand("SELECT MAX(Contract_Id) AS LastInsertedID from contract", _sqlCon))
                 {
-                    _sqlCon.Open();
                     Get_Contract_ID.CommandType = CommandType.Text;
                     object Contract_ID = Get_Contract_ID.ExecuteScalar();
                     if (Contract_ID != null)
                     {
                         Contract_id.Text = Contract_ID.ToString();
                     }
-
-                    _sqlCon.Close();
                 }
 
 
 
                 //    insert The Cheques Information in Cheques Tabel in DB
-
                 if (Paymen_Method_RadioButtonList.SelectedValue == "1")
                 {
                     string Defult_Chque_Status = "غير محصل";
                     MySqlCommand com;
                     foreach (GridViewRow g1 in Cheque_GridView.Rows)
                     {
-                        _sqlCon.Open();
                         com = new
                         MySqlCommand("INSERT INTO cheques (" +
                                      "Cheques_No," +
@@ -602,7 +456,6 @@ namespace Main_Real_estate.English.Main_Application
                                      "'" + Convert.ToInt32(Contract_id.Text) + "')", _sqlCon);
 
                         com.ExecuteNonQuery();
-                        _sqlCon.Close();
                     }
                 }
                 else if (Paymen_Method_RadioButtonList.SelectedValue == "2")
@@ -611,7 +464,6 @@ namespace Main_Real_estate.English.Main_Application
                     MySqlCommand com;
                     foreach (GridViewRow g1 in transformation_GridView.Rows)
                     {
-                        _sqlCon.Open();
                         com = new
                             MySqlCommand("INSERT INTO transformation_table (" +
                                          "transformation_No," +
@@ -630,7 +482,6 @@ namespace Main_Real_estate.English.Main_Application
                                          "'" + g1.Cells[6].Text + "' ," +
                                          "'" + Contract_id.Text + "')", _sqlCon);
                         com.ExecuteNonQuery();
-                        _sqlCon.Close();
                     }
                 }
                 else
@@ -639,7 +490,6 @@ namespace Main_Real_estate.English.Main_Application
                     MySqlCommand com;
                     foreach (GridViewRow g1 in Cash_GridView.Rows)
                     {
-                        _sqlCon.Open();
                         com = new
                             MySqlCommand("INSERT INTO cash_amount (" +
                                          "Cash_Amount," +
@@ -654,19 +504,12 @@ namespace Main_Real_estate.English.Main_Application
                                          "'" + g1.Cells[3].Text + "' ," +
                                          "'" + Contract_id.Text + "')", _sqlCon);
                         com.ExecuteNonQuery();
-                        _sqlCon.Close();
                     }
                 }
+                if (Session["Langues"].ToString() == "1") { lbl_Success_Add_New_Contract.Text = "The Contract Has Been Successfully Renewed"; }
+                else { lbl_Success_Add_New_Contract.Text = "تم تجديد العقد بنجاح"; }
 
-
-
-
-
-
-
-                   
-
-                lbl_Success_Add_New_Contract.Text = "تمت التجديد بنجاح";
+                _sqlCon.Close();
             }
         }
 
@@ -677,22 +520,6 @@ namespace Main_Real_estate.English.Main_Application
 
         //*****************************************************************************************************************
         //*****************************************************************************************************************
-
-        //******************  Get The Building Of Selected Ownership ***************************************************
-        protected void Ownership_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //    //Fill Buildings Name DropDownList
-            Helper.LoadDropDownList("SELECT * FROM building where owner_ship_Owner_Ship_Id = '" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-            Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-        }
-
-        //******************  Get The Units Of Selected Building ***************************************************
-        protected void Building_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //    //Fill units Name DropDownList
-            Helper.LoadDropDownList("SELECT * FROM units where building_Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
-            Units_DropDownList.Items.Insert(0, "إختر الوحدة ....");
-        }
 
         //*********************** FREE_PERIOD_CheckBox Event ************************
         protected void FREE_PERIOD_CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -958,120 +785,13 @@ namespace Main_Real_estate.English.Main_Application
             }
         }
 
-        protected void Renew_Arcive_Contract()
-        {
-            //  Update New_ReNewed_Expaired to 2 in Contract Table
-            string contractId = Request.QueryString["Id"];
-            string New_ReNewed_ExpairedQuery = "UPDATE arcive_contract SET New_ReNewed_Expaired=@New_ReNewed_Expaired  WHERE Contract_Id=@ID ";
-            _sqlCon.Open();
-            using (MySqlCommand UpdateContractCmd = new MySqlCommand(New_ReNewed_ExpairedQuery, _sqlCon))
-            {
-                UpdateContractCmd.Parameters.AddWithValue("@ID", contractId);
-                //Fill The Database with All DropDownLists Items
-                UpdateContractCmd.Parameters.AddWithValue("@New_ReNewed_Expaired", "2");
-                UpdateContractCmd.ExecuteNonQuery();
-                _sqlCon.Close();
-            }
-
-
-            //  insert The Contract Information in Contract Tabel in DB
-            string RenewContractQuery = "Insert Into arcive_contract (" +
-                                      "Contract_Details , " +
-                                      "Payment_Amount  , " +
-                                      "Payment_Amount_L  , " +
-                                      "Date_Of_Sgin        , " +
-                                      "Start_Date       , " +
-                                      "End_Date         , " +
-                                      "users_user_ID , " +
-                                      "units_Unit_ID , " +
-                                      "New_ReNewed_Expaired , " +
-                                      "Start_Free_Period , " +
-                                      "Duration_free_period , " +
-                                      "maintenance , " +
-                                      "Rental_allowed_Or_Not_allowed , " +
-                                      "reason_for_rent_Reason_For_Rent_Id   , " +
-                                      "contract_type_Contract_Type_Id   , " +
-                                      "contract_template_Contract_template_Id , " +
-                                      "Number_Of_Mounth , " +
-                                      "Number_Of_Years , " +
-                                      "tenants_Tenants_ID , " +
-                                      "Com_rep ," +
-                                      "Paymen_Method ," +
-                                      "payment_type_payment_type_Id) " +
-                                      "VALUES( " +
-                                      "@Contract_Details , " +
-                                      "@Payment_Amount  , " +
-                                      "@Payment_Amount_L  , " +
-                                      "@Date_Of_Sgin        , " +
-                                      "@Start_Date       , " +
-                                      "@End_Date         , " +
-                                      "@users_user_ID , " +
-                                      "@units_Unit_ID , " +
-                                      "@New_ReNewed_Expaired , " +
-                                      "@Start_Free_Period , " +
-                                      "@Duration_free_period , " +
-                                      "@maintenance , " +
-                                      "@Rental_allowed_Or_Not_allowed , " +
-                                      "@reason_for_rent_Reason_For_Rent_Id   , " +
-                                      "@contract_type_Contract_Type_Id   , " +
-                                      "@contract_template_Contract_template_Id , " +
-                                      "@Number_Of_Mounth , " +
-                                      "@Number_Of_Years , " +
-                                      "@tenants_Tenants_ID , " +
-                                      "@Com_rep ," +
-                                      "@Paymen_Method ," +
-                                      "@payment_type_payment_type_Id ) ";
-            _sqlCon.Open();
-            using (MySqlCommand RenewContractCmd = new MySqlCommand(RenewContractQuery, _sqlCon))
-            {
-                //Fill The Database with All DropDownLists Items
-                RenewContractCmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id",
-                    Contract_Type_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@contract_template_Contract_template_Id",
-                    Contract_Templet_DropDownList.SelectedValue);
-                //RenewContractCmd.Parameters.AddWithValue("@payment_frequency_Payment_Frequency_Id",
-                //    Payment_Frquancy_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@tenants_Tenants_ID", Tenan_Name_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@payment_type_payment_type_Id", Payment_Type_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@units_Unit_ID", Units_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
-                RenewContractCmd.Parameters.AddWithValue("@New_ReNewed_Expaired", "1");
-                RenewContractCmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
-                RenewContractCmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
-                //Fill The Database with All Textbox Items
-                RenewContractCmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
-                RenewContractCmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
-                RenewContractCmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
-                if (Contract_Type_DropDownList.SelectedValue == "1")
-                {
-                    RenewContractCmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
-                    RenewContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
-                }
-                else
-                {
-                    RenewContractCmd.Parameters.AddWithValue("@Number_Of_Years", "");
-                    RenewContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
-                }
-
-                RenewContractCmd.ExecuteNonQuery();
-                _sqlCon.Close();
-            }
-        }
 
 
         protected void Paymen_Method_RadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Paymen_Method_RadioButtonList.SelectedValue == "1") { Cheque_Div.Visible = true; lbl_Cheque.Visible = true; transformation_Div.Visible = false; Cash_div.Visible = false; }
-            else if (Paymen_Method_RadioButtonList.SelectedValue == "2") { Cheque_Div.Visible = false; transformation_Div.Visible = true; Cash_div.Visible = false; lbl_Cheque.Text = "التحويلات"; }
-            else if (Paymen_Method_RadioButtonList.SelectedValue == "3") { Cheque_Div.Visible = false; transformation_Div.Visible = false; Cash_div.Visible = true; lbl_Cheque.Text = "الدفعات النقدية"; }
+            if (Paymen_Method_RadioButtonList.SelectedValue == "1") { Cheque_Div.Visible = true;  transformation_Div.Visible = false; Cash_div.Visible = false; }
+            else if (Paymen_Method_RadioButtonList.SelectedValue == "2") { Cheque_Div.Visible = false; transformation_Div.Visible = true; Cash_div.Visible = false;  }
+            else if (Paymen_Method_RadioButtonList.SelectedValue == "3") { Cheque_Div.Visible = false; transformation_Div.Visible = false; Cash_div.Visible = true;  }
             ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
         }
 
@@ -1122,5 +842,358 @@ namespace Main_Real_estate.English.Main_Application
         }
 
 
+
+
+
+        //***********************************************************************************************************************************************************
+        //****************************************************************   language   ***************************************************************************
+        //***********************************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Tenan_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Com_Rep_DropDownList
+                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                    Helper.LoadDropDownList(
+                        "SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id"); Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    Com_Rep_DropDownList.SelectedValue = "1";
+
+                    //    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_En_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Units Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM units Where Half ='0'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
+                    Units_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill contract_type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM contract_type", _sqlCon, Contract_Type_DropDownList, "Contract_English_Type", "Contract_Type_Id");
+                    Contract_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Contract templet DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM contract_template", _sqlCon, Contract_Templet_DropDownList, "Contract_English_template", "Contract_template_Id");
+                    Contract_Templet_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Paymaent Type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM payment_type", _sqlCon, Payment_Type_DropDownList, "payment_English_type", "payment_type_Id");
+                    Payment_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Cheque_type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM cheque_type", _sqlCon, Cheque_Type_DropDownList, "Cheque_English_Type", "Cheque_Type_id");
+                    Cheque_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Bank_Cheque_Name_DropDownList DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Cheque_Name_DropDownList, "Bank_English_Name", "Bank_Id");
+                    Bank_Cheque_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Reason_For_Rent_DropDownList
+                    Reason_For_Rent_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM transformation_bank", _sqlCon, transformation_Bank_DropDownList, "Bank_Name_En", "transformation_Bank_ID");
+                    transformation_Bank_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Get Reason_For_Rent_DropDownList DropDownList
+                    Reason_For_Rent_DropDownList.Items.Clear();
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("Family Accommodation", "1"));
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("Business", "2"));
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("Singles housing", "3"));
+                    Reason_For_Rent_DropDownList.Items.Insert(0, "...............");
+
+                    //Get maintenance_RadioButtonList DropDownList
+                    maintenance_RadioButtonList.Items.Clear();
+                    maintenance_RadioButtonList.Items.Add(new ListItem("On The Lessor", "1"));
+                    maintenance_RadioButtonList.Items.Add(new ListItem("On TThe Tenant", "2"));
+
+                    //Get Rental_allowed_Or_Not_allowed_RadioButtonList DropDownList
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Clear();
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Add(new ListItem("Allowed", "1"));
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Add(new ListItem("Not Allowed", "2"));
+
+
+                    //Get Paymen_Method_RadioButtonList DropDownList
+                    Paymen_Method_RadioButtonList.Items.Clear();
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("Cheques", "1"));
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("Transformation", "2"));
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("Cash", "3"));
+
+
+                    lbl_titel_Add_New_Tenant.Text = Dt.Rows[44]["En"].ToString();
+                    lbl_Contract_Type.Text = Dt.Rows[1]["EN"].ToString();
+                    lbl_Tenan_Name.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Com_Rep.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_Units.Text = Dt.Rows[6]["EN"].ToString();
+                    lbl_Reason_For_Rent.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_Contact_Period.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[9]["EN"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[10]["EN"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[11]["EN"].ToString();
+                    lbl_Payment_Type.Text = Dt.Rows[12]["EN"].ToString();
+                    lbl_Payment_Amount.Text = Dt.Rows[13]["EN"].ToString();
+                    lbl_Payment_Amount_L.Text = Dt.Rows[14]["EN"].ToString();
+                    lbl_maintenance.Text = Dt.Rows[15]["EN"].ToString();
+                    lbl_Rental_allowed_Or_Not_allowed.Text = Dt.Rows[16]["EN"].ToString();
+                    lbl_Contract_Details.Text = Dt.Rows[17]["EN"].ToString();
+                    lbl_FREE_PERIOD.Text = Dt.Rows[18]["EN"].ToString();
+                    lbl_Duration_Of_The_Free_Period.Text = Dt.Rows[19]["EN"].ToString();
+                    lbl_Paymen_Method.Text = Dt.Rows[20]["EN"].ToString();
+                    serial_CheckBox.Text = "Entering Serial Checks";
+                    lbl_Worrnig_Cheque.Text = "Incomplete Check Information (Tenant name / Cheque type / Bank name)";
+                    lbl_Cheque_NO.Text = Dt.Rows[22]["EN"].ToString();
+                    lbl_Cheque_Date.Text = Dt.Rows[23]["EN"].ToString();
+                    lbl_Cheque_Value.Text = Dt.Rows[24]["EN"].ToString();
+                    lbl_Cheque_Type.Text = Dt.Rows[25]["EN"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[26]["EN"].ToString();
+                    lbl_Owner.Text = Dt.Rows[27]["EN"].ToString();
+                    lbl_beneficiary.Text = Dt.Rows[28]["EN"].ToString();
+                    btn_Cheque_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    lbl_Cash_Amount.Text = Dt.Rows[32]["EN"].ToString();
+                    lbl_Cash_Date.Text = Dt.Rows[33]["EN"].ToString();
+                    Cash_Date_Button.Text = Dt.Rows[21]["EN"].ToString();
+                    lbl_transformation_No.Text = Dt.Rows[29]["EN"].ToString();
+                    lbl_transformation_Bank.Text = Dt.Rows[26]["EN"].ToString();
+                    lbl_transformation_Date.Text = Dt.Rows[30]["EN"].ToString();
+                    btn_Add_Contract.Text = Dt.Rows[34]["EN"].ToString();
+                    btn_Back_To_Contract_List.Text = Dt.Rows[35]["EN"].ToString();
+                    FREE_PERIOD_CheckBox.Text = Dt.Rows[18]["EN"].ToString();
+                    Additional_Items_CheckBox.Text = Dt.Rows[17]["EN"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    Start_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    lbl_transformation_Amount.Text = Dt.Rows[31]["EN"].ToString();
+                    transformation_Date_Button.Text = Dt.Rows[21]["EN"].ToString();
+
+
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[22]["EN"].ToString();
+                    Cheque_GridView.Columns[2].HeaderText = Dt.Rows[23]["EN"].ToString();
+                    Cheque_GridView.Columns[3].HeaderText = Dt.Rows[24]["EN"].ToString();
+                    Cheque_GridView.Columns[4].HeaderText = Dt.Rows[25]["EN"].ToString();
+                    Cheque_GridView.Columns[7].HeaderText = Dt.Rows[26]["EN"].ToString();
+                    Cheque_GridView.Columns[9].HeaderText = Dt.Rows[2]["EN"].ToString();
+                    Cheque_GridView.Columns[11].HeaderText = Dt.Rows[27]["EN"].ToString();
+                    Cheque_GridView.Columns[12].HeaderText = Dt.Rows[28]["EN"].ToString();
+
+                    transformation_GridView.Columns[0].HeaderText = Dt.Rows[29]["EN"].ToString();
+                    transformation_GridView.Columns[1].HeaderText = Dt.Rows[26]["EN"].ToString();
+                    transformation_GridView.Columns[3].HeaderText = Dt.Rows[30]["EN"].ToString();
+                    transformation_GridView.Columns[4].HeaderText = Dt.Rows[31]["EN"].ToString();
+                    transformation_GridView.Columns[5].HeaderText = Dt.Rows[2]["EN"].ToString();
+
+                    Cash_GridView.Columns[0].HeaderText = Dt.Rows[32]["EN"].ToString();
+                    Cash_GridView.Columns[1].HeaderText = Dt.Rows[33]["EN"].ToString();
+                    Cash_GridView.Columns[2].HeaderText = Dt.Rows[2]["EN"].ToString();
+
+
+                    
+
+                    //Contract_Templet_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    //Com_Rep_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                   // Units_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Reason_For_Rent_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Contract_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    No_Of_Months_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Amount_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Payment_Amount_L_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    maintenance_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Rental_allowed_Or_Not_allowed_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Paymen_Method_Req_Fiel_Val.ErrorMessage = "* Required ";
+                    Contract_Details_RegularExpressionValidator.ErrorMessage = "Only letters";
+                    Payment_Amount_RegularExpressionValidator.ErrorMessage = "Only Numbers";
+
+                }
+                else
+                {
+                    //    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Tenan_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Com_Rep_DropDownList
+                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                    Helper.LoadDropDownList(
+                        "SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id"); Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    Com_Rep_DropDownList.SelectedValue = "1";
+
+                    //    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Units Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM units Where Half ='0'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
+                    Units_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill contract_type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM contract_type", _sqlCon, Contract_Type_DropDownList, "Contract_Arabic_Type", "Contract_Type_Id");
+                    Contract_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Contract templet DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM contract_template", _sqlCon, Contract_Templet_DropDownList, "Contract_Arabic_template", "Contract_template_Id");
+                    Contract_Templet_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Paymaent Type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM payment_type", _sqlCon, Payment_Type_DropDownList, "payment_Arabic_type", "payment_type_Id");
+                    Payment_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Cheque_type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM cheque_type", _sqlCon, Cheque_Type_DropDownList, "Cheque_arabic_Type", "Cheque_Type_id");
+                    Cheque_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Bank_Cheque_Name_DropDownList DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Cheque_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
+                    Bank_Cheque_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Reason_For_Rent_DropDownList
+                    Reason_For_Rent_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM transformation_bank", _sqlCon, transformation_Bank_DropDownList, "Bank_Name", "transformation_Bank_ID");
+                    transformation_Bank_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Reason_For_Rent_DropDownList DropDownList
+                    Reason_For_Rent_DropDownList.Items.Clear();
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("سكن عائلي", "1"));
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("عمل تجاري", "2"));
+                    Reason_For_Rent_DropDownList.Items.Add(new ListItem("سكن عزاب", "3"));
+                    Reason_For_Rent_DropDownList.Items.Insert(0, "...............");
+
+                    //Get maintenance_RadioButtonList DropDownList
+                    maintenance_RadioButtonList.Items.Clear();
+                    maintenance_RadioButtonList.Items.Add(new ListItem("على المؤجر", "1"));
+                    maintenance_RadioButtonList.Items.Add(new ListItem("على المستأجر", "2"));
+
+                    //Get maintenance_RadioButtonList DropDownList
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Clear();
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Add(new ListItem("يجوز", "1"));
+                    Rental_allowed_Or_Not_allowed_RadioButtonList.Items.Add(new ListItem("لا يجوز", "2"));
+
+                    //Get Paymen_Method_RadioButtonList DropDownList
+                    Paymen_Method_RadioButtonList.Items.Clear();
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("شيكات", "1"));
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("تحويل", "2"));
+                    Paymen_Method_RadioButtonList.Items.Add(new ListItem("نقداً", "3"));
+
+
+
+
+                    lbl_titel_Add_New_Tenant.Text = Dt.Rows[44]["AR"].ToString();
+                    lbl_Contract_Type.Text = Dt.Rows[1]["AR"].ToString();
+                    lbl_Tenan_Name.Text = Dt.Rows[2]["AR"].ToString();
+                    lbl_Com_Rep.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_Units.Text = Dt.Rows[6]["AR"].ToString();
+                    lbl_Reason_For_Rent.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_Contact_Period.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[9]["AR"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[10]["AR"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[11]["AR"].ToString();
+                    lbl_Payment_Type.Text = Dt.Rows[12]["AR"].ToString();
+                    lbl_Payment_Amount.Text = Dt.Rows[13]["AR"].ToString();
+                    lbl_Payment_Amount_L.Text = Dt.Rows[14]["AR"].ToString();
+                    lbl_maintenance.Text = Dt.Rows[15]["AR"].ToString();
+                    lbl_Rental_allowed_Or_Not_allowed.Text = Dt.Rows[16]["AR"].ToString();
+                    lbl_Contract_Details.Text = Dt.Rows[17]["AR"].ToString();
+                    lbl_FREE_PERIOD.Text = Dt.Rows[18]["AR"].ToString();
+                    lbl_Duration_Of_The_Free_Period.Text = Dt.Rows[19]["AR"].ToString();
+                    lbl_Paymen_Method.Text = Dt.Rows[20]["AR"].ToString();
+                    serial_CheckBox.Text = "إدخال شيكات متسلسلة ";
+                    lbl_Worrnig_Cheque.Text = "معلومات الشيك غير كاملة ( اسم المستأجر  /  نوع الشيك  /  اسم البنك)";
+                    lbl_Cheque_NO.Text = Dt.Rows[22]["AR"].ToString();
+                    lbl_Cheque_Date.Text = Dt.Rows[23]["AR"].ToString();
+                    lbl_Cheque_Value.Text = Dt.Rows[24]["AR"].ToString();
+                    lbl_Cheque_Type.Text = Dt.Rows[25]["AR"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[26]["AR"].ToString();
+                    lbl_Owner.Text = Dt.Rows[27]["AR"].ToString();
+                    lbl_beneficiary.Text = Dt.Rows[28]["AR"].ToString();
+                    btn_Cheque_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    lbl_Cash_Amount.Text = Dt.Rows[32]["AR"].ToString();
+                    lbl_Cash_Date.Text = Dt.Rows[33]["AR"].ToString();
+                    Cash_Date_Button.Text = Dt.Rows[21]["AR"].ToString();
+                    lbl_transformation_No.Text = Dt.Rows[29]["AR"].ToString();
+                    lbl_transformation_Bank.Text = Dt.Rows[26]["AR"].ToString();
+                    lbl_transformation_Date.Text = Dt.Rows[30]["AR"].ToString();
+                    lbl_transformation_Amount.Text = Dt.Rows[31]["AR"].ToString();
+                    transformation_Date_Button.Text = Dt.Rows[21]["AR"].ToString();
+                    FREE_PERIOD_CheckBox.Text = Dt.Rows[18]["AR"].ToString();
+                    Additional_Items_CheckBox.Text = Dt.Rows[17]["AR"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    Start_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    btn_Add_Contract.Text = Dt.Rows[34]["AR"].ToString();
+                    btn_Back_To_Contract_List.Text = Dt.Rows[35]["AR"].ToString();
+
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[22]["AR"].ToString();
+                    Cheque_GridView.Columns[2].HeaderText = Dt.Rows[23]["AR"].ToString();
+                    Cheque_GridView.Columns[3].HeaderText = Dt.Rows[24]["AR"].ToString();
+                    Cheque_GridView.Columns[4].HeaderText = Dt.Rows[25]["AR"].ToString();
+                    Cheque_GridView.Columns[7].HeaderText = Dt.Rows[26]["AR"].ToString();
+                    Cheque_GridView.Columns[9].HeaderText = Dt.Rows[2]["AR"].ToString();
+                    Cheque_GridView.Columns[11].HeaderText = Dt.Rows[27]["AR"].ToString();
+                    Cheque_GridView.Columns[12].HeaderText = Dt.Rows[28]["AR"].ToString();
+
+                    transformation_GridView.Columns[0].HeaderText = Dt.Rows[29]["AR"].ToString();
+                    transformation_GridView.Columns[1].HeaderText = Dt.Rows[26]["AR"].ToString();
+                    transformation_GridView.Columns[3].HeaderText = Dt.Rows[30]["AR"].ToString();
+                    transformation_GridView.Columns[4].HeaderText = Dt.Rows[31]["AR"].ToString();
+                    transformation_GridView.Columns[5].HeaderText = Dt.Rows[2]["AR"].ToString();
+
+                    Cash_GridView.Columns[0].HeaderText = Dt.Rows[32]["AR"].ToString();
+                    Cash_GridView.Columns[1].HeaderText = Dt.Rows[33]["AR"].ToString();
+                    Cash_GridView.Columns[2].HeaderText = Dt.Rows[2]["AR"].ToString();
+
+
+                    
+
+
+                    //Contract_Templet_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    //Com_Rep_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    //Units_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Reason_For_Rent_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Contract_Type_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    No_Of_Months_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Type_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Amount_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Payment_Amount_L_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    maintenance_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Rental_allowed_Or_Not_allowed_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Paymen_Method_Req_Fiel_Val.ErrorMessage = "*مطلوب ";
+                    Contract_Details_RegularExpressionValidator.ErrorMessage = "أحرف فقط";
+                    Payment_Amount_RegularExpressionValidator.ErrorMessage = "أرقام فقط";
+
+                }
+            }
+            _sqlCon.Close();
+        }
     }
 }

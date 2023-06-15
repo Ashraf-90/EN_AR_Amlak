@@ -78,18 +78,12 @@
 
                         <div class="row">
                             <div class="col-lg">
-                                <asp:Label ID="lbl_Employee_Name" runat="server" Text="اسم الموظف :"></asp:Label>
-                                <div class="form-group" style="border-style: solid; border-radius: 7px; border-width: 1px; background-color: #f3f3f3; padding: 5px;">
-                                    <asp:Label ID="txt_Dtl_Employee_Name" runat="server" Font-Size="25px"></asp:Label>
-                                </div>
-                            </div>
-                            <div class="col-lg">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" Text="نموذج العقد"></asp:Label>
+                                    <asp:Label ID="lbl_Contract_Type" runat="server" Text="نموذج العقد"></asp:Label>
                                     <asp:DropDownList ID="Contract_Templet_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Templet_DropDownList"
-                                        InitialValue="إختر نموذج العقد ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="Contract_Templet_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Templet_DropDownList"
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg">
@@ -98,7 +92,7 @@
                                     <asp:DropDownList ID="Tenan_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Tenan_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Tenan_Name_RequiredFieldValidator" ControlToValidate="Tenan_Name_DropDownList"
-                                        InitialValue="إختر اسم المستأجر ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg" id="Com_Rep_Div" runat="server">
@@ -107,7 +101,7 @@
                                     <asp:DropDownList ID="Com_Rep_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Com_Rep_RequiredFieldValidator" ControlToValidate="Com_Rep_DropDownList"
-                                        InitialValue="إختر اسم الممثل ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +116,7 @@
                                     <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر اسم المستأجر ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -132,7 +126,7 @@
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم المستأجر ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -141,8 +135,8 @@
                                     <asp:Label ID="lbl_Units" runat="server" Text="الوحدة"></asp:Label>
                                     <asp:DropDownList ID="Units_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="Tenan_Name_DropDownList"
-                                        InitialValue="إختر الوحدة ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="Units_RequiredFieldValidator" ControlToValidate="Tenan_Name_DropDownList"
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -155,24 +149,20 @@
                                 <div id="div_Reason_For_Rent" runat="server">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Reason_For_Rent" runat="server" Text="الغرض من الايجار"></asp:Label>
-                                        <asp:DropDownList ID="Reason_For_Rent_DropDownList" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="1" Text="سكن عائلي"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="عمل تجاري"></asp:ListItem>
-                                            <asp:ListItem Value="3" Text="سكن عزاب"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Reason_For_Rent_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Reason_For_Rent_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Reason_For_Rent_DropDownList"
-                                            InitialValue="إختر الغرض من الإيجار ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg">
                                 <div class="form-group">
-                                    <asp:Label ID="LabelX" runat="server" Text="الوحدة الزمنية للتعاقد"></asp:Label>
+                                    <asp:Label ID="lbl_Contact_Period" runat="server" Text="الوحدة الزمنية للتعاقد"></asp:Label>
                                     <asp:DropDownList ID="Contract_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Contract_Type_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Contract_Type_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Type_DropDownList"
-                                        InitialValue="إختر الوحدة الزمنية ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg">
@@ -181,7 +171,7 @@
                                         <asp:Label ID="lbl_No_Of_Months_Or_Years" runat="server"></asp:Label>
                                         <asp:TextBox ID="txt_No_Of_Months_Or_Years" runat="server" TextMode="Number" min="1"  step="1" CssClass="form-control" AutoPostBack="true" OnTextChanged="txt_No_Of_Months_Or_Years_TextChanged"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="No_Of_Months_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Contract_Type_DropDownList"
-                                            InitialValue="إختر عدد الأشهر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -201,16 +191,15 @@
                     <asp:Button ID="Sign_Date_Chosee" runat="server" Text="إختر التاريخ" OnClick="Date_Chosee_Click"/>
                     <asp:ImageButton ID="ImageButton1" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="ImageButton1_Click" runat="server"/>
                     <div id="Sign_Date_divCalendar" runat="server" style="position: page;" visible="false">
-
                         <asp:Calendar ID="Sign_Date_Calendar" runat="server" Height="200px" Width="220px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" OnSelectionChanged="Sign_Date_Calendar_SelectionChanged1">
-                                                    <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                    <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                    <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                    <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
-                                                    <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
-                                                    <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                    <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
-                                                    <WeekendDayStyle BackColor="#dfeef8" />
+                        <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
+                        <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
+                        <OtherMonthDayStyle ForeColor="#5a5c69" />
+                        <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
+                        <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
+                        <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
+                        <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
+                        <WeekendDayStyle BackColor="#dfeef8" />
 
                         </asp:Calendar>
                     </div>
@@ -234,14 +223,14 @@
                 <asp:ImageButton ID="ImageButton2" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="ImageButton2_Click" runat="server"/>
                 <div id="Start_Date_Div" runat="server" visible="false" style="position: page;">
                     <asp:Calendar ID="Start_Date_Calendar" runat="server" Height="200px" Width="220px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" OnSelectionChanged="Start_Date_Calendar_SelectionChanged2">
-                                                     <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                    <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                    <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                    <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
-                                                    <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
-                                                    <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                    <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
-                                                    <WeekendDayStyle BackColor="#dfeef8" />
+                    <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
+                    <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
+                    <OtherMonthDayStyle ForeColor="#5a5c69" />
+                    <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
+                    <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
+                    <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
+                    <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
+                    <WeekendDayStyle BackColor="#dfeef8" />
 
                     </asp:Calendar>
                 </div>
@@ -264,14 +253,14 @@
                 <asp:ImageButton ID="ImageButton3" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="ImageButton3_Click" runat="server"/>
                 <div id="End_Date_Div" runat="server" visible="false" style="position: page;">
                     <asp:Calendar ID="End_Date_Calendar" runat="server" Height="200px" Width="220px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" OnSelectionChanged="End_Date_Calendar_SelectionChanged1">
-                                                     <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                    <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                    <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                    <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
-                                                    <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
-                                                    <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                    <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
-                                                    <WeekendDayStyle BackColor="#dfeef8" />
+                    <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
+                    <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
+                    <OtherMonthDayStyle ForeColor="#5a5c69" />
+                    <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
+                    <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
+                    <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
+                    <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
+                    <WeekendDayStyle BackColor="#dfeef8" />
                     </asp:Calendar>
                 </div>
             </ContentTemplate>
@@ -284,40 +273,25 @@
     </div>
     <div class="col-lg-3">
         <div class="form-group">
-            <asp:Label ID="Label4" runat="server" Text="نوع الدفعات"></asp:Label>
+            <asp:Label ID="lbl_Payment_Type" runat="server" Text="نوع الدفعات"></asp:Label>
             <asp:DropDownList ID="Payment_Type_DropDownList" runat="server" CssClass="form-control">
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="Payment_Type_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Payment_Type_DropDownList"
-                                        InitialValue="إخترنوع الدفع ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-            </asp:RequiredFieldValidator>
+            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
         </div>
     </div>
 </div>
 <br/>
 <%--------------------------------------------------------------------------------------------------------------------------------------------------------------------%>
 <div class="row">
-    <%--<div class="col-lg-3">
-        <div class="form-group">
-            <asp:Label ID="Label3" runat="server" Text="تكرار الدفعات"></asp:Label>
-            <asp:DropDownList ID="Payment_Frquancy_DropDownList" runat="server" CssClass="form-control">
-            </asp:DropDownList>
-            <asp:RequiredFieldValidator ID="Payment_Frquancy_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="Payment_Frquancy_DropDownList"
-                                        InitialValue="إختر تكرار الدفعات ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-            </asp:RequiredFieldValidator>
-        </div>
-    </div>--%>
-    
     <div class="col-lg-3">
         <div class="form-group">
             <asp:Label ID="lbl_Payment_Amount" runat="server" Text=" قيمة الإيجار بالأرقام"></asp:Label>&nbsp;
-            <asp:RegularExpressionValidator ID="Payment_Amount_RegularExpressionValidator" runat="server" ControlToValidate="txt_Payment_Amount"
-                                            EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="Red"
-                                            ValidationExpression="[0-9]+">
-            </asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="Payment_Amount_RegularExpressionValidator" runat="server" ControlToValidate="txt_Payment_Amount" Font-Size="15px"
+             EnableClientScript="True" ErrorMessage="أرقام فقط" ForeColor="Red" ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
             <asp:TextBox ID="txt_Payment_Amount" runat="server" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator ID="Payment_Amount_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="txt_Payment_Amount"
-                                        runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-            </asp:RequiredFieldValidator>
+            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
         </div>
     </div>
     <div class="col-lg-3">
@@ -325,31 +299,22 @@
             <asp:Label ID="lbl_Payment_Amount_L" runat="server" Text=" قيمة الإيجار بالأحرف"></asp:Label>&nbsp;
             <asp:TextBox ID="txt_Payment_Amount_L" runat="server" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator ID="Payment_Amount_L_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="txt_Payment_Amount_L"
-                                        runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-            </asp:RequiredFieldValidator>
+            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
         </div>
     </div>
 
     <div class="col-lg-3">
         <asp:Label ID="lbl_maintenance" runat="server" Text="الصيانة"></asp:Label>
-        <asp:RadioButtonList ID="maintenance_RadioButtonList" runat="server" RepeatDirection="Horizontal">
-            <asp:ListItem Value="1" Text="على المؤجر"></asp:ListItem>
-            <asp:ListItem Value="2" Text="على المستأجر"></asp:ListItem>
-        </asp:RadioButtonList>
+        <asp:RadioButtonList ID="maintenance_RadioButtonList" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList>
         <asp:RequiredFieldValidator ID="maintenance_RequiredFieldValidator" ValidationGroup="Contract_RequiredField" ControlToValidate="maintenance_RadioButtonList"
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-        </asp:RequiredFieldValidator>
+        runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"> </asp:RequiredFieldValidator>
     </div>
 
     <div class="col-lg-3">
         <asp:Label ID="lbl_Rental_allowed_Or_Not_allowed" runat="server" Text="التنازل والبيع والايجار من الباطن"></asp:Label>
-        <asp:RadioButtonList ID="Rental_allowed_Or_Not_allowed_RadioButtonList" RepeatDirection="Horizontal" runat="server">
-            <asp:ListItem Value="1" Text="يجوز"></asp:ListItem>
-            <asp:ListItem Value="2" Text="لا يجوز"></asp:ListItem>
-        </asp:RadioButtonList>
+        <asp:RadioButtonList ID="Rental_allowed_Or_Not_allowed_RadioButtonList" RepeatDirection="Horizontal" runat="server"></asp:RadioButtonList>
         <asp:RequiredFieldValidator ID="Rental_allowed_Or_Not_allowed_RequiredFieldValidator" ValidationGroup="Contract_RequiredField"
-                                    ControlToValidate="Rental_allowed_Or_Not_allowed_RadioButtonList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-        </asp:RequiredFieldValidator>
+        ControlToValidate="Rental_allowed_Or_Not_allowed_RadioButtonList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     
 </div>
@@ -387,11 +352,6 @@
             <div class="col-lg-12" id="Contract_Details_Div" runat="server" visible="false">
                 <div class="form-group">
                     <asp:Label ID="lbl_Contract_Details" runat="server" Text="ملاحظات و بنود إضافية"></asp:Label>
-                    &nbsp;
-                    <asp:RegularExpressionValidator ID="Contract_Details_RegularExpressionValidator" runat="server" ControlToValidate="txt_Contract_Details"
-                                                    EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
-                                                    ValidationExpression="[ا-ي أآى ة ئ ء]+">
-                    </asp:RegularExpressionValidator>
                     <asp:TextBox ID="txt_Contract_Details" runat="server" CssClass="form-control" TextMode="MultiLine" ReadOnly="false"></asp:TextBox>
                 </div>
             </div>
@@ -423,9 +383,6 @@
     <div class="col-lg-3">
         <asp:Label ID="lbl_Paymen_Method" runat="server" Text="طريقة السداد" ></asp:Label>
         <asp:RadioButtonList ID="Paymen_Method_RadioButtonList" runat="server" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="Paymen_Method_RadioButtonList_SelectedIndexChanged">
-            <asp:ListItem Value="1" Text="شيك"></asp:ListItem>
-            <asp:ListItem Value="2" Text="تحويل"></asp:ListItem>
-            <asp:ListItem Value="3" Text="نقداً"></asp:ListItem>
         </asp:RadioButtonList>
         <asp:RequiredFieldValidator ID="Paymen_Method_Req_Fiel_Val" ValidationGroup="Contract_RequiredField"
         ControlToValidate="Paymen_Method_RadioButtonList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
@@ -442,8 +399,7 @@
                                         <div class="row">
                                             <div class="table-responsive">
                                                 <asp:GridView ID="Contract_Cheque_List" DataKeyNames="Cheques_Id" runat="server" AutoGenerateColumns="false"
-                                                    OnRowEditing="EditCustomer" OnRowDataBound="RowDataBound" OnRowDeleting="Contract_Cheque_List_RowDeleting" OnRowUpdating="UpdateCustomer"
-                                                    OnRowCancelingEdit="CancelEdit">
+                                                     OnRowDataBound="RowDataBound" OnRowDeleting="Contract_Cheque_List_RowDeleting">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="#" ItemStyle-Width="10">
                                                             <ItemTemplate>
@@ -451,7 +407,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%--------------------------------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="رقم الشيك">
+                                                        <asp:TemplateField HeaderText="رقم الشيك"> <%--1--%>
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txt_Cheques_No" runat="server" Text='<%# Bind("Cheques_No") %>'>  
                                                                 </asp:TextBox>
@@ -462,18 +418,15 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%--------------------------------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="تاريخ الشيك">
+                                                        <asp:TemplateField HeaderText="تاريخ الشيك"><%--2--%>
                                                             <EditItemTemplate>
                                                                 <asp:Label ID="lbl_Cheques_Date" runat="server" Text='<%# Eval("Cheques_Date") %>'>  </asp:Label>
                                                                 <asp:Calendar ID="Calendar2" runat="server">
-                                                                    
-
-                                                                     <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
+                                                                    <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
                                                                     <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
                                                                     <OtherMonthDayStyle ForeColor="#5a5c69" />                  
                                                                     <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
                                                                     <WeekendDayStyle BackColor="#dfeef8" />
-
                                                                 </asp:Calendar>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
@@ -481,20 +434,21 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="قيمة الشيك">
+                                                        <asp:TemplateField HeaderText="قيمة الشيك"><%--3--%>
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txt_Cheques_Amount" runat="server" Text='<%# Bind("Cheques_Amount") %>'>  
                                                                 </asp:TextBox>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl_Cheques_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Cheques_Amount")))%>'>  
+                                                                <asp:Label ID="lbl_Cheques_Amount" runat="server" Text='<%# Bind("Cheques_Amount") %>'>  
                                                                 </asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="نوع الشيك">
+                                                        <asp:TemplateField HeaderText="نوع الشيك"><%--4--%>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl_cheque_type" runat="server" Text='<%# Eval("Cheque_arabic_Type")%>'></asp:Label>
+                                                                <asp:Label ID="lbl_Cheque_English_Type" runat="server" Text='<%# Eval("Cheque_english_Type")%>'></asp:Label>
                                                             </ItemTemplate>
                                                             <EditItemTemplate>
                                                                 <asp:Label Visible="false" ID="lbl_cheque_Type" runat="server" Text='<%# Eval("Cheque_arabic_Type")%>'></asp:Label>
@@ -503,9 +457,10 @@
                                                             </EditItemTemplate>
                                                         </asp:TemplateField>
                                                         <%-- ---------------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="اسم البنك">
+                                                        <asp:TemplateField HeaderText="اسم البنك"><%--5--%>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl_bank" runat="server" Text='<%# Eval("Bank_Arabic_Name")%>'></asp:Label>
+                                                                <asp:Label ID="lbl_Bank_English_Name" runat="server" Text='<%# Eval("Bank_English_Name")%>'></asp:Label>
                                                             </ItemTemplate>
                                                             <EditItemTemplate>
                                                                 <asp:DropDownList ID="bank_DropDownList" runat="server">
@@ -513,7 +468,7 @@
                                                             </EditItemTemplate>
                                                         </asp:TemplateField>
                                                         <%--------------------------------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="صاحب الشيك">
+                                                        <asp:TemplateField HeaderText="صاحب الشيك"><%--6--%>
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txt_Cheque_Owner" runat="server" Text='<%# Bind("Cheque_Owner") %>'>  
                                                                 </asp:TextBox>
@@ -524,7 +479,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%--------------------------------------------------------------------------------------------------%>
-                                                        <asp:TemplateField HeaderText="اسم المستفيد">
+                                                        <asp:TemplateField HeaderText="اسم المستفيد"><%--7--%>
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txt_beneficiary_person" runat="server" Text='<%# Bind("beneficiary_person") %>'>  
                                                                 </asp:TextBox>
@@ -535,7 +490,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%-----------------------------------------------------------------------------------%>
-                                                        <asp:CommandField ShowDeleteButton="true" ShowEditButton="True" ButtonType="Button" DeleteText="حذف" EditText="تعديل" CancelText="إلغاء" UpdateText="تحديث" ControlStyle-Width="70px" />
+                                                        <asp:CommandField ShowDeleteButton="true"  ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Calander_Close.png" ControlStyle-Width="25px" ControlStyle-Height="25px"/>
                                                     </Columns>
                                                     <RowStyle HorizontalAlign="Center" />
                                                 </asp:GridView>
@@ -547,13 +502,27 @@
                             <%--************************************************************** transformation Gridviwes *********************************************************************************************************************--%>
                             <div class="row">
                                 <div class="table-responsive">
-                                    <asp:GridView Width="100%" ID="transformation_GridView" DataKeyNames="transformation_Table_ID" runat="server" AutoGenerateColumns="false" OnRowDeleting="transformation_GridView_RowDeleting">
+                                    <asp:GridView Width="100%" ID="transformation_GridView" DataKeyNames="transformation_Table_ID" runat="server"
+                                        AutoGenerateColumns="false" OnRowDeleting="transformation_GridView_RowDeleting" OnRowDataBound="transformation_GridView_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="transformation_No" HeaderText="رقم الحوالة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Bank_Name" HeaderText="اسم البنك" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="transformation_Date" HeaderText="تاريخ التحويل" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Amount" HeaderText="قيمة التحويل" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Tenants_Arabic_Name" HeaderText="اسم المستأجر " ItemStyle-Width="120" />
+                                            <asp:BoundField DataField="transformation_No" HeaderText="رقم الحوالة" ItemStyle-Width="120" /><%--0--%>
+
+                                            <asp:TemplateField HeaderText="اسم البنك"><%--1--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_AR_Bank_Name" runat="server" Text='<%# Eval("Bank_Name") %>' />  
+                                                    <asp:Label ID="lbl_EN_Bank_Name" runat="server" Text='<%# Eval("Bank_Name_En") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:BoundField DataField="transformation_Date" HeaderText="تاريخ التحويل" ItemStyle-Width="120" /><%--2--%>
+                                            <asp:BoundField DataField="Amount" HeaderText="قيمة التحويل" ItemStyle-Width="120" /><%--2--%>
+
+                                            <asp:TemplateField HeaderText="اسم المستأجر"><%--4--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />  
+                                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <%-------------------------------------------------------------------------------------------------%>
                                             <asp:CommandField ItemStyle-Width="10px" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Calander_Close.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
                                         </Columns>
@@ -564,11 +533,19 @@
                             <%--************************************************************** Cash Gridviwes *********************************************************************************************************************--%>
                             <div class="row">
                                 <div class="table-responsive">
-                                    <asp:GridView Width="100%" ID="Cash_GridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Cash_Amount_ID" OnRowDeleting="Cash_GridView_RowDeleting">
+                                    <asp:GridView Width="100%" ID="Cash_GridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Cash_Amount_ID" 
+                                        OnRowDeleting="Cash_GridView_RowDeleting" OnRowDataBound="Cash_GridView_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="Cash_Amount" HeaderText="قيمة الدفعة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Cash_Date" HeaderText="تاريخ الدفعة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Tenants_Arabic_Name" HeaderText="اسم المستأجر " ItemStyle-Width="120" />
+                                            <asp:BoundField DataField="Cash_Amount" HeaderText="قيمة الدفعة"  /><%--0--%>
+                                            <asp:BoundField DataField="Cash_Date" HeaderText="تاريخ الدفعة"  /><%--1--%>
+                                            
+
+                                            <asp:TemplateField HeaderText="اسم المستأجر"><%--2--%>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />  
+                                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <%-------------------------------------------------------------------------------------------------%>
                                             <asp:CommandField ItemStyle-Width="10px" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Calander_Close.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
                                         </Columns>
@@ -687,7 +664,6 @@
                         <%--******************************************************************** Cheque Input Feild *******************************************************************************************--%>
                         <div calss="row">
                             <div class="row" style="overflow-x: auto;" runat="server" id="Cheque_Div">
-                                <h4>إضافة شيك</h4>
                                 &nbsp;&nbsp;
                                 <asp:Label ID="lbl_Worrnig_Cheque" Text="معلومات الشيك غير كاملة ( اسم المستأجر  /  نوع الشيك  /  اسم البنك)" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                 <div class="col-lg-12">
@@ -695,13 +671,13 @@
 
                                         <table>
                                             <tr>
-                                                <th>رقم الشيك</th>
-                                                <th>تاريخ الشيك</th>
-                                                <th>قيمة الشيك</th>
-                                                <th>نوع الشيك</th>
-                                                <th>اسم البنك</th>
-                                                <th>صاحب الشيك</th>
-                                                <th>اسم المستفيد</th>
+                                                <th><asp:Label ID="lbl_Cheque_NO" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Date" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Value" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Cheque_Type" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Bank_Name" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_Owner" runat="server" /></th>
+                                                <th><asp:Label ID="lbl_beneficiary" runat="server" /></th>
                                                 <th></th>
                                             </tr>
                                             <tr>
@@ -710,7 +686,7 @@
                                                 <td>
                                                     <asp:UpdatePanel ID="Cheque_Date_UpdatePanel" runat="server">
                                                         <ContentTemplate>
-                                                            <asp:TextBox ID="txt_Cheque_Date" runat="server" Width="150px" Enabled="false"></asp:TextBox>
+                                                            <asp:TextBox ID="txt_Cheque_Date" runat="server" Width="150px" Enabled="false" style="margin-top: 30px;"></asp:TextBox>
                                                             <asp:Button ID="btn_Cheque_Date_Chosee" runat="server" Text="إختر التاريخ" OnClick="btn_Cheque_Date_Chosee_Click" />
                                                             <asp:ImageButton ID="Cheque_Date_ImageButton" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="Cheque_Date_ImageButton_Click" runat="server" />
                                                             <div id="Cheque_Date_Div" runat="server" visible="false" style="position: page;">
@@ -734,7 +710,7 @@
                                                     </asp:UpdatePanel>
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txt_Cheque_Value" runat="server"></asp:TextBox></td>
+                                                    <asp:TextBox ID="txt_Cheque_Value" runat="server" TextMode="Number"></asp:TextBox></td>
                                                 <td>
                                                     <asp:DropDownList ID="Cheque_Type_DropDownList" runat="server"></asp:DropDownList></td>
                                                 <td>

@@ -698,7 +698,7 @@
                             <td>
                                 <asp:UpdatePanel ID="Cheque_Date_UpdatePanel" runat="server">
                                     <ContentTemplate>
-                                        <asp:TextBox ID="txt_Cheque_Date" runat="server" Enabled="false"></asp:TextBox>
+                                        <asp:TextBox ID="txt_Cheque_Date" runat="server" Enabled="false" Width="140px" style="margin-top: 30px;"></asp:TextBox>
                                         <asp:Button ID="btn_Cheque_Date_Chosee" runat="server" Text="إختر التاريخ" OnClick="btn_Cheque_Date_Chosee_Click" />
                                         <asp:ImageButton ID="Cheque_Date_ImageButton" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="Cheque_Date_ImageButton_Click" runat="server"/>
                                         <div id="Cheque_Date_Div" runat="server" visible="false" style="position: page;">
@@ -722,7 +722,7 @@
                                 </asp:UpdatePanel>
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_Cheque_Value" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_Cheque_Value" runat="server" TextMode="Number"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:DropDownList ID="Cheque_Type_DropDownList" runat="server"></asp:DropDownList>
