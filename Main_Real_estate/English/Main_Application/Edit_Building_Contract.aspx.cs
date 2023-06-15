@@ -135,20 +135,20 @@ namespace Main_Real_estate.English.Main_Application
                 }
                 _sqlCon.Close();
 
-                using (MySqlCommand get_Contract_ownership_drowpdownlist_Cmd = new MySqlCommand("Edit_B_Contract_Ownership_Unit_dropdownlist", _sqlCon))
-                {
-                    _sqlCon.Open();
-                    get_Contract_ownership_drowpdownlist_Cmd.CommandType = CommandType.StoredProcedure;
-                    get_Contract_ownership_drowpdownlist_Cmd.Parameters.AddWithValue("@Id", Building_Name_DropDownList.SelectedValue);
-                    using (MySqlDataAdapter get_Contract_ownership_drowpdownlist_Da = new MySqlDataAdapter(get_Contract_ownership_drowpdownlist_Cmd))
-                    {
-                        DataTable get_Contract_ownership_drowpdownlist_Dt = new DataTable();
-                        get_Contract_ownership_drowpdownlist_Da.Fill(get_Contract_ownership_drowpdownlist_Dt);
+                //using (MySqlCommand get_Contract_ownership_drowpdownlist_Cmd = new MySqlCommand("Edit_B_Contract_Ownership_Unit_dropdownlist", _sqlCon))
+                //{
+                //    _sqlCon.Open();
+                //    get_Contract_ownership_drowpdownlist_Cmd.CommandType = CommandType.StoredProcedure;
+                //    get_Contract_ownership_drowpdownlist_Cmd.Parameters.AddWithValue("@Id", Building_Name_DropDownList.SelectedValue);
+                //    using (MySqlDataAdapter get_Contract_ownership_drowpdownlist_Da = new MySqlDataAdapter(get_Contract_ownership_drowpdownlist_Cmd))
+                //    {
+                //        DataTable get_Contract_ownership_drowpdownlist_Dt = new DataTable();
+                //        get_Contract_ownership_drowpdownlist_Da.Fill(get_Contract_ownership_drowpdownlist_Dt);
 
-                        Ownership_Name_DropDownList.SelectedValue = get_Contract_ownership_drowpdownlist_Dt.Rows[0]["Owner_Ship_Id"].ToString();
-                    }
-                    _sqlCon.Close();
-                }
+                //        Ownership_Name_DropDownList.SelectedValue = get_Contract_ownership_drowpdownlist_Dt.Rows[0]["Owner_Ship_Id"].ToString();
+                //    }
+                //    _sqlCon.Close();
+                //}
                 this.BindGrid_Contract_Cheque_List();
                 BindGrid_transportation_List();
                 BindGrid_Cash_List();
@@ -163,6 +163,231 @@ namespace Main_Real_estate.English.Main_Application
 
                 }
             }
+        }
+
+
+        //**************************** Main Edit Contract Functions *************************************
+        protected void btn_Add_Contract_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string contractId = Request.QueryString["Id"];
+                string updateContractQuary = "UPDATE building_contract SET " +
+                                               "users_user_ID=@users_user_ID ," +
+                                               "tenants_Tenants_ID=@tenants_Tenants_ID, " +
+                                               "Com_rep=@Com_rep, " +
+                                               "building_Building_Id=@building_Building_Id , " +
+                                               "contract_type_Contract_Type_Id=@contract_type_Contract_Type_Id, " +
+                                               "contract_template_Contract_template_Id=@contract_template_Contract_template_Id , " +
+                                               "payment_type_payment_type_Id=@payment_type_payment_type_Id , " +
+                                               "reason_for_rent_Reason_For_Rent_Id=@reason_for_rent_Reason_For_Rent_Id , " +
+                                               "Number_Of_Mounth=@Number_Of_Mounth , " +
+                                               "Number_Of_Years=@Number_Of_Years , " +
+                                               "Payment_Amount=@Payment_Amount ," +
+                                               "Payment_Amount_L=@Payment_Amount_L ," +
+                                               "maintenance=@maintenance ," +
+                                               "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
+                                               "Paymen_Method=@Paymen_Method ," +
+
+                                               "Real_Contract_FileName=@Real_Contract_FileName ," +
+                                               "Real_Contract_Path=@Real_Contract_Path ," +
+
+                                               "Date_Of_Sgin=@Date_Of_Sgin  ," +
+                                               "Start_Date=@Start_Date ," +
+                                               "End_Date=@End_Date ," +
+                                               "Start_Free_Period=@Start_Free_Period ," +
+                                               "Duration_free_period=@Duration_free_period ," +
+
+                                               "maintenance=@maintenance ," +
+                                               "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
+
+                                               "Contract_Details=@Contract_Details " +
+                                               "WHERE Contract_Id=@ID ";
+                _sqlCon.Open();
+                using (MySqlCommand UpdateContractCmd = new MySqlCommand(updateContractQuary, _sqlCon))
+                {
+                    UpdateContractCmd.Parameters.AddWithValue("@ID", contractId);
+                    //Fill The Database with All DropDownLists Items
+                    UpdateContractCmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id", Contract_Type_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@contract_template_Contract_template_Id", Contract_Templet_DropDownList.SelectedValue);
+                    //UpdateContractCmd.Parameters.AddWithValue("@payment_frequency_Payment_Frequency_Id", Payment_Frquancy_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@tenants_Tenants_ID", Tenan_Name_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@payment_type_payment_type_Id", Payment_Type_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@building_Building_Id", Building_Name_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
+                    //Fill The Database with All Textbox Items
+                    UpdateContractCmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
+                    UpdateContractCmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
+
+                    UpdateContractCmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
+                    UpdateContractCmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
+                    UpdateContractCmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
+
+                    if (Contract_Type_DropDownList.SelectedValue == "1")
+                    {
+                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
+                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
+                    }
+                    else
+                    {
+                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", "");
+                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
+                    }
+
+
+
+                    if (Real_Contract_FileUpload.HasFile)
+                    {
+                        string fileName1 = Path.GetFileName(Real_Contract_FileUpload.PostedFile.FileName);
+                        Real_Contract_FileUpload.PostedFile.SaveAs(Server.MapPath("/English/Main_Application/Real_Contract/") + fileName1);
+                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", fileName1);
+                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", "/English/Main_Application/Real_Contract/" + fileName1);
+                    }
+                    else
+                    {
+                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", Real_Contract_FileName.Text);
+                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", Real_Contract_Path.Text);
+                    }
+                    UpdateContractCmd.ExecuteNonQuery();
+                    _sqlCon.Close();
+                }
+
+                lbl_Success_Add_New_Contract.Text = "تم التعديل بنجاح";
+                Response.Redirect("Contract_List.aspx");
+            }
+        }
+        protected void btn_Back_To_Contract_List_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Contract_List.aspx");
+        }
+        protected void Delete_Contract_Click(object sender, EventArgs e)
+        {
+            string ContractId = Request.QueryString["ID"];
+
+            _sqlCon.Open();
+            DataTable getTransformationDt = new DataTable();
+            MySqlCommand getTransformationCmd = new MySqlCommand("SELECT Contract_Id FROM building_transformation_table WHERE Contract_Id = @ID And Status = 'غير محصل'", _sqlCon);
+            MySqlDataAdapter getTransformationDa = new MySqlDataAdapter(getTransformationCmd);
+            getTransformationCmd.Parameters.AddWithValue("@ID", ContractId);
+            getTransformationDa.Fill(getTransformationDt);
+            if (getTransformationDt.Rows.Count == 0)
+            {
+                DataTable getCashDt = new DataTable();
+                MySqlCommand getCashCmd = new MySqlCommand("SELECT Contract_Id FROM building_cash_amount WHERE Contract_Id = @ID And Satuts = 'غير محصل'", _sqlCon);
+                MySqlDataAdapter getCashDa = new MySqlDataAdapter(getCashCmd);
+                getCashCmd.Parameters.AddWithValue("@ID", ContractId);
+                getCashDa.Fill(getCashDt);
+                if (getCashDt.Rows.Count == 0)
+                {
+
+                    try
+                    {
+
+                        string Building_id = "";
+
+
+
+                        DataTable get_Contract_Dt = new DataTable();
+                        MySqlCommand get_Contract_Cmd = new MySqlCommand("SELECT building_Building_Id FROM building_contract WHERE Contract_Id = @ID", _sqlCon);
+                        MySqlDataAdapter get_Contract_Da = new MySqlDataAdapter(get_Contract_Cmd);
+                        get_Contract_Cmd.Parameters.AddWithValue("@ID", ContractId);
+                        get_Contract_Da.Fill(get_Contract_Dt);
+                        if (get_Contract_Dt.Rows.Count > 0)
+                        {
+                            Building_id = get_Contract_Dt.Rows[0]["building_Building_Id"].ToString();
+                        }
+
+                        string deleteContractQuary = "DELETE FROM building_contract WHERE Contract_Id=@ID ";
+                        MySqlCommand mySqlCmd = new MySqlCommand(deleteContractQuary, _sqlCon);
+                        mySqlCmd.Parameters.AddWithValue("@ID", ContractId);
+                        mySqlCmd.ExecuteNonQuery();
+
+
+
+
+
+
+                        if (Page.IsValid)
+                        {
+                            string addArciveBuildingQuary = "Insert Into delete_archive " +
+                                                             "(User_Id," +
+                                                             "Delete_Date," +
+                                                             "OS_B_U," +
+                                                             "Item_Id," +
+                                                             "Reason_Delete) " +
+                                                             "VALUES" +
+                                                             "(@User_Id," +
+                                                             "@Delete_Date," +
+                                                             "@OS_B_U," +
+                                                             "@Item_Id," +
+                                                             "@Reason_Delete)";
+                            MySqlCommand addArciveBuildingCmd = new MySqlCommand(addArciveBuildingQuary, _sqlCon);
+                            addArciveBuildingCmd.Parameters.AddWithValue("@User_Id", Session["user_ID"].ToString());
+                            addArciveBuildingCmd.Parameters.AddWithValue("@Delete_Date", DateTime.Now.ToString("dd/MM/yyyy"));
+                            addArciveBuildingCmd.Parameters.AddWithValue("@OS_B_U", "BC");
+                            addArciveBuildingCmd.Parameters.AddWithValue("@Item_Id", ContractId);
+                            addArciveBuildingCmd.Parameters.AddWithValue("@Reason_Delete", txt_Reason_Delete.Text);
+                            addArciveBuildingCmd.ExecuteNonQuery();
+                        }
+
+
+                        // Delete Units
+                        string quary_Delet_Units = "DELETE FROM units WHERE building_Building_Id = @ID ";
+                        MySqlCommand mySqlCmd_Delet_Units = new MySqlCommand(quary_Delet_Units, _sqlCon);
+                        mySqlCmd_Delet_Units.Parameters.AddWithValue("@ID", Building_id);
+                        mySqlCmd_Delet_Units.ExecuteNonQuery();
+
+                        //// Delete Building
+                        //string quary_Delet_Building = "DELETE FROM building WHERE Building_Id = @ID ";
+                        //MySqlCommand mySqlCmd_Delet_Building = new MySqlCommand(quary_Delet_Building, _sqlCon);
+                        //mySqlCmd_Delet_Building.Parameters.AddWithValue("@ID", Label2.Text);
+                        //mySqlCmd_Delet_Building.ExecuteNonQuery();
+
+
+
+                    }
+                    catch
+                    {
+                        Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على  شيكات ')</script>");
+                    }
+                }
+                else
+                {
+                    Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على دفعات نقدية غير محصلة')</script>");
+                }
+            }
+
+            else
+            {
+                Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على حوالات غير محصلة')</script>");
+            }
+            _sqlCon.Close();
+        }
+        protected void Btn_Remove_Link_Real_Contract_Click(object sender, ImageClickEventArgs e)
+        {
+            string Contrac_Id = Request.QueryString["ID"];
+
+            string Remove_Real_Contrac_Att_Query = "UPDATE building_contract SET " +
+                                            " Real_Contract_FileName=@Real_Contract_FileName ," +
+                                            " Real_Contract_Path=@Real_Contract_Path  " +
+                                            "WHERE Contract_Id=@ID";
+            _sqlCon.Open();
+            MySqlCommand Remove_Real_Contrac_Att_Cmd = new MySqlCommand(Remove_Real_Contrac_Att_Query, _sqlCon);
+            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@ID", Contrac_Id);
+            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@Real_Contract_FileName", "");
+            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@Real_Contract_Path", "");
+            Remove_Real_Contrac_Att_Cmd.ExecuteNonQuery();
+            _sqlCon.Close();
+
+            Response.Redirect("Edit_Building_Contract.aspx?Id=" + Contrac_Id);
         }
 
         //******************************** ( Cheques / Transformations / Cash ) operations *********************************
@@ -436,18 +661,6 @@ namespace Main_Real_estate.English.Main_Application
             _sqlCon.Close();
             BindGrid_Cash_List();
         }
-
-
-
-
-
-
-
-
-
-
-        
-        
         
 
 
@@ -456,246 +669,23 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        protected void btn_Add_Contract_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                string contractId = Request.QueryString["Id"];   
-                string updateContractQuary = "UPDATE building_contract SET " +
-                                               "users_user_ID=@users_user_ID ," +
-                                               "tenants_Tenants_ID=@tenants_Tenants_ID, " +
-                                               "Com_rep=@Com_rep, " +
-                                               "building_Building_Id=@building_Building_Id , " +
-                                               "contract_type_Contract_Type_Id=@contract_type_Contract_Type_Id, " +
-                                               "contract_template_Contract_template_Id=@contract_template_Contract_template_Id , " +
-                                               "payment_type_payment_type_Id=@payment_type_payment_type_Id , " +
-                                               "reason_for_rent_Reason_For_Rent_Id=@reason_for_rent_Reason_For_Rent_Id , " +
-                                               "Number_Of_Mounth=@Number_Of_Mounth , " +
-                                               "Number_Of_Years=@Number_Of_Years , " +
-                                               "Payment_Amount=@Payment_Amount ," +
-                                               "Payment_Amount_L=@Payment_Amount_L ," +
-                                               "maintenance=@maintenance ," +
-                                               "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
-                                               "Paymen_Method=@Paymen_Method ," +
-
-                                               "Real_Contract_FileName=@Real_Contract_FileName ," +
-                                               "Real_Contract_Path=@Real_Contract_Path ," +
-
-                                               "Date_Of_Sgin=@Date_Of_Sgin  ," +
-                                               "Start_Date=@Start_Date ," +
-                                               "End_Date=@End_Date ," +
-                                               "Start_Free_Period=@Start_Free_Period ," +
-                                               "Duration_free_period=@Duration_free_period ," +
-
-                                               "maintenance=@maintenance ," +
-                                               "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
-
-                                               "Contract_Details=@Contract_Details " +
-                                               "WHERE Contract_Id=@ID ";
-                _sqlCon.Open();
-                using (MySqlCommand UpdateContractCmd = new MySqlCommand(updateContractQuary, _sqlCon))
-                {
-                    UpdateContractCmd.Parameters.AddWithValue("@ID", contractId);
-                    //Fill The Database with All DropDownLists Items
-                    UpdateContractCmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id", Contract_Type_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@contract_template_Contract_template_Id", Contract_Templet_DropDownList.SelectedValue);
-                    //UpdateContractCmd.Parameters.AddWithValue("@payment_frequency_Payment_Frequency_Id", Payment_Frquancy_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@tenants_Tenants_ID", Tenan_Name_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@payment_type_payment_type_Id", Payment_Type_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@building_Building_Id", Building_Name_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
-                    //Fill The Database with All Textbox Items
-                    UpdateContractCmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
-                    UpdateContractCmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
-
-                    UpdateContractCmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
-                    UpdateContractCmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
-
-                    if (Contract_Type_DropDownList.SelectedValue == "1")
-                    {
-                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
-                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
-                    }
-                    else
-                    {
-                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", "");
-                        UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
-                    }
-
-
-
-                    if (Real_Contract_FileUpload.HasFile)
-                    {
-                        string fileName1 = Path.GetFileName(Real_Contract_FileUpload.PostedFile.FileName);
-                        Real_Contract_FileUpload.PostedFile.SaveAs(Server.MapPath("/English/Main_Application/Real_Contract/") + fileName1);
-                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", fileName1);
-                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", "/English/Main_Application/Real_Contract/" + fileName1);
-                    }
-                    else
-                    {
-                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", Real_Contract_FileName.Text);
-                        UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", Real_Contract_Path.Text);
-                    }
-                    UpdateContractCmd.ExecuteNonQuery();
-                    _sqlCon.Close();
-                }
-
-
-                Edit_Arcive_Building_Contract();
-
-
-                lbl_Success_Add_New_Contract.Text = "تم التعديل بنجاح";
-                Response.Redirect("Contract_List.aspx");
-            }
-        }
-
-        protected void btn_Back_To_Contract_List_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Contract_List.aspx");
-        }
-
-        //*****************************************************************************************************************
-        //*****************************************************************************************************************
-
-        //******************  Get The Building Of Selected Ownership ***************************************************
+        //************************************SelectedIndexChanged******************************************************
+        //--------------------------------------------------  Get The Building Of Selected Ownership --------------------------------------------------
         protected void Ownership_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //    //Fill Buildings Name DropDownList
-            Helper.LoadDropDownList("SELECT * FROM building where owner_ship_Owner_Ship_Id = '" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-            Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-        }
-
-        //******************  Get The Units Of Selected Building ***************************************************
-
-        //*********************** FREE_PERIOD_CheckBox Event ************************
-        protected void FREE_PERIOD_CheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (FREE_PERIOD_CheckBox.Checked == true)
+            if (Session["Langues"].ToString() == "1") 
             {
-                FREE_PERIOD_Div.Visible = true;
+                Helper.LoadDropDownList("SELECT * FROM building where owner_ship_Owner_Ship_Id = '" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
             }
-            else if (FREE_PERIOD_CheckBox.Checked == false)
+            else 
             {
-                FREE_PERIOD_Div.Visible = false;
+                Helper.LoadDropDownList("SELECT * FROM building where owner_ship_Owner_Ship_Id = '" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
             }
         }
 
-        //*********************** Additional_Items_CheckBox Event ************************
-        protected void Additional_Items_CheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Additional_Items_CheckBox.Checked == true)
-            {
-                Contract_Details_Div.Visible = true;
-            }
-            else if (Additional_Items_CheckBox.Checked == false)
-            {
-                Contract_Details_Div.Visible = false;
-            }
-        }
-
-        //******************  Sign_Date ***************************************************
-        protected void Sign_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
-        {
-            txt_Sign_Date.Text = Sign_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_Sign_Date.Text != "") { Sign_Date_divCalendar.Visible = false; ImageButton1.Visible = false; }
-        }
-
-        protected void Date_Chosee_Click(object sender, EventArgs e)
-        {
-            Sign_Date_divCalendar.Visible = true; ImageButton1.Visible = true;
-        }
-
-        protected void ImageButton1_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Sign_Date_divCalendar.Visible = false; ImageButton1.Visible = false;
-        }
-
-        //******************  Start_Date ***************************************************
-        protected void Start_Date_Calendar_SelectionChanged2(object sender, EventArgs e)
-        {
-            txt_Start_Date.Text = Start_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_Start_Date.Text != "") { Start_Date_Div.Visible = false; ImageButton2.Visible = false; }
-
-            if (txt_No_Of_Months_Or_Years.Text != "")
-            {
-                if (Contract_Type_DropDownList.SelectedValue == "1")
-                {
-                    DateTime add_Months = Convert.ToDateTime(txt_Start_Date.Text).AddMonths(Convert.ToInt32(txt_No_Of_Months_Or_Years.Text) * 12);
-                    txt_End_Date.Text = add_Months.ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    DateTime add_Months = Convert.ToDateTime(txt_Start_Date.Text).AddMonths(Convert.ToInt32(txt_No_Of_Months_Or_Years.Text));
-                    txt_End_Date.Text = add_Months.ToString("dd/MM/yyyy");
-                }
-            }
-        }
-
-        protected void Start_Date_Chosee_Click(object sender, EventArgs e)
-        {
-            Start_Date_Div.Visible = true; ImageButton2.Visible = true;
-        }
-
-        protected void ImageButton2_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Start_Date_Div.Visible = false; ImageButton2.Visible = false;
-        }
-
-        //******************  End_Date ***************************************************
-        protected void End_Date_Chosee_Click(object sender, EventArgs e)
-        {
-            End_Date_Div.Visible = true; ImageButton3.Visible = true;
-        }
-
-        protected void ImageButton3_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            End_Date_Div.Visible = false; ImageButton3.Visible = false;
-        }
-
-        protected void End_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
-        {
-            txt_End_Date.Text = End_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_End_Date.Text != "") { End_Date_Div.Visible = false; ImageButton3.Visible = false; }
-        }
-
-        //************************ Cheque_ Date **********************************************************
-        protected void btn_Cheque_Date_Chosee_Click(object sender, EventArgs e)
-        {
-            Cheque_Date_Div.Visible = true; Cheque_Date_ImageButton.Visible = true;
-        }
-
-        protected void Cheque_Date_Calendar_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_Cheque_Date.Text = Cheque_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_Cheque_Date.Text != "") { Cheque_Date_Div.Visible = false; Cheque_Date_ImageButton.Visible = false; }
-        }
-
-        protected void Cheque_Date_ImageButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Cheque_Date_Div.Visible = false; Cheque_Date_ImageButton.Visible = false;
-        }
-
-        //************************ Contract_Type_DropDownList **********************************************************
+        //-------------------------------------------------- Contract_Type_DropDownList --------------------------------------------------
         protected void Contract_Type_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             div_No_Of_Months.Visible = true;
@@ -760,7 +750,67 @@ namespace Main_Real_estate.English.Main_Application
                 }
             }
         }
-
+        //-------------------------------------------------- Tenan_Name_DropDownList --------------------------------------------------
+        protected void Tenan_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Tenant_Id = Tenan_Name_DropDownList.SelectedValue;
+            DataTable get_Tenant_Id_Dt = new DataTable();
+            _sqlCon.Open();
+            MySqlCommand get_Tenant_Id_Cmd = new MySqlCommand("SELECT * FROM tenants where Tenants_ID='" + Tenant_Id + "'", _sqlCon);
+            MySqlDataAdapter get_Tenant_Id_Da = new MySqlDataAdapter(get_Tenant_Id_Cmd);
+            get_Tenant_Id_Da.Fill(get_Tenant_Id_Dt);
+            if (get_Tenant_Id_Dt.Rows.Count > 0)
+            {
+                if (get_Tenant_Id_Dt.Rows[0]["tenant_type_Tenant_Type_Id"].ToString() == "2")
+                {
+                    Com_Rep_Div.Visible = true;
+                    //    //Fill Com_Rep_DropDownList
+                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                    Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                }
+                else
+                {
+                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
+                    Com_Rep_Div.Visible = false;
+                    Helper.LoadDropDownList("SELECT * FROM company_representative ", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    Com_Rep_DropDownList.SelectedValue = "1";
+                }
+            }
+        }
+        //-------------------------------------------------- Paymen_Method --------------------------------------------------
+        protected void Paymen_Method_RadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Paymen_Method_RadioButtonList.SelectedValue == "1") { Cheque_Div.Visible = true; transformation_Div.Visible = false; Cash_div.Visible = false; }
+            else if (Paymen_Method_RadioButtonList.SelectedValue == "2") { Cheque_Div.Visible = false; transformation_Div.Visible = true; Cash_div.Visible = false; }
+            else if (Paymen_Method_RadioButtonList.SelectedValue == "3") { Cheque_Div.Visible = false; transformation_Div.Visible = false; Cash_div.Visible = true; }
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
+        }
+        //-------------------------------------------------- FREE_PERIOD --------------------------------------------------
+        protected void FREE_PERIOD_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FREE_PERIOD_CheckBox.Checked == true)
+            {
+                FREE_PERIOD_Div.Visible = true;
+            }
+            else if (FREE_PERIOD_CheckBox.Checked == false)
+            {
+                FREE_PERIOD_Div.Visible = false;
+            }
+        }
+        //-------------------------------------------------- Additional_Items --------------------------------------------------
+        protected void Additional_Items_CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Additional_Items_CheckBox.Checked == true)
+            {
+                Contract_Details_Div.Visible = true;
+            }
+            else if (Additional_Items_CheckBox.Checked == false)
+            {
+                Contract_Details_Div.Visible = false;
+            }
+        }
         protected void txt_No_Of_Months_Or_Years_TextChanged(object sender, EventArgs e)
         {
             if (txt_Start_Date.Text != "")
@@ -789,9 +839,6 @@ namespace Main_Real_estate.English.Main_Application
                 }
             }
         }
-
-        
-
         protected void txt_Duration_Of_The_Free_Period_TextChanged(object sender, EventArgs e)
         {
             // txt_Start_Date.Text = Start_Date_Calendar.SelectedDate.ToShortDateString();
@@ -830,36 +877,135 @@ namespace Main_Real_estate.English.Main_Application
             }
         }
 
-        protected void Tenan_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
+
+
+
+
+
+
+
+
+
+
+        //***************************************************** Calander Function *****************************************************
+        //--------------------------------------------------  Sign_Date --------------------------------------------------
+        protected void Sign_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
         {
-            string Tenant_Id = Tenan_Name_DropDownList.SelectedValue;
-            DataTable get_Tenant_Id_Dt = new DataTable();
-            _sqlCon.Open();
-            MySqlCommand get_Tenant_Id_Cmd = new MySqlCommand("SELECT * FROM tenants where Tenants_ID='" + Tenant_Id + "'", _sqlCon);
-            MySqlDataAdapter get_Tenant_Id_Da = new MySqlDataAdapter(get_Tenant_Id_Cmd);
-            get_Tenant_Id_Da.Fill(get_Tenant_Id_Dt);
-            if (get_Tenant_Id_Dt.Rows.Count > 0)
+            txt_Sign_Date.Text = Sign_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_Sign_Date.Text != "") { Sign_Date_divCalendar.Visible = false; ImageButton1.Visible = false; }
+        }
+        protected void Date_Chosee_Click(object sender, EventArgs e)
+        {
+            Sign_Date_divCalendar.Visible = true; ImageButton1.Visible = true;
+        }
+        protected void ImageButton1_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            Sign_Date_divCalendar.Visible = false; ImageButton1.Visible = false;
+        }
+        //--------------------------------------------------   Start_Date -------------------------------------------------- 
+        protected void Start_Date_Calendar_SelectionChanged2(object sender, EventArgs e)
+        {
+            txt_Start_Date.Text = Start_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_Start_Date.Text != "") { Start_Date_Div.Visible = false; ImageButton2.Visible = false; }
+
+            if (txt_No_Of_Months_Or_Years.Text != "")
             {
-                if (get_Tenant_Id_Dt.Rows[0]["tenant_type_Tenant_Type_Id"].ToString() == "2")
+                if (Contract_Type_DropDownList.SelectedValue == "1")
                 {
-                    Com_Rep_Div.Visible = true;
-                    //    //Fill Com_Rep_DropDownList
-                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
-                    Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    DateTime add_Months = Convert.ToDateTime(txt_Start_Date.Text).AddMonths(Convert.ToInt32(txt_No_Of_Months_Or_Years.Text) * 12);
+                    txt_End_Date.Text = add_Months.ToString("dd/MM/yyyy");
                 }
                 else
                 {
-                    string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
-                    Com_Rep_Div.Visible = false;
-                    Helper.LoadDropDownList("SELECT * FROM company_representative ", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
-                    Com_Rep_DropDownList.SelectedValue = "1";
+                    DateTime add_Months = Convert.ToDateTime(txt_Start_Date.Text).AddMonths(Convert.ToInt32(txt_No_Of_Months_Or_Years.Text));
+                    txt_End_Date.Text = add_Months.ToString("dd/MM/yyyy");
                 }
+            }
+        }
+        protected void Start_Date_Chosee_Click(object sender, EventArgs e)
+        {
+            Start_Date_Div.Visible = true; ImageButton2.Visible = true;
+        }
+        protected void ImageButton2_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            Start_Date_Div.Visible = false; ImageButton2.Visible = false;
+        }
+        //--------------------------------------------------   End_Date -------------------------------------------------- 
+        protected void End_Date_Chosee_Click(object sender, EventArgs e)
+        {
+            End_Date_Div.Visible = true; ImageButton3.Visible = true;
+        }
+        protected void ImageButton3_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            End_Date_Div.Visible = false; ImageButton3.Visible = false;
+        }
+        protected void End_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
+        {
+            txt_End_Date.Text = End_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_End_Date.Text != "") { End_Date_Div.Visible = false; ImageButton3.Visible = false; }
+        }
+        //-------------------------------------------------- Cheque_ Date --------------------------------------------------
+        protected void btn_Cheque_Date_Chosee_Click(object sender, EventArgs e)
+        {
+            Cheque_Date_Div.Visible = true; Cheque_Date_ImageButton.Visible = true;
+        }
+        protected void Cheque_Date_Calendar_SelectionChanged(object sender, EventArgs e)
+        {
+            txt_Cheque_Date.Text = Cheque_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_Cheque_Date.Text != "") { Cheque_Date_Div.Visible = false; Cheque_Date_ImageButton.Visible = false; }
+        }
+        protected void Cheque_Date_ImageButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            Cheque_Date_Div.Visible = false; Cheque_Date_ImageButton.Visible = false;
+        }
+        //-------------------------------------------------- transformation_Date --------------------------------------------------
+        protected void transformation_Date_Button_Click(object sender, EventArgs e)
+        {
+            transformation_Date_Div.Visible = true;
+            ImageButton5.Visible = true;
+        }
+        protected void ImageButton5_Click(object sender, ImageClickEventArgs e)
+        {
+            transformation_Date_Div.Visible = false;
+            ImageButton5.Visible = false;
+        }
+        protected void transformation_Date_Calendar_SelectionChanged(object sender, EventArgs e)
+        {
+            txt_transformation_Date.Text = transformation_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_transformation_Date.Text != "")
+            {
+                transformation_Date_Div.Visible = false;
+                ImageButton5.Visible = false;
+            }
+        }
+        //-------------------------------------------------- Cash_Date --------------------------------------------------
+        protected void Cash_Date_Button_Click(object sender, EventArgs e)
+        {
+            Cash_Date_Div.Visible = true;
+            ImageButton6.Visible = true;
+        }
+        protected void ImageButton6_Click(object sender, ImageClickEventArgs e)
+        {
+            Cash_Date_Div.Visible = false;
+            ImageButton6.Visible = false;
+        }
+        protected void Cash_Date_Calendar_SelectionChanged(object sender, EventArgs e)
+        {
+            txt_Cash_Date.Text = Cash_Date_Calendar.SelectedDate.ToShortDateString();
+            if (txt_Cash_Date.Text != "")
+            {
+                Cash_Date_Div.Visible = false;
+                ImageButton6.Visible = false;
             }
         }
 
 
+
+        
+
+        
+
+        //*********************************************** Half Building Units Functions *************************************
         public void refreshdata()
         {
             string getUnitQuari = "SELECT * FROM units where building_Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'";
@@ -874,7 +1020,6 @@ namespace Main_Real_estate.English.Main_Application
             Unit_GridView.DataBind();
             _sqlCon.Close();
         }
-
         protected void Unit_GridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             string Half; CheckBox CB;
@@ -907,50 +1052,7 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-        //******************   transformation_Date ***************************************************
-        protected void transformation_Date_Button_Click(object sender, EventArgs e)
-        {
-            transformation_Date_Div.Visible = true;
-            ImageButton5.Visible = true;
-        }
-
-        protected void ImageButton5_Click(object sender, ImageClickEventArgs e)
-        {
-            transformation_Date_Div.Visible = false;
-            ImageButton5.Visible = false;
-        }
-
-        protected void transformation_Date_Calendar_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_transformation_Date.Text = transformation_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_transformation_Date.Text != "")
-            {
-                transformation_Date_Div.Visible = false;
-                ImageButton5.Visible = false;
-            }
-        }
-        //******************   Cash_Date ***************************************************
-        protected void Cash_Date_Button_Click(object sender, EventArgs e)
-        {
-            Cash_Date_Div.Visible = true;
-            ImageButton6.Visible = true;
-        }
-
-        protected void ImageButton6_Click(object sender, ImageClickEventArgs e)
-        {
-            Cash_Date_Div.Visible = false;
-            ImageButton6.Visible = false;
-        }
-
-        protected void Cash_Date_Calendar_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_Cash_Date.Text = Cash_Date_Calendar.SelectedDate.ToShortDateString();
-            if (txt_Cash_Date.Text != "")
-            {
-                Cash_Date_Div.Visible = false;
-                ImageButton6.Visible = false;
-            }
-        }
+        
 
 
 
@@ -973,225 +1075,11 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-        protected void Paymen_Method_RadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Paymen_Method_RadioButtonList.SelectedValue == "1") { Cheque_Div.Visible = true; transformation_Div.Visible = false; Cash_div.Visible = false; }
-            else if (Paymen_Method_RadioButtonList.SelectedValue == "2") { Cheque_Div.Visible = false; transformation_Div.Visible = true; Cash_div.Visible = false; }
-            else if (Paymen_Method_RadioButtonList.SelectedValue == "3") { Cheque_Div.Visible = false; transformation_Div.Visible = false; Cash_div.Visible = true; }
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
-        }
-
-        protected void Delete_Contract_Click(object sender, EventArgs e)
-        {
-            string ContractId = Request.QueryString["ID"];
-
-            _sqlCon.Open();
-            DataTable getTransformationDt = new DataTable();
-            MySqlCommand getTransformationCmd = new MySqlCommand("SELECT Contract_Id FROM building_transformation_table WHERE Contract_Id = @ID And Status = 'غير محصل'", _sqlCon);
-            MySqlDataAdapter getTransformationDa = new MySqlDataAdapter(getTransformationCmd);
-            getTransformationCmd.Parameters.AddWithValue("@ID", ContractId);
-            getTransformationDa.Fill(getTransformationDt);
-            if (getTransformationDt.Rows.Count == 0)
-            {
-                DataTable getCashDt = new DataTable();
-                MySqlCommand getCashCmd = new MySqlCommand("SELECT Contract_Id FROM building_cash_amount WHERE Contract_Id = @ID And Satuts = 'غير محصل'", _sqlCon);
-                MySqlDataAdapter getCashDa = new MySqlDataAdapter(getCashCmd);
-                getCashCmd.Parameters.AddWithValue("@ID", ContractId);
-                getCashDa.Fill(getCashDt);
-                if (getCashDt.Rows.Count == 0)
-                {
-
-                    try
-                    {
-
-                        string Building_id = "";
+        
 
 
 
-                        DataTable get_Contract_Dt = new DataTable();
-                        MySqlCommand get_Contract_Cmd = new MySqlCommand("SELECT building_Building_Id FROM building_contract WHERE Contract_Id = @ID", _sqlCon);
-                        MySqlDataAdapter get_Contract_Da = new MySqlDataAdapter(get_Contract_Cmd);
-                        get_Contract_Cmd.Parameters.AddWithValue("@ID", ContractId);
-                        get_Contract_Da.Fill(get_Contract_Dt);
-                        if (get_Contract_Dt.Rows.Count > 0)
-                        {
-                        Building_id = get_Contract_Dt.Rows[0]["building_Building_Id"].ToString();
-                        }
-
-                        string deleteContractQuary = "DELETE FROM building_contract WHERE Contract_Id=@ID ";
-                        MySqlCommand mySqlCmd = new MySqlCommand(deleteContractQuary, _sqlCon);
-                        mySqlCmd.Parameters.AddWithValue("@ID", ContractId);
-                        mySqlCmd.ExecuteNonQuery();
-
-
-
-
-
-
-                        if (Page.IsValid)
-                    {
-                        string addArciveBuildingQuary = "Insert Into delete_archive " +
-                                                         "(User_Id," +
-                                                         "Delete_Date," +
-                                                         "OS_B_U," +
-                                                         "Item_Id," +
-                                                         "Reason_Delete) " +
-                                                         "VALUES" +
-                                                         "(@User_Id," +
-                                                         "@Delete_Date," +
-                                                         "@OS_B_U," +
-                                                         "@Item_Id," +
-                                                         "@Reason_Delete)";
-                        MySqlCommand addArciveBuildingCmd = new MySqlCommand(addArciveBuildingQuary, _sqlCon);
-                        addArciveBuildingCmd.Parameters.AddWithValue("@User_Id", Session["user_ID"].ToString());
-                        addArciveBuildingCmd.Parameters.AddWithValue("@Delete_Date", DateTime.Now.ToString("dd/MM/yyyy"));
-                        addArciveBuildingCmd.Parameters.AddWithValue("@OS_B_U", "BC");
-                        addArciveBuildingCmd.Parameters.AddWithValue("@Item_Id", ContractId);
-                        addArciveBuildingCmd.Parameters.AddWithValue("@Reason_Delete", txt_Reason_Delete.Text);
-                        addArciveBuildingCmd.ExecuteNonQuery();
-                    }
-
-
-                    // Delete Units
-                            string quary_Delet_Units = "DELETE FROM units WHERE building_Building_Id = @ID ";
-                            MySqlCommand mySqlCmd_Delet_Units = new MySqlCommand(quary_Delet_Units, _sqlCon);
-                            mySqlCmd_Delet_Units.Parameters.AddWithValue("@ID", Building_id);
-                            mySqlCmd_Delet_Units.ExecuteNonQuery();
-
-                    //// Delete Building
-                    //string quary_Delet_Building = "DELETE FROM building WHERE Building_Id = @ID ";
-                    //MySqlCommand mySqlCmd_Delet_Building = new MySqlCommand(quary_Delet_Building, _sqlCon);
-                    //mySqlCmd_Delet_Building.Parameters.AddWithValue("@ID", Label2.Text);
-                    //mySqlCmd_Delet_Building.ExecuteNonQuery();
-
-
-
-                }
-                    catch
-                {
-                    Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على  شيكات ')</script>");
-                }
-            }
-                else
-                {
-                    Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على دفعات نقدية غير محصلة')</script>");
-                }
-            }
-
-            else
-            {
-                Response.Write(@"<script language='javascript'>alert('لا يمكن حذف هذا العقد لأنه يحتوي على حوالات غير محصلة')</script>");
-            }
-            _sqlCon.Close();
-        }
-
-
-        protected void Edit_Arcive_Building_Contract()
-        {
-            string contractId = Request.QueryString["Id"];
-            string updateContractQuary = "UPDATE arcive_building_contract SET " +
-                                           "users_user_ID=@users_user_ID ," +
-                                           "tenants_Tenants_ID=@tenants_Tenants_ID, " +
-                                           "Com_rep=@Com_rep, " +
-                                           "building_Building_Id=@building_Building_Id , " +
-                                           "contract_type_Contract_Type_Id=@contract_type_Contract_Type_Id, " +
-                                           "contract_template_Contract_template_Id=@contract_template_Contract_template_Id , " +
-                                           "payment_type_payment_type_Id=@payment_type_payment_type_Id , " +
-                                           "reason_for_rent_Reason_For_Rent_Id=@reason_for_rent_Reason_For_Rent_Id , " +
-                                           "Number_Of_Mounth=@Number_Of_Mounth , " +
-                                           "Number_Of_Years=@Number_Of_Years , " +
-                                           "Payment_Amount=@Payment_Amount ," +
-                                           "Payment_Amount_L=@Payment_Amount_L ," +
-                                           "maintenance=@maintenance ," +
-                                           "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
-                                           "Paymen_Method=@Paymen_Method ," +
-
-                                           "Real_Contract_FileName=@Real_Contract_FileName ," +
-                                           "Real_Contract_Path=@Real_Contract_Path ," +
-
-                                           "Date_Of_Sgin=@Date_Of_Sgin  ," +
-                                           "Start_Date=@Start_Date ," +
-                                           "End_Date=@End_Date ," +
-                                           "Start_Free_Period=@Start_Free_Period ," +
-                                           "Duration_free_period=@Duration_free_period ," +
-                                           "maintenance=@maintenance ," +
-                                           "Rental_allowed_Or_Not_allowed=@Rental_allowed_Or_Not_allowed ," +
-                                           "Contract_Details=@Contract_Details " +
-                                           "WHERE Contract_Id=@ID ";
-            _sqlCon.Open();
-            using (MySqlCommand UpdateContractCmd = new MySqlCommand(updateContractQuary, _sqlCon))
-            {
-                UpdateContractCmd.Parameters.AddWithValue("@ID", contractId);
-                //Fill The Database with All DropDownLists Items
-                UpdateContractCmd.Parameters.AddWithValue("@contract_type_Contract_Type_Id", Contract_Type_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@contract_template_Contract_template_Id", Contract_Templet_DropDownList.SelectedValue);
-                //UpdateContractCmd.Parameters.AddWithValue("@payment_frequency_Payment_Frequency_Id", Payment_Frquancy_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@tenants_Tenants_ID", Tenan_Name_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@Com_rep", Com_Rep_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@payment_type_payment_type_Id", Payment_Type_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@building_Building_Id", Building_Name_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@users_user_ID", Session["user_ID"]);
-                //Fill The Database with All Textbox Items
-                UpdateContractCmd.Parameters.AddWithValue("@Contract_Details", txt_Contract_Details.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount", txt_Payment_Amount.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@Payment_Amount_L", txt_Payment_Amount_L.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@maintenance", maintenance_RadioButtonList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@Rental_allowed_Or_Not_allowed", Rental_allowed_Or_Not_allowed_RadioButtonList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@Paymen_Method", Paymen_Method_RadioButtonList.SelectedItem.Text.Trim());
-                UpdateContractCmd.Parameters.AddWithValue("@Date_Of_Sgin", txt_Sign_Date.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@Start_Date", txt_Start_Date.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@End_Date", txt_End_Date.Text);
-
-                UpdateContractCmd.Parameters.AddWithValue("@reason_for_rent_Reason_For_Rent_Id", Reason_For_Rent_DropDownList.SelectedValue);
-                UpdateContractCmd.Parameters.AddWithValue("@Start_Free_Period", txt_FREE_PERIOD.Text);
-                UpdateContractCmd.Parameters.AddWithValue("@Duration_free_period", txt_Duration_Of_The_Free_Period.Text);
-
-                if (Contract_Type_DropDownList.SelectedValue == "1")
-                {
-                    UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", txt_No_Of_Months_Or_Years.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", "");
-                }
-                else
-                {
-                    UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Years", "");
-                    UpdateContractCmd.Parameters.AddWithValue("@Number_Of_Mounth", txt_No_Of_Months_Or_Years.Text);
-                }
-
-                if (Real_Contract_FileUpload.HasFile)
-                {
-                    string fileName1 = Path.GetFileName(Real_Contract_FileUpload.PostedFile.FileName);
-                    Real_Contract_FileUpload.PostedFile.SaveAs(Server.MapPath("/English/Main_Application/Real_Contract/") + fileName1);
-                    UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", fileName1);
-                    UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", "/English/Main_Application/Real_Contract/" + fileName1);
-                }
-                else
-                {
-                    UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_FileName", Real_Contract_FileName.Text);
-                    UpdateContractCmd.Parameters.AddWithValue("@Real_Contract_Path", Real_Contract_Path.Text);
-                }
-                UpdateContractCmd.ExecuteNonQuery();
-                _sqlCon.Close();
-            }
-        }
-
-        protected void Btn_Remove_Link_Real_Contract_Click(object sender, ImageClickEventArgs e)
-        {
-            string Contrac_Id = Request.QueryString["ID"];
-
-            string Remove_Real_Contrac_Att_Query = "UPDATE building_contract SET " +
-                                            " Real_Contract_FileName=@Real_Contract_FileName ," +
-                                            " Real_Contract_Path=@Real_Contract_Path  " +
-                                            "WHERE Contract_Id=@ID";
-            _sqlCon.Open();
-            MySqlCommand Remove_Real_Contrac_Att_Cmd = new MySqlCommand(Remove_Real_Contrac_Att_Query, _sqlCon);
-            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@ID", Contrac_Id);
-            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@Real_Contract_FileName", "");
-            Remove_Real_Contrac_Att_Cmd.Parameters.AddWithValue("@Real_Contract_Path", "");
-            Remove_Real_Contrac_Att_Cmd.ExecuteNonQuery();
-            _sqlCon.Close();
-
-            Response.Redirect("Edit_Building_Contract.aspx?Id=" + Contrac_Id);
-        }
+        
 
 
 
