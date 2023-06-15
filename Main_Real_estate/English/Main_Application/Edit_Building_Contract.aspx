@@ -621,7 +621,7 @@
                                     <asp:GridView Width="100%" ID="transformation_GridView" DataKeyNames="transformation_Table_ID" runat="server" AutoGenerateColumns="false" 
                                         OnRowDeleting="transformation_GridView_RowDeleting" OnRowDataBound="transformation_GridView_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="transformation_No" HeaderText="رقم الحوالة" ItemStyle-Width="120" />
+                                            <asp:BoundField DataField="transformation_No" HeaderText="رقم الحوالة"  />
                                           
                                             <asp:TemplateField HeaderText="اسم البنك"><%--1--%>
                                                 <ItemTemplate>
@@ -631,8 +631,8 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:BoundField DataField="transformation_Date" HeaderText="تاريخ التحويل" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Amount" HeaderText="قيمة التحويل" ItemStyle-Width="120" />
+                                            <asp:BoundField DataField="transformation_Date" HeaderText="تاريخ التحويل"  />
+                                            <asp:BoundField DataField="Amount" HeaderText="قيمة التحويل"  />
                                             
 
                                              <asp:TemplateField HeaderText="اسم المستأجر"><%--4--%>
@@ -654,8 +654,8 @@
                                     <asp:GridView Width="100%" ID="Cash_GridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Cash_Amount_ID" 
                                         OnRowDeleting="Cash_GridView_RowDeleting" OnRowDataBound="Cash_GridView_RowDataBound">
                                         <Columns>
-                                            <asp:BoundField DataField="Cash_Amount" HeaderText="قيمة الدفعة" ItemStyle-Width="120" />
-                                            <asp:BoundField DataField="Cash_Date" HeaderText="تاريخ الدفعة" ItemStyle-Width="120" />
+                                            <asp:BoundField DataField="Cash_Amount" HeaderText="قيمة الدفعة"  />
+                                            <asp:BoundField DataField="Cash_Date" HeaderText="تاريخ الدفعة"  />
                                             
 
                                             <asp:TemplateField HeaderText="اسم المستأجر"><%--2--%>
