@@ -185,15 +185,33 @@
                                 <tr id="row" runat="server">
                                     <%--<td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>--%>
                                     <td><asp:LinkButton ID="Contract_NO" Text='<%# Eval("CON_NO") %>'  runat="server" CommandArgument='<%# Eval("ID") %>' OnClick="Contract_NO_Click" ></asp:LinkButton></td>
-                                    <td><asp:Label ID="lbl_zone_number" runat="server" Text='<%# Eval("zone_arabic_name") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_zone_arabic_name" runat="server" Text='<%# Eval("zone_arabic_name") %>' />
+                                        <asp:Label ID="lbl_zone_English_name" runat="server" Text='<%# Eval("zone_English_name") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
-                                    <td><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
-                                    <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' /></td>
-                                    <td><asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                        <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>' />
+                                        <asp:Label ID="lbl_EN_Unit_Number" runat="server" Text='<%# Eval("EN_Unit_Number") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' />
+                                        <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' />
+                                        <asp:Label ID="lbl_Contract_English_Type" runat="server" Text='<%# Eval("Contract_English_Type") %>' />Payment_Amount
+                                    </td>
                                     <td><asp:Label ID="lbl_Number_Of_Years" runat="server" Text='<%# Eval("Number_Of_Years") %>' /></td>
-                                    <td><asp:Label ID="lbl_Payment_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Payment_Amount")))%>' /></td>
+                                    <td><asp:Label ID="lbl_Payment_Amount" runat="server"  Text='<%# Eval("Payment_Amount") %>'/></td>
                                     <td><asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
                                     <td><asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
                                     <td style="display:none"><asp:Label ID="lbl_New_ReNewed_Expaired"  runat="server" Text='<%# Eval("New_ReNewed_Expaired") %>' /></td>
@@ -218,21 +236,20 @@
                             <HeaderTemplate>
                                 <table  cellspacing="0" class="datatable table table-bordered">
                                     <thead>
-                                        <%--<th style="text-align: center;vertical-align: middle;">م</th>--%>
-                                        <th style="text-align:center;vertical-align: middle;">رقم العقد</th>
-                                        <th style="text-align:center;vertical-align: middle;"> المنطقة</th>
-                                        <th style="vertical-align: middle;">رمز الملكية</th>
-                                        <th style="vertical-align: middle;">الملكية</th>
-                                        <th style="vertical-align: middle;">البناء</th>
-                                        <th style="vertical-align: middle;">الوحدة</th>
-                                        <th style="text-align:center;vertical-align: middle">اسم المستأجر</th>
-                                        <th style="text-align:center;vertical-align: middle"> الجنسية</th>
-                                        <th style="vertical-align: middle;">نوع العقد</th>
-                                        <th style="vertical-align: middle;">عدد الأشهر</th>
-                                        <th style="vertical-align: middle;">عدد السنوات</th>
-                                        <th style="vertical-align: middle;">قيمة الإيجار</th>
-                                        <th style="vertical-align: middle;">تاريخ البدء</th>
-                                        <th style="vertical-align: middle;">تاريخ الأنتهاء</th>
+
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Contract_NO" runat="server" /></th><%--رقم العقد--%>
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Zone" runat="server" /></th><%--المنطقة--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Code" runat="server" /></th><%--رمز الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Ownership" runat="server" /></th><%-- الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Building" runat="server" /></th><%-- البناء--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Unit" runat="server" /></th><%-- الوحدة--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Tenant" runat="server" /></th><%--اسم المستأجر--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Nationality" runat="server" /></th><%-- الجنسية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Contract_type" runat="server" /></th><%--نوع العقد--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Years" runat="server" /></th><%--عدد السنوات--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Value" runat="server" /></th><%--قيمة الغيجار--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Start" runat="server" /></th><%--تاريخ اابدء--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_End" runat="server" /></th><%--تاريخ الإنتهاء--%>
                                         <th style="display:none" >X</th>
                                         <th style="text-align:center; width:73px"  runat="server" id="H_One"></th>
                                     </thead>
@@ -240,19 +257,35 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr id="row" runat="server" >
-                                    <%--<td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>--%>
                                     <td><asp:LinkButton ID="Contract_NO" Text='<%# Eval("CON_NO") %>'  runat="server" CommandArgument='<%# Eval("Contract_Id") %>' OnClick="C_ID_ServerClick" ></asp:LinkButton></td>
-                                    <td><asp:Label ID="lbl_zone_number" runat="server" Text='<%# Eval("zone_arabic_name") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_zone_arabic_name" runat="server" Text='<%# Eval("zone_arabic_name") %>' />
+                                        <asp:Label ID="lbl_zone_English_name" runat="server" Text='<%# Eval("zone_English_name") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
-                                    <td><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                        <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
-                                    <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' /></td>
-                                    <td><asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' /></td>
-                                    <td><asp:Label ID="lbl_Number_Of_Mounth" runat="server" Text='<%# Eval("Number_Of_Mounth") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                    </td>
+                                     <td>
+                                        <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' />
+                                        <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' />
+                                        <asp:Label ID="lbl_Contract_English_Type" runat="server" Text='<%# Eval("Contract_English_Type") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_Number_Of_Years" runat="server" Text='<%# Eval("Number_Of_Years") %>' /></td>
-                                    <td><asp:Label ID="lbl_Payment_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Payment_Amount")))%>' /></td>
+                                    <td><asp:Label ID="lbl_Payment_Amount" runat="server" Text='<%# Eval("Payment_Amount") %>' /></td>
                                     <td><asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
                                     <td><asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
                                     <td style="display:none"><asp:Label ID="lbl_New_ReNewed_Expaired"  runat="server" Text='<%# Eval("New_ReNewed_Expaired") %>' /></td>
@@ -277,19 +310,18 @@
                             <HeaderTemplate>
                                 <table  cellspacing="0" class="datatable table table-bordered">
                                     <thead>
-                                        <th style="vertical-align: middle;">رقم العقد</th>
-                                        <th style="vertical-align: middle;">اسم المنطقة</th>
-                                        <th style="vertical-align: middle;">رمز الملكية</th>
-                                        <th style="vertical-align: middle;">الملكية</th>
-                                        <th style="text-align:center;vertical-align: middle;">اسم البناء/المجمع</th>
-                                        <th style="text-align:center;vertical-align: middle;">اسم المستأجر</th>
-                                        <th style="text-align:center;vertical-align: middle;"> الجنسية</th>
-                                        <th style="text-align:center;vertical-align: middle;">نوع العقد</th>
-                                        <th style="text-align:center;vertical-align: middle;">عدد الأشهر</th>
-                                        <th style="text-align:center;vertical-align: middle;">عدد السنوات</th>
-                                        <th style="text-align:center;vertical-align: middle;">قيمة الإيجار</th>
-                                        <th style="text-align:center;vertical-align: middle;">تاريخ البدء</th>
-                                        <th style="text-align:center;vertical-align: middle;">تاريخ الأنتهاء</th>
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Contract_NO" runat="server" /></th><%--رقم العقد--%>
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Zone" runat="server" /></th><%--المنطقة--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Code" runat="server" /></th><%--رمز الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Ownership" runat="server" /></th><%-- الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Building" runat="server" /></th><%-- البناء--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Tenant" runat="server" /></th><%--اسم المستأجر--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Nationality" runat="server" /></th><%-- الجنسية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Contract_type" runat="server" /></th><%--نوع العقد--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Years" runat="server" /></th><%--عدد السنوات--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Value" runat="server" /></th><%--قيمة الغيجار--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Start" runat="server" /></th><%--تاريخ اابدء--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_End" runat="server" /></th><%--تاريخ الإنتهاء--%>
                                         <th style="display:none" >X</th>
                                         <th style="text-align:center; width:73px ;" runat="server" id="H_Two"></th>
                                         <th style="text-align:center;" runat="server" id="H_Two_Two"></th>
@@ -298,17 +330,34 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr id="row" runat="server">
-                                    <td><asp:LinkButton ID="B_Contract_NO" Text='<%# Eval("CON_NO") %>'  runat="server" CommandArgument='<%# Eval("Contract_Id") %>' OnClick="B_Contract_NO_Click" ></asp:LinkButton></td>
-                                    <td><asp:Label ID="lbl_zone_number" runat="server" Text='<%# Eval("zone_arabic_name") %>' /></td>
+                                    <td><asp:LinkButton ID="Contract_NO" Text='<%# Eval("CON_NO") %>'  runat="server" CommandArgument='<%# Eval("Contract_Id") %>' OnClick="C_ID_ServerClick" ></asp:LinkButton></td>
+                                    <td>
+                                        <asp:Label ID="lbl_zone_arabic_name" runat="server" Text='<%# Eval("zone_arabic_name") %>' />
+                                        <asp:Label ID="lbl_zone_English_name" runat="server" Text='<%# Eval("zone_English_name") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
-                                    <td><asp:Label ID="lbl_B_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
-                                    <td><asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' /></td>
-                                    <td><asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' /></td>
-                                    <td><asp:Label ID="lbl_Number_Of_Mounth" runat="server" Text='<%# Eval("Number_Of_Mounth") %>' /></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                        <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                    </td>
+                                     <td>
+                                        <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' />
+                                        <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lbl_Contract_Type" runat="server" Text='<%# Eval("Contract_Arabic_Type") %>' />
+                                        <asp:Label ID="lbl_Contract_English_Type" runat="server" Text='<%# Eval("Contract_English_Type") %>' />
+                                    </td>
                                     <td><asp:Label ID="lbl_Number_Of_Years" runat="server" Text='<%# Eval("Number_Of_Years") %>' /></td>
-                                    <td><asp:Label ID="lbl_B_Payment_Amount" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Payment_Amount")))%>' /></td>
+                                    <td><asp:Label ID="lbl_B_Payment_Amount" runat="server" Text='<%# Eval("Payment_Amount") %>' /></td>
                                     <td><asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
                                     <td><asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
                                     <td style="display:none"><asp:Label ID="lbl_New_ReNewed_Expaired"  runat="server" Text='<%# Eval("New_ReNewed_Expaired") %>' /></td>

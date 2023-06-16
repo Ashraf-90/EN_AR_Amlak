@@ -61,8 +61,8 @@ namespace Main_Real_estate.Utilities
         }
         public static bool LoadDropDownList(string commandText, MySqlConnection connection, DropDownList dropdownList, string dataTextField, string dataValueField)
         {
-            //try
-            //{
+            try
+            {
                 using (MySqlCommand command = new MySqlCommand(commandText))
                 {
                     command.CommandType = CommandType.Text;
@@ -74,11 +74,11 @@ namespace Main_Real_estate.Utilities
                     dropdownList.DataBind();
                     connection.EnhancedClose();
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    return false;
-            //}
+        }
+            catch (Exception)
+            {
+                return false;
+            }
 
             return true;
         }
