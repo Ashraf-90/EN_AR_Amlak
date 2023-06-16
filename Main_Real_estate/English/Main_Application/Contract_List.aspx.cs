@@ -288,7 +288,7 @@ namespace Main_Real_estate.English.Main_Application
                                     lbl_Contract_NO.Text = Dt1.Rows[53]["EN"].ToString();
                                     lbl_Zone.Text = Dt1.Rows[54]["EN"].ToString();
                                     lbl_Code.Text = Dt1.Rows[55]["EN"].ToString();
-                                    lbl_Ownership.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Ownership.Text = Dt1.Rows[4]["EN"].ToString();
                                     lbl_Rented_Item.Text = Dt1.Rows[46]["EN"].ToString();
                                     lbl_Tenant.Text = Dt1.Rows[46]["EN"].ToString();
                                     lbl_Nationality.Text = Dt1.Rows[46]["EN"].ToString();
