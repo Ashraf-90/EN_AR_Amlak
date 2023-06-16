@@ -25,6 +25,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!IsPostBack)
             {
+                language();
                 BindDataAll();
                 BindData();
                 Building_BindData();
@@ -254,6 +255,163 @@ namespace Main_Real_estate.English.Main_Application
                 {
                     string[] Page = Dt.Rows[0]["Contracting"].ToString().Split(',');
                     if (Page[2] != "E") 
+                    {
+                        if (e.Item.ItemType == ListItemType.Header)
+                        {
+                            var H_One = e.Item.FindControl("H_One") as HtmlTableCell;
+                            H_One.Visible = false;
+
+                            //******************** Langueges *********************************************************
+                            var lbl_Contract_NO = e.Item.FindControl("lbl_Contract_NO") as Label;
+                            var lbl_Zone = e.Item.FindControl("lbl_Zone") as Label;
+                            var lbl_Code = e.Item.FindControl("lbl_Code") as Label;
+                            var lbl_Ownership = e.Item.FindControl("lbl_Ownership") as Label;
+                            var lbl_Rented_Item = e.Item.FindControl("lbl_Rented_Item") as Label;
+                            var lbl_Tenant = e.Item.FindControl("lbl_Tenant") as Label;
+                            var lbl_Nationality = e.Item.FindControl("lbl_Nationality") as Label;
+                            var lbl_Contract_type = e.Item.FindControl("lbl_Contract_type") as Label;
+                            var lbl_Years = e.Item.FindControl("lbl_Years") as Label;
+                            var lbl_Value = e.Item.FindControl("lbl_Value") as Label;
+                            var lbl_Start = e.Item.FindControl("lbl_Start") as Label;
+                            var lbl_End = e.Item.FindControl("lbl_End") as Label;
+
+
+                            _sqlCon.Open();
+                            DataTable Dt1 = new DataTable();
+                            MySqlCommand Cmd1 = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+                            MySqlDataAdapter Da1 = new MySqlDataAdapter(Cmd1);
+                            Da1.Fill(Dt1);
+                            if (Dt.Rows.Count > 0)
+                            {
+                                if (Session["Langues"].ToString() == "1")
+                                {
+                                    lbl_Contract_NO.Text = Dt1.Rows[53]["EN"].ToString();
+                                    lbl_Zone.Text = Dt1.Rows[54]["EN"].ToString();
+                                    lbl_Code.Text = Dt1.Rows[55]["EN"].ToString();
+                                    lbl_Ownership.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Rented_Item.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Tenant.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Nationality.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Contract_type.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Years.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Value.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_Start.Text = Dt1.Rows[46]["EN"].ToString();
+                                    lbl_End.Text = Dt1.Rows[46]["EN"].ToString();
+
+                                }
+                                else
+                                {
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+                                    lbl_titel_Contracts_List.Text = Dt1.Rows[46]["AR"].ToString();
+
+                                }
+                            }
+                            _sqlCon.Close();
+
+                        }
+                        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            var B_One = e.Item.FindControl("B_One") as HtmlTableCell;
+                            B_One.Visible = false;
+                            //******************** Langueges *********************************************************
+
+
+
+
+                        }
+                    }
+                }
+                _sqlCon.Close();
+            }
+            catch
+            {
+                Response.Redirect("Log_In.aspx");
+            }
+        }
+
+        protected void contract_List_ItemDataBound1(object sender, RepeaterItemEventArgs e)
+        {
+            Label EndDate = null;
+            Label New_ReNewed_Expaired = null;
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HtmlTableRow tr = e.Item.FindControl("row") as HtmlTableRow;
+                LinkButton ReNew_btn = (e.Item.FindControl("U_Renew") as LinkButton);
+                LinkButton U_Finsh = (e.Item.FindControl("U_Finsh") as LinkButton);
+
+
+                LinkButton U_delete = (e.Item.FindControl("U_delete") as LinkButton);
+                LinkButton U_details = (e.Item.FindControl("U_details") as LinkButton);
+                Label lbl_Done_Renew = (e.Item.FindControl("lbl_Done_Renew") as Label);
+                EndDate = e.Item.FindControl("lbl_End_Date") as Label;
+                New_ReNewed_Expaired = e.Item.FindControl("lbl_New_ReNewed_Expaired") as Label;
+
+                string[] Array_End_Date = EndDate.Text.Split(new char[] { '/' });
+                var prevDate = new DateTime(Convert.ToInt32(Array_End_Date[2]), Convert.ToInt32(Array_End_Date[1]), Convert.ToInt32(Array_End_Date[0]));
+                var today = DateTime.Now;
+                var diffOfDates = prevDate - today;
+                int sub = diffOfDates.Days;
+
+
+
+                if (New_ReNewed_Expaired.Text == "1")
+                {
+                    // If the days difference is > 60 and [New_ReNewed_Expaired = 1 ], the line color is green and the renewal button is hidden. 
+                    if (diffOfDates.Days > 60)
+                    {
+                        tr.Attributes.Add("style", "background-color:#c5f8eb;color:#000000;");
+                        ReNew_btn.Visible = false;
+                    }
+                    // If the days difference is <= 60 (2 months left until expiration) and New_ReNewed_Expaired = 1, the line color is red, and the renewal button is shown.
+                    else if (diffOfDates.Days >= 0 && diffOfDates.Days <= 60)
+                    {
+                        tr.Attributes.Add("style", "background-color:#faced2;color:#000000;");
+                        ReNew_btn.Visible = true;
+                    }
+                    // If days difference <= 0 (2 months more than expiry) and New_ReNewed_Expaired = 1 line color black show renewal button
+                    else if (diffOfDates.Days <= 0)
+                    {
+                        tr.Attributes.Add("style", "background-color:#cbd0d8;color:#000000;");
+                        ReNew_btn.Visible = true; U_Finsh.Visible = false; tr.Visible = false;
+                    }
+                }
+                else if (New_ReNewed_Expaired.Text == "2")
+                {
+                    tr.Attributes.Add("style", "background-color:#cbd0d8;color:#000000;");
+                    ReNew_btn.Visible = false; U_Finsh.Visible = false; tr.Visible = false;
+                }
+                else if (New_ReNewed_Expaired.Text == "3")
+                {
+                    tr.Attributes.Add("style", "background-color:#cbd0d8;color:#000000;");
+                    ReNew_btn.Visible = false; U_Finsh.Visible = false; tr.Visible = false;
+                }
+            }
+
+
+
+
+            try
+            {
+                DataTable Dt = new DataTable();
+                _sqlCon.Open();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM roles WHERE Role_ID = @ID", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Cmd.Parameters.AddWithValue("@ID", Session["Role"].ToString());
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    string[] Page = Dt.Rows[0]["Contracting"].ToString().Split(',');
+                    if (Page[2] != "E")
                     {
                         if (e.Item.ItemType == ListItemType.Header)
                         {
@@ -927,5 +1085,66 @@ namespace Main_Real_estate.English.Main_Application
             }
             Response.Redirect(Request.RawUrl);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Contracts_List.Text= Dt.Rows[46]["EN"].ToString();
+                    Add.Text = Dt.Rows[0]["EN"].ToString();
+                    lbl_A_3.Text = Dt.Rows[47]["EN"].ToString();
+                    lbl_A_1.Text = Dt.Rows[51]["EN"].ToString();
+                    lbl_A_2.Text = Dt.Rows[52]["EN"].ToString();
+                    lbl_all_Contract.Text = Dt.Rows[47]["EN"].ToString();
+                    lbl_New_Contract.Text = Dt.Rows[48]["EN"].ToString();
+                    lbl_Under_Expaired_Contract.Text = Dt.Rows[50]["EN"].ToString();
+                    lbl_Expaired_Contract.Text = Dt.Rows[49]["EN"].ToString();
+                }
+                else
+                {
+                    lbl_titel_Contracts_List.Text = Dt.Rows[46]["AR"].ToString();
+                    Add.Text = Dt.Rows[0]["AR"].ToString();
+                    lbl_A_3.Text = Dt.Rows[47]["AR"].ToString();
+                    lbl_A_1.Text = Dt.Rows[51]["AR"].ToString();
+                    lbl_A_2.Text = Dt.Rows[52]["AR"].ToString();
+                    lbl_all_Contract.Text = Dt.Rows[47]["AR"].ToString();
+                    lbl_New_Contract.Text = Dt.Rows[48]["AR"].ToString();
+                    lbl_Under_Expaired_Contract.Text = Dt.Rows[50]["AR"].ToString();
+                    lbl_Expaired_Contract.Text = Dt.Rows[49]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+        }
+
+        
     }
 }

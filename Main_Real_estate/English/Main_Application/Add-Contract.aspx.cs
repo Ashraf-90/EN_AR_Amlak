@@ -286,7 +286,7 @@ namespace Main_Real_estate.English.Main_Application
                 {
                     PROCEDURE = "Add_Multi_Contract";
                     contract = "building_contract";
-                    Rented_Item = Building_Name_DropDownList.SelectedValue;
+                    Rented_Item = Half_Building_id.Text;
                     Contract_Id = "building_contract_Contract_Id";
                     cheques = "building_cheques";
                     transformation = "building_transformation_table";
@@ -468,8 +468,8 @@ namespace Main_Real_estate.English.Main_Application
                 }
 
 
-                if (Contract_Templet_DropDownList.SelectedValue == "1") {Response.Redirect("Contract_Details.aspx?Id=" + Contract_id.Text);}
-                else {Response.Redirect("Building_Contract_Details.aspx?Id=" + Contract_id.Text); }
+                //if (Contract_Templet_DropDownList.SelectedValue == "1") {Response.Redirect("Contract_Details.aspx?Id=" + Contract_id.Text);}
+                //else {Response.Redirect("Building_Contract_Details.aspx?Id=" + Contract_id.Text); }
                 
             }
         }

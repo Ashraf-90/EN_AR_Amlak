@@ -42,6 +42,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
 
         /// <summary>
+        /// lbl_A_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_3;
+
+        /// <summary>
         /// A_1 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
+
+        /// <summary>
+        /// lbl_A_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_1;
 
         /// <summary>
         /// A_2 control.
@@ -60,6 +78,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
 
         /// <summary>
+        /// lbl_A_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_2;
+
+        /// <summary>
         /// btn_all_Contract control.
         /// </summary>
         /// <remarks>
@@ -67,6 +94,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_all_Contract;
+
+        /// <summary>
+        /// lbl_all_Contract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_all_Contract;
 
         /// <summary>
         /// btn_New_Contract control.
@@ -78,6 +114,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Button btn_New_Contract;
 
         /// <summary>
+        /// lbl_New_Contract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_New_Contract;
+
+        /// <summary>
         /// btn_Under_Expaired_Contract control.
         /// </summary>
         /// <remarks>
@@ -87,6 +132,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Button btn_Under_Expaired_Contract;
 
         /// <summary>
+        /// lbl_Under_Expaired_Contract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Under_Expaired_Contract;
+
+        /// <summary>
         /// btn_Expaired_Contract control.
         /// </summary>
         /// <remarks>
@@ -94,6 +148,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Expaired_Contract;
+
+        /// <summary>
+        /// lbl_Expaired_Contract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Expaired_Contract;
 
         /// <summary>
         /// U_C_Span control.

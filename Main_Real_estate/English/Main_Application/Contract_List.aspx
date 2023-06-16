@@ -14,7 +14,7 @@
                      /*'pdfHtml5'*/
                  ],
                  language: {
-                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                  }
              });
 
@@ -114,29 +114,40 @@
                         
                             <!-- Simple Tables -->
                             <ul class="UUL">
-                                <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick">كافة العقود</a></li>
-                                <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick">العقود المفرد</a></li>
-                                <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick">العقود المجملة</a></li>
+                                <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick"><asp:Label ID="lbl_A_3" runat="server" /></a></li>
+                                <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick"><asp:Label ID="lbl_A_1" runat="server" /></a></li>
+                                <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick"><asp:Label ID="lbl_A_2" runat="server" /></a></li>
                             </ul>    
 
                    
                             <div class="row">&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_all_Contract" runat="server"   CssClass="Indicator_buttons"  OnClick="btn_all_Contract_Click"/>
                                 &nbsp;
-                                    <span style="margin-top: 20px; ">كافة العقود</span>
+                                    <span style="margin-top: 20px; "><asp:Label ID="lbl_all_Contract" runat="server" /></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
                                 <asp:Button ID="btn_New_Contract" runat="server"   CssClass="Indicator_buttons" BackColor="#c5f8eb" OnClick="btn_New_Contarct_Click"/>
                                 &nbsp;
-                                    <span style="margin-top: 20px">عقود جديدة</span>
+                                    <span style="margin-top: 20px"><asp:Label ID="lbl_New_Contract" runat="server" /></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
                                     <asp:Button ID="btn_Under_Expaired_Contract" runat="server" CssClass="Indicator_buttons" BackColor="#faced2" OnClick="btn_Under_Expaired_Contract_Click"/>
                                 &nbsp;
-                                    <span style="margin-top: 20px">عقود قيد الإنتهاء</span>
+                                    <span style="margin-top: 20px"><asp:Label ID="lbl_Under_Expaired_Contract" runat="server" /></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
                                     <asp:Button ID="btn_Expaired_Contract" runat="server"   CssClass="Indicator_buttons" BackColor="#cbd0d8" OnClick="btn_Expaired_Contract_Click"/>
                                 &nbsp;
-                                    <span style="margin-top: 20px">عقود منتهية</span>
+                                    <span style="margin-top: 20px"><asp:Label ID="lbl_Expaired_Contract" runat="server" /></span>
                         
                         </div>
                             <br />
@@ -153,18 +164,18 @@
                                 <table  cellspacing="0" class="datatable table table-bordered">
                                     <thead>
                                         <%--<th style="text-align: center;vertical-align: middle;">م</th>--%>
-                                        <th style="text-align:center;vertical-align: middle;">رقم العقد</th>
-                                        <th style="text-align:center;vertical-align: middle;"> المنطقة</th>
-                                        <th style="vertical-align: middle;">رمز الملكية</th>
-                                        <th style="vertical-align: middle;">الملكية</th>
-                                        <th style="vertical-align: middle;">العنصر المؤجر</th>
-                                        <th style="text-align:center;vertical-align: middle">اسم المستأجر</th>
-                                        <th style="text-align:center;vertical-align: middle"> الجنسية</th>
-                                        <th style="vertical-align: middle;">نوع العقد</th>
-                                        <th style="vertical-align: middle;">عدد السنوات</th>
-                                        <th style="vertical-align: middle;">قيمة الإيجار</th>
-                                        <th style="vertical-align: middle;">تاريخ البدء</th>
-                                        <th style="vertical-align: middle;">تاريخ الأنتهاء</th>
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Contract_NO" runat="server" /></th><%--رقم العقد--%>
+                                        <th style="text-align:center;vertical-align: middle;"><asp:Label ID="lbl_Zone" runat="server" /></th><%--المنطقة--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Code" runat="server" /></th><%--رمز الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Ownership" runat="server" /></th><%-- الملكية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Rented_Item" runat="server" /></th><%--العنصر المؤجر--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Tenant" runat="server" /></th><%--اسم المستأجر--%>
+                                        <th style="text-align:center;vertical-align: middle"><asp:Label ID="lbl_Nationality" runat="server" /></th><%-- الجنسية--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Contract_type" runat="server" /></th><%--نوع العقد--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Years" runat="server" /></th><%--عدد السنوات--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Value" runat="server" /></th><%--قيمة الغيجار--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_Start" runat="server" /></th><%--تاريخ اابدء--%>
+                                        <th style="vertical-align: middle;"><asp:Label ID="lbl_End" runat="server" /></th><%--تاريخ الإنتهاء--%>
                                         <th style="display:none" >X</th>
                                         <th style="text-align:center;" runat="server" id="H_One"></th>
                                     </thead>
@@ -203,7 +214,7 @@
                         </asp:Repeater>
             <%--***************************************************************************************************************************************************************************************************************************--%>
 
-                        <asp:Repeater  ID="contract_List" runat="server" Visible="false" OnItemDataBound="contract_List_ItemDataBound" ClientIDMode="Static">
+                        <asp:Repeater  ID="contract_List" runat="server" Visible="false" OnItemDataBound="contract_List_ItemDataBound1" ClientIDMode="Static">
                             <HeaderTemplate>
                                 <table  cellspacing="0" class="datatable table table-bordered">
                                     <thead>
