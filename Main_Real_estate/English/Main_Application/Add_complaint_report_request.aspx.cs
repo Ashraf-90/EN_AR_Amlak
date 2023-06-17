@@ -22,67 +22,8 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                //   Fill Employee Name DropDownList
-                DataTable get_Employee_DataTable = new DataTable();
-                _sqlCon.Open();
-                MySqlCommand get_Employee_Cmd =
-                    new MySqlCommand("SELECT * FROM users WHERE Users_Name = @Users_Name", _sqlCon);
-                MySqlDataAdapter get_Employee_Da = new MySqlDataAdapter(get_Employee_Cmd);
-                if (Session["Users_Name"].ToString() != null)
-                {
-                    get_Employee_Cmd.Parameters.AddWithValue("@Users_Name", Session["Users_Name"].ToString());
-                    get_Employee_Da.Fill(get_Employee_DataTable);
-                    if (get_Employee_DataTable.Rows.Count > 0)
-                    {
-                        txt_Dtl_Employee_Name.Text = "مقدم الطلب السيد : " + get_Employee_DataTable.Rows[0]["Users_Ar_First_Name"].ToString()
-                    + " " + get_Employee_DataTable.Rows[0]["Users_Ar_Last_Name"].ToString();
-                    }
-                }
-                else { Response.Redirect("Log_In.aspx"); }
-                _sqlCon.Close();
-
-                //---------------------------------------------------------------------------------------------------------------------------------
-
-                //Fill Employee / Tenant DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Employee_Tenant_DropDownList.Items.Insert(0, "إختر اسم المستأجر ....");
-
-                //Fill Technical_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Technical_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                Technical_DropDownList.Items.Insert(0, "إختر الفني المسؤول ....");
-
-                //Fill Technical_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Observer_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                Observer_DropDownList.Items.Insert(0, "إختر المراقب  ....");
-
-                Building_Or_unit_DropDownList.Items.Insert(0, "إختر بناء أو وحدة ....");
-                Request_Classification_DropDownList.Items.Insert(0, "إختر صنف الطلب ....");
-                Request_Type_DropDownList.Items.Insert(0, "إختر النوع ....");
-                Order_priority_DropDownList.Items.Insert(0, "إختر مدى العاجلية ....");
-                Danger_Magnitude_DropDownList.Items.Insert(0, "إختر درجة الخطورة ....");
-                Maintenance_Status_DropDownList.Items.Insert(0, "إختر حالة طلب الصيانة ....");
-                Maintenance_Guarantor_DropDownList.Items.Insert(0, "إختر  ....");
-                Executing_Agency_DropDownList.Items.Insert(0, "إختر الجهة المنفذة ....");
-
-                //Fill Maintenance_Type_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty = 0", _sqlCon, Maintenance_Type_DropDownList, "Categoty_AR", "Categoty_Id");
-                Maintenance_Type_DropDownList.Items.Insert(0, "إختر نوع الصيانة ....");
-
-                //Fill Maintenance_Type_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty != 0", _sqlCon, Maintenance_SubType_DropDownList, "Categoty_AR", "Categoty_Id");
-                Maintenance_SubType_DropDownList.Items.Insert(0, "إختر النوع الفرعي للصيانة ....");
-
-                //Fill Asset_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM assets", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
-                Asset_DropDownList.Items.Insert(0, "إختر الاصل ....");
-
-                //Fill Complainte_Source_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "Ar_Requst_Source", "Requst_Source_id");
-                Complainte_Source_DropDownList.SelectedValue = "1";
+                language();
                 txt_Report_Date.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
-
-
                 //--------------------------------------- Fill Maintenance GridView with Added Maintenance --------------------------------------------------------------
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(new DataColumn[15]
@@ -129,21 +70,43 @@ namespace Main_Real_estate.English.Main_Application
             if (Complainte_Source_DropDownList.SelectedValue == "1")
             {
                 Employee_Tenant_Div.Visible = true; Other_Div.Visible=false;
-                lbl_Employee_Tenant.Text = "اسم المستاجر";
+                if (Session["Langues"].ToString() == "1") 
+                {
+                    lbl_Employee_Tenant.Text = "Tenant Name"; 
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    lbl_Employee_Tenant.Text = "اسم المستاجر";
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "..............");
+                }
+                    
 
-                //Fill Employee / Tenant DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Employee_Tenant_DropDownList.Items.Insert(0, "إختر اسم المستأجر ....");
+                
 
             }
             else if (Complainte_Source_DropDownList.SelectedValue == "2")
             {
                 Employee_Tenant_Div.Visible = true; Other_Div.Visible = false;
-                lbl_Employee_Tenant.Text = "اسم الموظف";
-
-                //Fill Employee / Tenant DropDownList
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Tenant_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                Employee_Tenant_DropDownList.Items.Insert(0, "إختر اسم الموظف ....");
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Employee_Tenant.Text = "Employee Name";
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Tenant_DropDownList, "Employee_English_name", "Employee_Id");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    lbl_Employee_Tenant.Text = "اسم الموظف";
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Tenant_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "..............");
+                }
+                
             }
             else
             {
@@ -167,11 +130,23 @@ namespace Main_Real_estate.English.Main_Application
                 sqlDa.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    Building_Name_DropDownList.DataSource = dt;
-                    Building_Name_DropDownList.DataTextField = "Building_Arabic_Name";
-                    Building_Name_DropDownList.DataValueField = "Building_Id";
-                    Building_Name_DropDownList.DataBind();
-                    Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        Building_Name_DropDownList.DataSource = dt;
+                        Building_Name_DropDownList.DataTextField = "Building_English_Name";
+                        Building_Name_DropDownList.DataValueField = "Building_Id";
+                        Building_Name_DropDownList.DataBind();
+                        Building_Name_DropDownList.Items.Insert(0, "..............");
+                    }
+                    else
+                    {
+                        Building_Name_DropDownList.DataSource = dt;
+                        Building_Name_DropDownList.DataTextField = "Building_Arabic_Name";
+                        Building_Name_DropDownList.DataValueField = "Building_Id";
+                        Building_Name_DropDownList.DataBind();
+                        Building_Name_DropDownList.Items.Insert(0, "..............");
+                    }
+                        
                 }
                 Unit_Div.Visible = false;
             }
@@ -188,34 +163,64 @@ namespace Main_Real_estate.English.Main_Application
                 sqlDa.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    Building_Name_DropDownList.DataSource = dt;
-                    Building_Name_DropDownList.DataTextField = "Building_Arabic_Name";
-                    Building_Name_DropDownList.DataValueField = "Building_Id";
-                    Building_Name_DropDownList.DataBind();
-                    Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        Building_Name_DropDownList.DataSource = dt;
+                        Building_Name_DropDownList.DataTextField = "Building_English_Name";
+                        Building_Name_DropDownList.DataValueField = "Building_Id";
+                        Building_Name_DropDownList.DataBind();
+                        Building_Name_DropDownList.Items.Insert(0, "..............");
+                    }
+                    else
+                    {
+                        Building_Name_DropDownList.DataSource = dt;
+                        Building_Name_DropDownList.DataTextField = "Building_Arabic_Name";
+                        Building_Name_DropDownList.DataValueField = "Building_Id";
+                        Building_Name_DropDownList.DataBind();
+                        Building_Name_DropDownList.Items.Insert(0, "..............");
+                    }
                 }
                 Unit_Div.Visible = true;
             }
             else if (Complainte_Source_DropDownList.SelectedValue == "2" && Building_Or_unit_DropDownList.SelectedValue == "1")
             {
-                //Fill Building DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Building DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    //Fill Building DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "..............");
+                }
                 Unit_Div.Visible = false;
             }
             else
             {
-                //Fill Building DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Building DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    //Fill Building DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "..............");
+                }
                 Unit_Div.Visible = true;
             }
         }
         protected void Building_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             //Fill units Name DropDownList
             Helper.LoadDropDownList("SELECT * FROM units where Half !='1' and building_Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
-            Units_DropDownList.Items.Insert(0, "إختر الوحدة ....");
+            Units_DropDownList.Items.Insert(0, "..............");
         }
         //******************  Report_Date ***************************************************
         protected void Report_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
@@ -237,10 +242,19 @@ namespace Main_Real_estate.English.Main_Application
         protected void Maintenance_Type_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             string Maintenance_Type_ID = Maintenance_Type_DropDownList.SelectedValue;
-            //Fill Maintenance_Type_DropDownList
-            Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty='" + Maintenance_Type_ID + "'",
-                _sqlCon, Maintenance_SubType_DropDownList, "Categoty_AR", "Categoty_Id");
-            Maintenance_SubType_DropDownList.Items.Insert(0, "إختر النوع الفرعي للصيانة ....");
+            if (Session["Langues"].ToString() == "1")
+            {
+                //Fill Maintenance_Type_DropDownList
+                Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty='" + Maintenance_Type_ID + "'", _sqlCon, Maintenance_SubType_DropDownList, "Categoty_EN", "Categoty_Id");
+                Maintenance_SubType_DropDownList.Items.Insert(0, "..............");
+            }
+            else
+            {
+                //Fill Maintenance_Type_DropDownList
+                Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty='" + Maintenance_Type_ID + "'", _sqlCon, Maintenance_SubType_DropDownList, "Categoty_AR", "Categoty_Id");
+                Maintenance_SubType_DropDownList.Items.Insert(0, "..............");
+            }
+                
             ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
         }
         //******************  Start_Date ***************************************************
@@ -527,9 +541,20 @@ namespace Main_Real_estate.English.Main_Application
             {
                 string Building_ID = Building_Name_DropDownList.SelectedValue;
                 string MST = Maintenance_SubType_DropDownList.SelectedValue;
-                //Fill Asset_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM assets Where Building_ID = '" + Building_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
-                Asset_DropDownList.Items.Insert(0, "إختر الاصل ....");
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets Where Building_ID = '" + Building_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_English_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets Where Building_ID = '" + Building_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "..............");
+                }
+                    
             }
             else if (Building_Or_unit_DropDownList.SelectedValue == "2")
             {
@@ -541,9 +566,20 @@ namespace Main_Real_estate.English.Main_Application
                 Label3.Text = Unitg_ID;
                 Label4.Text = MST;
 
-                //Fill Asset_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM assets Where Unit_Id = '" + Unitg_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
-                Asset_DropDownList.Items.Insert(0, "إختر الاصل ....");
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets Where Unit_Id = '" + Unitg_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_English_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "..............");
+                }
+                else
+                {
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets Where Unit_Id = '" + Unitg_ID + "' And maintenance_categoty_Categoty_Id = '" + MST + "'", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "..............");
+                }
+                    
             }
             ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
         }
@@ -578,7 +614,7 @@ namespace Main_Real_estate.English.Main_Application
                     maintenance_requestDetailsSda.Fill(maintenance_requestDetailsDt);
                     if (maintenance_requestDetailsDt.Rows[0]["Contractor_Waranty_Period"].ToString() == "" && maintenance_requestDetailsDt.Rows[0]["Waranty_Period"].ToString() == "")
                     {
-                        Maintenance_Guarantor_DropDownList.Items.Insert(0, "إختر  ....");
+                        Maintenance_Guarantor_DropDownList.Items.Insert(0, "..............");
                     }
                     else if (maintenance_requestDetailsDt.Rows[0]["Contractor_Waranty_Period"].ToString() != "" && maintenance_requestDetailsDt.Rows[0]["Waranty_Period"].ToString() == "")
                     {
@@ -594,7 +630,7 @@ namespace Main_Real_estate.English.Main_Application
                         }
                         else
                         {
-                            Maintenance_Guarantor_DropDownList.Items.Insert(0, "إختر  ....");
+                            Maintenance_Guarantor_DropDownList.Items.Insert(0, "..............");
                         }
                     }
                     else if (maintenance_requestDetailsDt.Rows[0]["Contractor_Waranty_Period"].ToString() == "" && maintenance_requestDetailsDt.Rows[0]["Waranty_Period"].ToString() != "")
@@ -611,7 +647,7 @@ namespace Main_Real_estate.English.Main_Application
                         }
                         else
                         {
-                            Maintenance_Guarantor_DropDownList.Items.Insert(0, "إختر  ....");
+                            Maintenance_Guarantor_DropDownList.Items.Insert(0, "..............");
                         }
                     }
                     else
@@ -639,10 +675,402 @@ namespace Main_Real_estate.English.Main_Application
                             }
                             else
                             {
-                                Maintenance_Guarantor_DropDownList.Items.Insert(0, "إختر  ....");
+                                Maintenance_Guarantor_DropDownList.Items.Insert(0, "..............");
                             }
                         }
                     }
+                }
+            }
+            _sqlCon.Close();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_maintenance", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Technical_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Technical_DropDownList, "Employee_English_name", "Employee_Id");
+                    Technical_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Technical_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Observer_DropDownList, "Employee_English_name", "Employee_Id");
+                    Observer_DropDownList.Items.Insert(0, "................");
+
+                    Building_Or_unit_DropDownList.Items.Insert(0, "................");
+                    Request_Classification_DropDownList.Items.Insert(0, "................");
+                    Request_Type_DropDownList.Items.Insert(0, "................");
+                    Order_priority_DropDownList.Items.Insert(0, "................");
+                    Danger_Magnitude_DropDownList.Items.Insert(0, "................");
+                    Maintenance_Status_DropDownList.Items.Insert(0, "................");
+                    Maintenance_Guarantor_DropDownList.Items.Insert(0, "................");
+                    Executing_Agency_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Maintenance_Type_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty = 0", _sqlCon, Maintenance_Type_DropDownList, "Categoty_EN", "Categoty_Id");
+                    Maintenance_Type_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Maintenance_Type_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty != 0", _sqlCon, Maintenance_SubType_DropDownList, "Categoty_EN", "Categoty_Id");
+                    Maintenance_SubType_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets", _sqlCon, Asset_DropDownList, "Assets_English_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Complainte_Source_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "En_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.SelectedValue = "1";
+
+                    //Get Building_Or_unit_DropDownList 
+                    Building_Or_unit_DropDownList.Items.Clear();
+                    Building_Or_unit_DropDownList.Items.Add(new ListItem("Building", "1"));
+                    Building_Or_unit_DropDownList.Items.Add(new ListItem("Unit", "2"));
+                    Building_Or_unit_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Request_Classification_DropDownList 
+                    Request_Classification_DropDownList.Items.Clear();
+                    Request_Classification_DropDownList.Items.Add(new ListItem("Report", "1"));
+                    Request_Classification_DropDownList.Items.Add(new ListItem("Complaint", "2"));
+                    Request_Classification_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Request_Type_DropDownList 
+                    Request_Type_DropDownList.Items.Clear();
+                    Request_Type_DropDownList.Items.Add(new ListItem("Maintenance", "1"));
+                    Request_Type_DropDownList.Items.Add(new ListItem("Cleanliness", "2"));
+                    Request_Type_DropDownList.Items.Add(new ListItem("Breaking The Rules", "3"));
+                    Request_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Order_Direction_DropDownList 
+                    Order_Direction_DropDownList.Items.Clear();
+                    Order_Direction_DropDownList.Items.Add(new ListItem("Censorship", "1"));
+                    Order_Direction_DropDownList.Items.Add(new ListItem("Customer Affairs", "2"));
+                    Order_Direction_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Order_priority_DropDownList 
+                    Order_priority_DropDownList.Items.Clear();
+                    Order_priority_DropDownList.Items.Add(new ListItem("Disable", "1"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("Temporary Inconvenience", "2"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("Transient Nuisance", "3"));
+                    Order_priority_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Danger_Magnitude_DropDownList 
+                    Danger_Magnitude_DropDownList.Items.Clear();
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("Dangerous To Life", "1"));
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("Dangerous To Properties", "2"));
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("Low Risk Risk", "3"));
+                    Danger_Magnitude_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Achievement_Verification_RadioButtonList 
+                    Achievement_Verification_RadioButtonList.Items.Clear();
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("On Hold", "1"));
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("Done", "2"));
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("Under The Procedure", "3"));
+
+                    //Get Maintenance_Status_DropDownList 
+                    Maintenance_Status_DropDownList.Items.Clear();
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("On Hold", "1"));
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("Under The Procedure", "2"));
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("Done", "3"));
+                    Maintenance_Status_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Maintenance_Guarantor_DropDownList 
+                    Maintenance_Guarantor_DropDownList.Items.Clear();
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("Contractor", "1"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("Supplier", "2"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("Owner", "3"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("Client", "4"));
+                    Maintenance_Guarantor_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Executing_Agency_DropDownList 
+                    Executing_Agency_DropDownList.Items.Clear();
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Maintenance Team", "1"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Contractor", "2"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Supplier", "3"));
+                    Executing_Agency_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    lbl_titel_Add_New_Maintenance.Text = Dt.Rows[0]["EN"].ToString();
+                    lbl_Success_Add_New_Maintenance.Text = Dt.Rows[1]["EN"].ToString();
+                    lbl_Complainte_Source.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Employee_Tenant.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_Souorce_Name.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_Building_Or_unit.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_Request_Classification.Text = Dt.Rows[6]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_Units.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Request_Type.Text = Dt.Rows[9]["EN"].ToString();
+                    lbl_Order_Direction.Text = Dt.Rows[10]["EN"].ToString();
+                    lbl_Rreport_Text.Text = Dt.Rows[11]["EN"].ToString();
+                    lbl_Inspection_Report_Description.Text = Dt.Rows[12]["EN"].ToString();
+                    lbl_Order_priority.Text = Dt.Rows[13]["EN"].ToString();
+                    lbl_Danger_Magnitude.Text = Dt.Rows[14]["EN"].ToString();
+                    lbl_Report_Date.Text = Dt.Rows[15]["EN"].ToString();
+                    lbl_Image_One.Text = Dt.Rows[16]["EN"].ToString();
+                    lbl_Image_Two.Text = Dt.Rows[17]["EN"].ToString();
+                    lbl_Achievement_Verification.Text = Dt.Rows[18]["EN"].ToString();
+                    lbl_precaution.Text = Dt.Rows[19]["EN"].ToString();
+                    Add_Maintenace.Text = Dt.Rows[20]["EN"].ToString();
+                    lbl_Maintenance_Status.Text = Dt.Rows[21]["EN"].ToString();
+                    lbl_Maintenance_Type.Text = Dt.Rows[22]["EN"].ToString();
+                    lbl_Maintenance_SubType.Text = Dt.Rows[23]["EN"].ToString();
+                    lbl_Asset.Text = Dt.Rows[24]["EN"].ToString();
+                    lbl_Maintenance_Guarantor.Text = Dt.Rows[25]["EN"].ToString();
+                    lbl_Executing_Agency.Text = Dt.Rows[26]["EN"].ToString();
+                    lbl_Technical.Text = Dt.Rows[27]["EN"].ToString();
+                    lbl_Observer.Text = Dt.Rows[28]["EN"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[29]["EN"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[30]["EN"].ToString();
+                    lbl_Cost.Text = Dt.Rows[31]["EN"].ToString();
+                    btn_Add_Request.Text = Dt.Rows[0]["EN"].ToString();
+                    btn_Back_To_Request_List.Text = Dt.Rows[32]["EN"].ToString();
+                    Report_Date_Chosee.Text = Dt.Rows[33]["EN"].ToString();
+                    Start_Date_Chosee.Text = Dt.Rows[33]["EN"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[33]["EN"].ToString();
+
+                    Complainte_Source_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Employee_Tenant_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Souorce_Name_ReqFieldVali.ErrorMessage = "* Required ";
+                    Building_Or_unit_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Request_Classification_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Units_DropDownList_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Request_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Order_Direction_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Order_priority_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Danger_Magnitude_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Maintenance_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Maintenance_SubType_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Asset_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Maintenance_Guarantor_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Executing_Agency_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Technical_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Observer_RequiredFieldValidator.ErrorMessage = "* Required ";
+
+                    Start_Date_RegularExpressionValidator.ErrorMessage = " dd/MM/yyyy ";
+                    End_Date_RegularExpressionValidator.ErrorMessage = " dd/MM/yyyy  ";
+
+
+
+
+                    Maintenance_GridView.Columns[1].HeaderText = Dt.Rows[22]["EN"].ToString();
+                    Maintenance_GridView.Columns[2].HeaderText = Dt.Rows[23]["EN"].ToString();
+                    Maintenance_GridView.Columns[4].HeaderText = Dt.Rows[24]["EN"].ToString();
+                    Maintenance_GridView.Columns[6].HeaderText = Dt.Rows[25]["EN"].ToString();
+                    Maintenance_GridView.Columns[7].HeaderText = Dt.Rows[26]["EN"].ToString();
+                    Maintenance_GridView.Columns[8].HeaderText = Dt.Rows[27]["EN"].ToString();
+                    Maintenance_GridView.Columns[10].HeaderText = Dt.Rows[28]["EN"].ToString();
+                    Maintenance_GridView.Columns[12].HeaderText = Dt.Rows[29]["EN"].ToString();
+                    Maintenance_GridView.Columns[13].HeaderText = Dt.Rows[30]["EN"].ToString();
+                    Maintenance_GridView.Columns[14].HeaderText = Dt.Rows[31]["EN"].ToString();
+                    Maintenance_GridView.Columns[15].HeaderText = Dt.Rows[21]["EN"].ToString();
+                }
+                else
+                {
+
+                    //Fill Employee / Tenant DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Employee_Tenant_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Employee_Tenant_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Technical_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Technical_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Technical_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Technical_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Observer_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Observer_DropDownList.Items.Insert(0, "................");
+
+                    Building_Or_unit_DropDownList.Items.Insert(0, "................");
+                    Request_Classification_DropDownList.Items.Insert(0, "................");
+                    Request_Type_DropDownList.Items.Insert(0, "................");
+                    Order_priority_DropDownList.Items.Insert(0, "................");
+                    Danger_Magnitude_DropDownList.Items.Insert(0, "................");
+                    Maintenance_Status_DropDownList.Items.Insert(0, "................");
+                    Maintenance_Guarantor_DropDownList.Items.Insert(0, "................");
+                    Executing_Agency_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Maintenance_Type_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty = 0", _sqlCon, Maintenance_Type_DropDownList, "Categoty_AR", "Categoty_Id");
+                    Maintenance_Type_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Maintenance_Type_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty Where Main_Categoty != 0", _sqlCon, Maintenance_SubType_DropDownList, "Categoty_AR", "Categoty_Id");
+                    Maintenance_SubType_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Asset_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM assets", _sqlCon, Asset_DropDownList, "Assets_Arabic_Name", "Assets_Id");
+                    Asset_DropDownList.Items.Insert(0, "................");
+
+                    //Fill Complainte_Source_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "Ar_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.SelectedValue = "1";
+
+                    //Get Building_Or_unit_DropDownList 
+                    Building_Or_unit_DropDownList.Items.Clear();
+                    Building_Or_unit_DropDownList.Items.Add(new ListItem("بناء", "1"));
+                    Building_Or_unit_DropDownList.Items.Add(new ListItem("وحدة", "2"));
+                    Building_Or_unit_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Request_Classification_DropDownList 
+                    Request_Classification_DropDownList.Items.Clear();
+                    Request_Classification_DropDownList.Items.Add(new ListItem("بلاغ", "1"));
+                    Request_Classification_DropDownList.Items.Add(new ListItem("شكوى", "2"));
+                    Request_Classification_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Request_Type_DropDownList 
+                    Request_Type_DropDownList.Items.Clear();
+                    Request_Type_DropDownList.Items.Add(new ListItem("صيانة", "1"));
+                    Request_Type_DropDownList.Items.Add(new ListItem("نظافة", "2"));
+                    Request_Type_DropDownList.Items.Add(new ListItem("مخالفة", "3"));
+                    Request_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Order_Direction_DropDownList 
+                    Order_Direction_DropDownList.Items.Clear();
+                    Order_Direction_DropDownList.Items.Add(new ListItem("الرقابة", "1"));
+                    Order_Direction_DropDownList.Items.Add(new ListItem("شؤون العملاء", "2"));
+                    Order_Direction_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Order_priority_DropDownList 
+                    Order_priority_DropDownList.Items.Clear();
+                    Order_priority_DropDownList.Items.Add(new ListItem("Disable", "1"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("Temporary Inconvenience", "2"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("Transient Nuisance", "3"));
+                    Order_priority_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Danger_Magnitude_DropDownList 
+                    Danger_Magnitude_DropDownList.Items.Clear();
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("خطورة على الحياة", "1"));
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("خطورة على الممتلكات", "2"));
+                    Danger_Magnitude_DropDownList.Items.Add(new ListItem("خطورة قليلة الإحتمالية", "3"));
+                    Danger_Magnitude_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Achievement_Verification_RadioButtonList 
+                    Achievement_Verification_RadioButtonList.Items.Clear();
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("معلق", "1"));
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("منجز", "2"));
+                    Achievement_Verification_RadioButtonList.Items.Add(new ListItem("تحت الإجراء", "3"));
+
+                    //Get Maintenance_Status_DropDownList 
+                    Maintenance_Status_DropDownList.Items.Clear();
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("معلق", "1"));
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("تحت الإجراء", "2"));
+                    Maintenance_Status_DropDownList.Items.Add(new ListItem("منجز", "3"));
+                    Maintenance_Status_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Maintenance_Guarantor_DropDownList 
+                    Maintenance_Guarantor_DropDownList.Items.Clear();
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("مقاول", "1"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("مورد", "2"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("مالك", "3"));
+                    Maintenance_Guarantor_DropDownList.Items.Add(new ListItem("عميل", "4"));
+                    Maintenance_Guarantor_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Executing_Agency_DropDownList 
+                    Executing_Agency_DropDownList.Items.Clear();
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Maintenance Team", "1"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Contractor", "2"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("Supplier", "3"));
+                    Executing_Agency_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    lbl_titel_Add_New_Maintenance.Text = Dt.Rows[0]["AR"].ToString();
+                    lbl_Success_Add_New_Maintenance.Text = Dt.Rows[1]["AR"].ToString();
+                    lbl_Complainte_Source.Text = Dt.Rows[2]["AR"].ToString();
+                    lbl_Employee_Tenant.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_Souorce_Name.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_Building_Or_unit.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_Request_Classification.Text = Dt.Rows[6]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_Units.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Request_Type.Text = Dt.Rows[9]["AR"].ToString();
+                    lbl_Order_Direction.Text = Dt.Rows[10]["AR"].ToString();
+                    lbl_Rreport_Text.Text = Dt.Rows[11]["AR"].ToString();
+                    lbl_Inspection_Report_Description.Text = Dt.Rows[12]["AR"].ToString();
+                    lbl_Order_priority.Text = Dt.Rows[13]["AR"].ToString();
+                    lbl_Danger_Magnitude.Text = Dt.Rows[14]["AR"].ToString();
+                    lbl_Report_Date.Text = Dt.Rows[15]["AR"].ToString();
+                    lbl_Image_One.Text = Dt.Rows[16]["AR"].ToString();
+                    lbl_Image_Two.Text = Dt.Rows[17]["AR"].ToString();
+                    lbl_Achievement_Verification.Text = Dt.Rows[18]["AR"].ToString();
+                    lbl_precaution.Text = Dt.Rows[19]["AR"].ToString();
+                    Add_Maintenace.Text = Dt.Rows[20]["AR"].ToString();
+                    lbl_Maintenance_Status.Text = Dt.Rows[21]["AR"].ToString();
+                    lbl_Maintenance_Type.Text = Dt.Rows[22]["AR"].ToString();
+                    lbl_Maintenance_SubType.Text = Dt.Rows[23]["AR"].ToString();
+                    lbl_Asset.Text = Dt.Rows[24]["AR"].ToString();
+                    lbl_Maintenance_Guarantor.Text = Dt.Rows[25]["AR"].ToString();
+                    lbl_Executing_Agency.Text = Dt.Rows[26]["AR"].ToString();
+                    lbl_Technical.Text = Dt.Rows[27]["AR"].ToString();
+                    lbl_Observer.Text = Dt.Rows[28]["AR"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[29]["AR"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[30]["AR"].ToString();
+                    lbl_Cost.Text = Dt.Rows[31]["AR"].ToString();
+                    btn_Add_Request.Text = Dt.Rows[0]["AR"].ToString();
+                    btn_Back_To_Request_List.Text = Dt.Rows[32]["AR"].ToString();
+                    Report_Date_Chosee.Text = Dt.Rows[33]["AR"].ToString();
+                    Start_Date_Chosee.Text = Dt.Rows[33]["AR"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[33]["AR"].ToString();
+
+                    Complainte_Source_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Employee_Tenant_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Souorce_Name_ReqFieldVali.ErrorMessage = "* مطلوب ";
+                    Building_Or_unit_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Request_Classification_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Units_DropDownList_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Request_Type_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Order_Direction_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Order_priority_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Danger_Magnitude_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Maintenance_Type_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Maintenance_SubType_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Asset_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Maintenance_Guarantor_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Executing_Agency_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Technical_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Observer_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+
+                    Start_Date_RegularExpressionValidator.ErrorMessage = " dd/MM/yyyy ";
+                    End_Date_RegularExpressionValidator.ErrorMessage = " dd/MM/yyyy  ";
+
+
+                    Maintenance_GridView.Columns[1].HeaderText = Dt.Rows[22]["AR"].ToString();
+                    Maintenance_GridView.Columns[2].HeaderText = Dt.Rows[23]["AR"].ToString();
+                    Maintenance_GridView.Columns[4].HeaderText = Dt.Rows[24]["AR"].ToString();
+                    Maintenance_GridView.Columns[6].HeaderText = Dt.Rows[25]["AR"].ToString();
+                    Maintenance_GridView.Columns[7].HeaderText = Dt.Rows[26]["AR"].ToString();
+                    Maintenance_GridView.Columns[8].HeaderText = Dt.Rows[27]["AR"].ToString();
+                    Maintenance_GridView.Columns[10].HeaderText = Dt.Rows[28]["AR"].ToString();
+                    Maintenance_GridView.Columns[12].HeaderText = Dt.Rows[29]["AR"].ToString();
+                    Maintenance_GridView.Columns[13].HeaderText = Dt.Rows[30]["AR"].ToString();
+                    Maintenance_GridView.Columns[14].HeaderText = Dt.Rows[31]["AR"].ToString();
+                    Maintenance_GridView.Columns[15].HeaderText = Dt.Rows[21]["AR"].ToString();
                 }
             }
             _sqlCon.Close();

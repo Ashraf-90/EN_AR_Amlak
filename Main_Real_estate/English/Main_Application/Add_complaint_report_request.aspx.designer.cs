@@ -51,15 +51,6 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Success_Add_New_Maintenance;
 
         /// <summary>
-        /// txt_Dtl_Employee_Name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt_Dtl_Employee_Name;
-
-        /// <summary>
         /// lbl_Complainte_Source control.
         /// </summary>
         /// <remarks>
@@ -150,13 +141,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Souorce_Name;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Souorce_Name_ReqFieldVali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Souorce_Name_ReqFieldVali;
 
         /// <summary>
         /// lbl_Building_Or_unit control.
@@ -501,13 +492,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.FileUpload Image_Befor_FileUpload;
 
         /// <summary>
-        /// Label5 control.
+        /// lbl_Image_Two control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lbl_Image_Two;
 
         /// <summary>
         /// Image_After_FileUpload control.
@@ -564,22 +555,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Panel Maintenance_Panel;
 
         /// <summary>
-        /// Label1 control.
+        /// Add_Maintenace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Add_Maintenace;
 
         /// <summary>
         /// lbl_Maintenance_Status control.
@@ -816,6 +798,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Start_Date;
 
         /// <summary>
+        /// Start_Date_RegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Start_Date_RegularExpressionValidator;
+
+        /// <summary>
         /// txt_Start_Date control.
         /// </summary>
         /// <remarks>
@@ -877,6 +868,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_End_Date;
+
+        /// <summary>
+        /// End_Date_RegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator End_Date_RegularExpressionValidator;
 
         /// <summary>
         /// txt_End_Date control.

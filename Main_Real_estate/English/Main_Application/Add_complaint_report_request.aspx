@@ -58,16 +58,7 @@
             <div class="col-lg-12">
                 <div class="card mb-12">
                     <div class="card-body">
-                        <div class="row" style="height: 30px;">
-                            <div class="col-lg">
-                                <div class="form-group">
-                                    <asp:Label ID="txt_Dtl_Employee_Name" runat="server" Font-Size="25px"></asp:Label><hr />
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <%--------------------------------------------------------------------------------------------------------%>
-                        <div class="row" style="height: 75px;">
+                        <div class="row" >
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Complainte_Source" runat="server" Text="مصدر الطلب"></asp:Label>
@@ -75,7 +66,7 @@
                                         OnSelectedIndexChanged="Complainte_Source_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Complainte_Source_RequiredFieldValidator" ValidationGroup="Maintenance_RequiredField"
-                                        ControlToValidate="Complainte_Source_DropDownList" InitialValue="إختر مصدر الطلب ...." runat="server"
+                                        ControlToValidate="Complainte_Source_DropDownList" InitialValue="..............." runat="server"
                                         ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -86,7 +77,7 @@
                                     <asp:DropDownList ID="Employee_Tenant_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Employee_Tenant_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Employee_Tenant_RequiredFieldValidator" ValidationGroup="Maintenance_RequiredField"
-                                        ControlToValidate="Employee_Tenant_DropDownList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
+                                        InitialValue="..............." ControlToValidate="Employee_Tenant_DropDownList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -96,7 +87,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Souorce_Name" runat="server" Text="اسم المصدر"></asp:Label>
                                     <asp:TextBox ID="txt_Souorce_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Maintenance_RequiredField"
+                                    <asp:RequiredFieldValidator ID="Souorce_Name_ReqFieldVali" ValidationGroup="Maintenance_RequiredField"
                                         ControlToValidate="txt_Souorce_Name" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -107,12 +98,9 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Building_Or_unit" runat="server" Text="نوع الموقع"></asp:Label>
                                     <asp:DropDownList ID="Building_Or_unit_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" Enabled="false"
-                                        OnSelectedIndexChanged="Building_Or_unit_DropDownList_SelectedIndexChanged">
-                                        <asp:ListItem Value="1" Text="بناء"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="وحدة"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    OnSelectedIndexChanged="Building_Or_unit_DropDownList_SelectedIndexChanged"> </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Or_unit_RequiredFieldValidator" ControlToValidate="Building_Or_unit_DropDownList"
-                                        InitialValue="إختر بناء أو وحدة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -125,20 +113,20 @@
                                         <asp:ListItem Value="2" Text="شكوى"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Request_Classification_RequiredFieldValidator" ControlToValidate="Request_Classification_DropDownList"
-                                        InitialValue="إختر صنف الطلب ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
                         <%--------------------------------------------------------------------------------------------------------%>
-                        <div class="row" style="height: 75px;">
+                        <div class="row" >
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Building_Name" runat="server" Text="اسم البناء"></asp:Label>
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم البناء ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -149,7 +137,7 @@
                                     <asp:DropDownList ID="Units_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Units_DropDownList_RequiredFieldValidator" ControlToValidate="Units_DropDownList"
-                                        InitialValue="إختر الوحدة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -160,12 +148,9 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Request_Type" runat="server" Text="النوع"></asp:Label>
                                     <asp:DropDownList ID="Request_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Request_Type_DropDownList_SelectedIndexChanged">
-                                        <asp:ListItem Value="1" Text="صيانة"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="نظافة"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="مخالفة"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Request_Type_RequiredFieldValidator" ControlToValidate="Request_Type_DropDownList"
-                                        InitialValue="إختر النوع ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -173,18 +158,15 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Order_Direction" runat="server" Text="توجيه الطلب"></asp:Label>
-                                    <asp:DropDownList ID="Order_Direction_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="الرقابة"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="شؤون العملاء"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Order_Direction_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Order_Direction_RequiredFieldValidator" ControlToValidate="Order_Direction_DropDownList"
-                                        InitialValue="إختر توجيه البلاغ ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
                         <%--------------------------------------------------------------------------------------------------------%>
-                         <div class="row" style="height: 75px;">
+                         <div class="row">
                              <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Rreport_Text" runat="server" Text=" نص الطلب"></asp:Label>&nbsp;
@@ -206,13 +188,9 @@
                                     <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Order_priority" runat="server" Text="مدى العاجلية "></asp:Label>
-                                    <asp:DropDownList ID="Order_priority_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="تعطيل"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="إزعاج مؤقت"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="إزعاج عابر"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Order_priority_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Order_priority_RequiredFieldValidator" ControlToValidate="Order_priority_DropDownList"
-                                        InitialValue="إختر مدى العاجلية ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -221,12 +199,9 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Danger_Magnitude" runat="server" Text="درجة الخطورة "></asp:Label>
                                     <asp:DropDownList ID="Danger_Magnitude_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="خطورة على الحياة"></asp:ListItem>
-                                         <asp:ListItem Value="2" Text="خطورة على الممتلكات"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="خطورة قليلة الإحتمالية"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Danger_Magnitude_RequiredFieldValidator" ControlToValidate="Danger_Magnitude_DropDownList"
-                                        InitialValue="إختر درجة الخطورة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -276,7 +251,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="Label5" runat="server" Text="تحميل صورة بعد"></asp:Label>
+                                    <asp:Label ID="lbl_Image_Two" runat="server" Text="تحميل صورة بعد"></asp:Label>
                                     <asp:FileUpload ID="Image_After_FileUpload" runat="server" CssClass="form-control" />
                                 </div>
                             </div>
@@ -287,11 +262,7 @@
                             <div class="col-lg-6">
                                 <asp:Label ID="lbl_Achievement_Verification" runat="server" Text="التحقق من الإنجاز"></asp:Label>
                                 <div style="border-style: solid; border-width: 1px; height: 50px">
-                                    <asp:RadioButtonList ID="Achievement_Verification_RadioButtonList" RepeatDirection="Horizontal" runat="server" CellPadding="20">
-                                        <asp:ListItem Value="1" Selected="True" Text="&nbsp; معلق  "></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="&nbsp; تم أنجازه "></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="&nbsp; تحت الإجراء "></asp:ListItem>
-                                    </asp:RadioButtonList>
+                                    <asp:RadioButtonList ID="Achievement_Verification_RadioButtonList" RepeatDirection="Horizontal" runat="server" CellPadding="20"></asp:RadioButtonList>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -312,8 +283,7 @@
         <div class="container-fluid" id="container-wrapper_2">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="Label1" runat="server" Text="إضافة طلب صيانة"></asp:Label>&nbsp;
-                <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>
+                    <asp:Label ID="Add_Maintenace" runat="server" Text="إضافة طلب صيانة"></asp:Label>&nbsp;
                 </h1>
             </div>
             <%--------------------------------------------------------------------------------------------------------%>
@@ -325,13 +295,9 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Maintenance_Status" runat="server" Text="حالة طلب الصيانة "></asp:Label>
-                                        <asp:DropDownList ID="Maintenance_Status_DropDownList" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="1" Text="معلق"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="قيد التنفيذ"></asp:ListItem>
-                                            <asp:ListItem Value="3" Text="منتهي"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Maintenance_Status_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Maintenance_Status_RequiredFieldValidator" ControlToValidate="Maintenance_Status_DropDownList"
-                                            InitialValue="إختر حالة طلب الصيانة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -342,7 +308,7 @@
                                         <asp:DropDownList ID="Maintenance_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Maintenance_Type_DropDownList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Maintenance_Type_RequiredFieldValidator" ControlToValidate="Maintenance_Type_DropDownList"
-                                            InitialValue="إختر نوع الصيانة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -353,7 +319,7 @@
                                         <asp:DropDownList ID="Maintenance_SubType_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Maintenance_SubType_DropDownList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Maintenance_SubType_RequiredFieldValidator" ControlToValidate="Maintenance_SubType_DropDownList"
-                                            InitialValue="إختر النوع الفرعي للصيانة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -364,7 +330,7 @@
                                         <asp:DropDownList ID="Asset_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Asset_DropDownList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Asset_RequiredFieldValidator" ControlToValidate="Asset_DropDownList"
-                                            InitialValue="إختر الاصل ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -376,14 +342,9 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Maintenance_Guarantor" runat="server" Text="تحميل التكلفة على "></asp:Label>
-                                        <asp:DropDownList ID="Maintenance_Guarantor_DropDownList" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="1" Text="المقاول"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="الموّرد"></asp:ListItem>
-                                            <asp:ListItem Value="3" Text="المالك"></asp:ListItem>
-                                            <asp:ListItem Value="4" Text="العميل"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Maintenance_Guarantor_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Maintenance_Guarantor_RequiredFieldValidator" ControlToValidate="Maintenance_Guarantor_DropDownList"
-                                            InitialValue="إختر  ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -391,13 +352,9 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Executing_Agency" runat="server" Text="الجهة المنفذة"></asp:Label>
-                                        <asp:DropDownList ID="Executing_Agency_DropDownList" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="1" Text="فريق الصيانة"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="المقاول"></asp:ListItem>
-                                            <asp:ListItem Value="3" Text="الموّرد"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Executing_Agency_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Executing_Agency_RequiredFieldValidator" ControlToValidate="Executing_Agency_DropDownList"
-                                            InitialValue="إختر الجهة المنفذة ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -409,10 +366,9 @@
                                 <div class="col-lg">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Technical" runat="server" Text="الفني المسؤول "></asp:Label>
-                                        <asp:DropDownList ID="Technical_DropDownList" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Technical_DropDownList" runat="server" CssClass="form-control"> </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Technical_RequiredFieldValidator" ControlToValidate="Technical_DropDownList"
-                                            InitialValue="إختر الفني المسؤول ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -420,10 +376,9 @@
                                 <div class="col-lg">
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Observer" runat="server" Text="المراقب"></asp:Label>
-                                        <asp:DropDownList ID="Observer_DropDownList" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="Observer_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="Observer_RequiredFieldValidator" ControlToValidate="Observer_DropDownList"
-                                            InitialValue="إختر المراقب  ...." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                            InitialValue=".............." runat="server" ValidationGroup="Maintenance_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -433,7 +388,7 @@
                                         <ContentTemplate>
                                             <asp:Label ID="lbl_Start_Date" runat="server" Text="تاريخ البدء"></asp:Label>&nbsp;
 
-                                            <asp:RegularExpressionValidator runat="server" ControlToValidate="txt_Start_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                            <asp:RegularExpressionValidator ID="Start_Date_RegularExpressionValidator" runat="server" ControlToValidate="txt_Start_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
                                             ErrorMessage="يجب أن يكون التاريخ بالنمط:  dd/MM/yyyy" ValidationGroup="Maintenance_RequiredField"  ForeColor="#fc544b"/>
 
                                              <asp:TextBox ID="txt_Start_Date" runat="server" CssClass="form-control"></asp:TextBox>
@@ -465,7 +420,7 @@
                                         <ContentTemplate>
                                             <asp:Label ID="lbl_End_Date" runat="server" Text="تاريخ الإنتهاء"></asp:Label>&nbsp;
 
-                                            <asp:RegularExpressionValidator runat="server" ControlToValidate="txt_End_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                            <asp:RegularExpressionValidator runat="server" ID="End_Date_RegularExpressionValidator"  ControlToValidate="txt_End_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
                                             ErrorMessage="يجب أن يكون التاريخ بالنمط:  dd/MM/yyyy" ValidationGroup="Maintenance_RequiredField"  ForeColor="#fc544b"/>
 
                                             <asp:TextBox ID="txt_End_Date" runat="server" CssClass="form-control"></asp:TextBox>
@@ -495,10 +450,6 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Cost" runat="server" Text="التكلفة"></asp:Label>&nbsp;
                                         <asp:TextBox ID="txt_Cost"  runat="server" CssClass="form-control"></asp:TextBox>
-                                        <%--<asp:RequiredFieldValidator ID="Inspection_Report_Description_RequiredFieldValidator"
-                                            ValidationGroup="Maintenance_RequiredField" ControlToValidate="txt_Inspection_Report_Description"
-                                            runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                        </asp:RequiredFieldValidator>--%>
                                     </div>
                             </div>
                             </div>
@@ -512,32 +463,32 @@
                                             <Columns>
                                                 <asp:TemplateField HeaderText="#" ItemStyle-Width="10">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" /><%--0--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:BoundField DataField="Maintenance_Type" HeaderText="نوع الصيانة" ItemStyle-Width="120" />
+                                                <asp:BoundField DataField="Maintenance_Type" HeaderText="نوع الصيانة" ItemStyle-Width="120" /><%--1--%>
 
-                                                <asp:BoundField DataField="Maintenance_SubType" HeaderText="النوع الفرعي للصيانة" ItemStyle-Width="120" />
-                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="maintenance_subtypes_Maintenance_Subtypes_Id" HeaderText="" />
+                                                <asp:BoundField DataField="Maintenance_SubType" HeaderText="النوع الفرعي للصيانة" ItemStyle-Width="120" /><%--2--%>
+                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="maintenance_subtypes_Maintenance_Subtypes_Id" HeaderText="" /><%--3--%>
 
-                                                <asp:BoundField DataField="Asset" HeaderText="الأصل" ItemStyle-Width="120" />
-                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="assets_Assets_Id" HeaderText="" />
+                                                <asp:BoundField DataField="Asset" HeaderText="الأصل" ItemStyle-Width="120" /><%--4--%>
+                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="assets_Assets_Id" HeaderText="" /><%--5--%>
 
-                                                <asp:BoundField DataField="Cost_Direction" HeaderText="الجهة المعنية بالتكلفة" />
-                                                <asp:BoundField DataField="Executing_Agency" HeaderText="الجهة المنفذة" />
+                                                <asp:BoundField DataField="Cost_Direction" HeaderText="الجهة المعنية بالتكلفة" /><%--6--%>
+                                                <asp:BoundField DataField="Executing_Agency" HeaderText="الجهة المنفذة" /><%--7--%>
 
-                                                <asp:BoundField DataField="technical" HeaderText="الفني المسؤول" ItemStyle-Width="120" />
-                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="Technical_ID" HeaderText="" />
+                                                <asp:BoundField DataField="technical" HeaderText="الفني المسؤول" ItemStyle-Width="120" /><%--8--%>
+                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="Technical_ID" HeaderText="" /><%--9--%>
 
-                                                <asp:BoundField DataField="watcher" HeaderText="المراقب" ItemStyle-Width="120" />
-                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="Watcher_ID" HeaderText="" />
+                                                <asp:BoundField DataField="watcher" HeaderText="المراقب" ItemStyle-Width="120" /><%--10--%>
+                                                <asp:BoundField ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" DataField="Watcher_ID" HeaderText="" /><%--11--%>
 
-                                                <asp:BoundField DataField="Start_Date" HeaderText="تاريخ البدء" />
-                                                <asp:BoundField DataField="End_Date" HeaderText="تاريخ الانتهاء" />
-                                                <asp:BoundField DataField="Cost" HeaderText=" التكلفة" />
+                                                <asp:BoundField DataField="Start_Date" HeaderText="تاريخ البدء" /><%--12--%>
+                                                <asp:BoundField DataField="End_Date" HeaderText="تاريخ الانتهاء" /><%--13--%>
+                                                <asp:BoundField DataField="Cost" HeaderText=" التكلفة" /><%--14--%>
 
-                                                <asp:BoundField DataField="Act" HeaderText=" حالة الطلب" />
+                                                <asp:BoundField DataField="Act" HeaderText=" حالة الطلب" /><%--15--%>
 
                                                 <%-------------------------------------------------------------------------------------------------%>
                                                 <asp:CommandField ItemStyle-Width="10px" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Calander_Close.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
