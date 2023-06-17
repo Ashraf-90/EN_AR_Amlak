@@ -24,6 +24,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
 
         /// <summary>
+        /// lbl_A_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_1;
+
+        /// <summary>
         /// A_2 control.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
 
         /// <summary>
+        /// lbl_A_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_2;
+
+        /// <summary>
         /// A_3 control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
+
+        /// <summary>
+        /// lbl_A_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_A_3;
 
         /// <summary>
         /// lbl_Ownershi_Code control.

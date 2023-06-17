@@ -173,7 +173,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="Contract_List.aspx"><asp:Label runat="server" ID="lbl_Contract_List" Font-Size="15px"/></a>
-              <a class="collapse-item" href="New_Rental_Disclosure.aspx"><asp:Label runat="server" ID="lbl_Rental_Disclosure" Font-Size="15px"/></a>
+              <a class="collapse-item" href="Rental_Disclosure_test.aspx"><asp:Label runat="server" ID="lbl_Rental_Disclosure" Font-Size="15px"/></a>
               <a class="collapse-item" href="Contract_Arcive.aspx"><asp:Label runat="server" ID="lbl_Contract_Arcive" Font-Size="15px"/></a>
               
           </div>

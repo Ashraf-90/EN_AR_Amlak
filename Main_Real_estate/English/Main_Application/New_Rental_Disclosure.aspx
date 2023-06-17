@@ -125,7 +125,7 @@
                       <asp:Button ID="Rental_Unit_Excel" runat="server" Visible="false" Text="Excel" OnClick="Button1_Click" CssClass="btn btn-secondary right-spaced"/>
           
                             <div class="col-lg-12 ">
-                                <asp:Repeater ID="OWnershi_Repeater" runat="server">
+                                <asp:Repeater ID="OWnershi_Repeater" runat="server" OnItemDataBound="OWnershi_Repeater_ItemDataBound">
                                     <ItemTemplate>
                                         <div style="padding: 10px">
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("owner_ship_Code") %>' Font-Size="20px" Font-Bold="true"></asp:Label>
@@ -135,10 +135,12 @@
                                                         <th style="background-color: #0779c9; color: white; font-size: 16px" >
                                                             <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></th>
                                                         <th colspan="15" style="background-color: #0779c9; color: white;font-size: 16px">
-                                                            <asp:Label ID="lbl_Ownersihp_Id" runat="server" Text='<%# Eval("Owner_Ship_Id") %>' Visible="false"></asp:Label>
-                                                            <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:Label>&nbsp;&nbsp;&nbsp;
-                                                            <asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>'></asp:Label>&nbsp;&nbsp;- المالك :&nbsp;
-                                                            <asp:Label ID="lbl_Owner_Arabic_name" runat="server" Text='<%# Eval("Owner_Arabic_name") %>'></asp:Label>&nbsp;&nbsp;- بشارع :&nbsp;
+                                                            <asp:Label ID="lbl_Ownersihp_Id" runat="server" Text='<%# Eval("Owner_Ship_Id") %>'></asp:Label>
+                                                            <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:Label>
+                                                            <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>'></asp:Label>&nbsp;&nbsp;&nbsp;
+                                                            <asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>'></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_Owner_Name" runat="server"/>&nbsp;
+                                                            <asp:Label ID="lbl_Owner_Arabic_name" runat="server" Text='<%# Eval("Owner_Arabic_name") %>'></asp:Label>
+                                                            <asp:Label ID="lbl_Owner_English_name" runat="server" Text='<%# Eval("Owner_English_name") %>'></asp:Label>&nbsp;&nbsp;<asp:Label ID="lbl_Street" runat="server"/>&nbsp;
                                                             <asp:Label ID="lbl_Street_Name" runat="server" Text='<%# Eval("Street_Name") %>'></asp:Label>
                                                             <asp:Label ID="lbl_Street_NO" runat="server" Text='<%# Eval("Street_NO") %>'></asp:Label>
                                                         </th>

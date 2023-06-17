@@ -15,6 +15,15 @@ namespace Main_Real_estate.English.Main_Application
     {
 
         /// <summary>
+        /// lbl_titel_Rentals_List control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Rentals_List;
+
+        /// <summary>
         /// A_3 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Quari;
+
+        /// <summary>
+        /// U_C_Span control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl U_C_Span;
 
         /// <summary>
         /// lbl_titelt control.

@@ -440,5 +440,30 @@ namespace Main_Real_estate.English.Main_Application
             B_Building_Repeater_DataBinder();
             B_Body_Repeater_DataBinder();
         }
+
+        protected void OWnershi_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Owner_Ship_AR_Name = e.Item.FindControl("lbl_Owner_Ship_AR_Name") as Label;
+                var lbl_Owner_Ship_EN_Name = e.Item.FindControl("lbl_Owner_Ship_EN_Name") as Label;
+                var lbl_Owner_Arabic_name = e.Item.FindControl("lbl_Owner_Arabic_name") as Label;
+                var lbl_Owner_English_name = e.Item.FindControl("lbl_Owner_English_name") as Label;
+                var lbl_Owner_Name = e.Item.FindControl("lbl_Owner_Name") as Label;
+                var lbl_Street = e.Item.FindControl("lbl_Street") as Label;
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Owner_Ship_AR_Name.Visible = false; lbl_Owner_Ship_EN_Name.Visible = true;
+                    lbl_Owner_Arabic_name.Visible = false; lbl_Owner_English_name.Visible = true;
+                    lbl_Owner_Name.Text = "Owner :"; lbl_Street.Text = "In Street :";
+                }
+                else
+                {
+                    lbl_Owner_Ship_AR_Name.Visible = true; lbl_Owner_Ship_EN_Name.Visible = false;
+                    lbl_Owner_Arabic_name.Visible = true; lbl_Owner_English_name.Visible = false;
+                    lbl_Owner_Name.Text = "المالك :"; lbl_Street.Text = "في شارع :";
+                }
+            }
+        }
     }
 }
