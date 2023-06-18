@@ -750,7 +750,6 @@
                         <%--******************************************************************** Cheque Input Feild *******************************************************************************************--%>
                         <div calss="row">
                             <div class="row" style="overflow-x: auto;" runat="server" id="Cheque_Div">
-                                <h4>إضافة شيك</h4>
                                 &nbsp;&nbsp;
                                 <asp:Label ID="lbl_Worrnig_Cheque"  runat="server" ForeColor="Red" Visible="false"></asp:Label>
                                 <div class="col-lg-12">

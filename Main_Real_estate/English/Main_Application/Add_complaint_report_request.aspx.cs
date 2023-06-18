@@ -743,7 +743,10 @@ namespace Main_Real_estate.English.Main_Application
                     Asset_DropDownList.Items.Insert(0, "................");
 
                     //Fill Complainte_Source_DropDownList
-                    Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "En_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.Items.Clear();
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Tenant", "1"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Censorship", "2"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Other", "3"));
                     Complainte_Source_DropDownList.SelectedValue = "1";
 
                     //Get Building_Or_unit_DropDownList 
@@ -927,7 +930,10 @@ namespace Main_Real_estate.English.Main_Application
                     Asset_DropDownList.Items.Insert(0, "................");
 
                     //Fill Complainte_Source_DropDownList
-                    Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "Ar_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.Items.Clear();
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("عميل", "1"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("رقابة", "2"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("أخرى", "3"));
                     Complainte_Source_DropDownList.SelectedValue = "1";
 
                     //Get Building_Or_unit_DropDownList 
@@ -957,9 +963,9 @@ namespace Main_Real_estate.English.Main_Application
 
                     //Get Order_priority_DropDownList 
                     Order_priority_DropDownList.Items.Clear();
-                    Order_priority_DropDownList.Items.Add(new ListItem("Disable", "1"));
-                    Order_priority_DropDownList.Items.Add(new ListItem("Temporary Inconvenience", "2"));
-                    Order_priority_DropDownList.Items.Add(new ListItem("Transient Nuisance", "3"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("تعطيل", "1"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("إزعاج مؤقت", "2"));
+                    Order_priority_DropDownList.Items.Add(new ListItem("إزعاج عابر", "3"));
                     Order_priority_DropDownList.Items.Insert(0, "...............");
 
                     //Get Danger_Magnitude_DropDownList 
@@ -992,9 +998,9 @@ namespace Main_Real_estate.English.Main_Application
 
                     //Get Executing_Agency_DropDownList 
                     Executing_Agency_DropDownList.Items.Clear();
-                    Executing_Agency_DropDownList.Items.Add(new ListItem("Maintenance Team", "1"));
-                    Executing_Agency_DropDownList.Items.Add(new ListItem("Contractor", "2"));
-                    Executing_Agency_DropDownList.Items.Add(new ListItem("Supplier", "3"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("فريق الصيانة", "1"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("مقاول", "2"));
+                    Executing_Agency_DropDownList.Items.Add(new ListItem("مورد", "3"));
                     Executing_Agency_DropDownList.Items.Insert(0, "...............");
 
 
