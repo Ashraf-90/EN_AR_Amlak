@@ -16,13 +16,10 @@
                 "pageLength": 10000,
 
                 buttons: [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -94,20 +91,31 @@
                         <div class="col-lg-9">
                             <asp:Button ID="btn_all" runat="server" CssClass="Indicator_buttons" OnClick="btn_all_Click" />
                         &nbsp;
-                        <span style="margin-top: 20px">كافة الطلبات</span>
+                        <span style="margin-top: 20px"><asp:Label ID="lbl_Level_All" runat="server"/></span> <%--كافة الطلبات--%>
+
+
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
                         <asp:Button ID="btn_P_1" runat="server" CssClass="Indicator_buttons" BackColor="#faced2" OnClick="btn_P_1_Click" />
                         &nbsp;
-                        <span style="margin-top: 20px">أولوية من الدرجة الأولى</span>
+                        <span style="margin-top: 20px"><asp:Label ID="lbl_Level_One" runat="server"/></span> <%--درجة أولى--%>
+
+
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
                         <asp:Button ID="btn_P_2" runat="server" CssClass="Indicator_buttons" BackColor="#c5f8eb" OnClick="btn_P_2_Click" />
                         &nbsp;
-                        <span style="margin-top: 20px">أولوية من الدرجة الثانية</span>
+                        <span style="margin-top: 20px"><asp:Label ID="lbl_Level_Two" runat="server"/></span> <%--درجة ثانية--%>
+
+
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
                         <asp:Button ID="btn_P_3" runat="server" CssClass="Indicator_buttons" BackColor="#f1d5a1" OnClick="btn_P_3_Click" />
                         &nbsp;
-                        <span style="margin-top: 20px">أولوية من الدرجة الثالثة</span>
-                        
+                        <span style="margin-top: 20px"><asp:Label ID="lbl_Level_Three" runat="server"/></span> <%--درجة ثالثة--%>
                         </div>
 
 
@@ -115,10 +123,6 @@
                             <div class="form-group" style="padding-left:10px">
                                 <asp:Label ID="lbl_Complainte_Satus" runat="server" Text="حالة الطلب"></asp:Label>
                                 <asp:DropDownList ID="Filter_DropDownList" runat="server" CssClass="form-control"  AutoPostBack="true" OnSelectedIndexChanged="Filter_DropDownList_SelectedIndexChanged">
-                                    <asp:ListItem Value="1" Text="الكل"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="معلقة"></asp:ListItem>
-                                    <asp:ListItem Value="3" Text="منجزة"></asp:ListItem>
-                                    <asp:ListItem Value="4" Text="تحت الإجراء"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -133,59 +137,48 @@
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" class="datatable table table-bordered">
                                 <thead>
-                                    <th style="text-align: center;vertical-align: middle;">مسلسل</th>
-                                    <th style="text-align: center;vertical-align: middle;">رقم</th>
-                                    <th style="text-align: center;vertical-align: middle;">المصدر</th>
-                                    <th style="text-align: center;vertical-align: middle;">اسم المستأجر</th>
-                                    <th style="text-align: center;vertical-align: middle;">اسم الموظف </th>
-                                    <th style="text-align: center;vertical-align: middle;">العنوان</th>
-                                    <th style="text-align: center;vertical-align: middle;">التصنيف</th>
-                                    <th style="text-align: center;vertical-align: middle;">النوع</th>
-                                    <th style="text-align: center;vertical-align: middle;">التوجيه</th>
-                                    <th style="text-align: center;vertical-align: middle;">تاريخ التقديم</th>
-                                    <th style="text-align: center;vertical-align: middle;"> حالة الطلب</th>
+                                    <th style="text-align: center;vertical-align: middle; width:30px">#</th>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Source" runat="server"/></th><%--مصدر--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Tenant" runat="server"/></th><%--مستأجر--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Employee" runat="server"/></th><%--موظف--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Adress" runat="server"/></th><%--عنوان--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Classification" runat="server"/></th><%--تصنيف--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Type" runat="server"/></th><%--نوع--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Direction" runat="server"/></th><%--توجيه--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Date" runat="server"/></th><%--تاريخ تقديم--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_Status" runat="server"/></th><%--حالة--%>
                                     <th style="display:none"></th>
-                                    <th style="width:30px"></th>
+                                    <th style="width:60px"></th>
                                 </thead>
                             <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr id="row" runat="server">
                                 <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
+                                <td><asp:Label ID="lbl_source" runat="server" Text='<%# Eval("source") %>' /></td>
                                 <td>
-                                <asp:LinkButton ID="LinK_Complaint_Report_Request" runat="server" CommandArgument='<%# Eval("Complaint_Report_Request_Id") %>' OnClick="Edit_Request" Text='<%# Eval("adad") %>'></asp:LinkButton></td>
+                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_source" runat="server" Text='<%# Eval("source") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' /></td>
+                                    <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />
+                                    <asp:Label ID="lbl_Employee_English_name" runat="server" Text='<%# Eval("Employee_English_name") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text=' <%# Eval("Building_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Building_English_Name" runat="server" Text=' <%# Eval("Building_English_Name") %>' />
                                     <br />
                                     <asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>' />
                                 </td>
                                 
+                                <td><asp:Label ID="lbl_Order_Classification" runat="server" Text='<%# Eval("Order_Classification") %>' /></td>
+                                <td><asp:Label ID="lbl_Report_Type" runat="server" Text='<%# Eval("Report_Type") %>' /></td>
+                                <td><asp:Label ID="lbl_Report_Direction" runat="server" Text='<%# Eval("Report_Direction") %>' /></td>
+                                <td><asp:Label ID="lbl_Date" runat="server" Text='<%# Eval("Date") %>' /></td>
+                                <td><asp:Label ID="lbl_Activ" runat="server" Text='<%# Eval("Activ") %>' /></td>
+                                <td style="display:none"><asp:Label ID="lbl_priority_Danger" runat="server" Text='<%# Eval("priority_Danger") %>' /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Order_Classification" runat="server" Text='<%# Eval("Order_Classification") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Report_Type" runat="server" Text='<%# Eval("Report_Type") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Report_Direction" runat="server" Text='<%# Eval("Report_Direction") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Date" runat="server" Text='<%# Eval("Date") %>' /></td>
-                                 <td>
-                                    <asp:Label ID="lbl_Activ" runat="server" Text='<%# Eval("Activ") %>' /></td>
-
-                                <td style="display:none">
-                                    <asp:Label ID="lbl_priority_Danger" runat="server" Text='<%# Eval("priority_Danger") %>' /></td>
-                                
-                                 <%--<td>
-                                    <asp:Label ID="lbl_precaution" runat="server" Text='<%# Eval("precaution") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_" runat="server" Text='<%# Eval("Activ") %>' /></td>--%>
-
-                                <td>
+                                    <asp:LinkButton ID="LinK_Complaint_Report_Request" runat="server" ForeColor="#0779c9" CommandArgument='<%# Eval("Complaint_Report_Request_Id") %>' OnClick="Edit_Request"><i class="fa fa-pencil" style="font-size:18px;"></i></asp:LinkButton>
                                     <asp:LinkButton ForeColor="#0779c9" runat="server" CommandArgument='<%# Eval("Complaint_Report_Request_Id") %>' OnClick="Details_Request" > <i class="fa fa-list" style="font-size:18px;"></i> </asp:LinkButton>
                                 </td>
                             </tr>

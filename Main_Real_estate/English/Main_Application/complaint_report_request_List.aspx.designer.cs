@@ -42,6 +42,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Button btn_all;
 
         /// <summary>
+        /// lbl_Level_All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Level_All;
+
+        /// <summary>
         /// btn_P_1 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_P_1;
+
+        /// <summary>
+        /// lbl_Level_One control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Level_One;
 
         /// <summary>
         /// btn_P_2 control.
@@ -60,6 +78,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Button btn_P_2;
 
         /// <summary>
+        /// lbl_Level_Two control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Level_Two;
+
+        /// <summary>
         /// btn_P_3 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +94,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_P_3;
+
+        /// <summary>
+        /// lbl_Level_Three control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Level_Three;
 
         /// <summary>
         /// lbl_Complainte_Satus control.

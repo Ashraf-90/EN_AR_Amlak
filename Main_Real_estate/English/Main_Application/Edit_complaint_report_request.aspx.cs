@@ -916,8 +916,12 @@ namespace Main_Real_estate.English.Main_Application
                     Helper.LoadDropDownList("SELECT * FROM assets", _sqlCon, Asset_DropDownList, "Assets_English_Name", "Assets_Id");
                     Asset_DropDownList.Items.Insert(0, "................");
 
+
                     //Fill Complainte_Source_DropDownList
-                    Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "En_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.Items.Clear();
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Tenant", "1"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Censorship", "2"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("Other", "3"));
                     Complainte_Source_DropDownList.SelectedValue = "1";
 
                     //Get Building_Or_unit_DropDownList 
@@ -1103,6 +1107,14 @@ namespace Main_Real_estate.English.Main_Application
 
                     //Fill Complainte_Source_DropDownList
                     Helper.LoadDropDownList("SELECT * FROM requst_source", _sqlCon, Complainte_Source_DropDownList, "Ar_Requst_Source", "Requst_Source_id");
+                    Complainte_Source_DropDownList.SelectedValue = "1";
+
+
+                    //Fill Complainte_Source_DropDownList
+                    Complainte_Source_DropDownList.Items.Clear();
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("عميل", "1"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("رقابة", "2"));
+                    Complainte_Source_DropDownList.Items.Add(new ListItem("أخرى", "3"));
                     Complainte_Source_DropDownList.SelectedValue = "1";
 
                     //Get Building_Or_unit_DropDownList 
