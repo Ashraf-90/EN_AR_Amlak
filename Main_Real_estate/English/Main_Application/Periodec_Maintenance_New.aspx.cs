@@ -289,16 +289,6 @@ namespace Main_Real_estate.English.Main_Application
                     lbl_Employee_Tenant.Text = Dt.Rows[2]["EN"].ToString();
                     lbl_Notic.Text = Dt.Rows[2]["EN"].ToString();
                     Periodec_Maintenance_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
-                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
                     btn_Add_Maintenance.Text = Dt.Rows[2]["EN"].ToString();
                     Date_Chosee.Text = Dt.Rows[2]["EN"].ToString();
                 }
