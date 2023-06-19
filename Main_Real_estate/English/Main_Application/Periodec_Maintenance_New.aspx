@@ -60,7 +60,7 @@
                     <asp:Label ID="lbl_Employee_Tenant" runat="server" Text="اسم الموظف المسؤول"></asp:Label>
                     <asp:DropDownList ID="Employee_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                     <asp:RequiredFieldValidator ID="Employee_RequiredFieldValidator" ValidationGroup="Maintenance_RequiredField"
-                    InitialValue="إختر الموظف المسؤول ...." ControlToValidate="Employee_DropDownList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
+                    InitialValue="..............." ControlToValidate="Employee_DropDownList" runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"> </asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="row"><div class="col-lg-2 mb-3"><h1 class="h3 mb-0 text-gray-800"><asp:Label ID="lbl_titel_Building_List" runat="server" Text="الصيانة  الدورية"></asp:Label></h1></div></div>
+        <div class="row"><div class="col-lg-2 mb-3"><h1 class="h3 mb-0 text-gray-800"><asp:Label ID="Periodec_Maintenance_List" runat="server" Text="الصيانة  الدورية"></asp:Label></h1></div></div>
         <div class="row">
             <div class="col-lg-12 mb-4">
                 <!-- Simple Tables -->
@@ -88,15 +88,15 @@
                                 <thead>
                                     <th></th>
                                     <th>#</th>
-                                    <th>نوع الأصل</th>
-                                    <th>اسم الأصل</th>
-                                    <th>الرقم التسلسلي </th>
-                                    <th>حالة الأصل</th>
-                                    <th>الموقع العام</th>
-                                    <th>مكان الأصل</th>
-                                    <th>الموّرد </th>
-                                    <th>تاريخ الشراء </th>
-                                    <th>تاريخ أخر صيانة دورية </th>
+                                    <th><asp:Label ID="lbl_Asset_Type" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Namee" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Serial" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Status" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Site" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Location" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Asset_Sublier" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Aseet_purchase_Date" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_Aseet_Last_Maintenence" runat="server"/></th>
                                     <th></th>
                                 </thead>
                             <tbody>
@@ -108,13 +108,28 @@
                                     <asp:Label ID="lbl_Assets_Id" runat="server" Visible="false"  Text='<%# Eval("Assets_Id") %>' />
                                     <asp:Image ID="Image1" runat="server" ImageUrl="Main_Image/Lamp.png" Width="40" Height="40"/>
                                 </td>
-                                <td><asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' /></td>
-                                <td><asp:Label ID="lbl_Assets_Arabic_Name" runat="server" Text='<%# Eval("Assets_Arabic_Name") %>' /></td>
+                                <td>
+                                    <asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' />
+                                    <asp:Label ID="lbl_Categoty_EN" runat="server" Text='<%# Eval("Categoty_EN") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Assets_Arabic_Name" runat="server" Text='<%# Eval("Assets_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Assets_English_Name" runat="server" Text='<%# Eval("Assets_English_Name") %>' />
+                                </td>
                                 <td><asp:Label ID="lbl_Serial_Number" runat="server" Text='<%# Eval("Serial_Number") %>' /></td>
-                                <td><asp:Label ID="lbl_Asset_Arabic_Condition" runat="server" Text='<%# Eval("Asset_Arabic_Condition") %>' /></td>
+                                <td>
+                                    <asp:Label ID="lbl_Asset_Arabic_Condition" runat="server" Text='<%# Eval("Asset_Arabic_Condition") %>' />
+                                    <asp:Label ID="lbl_Asset_English_Condition" runat="server" Text='<%# Eval("Asset_English_Condition") %>' />
+                                </td>
                                 <td><asp:Label ID="lbl_Main_Place" runat="server" Text='<%# Eval("Main_Place") %>' /></td>
-                                <td><asp:Label ID="lbl_Asset_Arabic_Location" runat="server" Text='<%# Eval("Asset_Arabic_Location") %>' /></td>
-                                <td><asp:Label ID="lbl_Vendor_Arabic_Type" runat="server" Text='<%# Eval("Vendor_Arabic_Type") %>' /></td>
+                                <td>
+                                    <asp:Label ID="lbl_Asset_Arabic_Location" runat="server" Text='<%# Eval("Asset_Arabic_Location") %>' />
+                                    <asp:Label ID="lbl_Asset_English_Location" runat="server" Text='<%# Eval("Asset_English_Location") %>' />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbl_Vendor_Arabic_Type" runat="server" Text='<%# Eval("Vendor_Arabic_Type") %>' />
+                                    <asp:Label ID="lbl_Vendor_English_Type" runat="server" Text='<%# Eval("Vendor_English_Type") %>' />
+                                </td>
                                 <td><asp:Label ID="lbl_Purchase_Date" runat="server" Text='<%# Eval("Purchase_Date") %>' /></td>
                                 <td><asp:Label ID="lbl_Last_Maintanance" runat="server"  Text='<%# Eval("Last_periodec_maintenance") %>'/></td>
                                 <td><asp:LinkButton  runat="server" CommandArgument='<%# Eval("Assets_Id") %>' OnClick="Unnamed_Click"><i class="fa fa-wrench" style="font-size:18px;"></i></asp:LinkButton> </td>
@@ -122,14 +137,14 @@
                             <tr >
                                 <td colspan="13">
                                     <div id="collapse<%# Container.ItemIndex%>name" class="accordian-body collapse">
-                                        <asp:Repeater ID="Maintenance_Repeater" runat="server" ClientIDMode="Static">
+                                        <asp:Repeater ID="Maintenance_Repeater" runat="server" ClientIDMode="Static" OnItemDataBound="Maintenance_Repeater_ItemDataBound">
                                             <HeaderTemplate>
                                                 <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                                     <thead>
                                                         <th style="background-color:#d670ac">م</th>
-                                                        <th style="background-color:#d670ac">التاريخ</th>
-                                                        <th style="background-color:#d670ac">الموظف المسؤول</th>
-                                                        <th style="background-color:#d670ac">ملاحظات</th>
+                                                        <th><asp:Label ID="lbl_Maintenance_Date" runat="server"/></th>
+                                                        <th><asp:Label ID="lbl_Maintenance_Employee" runat="server"/></th>
+                                                        <th><asp:Label ID="lbl_Maintenance_Notice" runat="server"/></th>
                                                     </thead>
                                                     <tbody>
                                             </HeaderTemplate>
@@ -138,7 +153,10 @@
                                                     <td>
                                                     <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                                     <td><asp:Label ID="lbl_Datre" runat="server" Text='<%# Eval("Datre") %>' /></td>
-                                                    <td><asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' /></td>
+                                                    <td>
+                                                        <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />
+                                                        <asp:Label ID="lbl_Employee_English__name" runat="server" Text='<%# Eval("Employee_English__name") %>' />
+                                                    </td>
                                                     <td><asp:Label ID="Label1" runat="server" Text='<%# Eval("Notic") %>' /></td>
                                                 </tr>
                                             </ItemTemplate>

@@ -43,8 +43,13 @@ namespace Main_Real_estate.English.Main_Application
             {
                 Repeater Maintenance_Repeater = item.FindControl("Maintenance_Repeater") as Repeater;
                 Label lbl_Assets_Id = item.FindControl("lbl_Assets_Id") as Label;
-                string CasestQuery = "SELECT PM.* , E.Employee_Arabic_name FROM periodec_maintenance_new PM left join employee E on (PM.Employee_ID = E.Employee_Id) where Aseet_ID = '" + lbl_Assets_Id.Text+ "'";
+                string CasestQuery = "SELECT PM.* , E.Employee_Arabic_name , E.Employee_English_name " +
+                    "FROM periodec_maintenance_new PM left join employee E on (PM.Employee_ID = E.Employee_Id) where Aseet_ID = '" + lbl_Assets_Id.Text+ "'";
+                
+                
+                
                 Helper.GetDataReader(CasestQuery, _sqlCon, Maintenance_Repeater);
+
             }
         }
         protected void Unnamed_Click(object sender, EventArgs e)
@@ -154,6 +159,197 @@ namespace Main_Real_estate.English.Main_Application
                     Last_periodec_maintenance.Font.Bold = false;
                 }
 
+            }
+
+
+
+
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                var lbl_Asset_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Type");
+                var lbl_Asset_Namee = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Namee");
+                var lbl_Asset_Serial = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Serial");
+                var lbl_Asset_Status = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Status");
+                var lbl_Asset_Site = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Site");
+                var lbl_Asset_Location = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Location");
+                var lbl_Asset_Sublier = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Sublier");
+                var lbl_Aseet_purchase_Date = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Aseet_purchase_Date");
+                var lbl_Aseet_Last_Maintenence = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Aseet_Last_Maintenence");
+
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_maintenance", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_Asset_Type.Text = Dt.Rows[54]["EN"].ToString();
+                        lbl_Asset_Namee.Text = Dt.Rows[55]["EN"].ToString();
+                        lbl_Asset_Serial.Text = Dt.Rows[56]["EN"].ToString();
+                        lbl_Asset_Status.Text = Dt.Rows[57]["EN"].ToString();
+                        lbl_Asset_Site.Text = Dt.Rows[58]["EN"].ToString();
+                        lbl_Asset_Location.Text = Dt.Rows[59]["EN"].ToString();
+                        lbl_Asset_Sublier.Text = Dt.Rows[62]["EN"].ToString();
+                        lbl_Aseet_purchase_Date.Text = Dt.Rows[60]["EN"].ToString();
+                        lbl_Aseet_Last_Maintenence.Text = Dt.Rows[61]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_Asset_Type.Text = Dt.Rows[54]["AR"].ToString();
+                        lbl_Asset_Namee.Text = Dt.Rows[55]["AR"].ToString();
+                        lbl_Asset_Serial.Text = Dt.Rows[56]["AR"].ToString();
+                        lbl_Asset_Status.Text = Dt.Rows[57]["AR"].ToString();
+                        lbl_Asset_Site.Text = Dt.Rows[58]["AR"].ToString();
+                        lbl_Asset_Location.Text = Dt.Rows[59]["AR"].ToString();
+                        lbl_Asset_Sublier.Text = Dt.Rows[62]["AR"].ToString();
+                        lbl_Aseet_purchase_Date.Text = Dt.Rows[60]["AR"].ToString();
+                        lbl_Aseet_Last_Maintenence.Text = Dt.Rows[61]["AR"].ToString();
+                    }
+                }
+            }
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Categoty_AR = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Categoty_AR");
+                var lbl_Categoty_EN = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Categoty_EN");
+                var lbl_Assets_Arabic_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Assets_Arabic_Name");
+                var lbl_Assets_English_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Assets_English_Name");
+                var lbl_Asset_Arabic_Condition = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Arabic_Condition");
+                var lbl_Asset_English_Condition = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_English_Condition");
+                var lbl_Asset_Arabic_Location = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_Arabic_Location");
+                var lbl_Asset_English_Location = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Asset_English_Location");
+                var lbl_Vendor_Arabic_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Vendor_Arabic_Type");
+                var lbl_Vendor_English_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Vendor_English_Type");
+                var lbl_Main_Place = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Main_Place");
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Categoty_AR.Visible=false;                 lbl_Categoty_EN.Visible = true;
+                    lbl_Assets_Arabic_Name.Visible = false;        lbl_Assets_English_Name.Visible = true;
+                    lbl_Asset_Arabic_Condition.Visible = false;    lbl_Asset_English_Condition.Visible = true;
+                    lbl_Asset_Arabic_Location.Visible = false;     lbl_Asset_English_Location.Visible = true;
+                    lbl_Vendor_Arabic_Type.Visible = false;        lbl_Vendor_English_Type.Visible = true;
+
+                    if (lbl_Main_Place.Text == "بناء") { lbl_Main_Place.Text = "Building"; } 
+                    else if ( lbl_Main_Place.Text == "وحدة") { lbl_Main_Place.Text = "Unit"; }
+                }
+                else
+                {
+                    lbl_Categoty_AR.Visible = true;                 lbl_Categoty_EN.Visible = false;
+                    lbl_Assets_Arabic_Name.Visible = true;          lbl_Assets_English_Name.Visible = false;
+                    lbl_Asset_Arabic_Condition.Visible = true;      lbl_Asset_English_Condition.Visible = false;
+                    lbl_Asset_Arabic_Location.Visible = true;       lbl_Asset_English_Location.Visible = false;
+                    lbl_Vendor_Arabic_Type.Visible = true;          lbl_Vendor_English_Type.Visible = false;
+
+                    if (lbl_Main_Place.Text == "Building") { lbl_Main_Place.Text = "بناء"; }
+                    else if (lbl_Main_Place.Text == "Unit") { lbl_Main_Place.Text = "وحدة"; }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_maintenance", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_DropDownList, "Employee_English_name", "Employee_Id");
+                    Employee_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_Date.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Employee_Tenant.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Notic.Text = Dt.Rows[2]["EN"].ToString();
+                    Periodec_Maintenance_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    //lbl_titel_Building_List.Text = Dt.Rows[2]["EN"].ToString();
+                    btn_Add_Maintenance.Text = Dt.Rows[2]["EN"].ToString();
+                    Date_Chosee.Text = Dt.Rows[2]["EN"].ToString();
+                }
+                else
+                {
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Employee_DropDownList.Items.Insert(0, "...............");
+
+                }
+            }
+            _sqlCon.Close();
+
+        }
+
+        protected void Maintenance_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                var lbl_Maintenance_Date = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Maintenance_Date");
+                var lbl_Maintenance_Employee = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Maintenance_Employee");
+                var lbl_Maintenance_Notice = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Maintenance_Notice");
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Maintenance_Date.Text = "Maintenance Date";
+                    lbl_Maintenance_Employee.Text = "Employee Name";
+                    lbl_Maintenance_Notice.Text = "note";
+
+                }
+                else
+                {
+                    lbl_Maintenance_Date.Text = "تاريخ الصيانة";
+                    lbl_Maintenance_Employee.Text = "اسم الموظف";
+                    lbl_Maintenance_Notice.Text = "ملاحظة";
+                }
+            }
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Employee_Arabic_name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Employee_Arabic_name");
+                var lbl_Employee_English__name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Employee_English__name");
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Employee_Arabic_name.Visible = false; lbl_Employee_English__name.Visible = true;
+                }
+                else
+                {
+                    lbl_Employee_Arabic_name.Visible = true; ; lbl_Employee_English__name.Visible = false;
+                }
             }
         }
     }
