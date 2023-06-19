@@ -15,6 +15,42 @@ namespace Main_Real_estate.English.Main_Application
     {
 
         /// <summary>
+        /// lbl_Titel_Customer_Affairs_Department control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Customer_Affairs_Department;
+
+        /// <summary>
+        /// lbl_Titel_Company_Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Company_Name;
+
+        /// <summary>
+        /// lbl_Red_Titel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Red_Titel;
+
+        /// <summary>
+        /// lbl_Titel_source control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_source;
+
+        /// <summary>
         /// lbl_source control.
         /// </summary>
         /// <remarks>
@@ -22,6 +58,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_source;
+
+        /// <summary>
+        /// lbl_Titel_Adress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Adress;
 
         /// <summary>
         /// lbl_Building_Name control.
@@ -42,6 +87,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Unit_Number;
 
         /// <summary>
+        /// lbl_Titel_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Date;
+
+        /// <summary>
         /// lbl_Date control.
         /// </summary>
         /// <remarks>
@@ -49,6 +103,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Date;
+
+        /// <summary>
+        /// lbl_titel_Classification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Classification;
 
         /// <summary>
         /// lbl_Order_Classification control.
@@ -60,6 +123,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Order_Classification;
 
         /// <summary>
+        /// lbl_titel_Type control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Type;
+
+        /// <summary>
         /// lbl_Report_Type control.
         /// </summary>
         /// <remarks>
@@ -67,6 +139,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Report_Type;
+
+        /// <summary>
+        /// lbl_titel_Direction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Direction;
 
         /// <summary>
         /// lbl_Report_Direction control.
@@ -78,6 +159,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Report_Direction;
 
         /// <summary>
+        /// lbl_titel_Text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Text;
+
+        /// <summary>
         /// lbl_Report_Text control.
         /// </summary>
         /// <remarks>
@@ -85,6 +175,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Report_Text;
+
+        /// <summary>
+        /// lbl_Titel_Priority control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Priority;
 
         /// <summary>
         /// lbl_Priority control.
@@ -96,6 +195,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Priority;
 
         /// <summary>
+        /// lbl_Titel_Danger control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Danger;
+
+        /// <summary>
         /// lbl_Danger control.
         /// </summary>
         /// <remarks>
@@ -103,6 +211,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Danger;
+
+        /// <summary>
+        /// lbl_Titel_Priority_Resut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Priority_Resut;
 
         /// <summary>
         /// lbl_Priority_Resut control.
@@ -114,6 +231,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Priority_Resut;
 
         /// <summary>
+        /// lbl_Titel_Description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Description;
+
+        /// <summary>
         /// lbl_Report_Description control.
         /// </summary>
         /// <remarks>
@@ -121,6 +247,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Report_Description;
+
+        /// <summary>
+        /// lbl_Titel_precaution control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_precaution;
 
         /// <summary>
         /// lbl_precaution control.
@@ -132,6 +267,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_precaution;
 
         /// <summary>
+        /// lbl_Titel_Activ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Activ;
+
+        /// <summary>
         /// lbl_Activ control.
         /// </summary>
         /// <remarks>
@@ -141,6 +285,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Activ;
 
         /// <summary>
+        /// lbl_Titel_Image_Befor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Image_Befor;
+
+        /// <summary>
         /// Image_Befor control.
         /// </summary>
         /// <remarks>
@@ -148,6 +301,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton Image_Befor;
+
+        /// <summary>
+        /// lbl_Titel_Image_After control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Image_After;
 
         /// <summary>
         /// Image_After control.
@@ -168,13 +330,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Maintenance_div;
 
         /// <summary>
-        /// lbl_titel_Building_List control.
+        /// lbl_titel_Maintenance_List control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Building_List;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Maintenance_List;
 
         /// <summary>
         /// Maintenance_Request_Liist control.
@@ -195,6 +357,42 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl maintenance_request_Details_Div;
 
         /// <summary>
+        /// lbl_Titel_Asset_Manegement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Asset_Manegement;
+
+        /// <summary>
+        /// lbl_Titel_Compant_Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Compant_Name;
+
+        /// <summary>
+        /// lbl_Titel_Maintenence_Request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Maintenence_Request;
+
+        /// <summary>
+        /// lbl_Titel_Waranty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Waranty;
+
+        /// <summary>
         /// lbl_Waranty control.
         /// </summary>
         /// <remarks>
@@ -202,6 +400,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Waranty;
+
+        /// <summary>
+        /// lbl_Titel_Waranty_Direction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Waranty_Direction;
 
         /// <summary>
         /// lbl_Waranty_Direction control.
@@ -213,6 +420,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Waranty_Direction;
 
         /// <summary>
+        /// lbl_Titel_Cost_Direction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Cost_Direction;
+
+        /// <summary>
         /// lbl_Cost_Direction control.
         /// </summary>
         /// <remarks>
@@ -220,6 +436,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Cost_Direction;
+
+        /// <summary>
+        /// lbl_Titel_Executing_Agency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Executing_Agency;
 
         /// <summary>
         /// lbl_Executing_Agency control.
@@ -231,6 +456,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Executing_Agency;
 
         /// <summary>
+        /// lbl_Titel_Technical control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Technical;
+
+        /// <summary>
         /// lbl_Technical control.
         /// </summary>
         /// <remarks>
@@ -240,6 +474,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Technical;
 
         /// <summary>
+        /// lbl_Titel_Watcher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Watcher;
+
+        /// <summary>
         /// lbl_Watcher control.
         /// </summary>
         /// <remarks>
@@ -247,6 +490,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Watcher;
+
+        /// <summary>
+        /// lbl_Titel_Asset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Asset;
 
         /// <summary>
         /// lbl_Asset control.

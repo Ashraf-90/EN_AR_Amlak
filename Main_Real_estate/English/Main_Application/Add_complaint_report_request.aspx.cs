@@ -957,7 +957,7 @@ namespace Main_Real_estate.English.Main_Application
 
                     //Get Order_Direction_DropDownList 
                     Order_Direction_DropDownList.Items.Clear();
-                    Order_Direction_DropDownList.Items.Add(new ListItem("الرقابة", "1"));
+                    Order_Direction_DropDownList.Items.Add(new ListItem("رقابة", "1"));
                     Order_Direction_DropDownList.Items.Add(new ListItem("شؤون العملاء", "2"));
                     Order_Direction_DropDownList.Items.Insert(0, "...............");
 

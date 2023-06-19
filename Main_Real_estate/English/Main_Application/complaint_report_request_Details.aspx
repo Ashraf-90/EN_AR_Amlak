@@ -8,13 +8,10 @@
                 /*lengthChange: false,*/
                 "pageLength": 10000,
                 buttons: [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -66,12 +63,12 @@
                                     <div class="row">
                                         <div class="col-lg-6" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                             <div class="form-group">
-                                                قسم خدمة شؤون العملاء 
+                                                <asp:Label ID="lbl_Titel_Customer_Affairs_Department" runat="server" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                             <div class="form-group">
-                                                شركة المنارة للصيانة والتجارة
+                                                <asp:Label ID="lbl_Titel_Company_Name" runat="server" />
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-lg-12" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                             <div class="form-group">
-                                                <span style="color: #fc544b">الطلبات البلاغات و الشكاوي</span>
+                                                <span style="color: #fc544b"><asp:Label ID="lbl_Red_Titel" runat="server" /></span>
                                             </div>
                                         </div>
                                     </div>
@@ -87,19 +84,21 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <spa style="font-weight: bold">مصدر البلاغ:</spa>
+                                                <spa style="font-weight: bold"> <asp:Label ID="lbl_Titel_source" runat="server" /> </spa>
                                                 &nbsp;&nbsp;<asp:Label ID="lbl_source" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">العنوان :</span> &nbsp;&nbsp;<asp:Label ID="lbl_Building_Name" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Adress" runat="server" /></span> 
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Building_Name" runat="server"></asp:Label>
                                                 &nbsp;&nbsp;<asp:Label ID="lbl_Unit_Number" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">التاريخ :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Date" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Date" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Date" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
@@ -107,24 +106,27 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">التنصنيف : </span>&nbsp;&nbsp;<asp:Label ID="lbl_Order_Classification" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_titel_Classification" runat="server" /> </span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Order_Classification" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">النوع : </span>&nbsp;&nbsp;<asp:Label ID="lbl_Report_Type" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_titel_Type" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Report_Type" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">توجيه البلاغ:&nbsp;&nbsp;</span><asp:Label ID="lbl_Report_Direction" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_titel_Direction" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Report_Direction" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <br />
                                         <br />
                                         <div class="col-lg-12" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">نص البلاغ :</span><br />
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_titel_Text" runat="server" /></span><br />
                                                 <asp:Label ID="lbl_Report_Text" runat="server"></asp:Label>
                                             </div>
                                         </div>
@@ -133,17 +135,20 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">مدى عاجلية البلاغ:</span>&nbsp;&nbsp;<asp:Label ID="lbl_Priority" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Priority" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Priority" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">درجة خطورة البلاغ:</span>&nbsp;&nbsp;<asp:Label ID="lbl_Danger" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Danger" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Danger" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">أولوية البلاغ:&nbsp;&nbsp;</span><asp:Label ID="lbl_Priority_Resut" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Priority_Resut" runat="server" />
+                                                    &nbsp;&nbsp;</span><asp:Label ID="lbl_Priority_Resut" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +156,7 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-12" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">وصف تقرير الفحص :</span><br />
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Description" runat="server" /></span><br />
                                                 <asp:Label ID="lbl_Report_Description" runat="server"></asp:Label>
                                             </div>
                                         </div>
@@ -160,7 +165,7 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-12" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">الإجراء الوقائي :</span><br />
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_precaution" runat="server" /></span><br />
                                                 <asp:Label ID="lbl_precaution" runat="server"></asp:Label>
                                             </div>
                                         </div>
@@ -169,17 +174,18 @@
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-12" style="font-size: 20px; padding-top: 10px;">
                                             <div class="form-group">
-                                                <span style="font-weight: bold">التحقق من إنجاز الطلب :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Activ" runat="server"></asp:Label>
+                                                <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Activ" runat="server" /></span>
+                                                &nbsp;&nbsp;<asp:Label ID="lbl_Activ" runat="server"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row" style="border: solid">
                                         <div class="col-lg-6" style="font-size: 20px; padding-top: 10px;">
-                                            <span style="font-weight: bold">قبل </span><br />
+                                            <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Image_Befor" runat="server" /> </span><br />
                                             <asp:ImageButton ID="Image_Befor" runat="server" Width="80px" Height="80px" OnClientClick="target ='_blank';" OnClick="Image_Befor_Click" />
                                         </div>
                                         <div class="col-lg-6" style="font-size: 20px; padding-top: 10px;">
-                                            <span style="font-weight: bold">بعد </span><br />
+                                            <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Image_After" runat="server" /> </span><br />
                                             <asp:ImageButton ID="Image_After" runat="server" Width="80px" Height="80px" OnClientClick="target ='_blank';" OnClick="Image_After_Click" />
                                         </div>
                                     </div>
@@ -196,7 +202,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Building_List" runat="server" Text="قائمة طلبات الصيانة"></asp:Label>
+                    <asp:Label ID="lbl_titel_Maintenance_List" runat="server" Text="قائمة طلبات الصيانة"></asp:Label>
                 </h1>
             </div>
         </div>
@@ -206,17 +212,16 @@
                 <!-- Simple Tables -->
                 <div class="card">
                     <div class="table-responsive" id="Grid">
-                        <asp:Repeater ID="Maintenance_Request_Liist" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="Maintenance_Request_Liist" runat="server" ClientIDMode="Static" OnItemDataBound="Maintenance_Request_Liist_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                     <thead>
 
-                                        <th style="width: 90px; text-align: center;">نوع الصيانة</th>
-                                        <th style="text-align: center;">تاريخ البدء</th>
-                                        <th style="text-align: center;">تاريخ الإنتهاء</th>
-                                        <th style="text-align: center;">الحالة</th>
-                                        <th style="text-align: center;">التكلفة</th>
-
+                                        <th style="text-align: center;"><asp:Label ID="lbl_Type" runat="server"/></th><%--نوع--%>
+                                        <th style="text-align: center;"><asp:Label ID="lbl_Strat" runat="server"/></th><%--بدء--%>
+                                        <th style="text-align: center;"><asp:Label ID="lbl_End" runat="server"/></th><%--أنتهاء--%>
+                                        <th style="text-align: center;"><asp:Label ID="lbl_Activ" runat="server"/></th><%--حالة--%>
+                                        <th style="text-align: center;"><asp:Label ID="lbl_Cost" runat="server"/></th><%--تكلفة--%>
                                         <th style="width: 150px"></th>
                                     </thead>
                                     <tbody>
@@ -224,15 +229,13 @@
                             <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Activ") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="lbl_Cost" runat="server" Text='<%# Eval("Cost") %>' /></td>
+                                        <asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' />
+                                        <asp:Label ID="lbl_Categoty_EN" runat="server" Text='<%# Eval("Categoty_EN") %>' />
+                                    </td>
+                                    <td><asp:Label ID="lbl_Start_Date" runat="server" Text='<%# Eval("Start_Date") %>' /></td>
+                                    <td><asp:Label ID="lbl_End_Date" runat="server" Text='<%# Eval("End_Date") %>' /></td>
+                                    <td><asp:Label ID="lbl_Activ" runat="server" Text='<%# Eval("Activ") %>' /></td>
+                                    <td><asp:Label ID="lbl_Cost" runat="server" Text='<%# Eval("Cost") %>' /></td>
 
                                     <td>
                                         <asp:LinkButton CssClass="btn btn-danger" runat="server" CommandArgument='<%# Eval("Maintenance_Request_ID") %>' OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete_Maintenance_Request"><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
@@ -250,12 +253,12 @@
                             <div class="row">
                                 <div class="col-lg-6" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                     <div class="form-group">
-                                        إدارة الأصول و المرافق  
+                                        <asp:Label ID="lbl_Titel_Asset_Manegement" runat="server"/>  
                                     </div>
                                 </div>
                                 <div class="col-lg-6" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                     <div class="form-group">
-                                        شركة المنارة للصيانة والتجارة
+                                        <asp:Label ID="lbl_Titel_Compant_Name" runat="server"/> 
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +266,7 @@
                             <div class="row">
                                 <div class="col-lg-12" style="border-style: solid; text-align: center; padding-top: 10px; font-size: 25px; font-weight: bold">
                                     <div class="form-group">
-                                        <span style="color: red">طلب صيانة</span>
+                                        <span style="color: red"><asp:Label ID="lbl_Titel_Maintenence_Request" runat="server"/></span>
                                     </div>
                                 </div>
                             </div>
@@ -271,22 +274,26 @@
                             <div class="row" style="border: solid">
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">الضمان :</span> &nbsp;&nbsp;<asp:Label ID="lbl_Waranty" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Waranty" runat="server"/></span> 
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Waranty" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">جهة الضمان :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Waranty_Direction" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Waranty_Direction" runat="server"/></span>
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Waranty_Direction" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">تحميل التكلفة على :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Cost_Direction" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Cost_Direction" runat="server"/></span>
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Cost_Direction" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">توجيه إلى :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Executing_Agency" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Executing_Agency" runat="server"/></span>
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Executing_Agency" runat="server"></asp:Label>
                                     </div>
                                 </div>
                             </div>
@@ -294,17 +301,20 @@
                             <div class="row" style="border: solid">
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">الفني المسؤول :</span> &nbsp;&nbsp;<asp:Label ID="lbl_Technical" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Technical" runat="server"/></span> 
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Technical" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">المراقب :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Watcher" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Watcher" runat="server" /></span>
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Watcher" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6" style="font-size: 20px; padding-top: 10px;">
                                     <div class="form-group">
-                                        <span style="font-weight: bold">الأجهزة المصانة :</span>&nbsp;&nbsp;<asp:Label ID="lbl_Asset" runat="server"></asp:Label>
+                                        <span style="font-weight: bold"><asp:Label ID="lbl_Titel_Asset" runat="server" /></span>
+                                        &nbsp;&nbsp;<asp:Label ID="lbl_Asset" runat="server"></asp:Label>
                                     </div>
                                 </div>
 
