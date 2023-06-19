@@ -14,13 +14,9 @@ namespace Main_Real_estate.English.Main_Application
         {
             if (!IsPostBack)
             {
-                //Fill Employee_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                Employee_DropDownList.Items.Insert(0, "إختر الموظف المسؤول ....");
-
-
                 Asset_List_BindData();
                 Periodec_Maintenance_BindData();
+                language();
             }
         }
         protected void Asset_List_BindData(string sortExpression = null)
@@ -56,14 +52,24 @@ namespace Main_Real_estate.English.Main_Application
         {
             Add.Visible = true;
             _sqlCon.Open();
-            lbl_Add_Maintenance.Text = "إضافة صيانة دورية للأصل : ";
+            if (Session["Langues"].ToString() == "1") { lbl_Add_Maintenance.Text = "Add Periodic Maintenance To The Asset : "; }
+            else { lbl_Add_Maintenance.Text = "إضافة صيانة دورية للأصل : "; }
+
+                
             string Asset_ID = (sender as LinkButton).CommandArgument;
             ID.Text = Asset_ID;
             DataTable Dt = new DataTable();
-            MySqlCommand Cmd = new MySqlCommand("SELECT Assets_Id , Assets_Arabic_Name , Serial_Number  FROM assets WHERE Assets_Id = @ID",  _sqlCon);
+            MySqlCommand Cmd = new MySqlCommand("SELECT Assets_Id , Assets_Arabic_Name , Assets_English_Name , Serial_Number  FROM assets WHERE Assets_Id = @ID",  _sqlCon);
             MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
             Cmd.Parameters.AddWithValue("@ID", Asset_ID);
-            Da.Fill(Dt);if (Dt.Rows.Count > 0) {txt_Asset_Name.Text = Dt.Rows[0]["Assets_Arabic_Name"].ToString()+" "+"/"+" "+ Dt.Rows[0]["Serial_Number"].ToString(); }
+            Da.Fill(Dt);if (Dt.Rows.Count > 0) 
+            {
+                if (Session["Langues"].ToString() == "1") { txt_Asset_Name.Text = Dt.Rows[0]["Assets_English_Name"].ToString() + " " + "/" + " " + Dt.Rows[0]["Serial_Number"].ToString(); }
+                else { txt_Asset_Name.Text = Dt.Rows[0]["Assets_Arabic_Name"].ToString() + " " + "/" + " " + Dt.Rows[0]["Serial_Number"].ToString(); }
+
+
+                 
+            }
             _sqlCon.Close();
         }
 
@@ -236,6 +242,7 @@ namespace Main_Real_estate.English.Main_Application
 
                     if (lbl_Main_Place.Text == "بناء") { lbl_Main_Place.Text = "Building"; } 
                     else if ( lbl_Main_Place.Text == "وحدة") { lbl_Main_Place.Text = "Unit"; }
+                    else if (lbl_Main_Place.Text == "ملكية") { lbl_Main_Place.Text = "Property"; }
                 }
                 else
                 {
@@ -247,6 +254,7 @@ namespace Main_Real_estate.English.Main_Application
 
                     if (lbl_Main_Place.Text == "Building") { lbl_Main_Place.Text = "بناء"; }
                     else if (lbl_Main_Place.Text == "Unit") { lbl_Main_Place.Text = "وحدة"; }
+                    else if (lbl_Main_Place.Text == "Property") { lbl_Main_Place.Text = "ملكية"; }
                 }
             }
         }
@@ -284,18 +292,27 @@ namespace Main_Real_estate.English.Main_Application
                     Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_DropDownList, "Employee_English_name", "Employee_Id");
                     Employee_DropDownList.Items.Insert(0, "...............");
 
-
-                    lbl_Date.Text = Dt.Rows[2]["EN"].ToString();
-                    lbl_Employee_Tenant.Text = Dt.Rows[2]["EN"].ToString();
-                    lbl_Notic.Text = Dt.Rows[2]["EN"].ToString();
-                    Periodec_Maintenance_List.Text = Dt.Rows[2]["EN"].ToString();
-                    btn_Add_Maintenance.Text = Dt.Rows[2]["EN"].ToString();
-                    Date_Chosee.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Asset_Name.Text = Dt.Rows[55]["EN"].ToString() + "/" + Dt.Rows[56]["EN"].ToString();
+                    lbl_Date.Text = Dt.Rows[64]["EN"].ToString();
+                    lbl_Employee_Tenant.Text = Dt.Rows[63]["EN"].ToString();
+                    lbl_Notic.Text = Dt.Rows[65]["EN"].ToString();
+                    Periodec_Maintenance_List.Text = Dt.Rows[68]["EN"].ToString();
+                    btn_Add_Maintenance.Text = Dt.Rows[66]["EN"].ToString();
+                    Date_Chosee.Text = Dt.Rows[67]["EN"].ToString();
                 }
                 else
                 {
                     Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_DropDownList, "Employee_Arabic_name", "Employee_Id");
                     Employee_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Asset_Name.Text = Dt.Rows[55]["AR"].ToString() + "/" + Dt.Rows[56]["AR"].ToString();
+                    lbl_Date.Text = Dt.Rows[64]["AR"].ToString();
+                    lbl_Employee_Tenant.Text = Dt.Rows[63]["AR"].ToString();
+                    lbl_Notic.Text = Dt.Rows[65]["AR"].ToString();
+                    Periodec_Maintenance_List.Text = Dt.Rows[68]["AR"].ToString();
+                    btn_Add_Maintenance.Text = Dt.Rows[66]["AR"].ToString();
+                    Date_Chosee.Text = Dt.Rows[67]["AR"].ToString();
+
 
                 }
             }

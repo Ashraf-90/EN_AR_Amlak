@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="row"><div class="col-lg-2 mb-3"><h1 class="h3 mb-0 text-gray-800"><asp:Label ID="Periodec_Maintenance_List" runat="server" Text="الصيانة  الدورية"></asp:Label></h1></div></div>
+        <div class="row"><div class="col-lg-12 mb-3"><h1 class="h3 mb-0 text-gray-800"><asp:Label ID="Periodec_Maintenance_List" runat="server" Text="الصيانة  الدورية"></asp:Label></h1></div></div>
         <div class="row">
             <div class="col-lg-12 mb-4">
                 <!-- Simple Tables -->
@@ -141,10 +141,10 @@
                                             <HeaderTemplate>
                                                 <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                                     <thead>
-                                                        <th style="background-color:#d670ac">م</th>
-                                                        <th><asp:Label ID="lbl_Maintenance_Date" runat="server"/></th>
-                                                        <th><asp:Label ID="lbl_Maintenance_Employee" runat="server"/></th>
-                                                        <th><asp:Label ID="lbl_Maintenance_Notice" runat="server"/></th>
+                                                        <th style="background-color:#d670ac">#</th>
+                                                        <th style="background-color:#d670ac"><asp:Label ID="lbl_Maintenance_Date" runat="server"/></th>
+                                                        <th style="background-color:#d670ac"><asp:Label ID="lbl_Maintenance_Employee" runat="server"/></th>
+                                                        <th style="background-color:#d670ac"><asp:Label ID="lbl_Maintenance_Notice" runat="server"/></th>
                                                     </thead>
                                                     <tbody>
                                             </HeaderTemplate>
@@ -155,7 +155,7 @@
                                                     <td><asp:Label ID="lbl_Datre" runat="server" Text='<%# Eval("Datre") %>' /></td>
                                                     <td>
                                                         <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />
-                                                        <asp:Label ID="lbl_Employee_English__name" runat="server" Text='<%# Eval("Employee_English__name") %>' />
+                                                        <asp:Label ID="lbl_Employee_English__name" runat="server" Text='<%# Eval("Employee_English_name") %>' />
                                                     </td>
                                                     <td><asp:Label ID="Label1" runat="server" Text='<%# Eval("Notic") %>' /></td>
                                                 </tr>
