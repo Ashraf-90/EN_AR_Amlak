@@ -24,6 +24,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// lbl_Titel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel;
+
+        /// <summary>
         /// lbl_Tenan_Name control.
         /// </summary>
         /// <remarks>
@@ -231,6 +240,42 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlTable tblData;
 
         /// <summary>
+        /// lbl_Titel_List control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_List;
+
+        /// <summary>
+        /// lbl_Titel_Status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Status;
+
+        /// <summary>
+        /// lbl_Titel_Note control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Note;
+
+        /// <summary>
+        /// lbl_Key control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Key;
+
+        /// <summary>
         /// Key_Radio control.
         /// </summary>
         /// <remarks>
@@ -247,6 +292,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Key;
+
+        /// <summary>
+        /// lbl_Ferneture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Ferneture;
 
         /// <summary>
         /// Ferneture_Radio control.
@@ -267,6 +321,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Ferneture;
 
         /// <summary>
+        /// lbl_Device control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Device;
+
+        /// <summary>
         /// Device_Radio control.
         /// </summary>
         /// <remarks>
@@ -283,6 +346,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Device;
+
+        /// <summary>
+        /// lbl_kitchen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_kitchen;
 
         /// <summary>
         /// kitchen_Radio control.
@@ -303,6 +375,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_kitchen;
 
         /// <summary>
+        /// lbl_electricity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_electricity;
+
+        /// <summary>
         /// electricity_Radio control.
         /// </summary>
         /// <remarks>
@@ -319,6 +400,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_electricity;
+
+        /// <summary>
+        /// lbl_Floor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Floor;
 
         /// <summary>
         /// Floor_Radio control.
@@ -339,6 +429,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Floor;
 
         /// <summary>
+        /// lbl_Pathroom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Pathroom;
+
+        /// <summary>
         /// Pathroom_Radio control.
         /// </summary>
         /// <remarks>
@@ -355,6 +454,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pathroom;
+
+        /// <summary>
+        /// lbl_Wall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Wall;
 
         /// <summary>
         /// Wall_Radio control.
@@ -375,6 +483,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Wall;
 
         /// <summary>
+        /// lbl_Door control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Door;
+
+        /// <summary>
         /// Door_Radio control.
         /// </summary>
         /// <remarks>
@@ -391,6 +508,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Dor;
+
+        /// <summary>
+        /// lbl_Window control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Window;
 
         /// <summary>
         /// Window_Radio control.
@@ -411,6 +537,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Window;
 
         /// <summary>
+        /// lbl_AC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_AC;
+
+        /// <summary>
         /// AC_Radio control.
         /// </summary>
         /// <remarks>
@@ -427,6 +562,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_AC;
+
+        /// <summary>
+        /// lbl_Discription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Discription;
 
         /// <summary>
         /// txt_Discription control.

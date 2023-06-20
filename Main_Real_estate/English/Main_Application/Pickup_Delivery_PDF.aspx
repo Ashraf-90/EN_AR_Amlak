@@ -164,7 +164,7 @@
                 <asp:Label ID="Label5" runat="server" Visible="false" Text="Label"></asp:Label>
 
 
-                <h3>كشوفات إستلام وتسليم الوحدات</h3><br />
+                <h3><asp:Label ID="lbl_Titel" runat="server"/></h3><br />
                 <div class="card mb-10">
                     
                     <div class="card-body">
@@ -174,11 +174,9 @@
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Tenan_Name" runat="server" Text="اسم المستأجر"></asp:Label>
-                                    <asp:DropDownList ID="Tenan_Name_DropDownList" runat="server"  CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Tenan_Name_DropDownList_SelectedIndexChanged">
+                                    <asp:DropDownList ID="Tenan_Name_DropDownList" runat="server"  CssClass="form-control" AutoPostBack="true" 
+                                        OnSelectedIndexChanged="Tenan_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Tenan_Name_RequiredFieldValidator" ControlToValidate="Tenan_Name_DropDownList"
-                                        InitialValue="الكل ..." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -192,20 +190,15 @@
                                     <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر اسم الملكية ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" Text="اسم البناء"></asp:Label>
+                                    <asp:Label ID="lbl_Building_Name" runat="server" Text="اسم البناء"></asp:Label>
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم البناء ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -214,9 +207,6 @@
                                     <asp:DropDownList ID="Units_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="Units_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="Units_DropDownList"
-                                        InitialValue="إختر الوحدة ...." runat="server" ValidationGroup="PDF_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -226,12 +216,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Prosees" runat="server" Text="العملية"></asp:Label>
                                     <asp:DropDownList ID="Prosees_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Prosees_DropDownList_SelectedIndexChanged">
-                                        <asp:ListItem Value="1" Text="تسليم"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="إستلام"></asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="Prosees_DropDownList"
-                                        InitialValue="إختر العملية ...." runat="server" ValidationGroup="PDF_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -241,9 +226,6 @@
                                     <asp:Label ID="lbl_date" runat="server" Text="التاريخ"></asp:Label>
                                     <asp:DropDownList ID="date_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="date_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="date_DropDownList"
-                                        InitialValue="إختر التاريخ ...." runat="server" ValidationGroup="PDF_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -254,19 +236,18 @@
 
                         <div class="row">
                             <div class="table-responsive" id="Grid" >
-                    <asp:Repeater ID="Pickup_Delivery_List" runat="server" ClientIDMode="Static">
+                    <asp:Repeater ID="Pickup_Delivery_List" runat="server" ClientIDMode="Static" OnItemDataBound="Pickup_Delivery_List_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:13px" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th style="text-align: center;">مسلسل</th>
-                                    <th style="text-align: center;">المستأجر</th>
-                                    <th style="text-align: center">الملكية</th>
-                                    <th style="text-align: center">البناء</th>
-                                    <th style="text-align: center">الوحدة</th>
-                                    <th style="text-align: center">العملية</th>
-                                    <th style="text-align: center">التاريخ</th>
-                                    
-                                    <th style="width:200px"></th>
+                                    <th style="text-align: center;">#</th>
+                                    <th style="text-align: center;"><asp:Label ID="lbl_tenant" runat="server"/></th><%--المستاجر--%>
+                                    <th style="text-align: center"><asp:Label ID="lbl_Ownership" runat="server"/></th><%--الملكية--%>
+                                    <th style="text-align: center"><asp:Label ID="lbl_Building" runat="server"/></th><%--البناء--%>
+                                    <th style="text-align: center"><asp:Label ID="lbl_Unit" runat="server"/></th><%--الوحدة--%>
+                                    <th style="text-align: center"><asp:Label ID="lbl_Prosess" runat="server"/></th><%--العملية--%>
+                                    <th style="text-align: center"><asp:Label ID="lbl_Date" runat="server"/></th><%--التاريخ--%>
+                                    <th></th>
                                 </thead>
                             <tbody>
                         </HeaderTemplate>
@@ -274,11 +255,17 @@
                             <tr>
                                 <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                    <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>' />
                                     <asp:Label ID="lbl_Unit_ID" Visible="false" runat="server" Text='<%# Eval("Unit_ID") %>' />
@@ -311,7 +298,7 @@
                                 <asp:Button ID="Button1" runat="server" Text="جلب" Visible="false" CssClass="btn  mb-1" BackColor="#52a2da" ForeColor="White" Width="248px" ValidationGroup="PDF_RequiredField" OnClick="Button1_Click1" />
                                 <button runat="server" id="printt" visible="false" style="font-size: 18px; width: 150px"  class="btn btn-lg btn-primary"
                                     onclick="printDiv('print')">
-                                    <i class="fa fa-print" aria-hidden="true"></i>&nbsp;طباعة 
+                                    <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print 
                                 </button>
                             </div>
 
@@ -325,32 +312,33 @@
                                                     <table cellspacing="0" style="width: 100%; font-size: 15px" class=" table table-striped table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th style="text-align: center; font-size: 25px; color: #5a5c69; background-color: #fff !important" colspan="4">شركة المنارة للصيانة والتجارة</th>
+                                                                <th style="text-align: center; font-size: 25px; color: #5a5c69; background-color: #fff !important" colspan="4">
+                                                                    <asp:Label ID="lbl_Titel_One" runat="server" /></th>
                                                             </tr>
                                                             <tr>
-                                                                <th style="text-align: center; font-size: 19px; color:#d770ad; background-color: #fff !important" colspan="4">إستلام و تسليم وحدة</th>
+                                                                <th style="text-align: center; font-size: 19px; color: #d770ad; background-color: #fff !important" colspan="4">
+                                                                    <asp:Label ID="lbl_Titel_Two" runat="server" /></th>
                                                             </tr>
                                                             <tr>
                                                                 <th style="text-align: center; font-size: 19px; color: #5a5c69; background-color: #fff !important" colspan="4">
-                                                                    العنوان :
+                                                                     <asp:Label ID="lbl_Titel_Three" runat="server"/>
                                                                     <asp:Label ID="lbl_Building" runat="server"  />/
                                                                     <asp:Label ID="lbl_Unit" runat="server"  />
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    التاريخ :
+                                                                     <asp:Label ID="lbl_Titel_Four" runat="server"/>
                                                                     <asp:Label ID="lbl_Date" runat="server"  />
                                                                     <br />
-                                                                    العملية :
+                                                                     <asp:Label ID="lbl_Titel_Five" runat="server"/>
                                                                     <asp:Label ID="lbl_Prosess" runat="server"  />
-
                                                                 </th>
                                                             </tr>
 
                                                             <tr>
                                                                 <th style="width: 10px">#</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center; ">قائمة الجرد</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">الحالة</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">ملاحظات</th>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center; width:100px"><asp:Label ID="lbl_List" runat="server"/></th>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Status" runat="server"/></th>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Note" runat="server"/></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -363,10 +351,10 @@
                                                             <asp:Label ID="lbl_Type" runat="server" Text='<%# Eval("Type") %>' /></td>
                                                         <td style="font-size: 15px; text-align: center;">
                                                             <asp:Label ID="lbl_good" runat="server" Text='<%# Eval("good") %>' />&nbsp; 
-                                                            سليم
+                                                            <asp:Label ID="lbl_Titel_Good" runat="server"/>
                                                              &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
                                                             <asp:Label ID="lbl_bad" runat="server" Text='<%# Eval("bad") %>' />&nbsp; 
-                                                            متضرر
+                                                            <asp:Label ID="lbl_Titel_Bad" runat="server"/>
                                                         </td>
                                                         <td style="font-size: 15px;text-align: center;">
                                                             <asp:Label ID="lbl_Note" runat="server" Text='<%# Eval("Note") %>' /></td>
@@ -374,7 +362,7 @@
 
                                                      <tr id="row2" runat="server">
                                                         <td colspan="4" style="font-size: 15px;text-align: center;">
-                                                            ملاحظات 
+                                                            <asp:Label ID="lbl_Titel_Note" runat="server"/>
                                                             <br />
                                                             <asp:Label ID="lbl_Discription" runat="server" Text='<%# Eval("Discription") %>' />
                                                         </td>

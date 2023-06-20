@@ -23,29 +23,10 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-
-                //Fill Tenant Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Tenan_Name_DropDownList.Items.Insert(0, "إختر المستأجر ...");
-
-
-                //    //Fill Ownership Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList,
-                "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "إختر الملكية ....");
-
-                //    //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList,
-                    "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
+                language();
                 //    //Fill Units Name DropDownList
                 Helper.LoadDropDownList("SELECT * FROM units Where Half ='0'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
-                Units_DropDownList.Items.Insert(0, "إختر الوحدة ....");
-
-
-
-                Prosees_DropDownList.Items.Insert(0, "إختر العملية ....");
+                Units_DropDownList.Items.Insert(0, "...............");
             }
                 
         }
@@ -258,12 +239,23 @@ namespace Main_Real_estate.English.Main_Application
         //******************  Get The Building Of Selected Ownership ***************************************************
         protected void Ownership_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //    //Fill Buildings Name DropDownList
-            Helper.LoadDropDownList(
+            if (Session["Langues"].ToString() == "1")
+            {
+                //Fill Buildings Name DropDownList
+                Helper.LoadDropDownList(
                 "SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id = '" +
-                Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList,
-                "Building_Arabic_Name", "Building_Id");
-            Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
+                Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+            else
+            {
+                //Fill Buildings Name DropDownList
+                Helper.LoadDropDownList(
+                "SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id = '" +
+                Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+                   
         }
 
         //******************  Get The Units Of Selected Building ***************************************************
@@ -271,7 +263,7 @@ namespace Main_Real_estate.English.Main_Application
         {
             //    //Fill units Name DropDownList
             Helper.LoadDropDownList("SELECT * FROM units where Half ='0' and building_Building_Id = '" + Building_Name_DropDownList.SelectedValue + "'", _sqlCon, Units_DropDownList, "Unit_Number", "Unit_ID");
-            Units_DropDownList.Items.Insert(0, "إختر الوحدة ....");
+            Units_DropDownList.Items.Insert(0, "...............");
         }
 
         //******************  Date ***************************************************
@@ -295,6 +287,276 @@ namespace Main_Real_estate.English.Main_Application
         {
             Sign_Date_divCalendar.Visible = false;
             ImageButton1.Visible = false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_maintenance", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+
+                    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Tenan_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList,  "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    //Prosees_DropDownList 
+                    Prosees_DropDownList.Items.Clear();
+                    Prosees_DropDownList.Items.Add(new ListItem("Handing", "2"));
+                    Prosees_DropDownList.Items.Add(new ListItem("Receive", "1"));
+                    Prosees_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    //Key_Radio 
+                    Key_Radio.Items.Clear();
+                    Key_Radio.Items.Add(new ListItem("Complete", "1"));
+                    Key_Radio.Items.Add(new ListItem("Incomplete", "2"));
+
+                    //Ferneture_Radio 
+                    Ferneture_Radio.Items.Clear();
+                    Ferneture_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Ferneture_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+
+                    //Device_Radio 
+                    Device_Radio.Items.Clear();
+                    Device_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Device_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //kitchen_Radio 
+                    kitchen_Radio.Items.Clear();
+                    kitchen_Radio.Items.Add(new ListItem("Intact", "1"));
+                    kitchen_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //electricity_Radio 
+                    electricity_Radio.Items.Clear();
+                    electricity_Radio.Items.Add(new ListItem("Intact", "1"));
+                    electricity_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //Floor_Radio 
+                    Floor_Radio.Items.Clear();
+                    Floor_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Floor_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //Pathroom_Radio 
+                    Pathroom_Radio.Items.Clear();
+                    Pathroom_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Pathroom_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //Wall_Radio 
+                    Wall_Radio.Items.Clear();
+                    Wall_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Wall_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //Door_Radio 
+                    Door_Radio.Items.Clear();
+                    Door_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Door_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //Window_Radio 
+                    Window_Radio.Items.Clear();
+                    Window_Radio.Items.Add(new ListItem("Intact", "1"));
+                    Window_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+                    //AC_Radio 
+                    AC_Radio.Items.Clear();
+                    AC_Radio.Items.Add(new ListItem("Intact", "1"));
+                    AC_Radio.Items.Add(new ListItem("Damaged", "2"));
+
+
+
+                    lbl_Titel.Text = Dt.Rows[85]["EN"].ToString();
+                    lbl_Tenan_Name.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[83]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_Units.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Prosees.Text = Dt.Rows[84]["EN"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[64]["EN"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[67]["EN"].ToString();
+                    btn_Pickup_Delivery.Text = "Submit";
+
+                    lbl_Titel_List.Text = Dt.Rows[69]["EN"].ToString() ;
+                    lbl_Titel_Status.Text = Dt.Rows[70]["EN"].ToString() ;
+                    lbl_Titel_Note.Text = Dt.Rows[71]["EN"].ToString() ;
+                    lbl_Key.Text = Dt.Rows[72]["EN"].ToString() ;
+                    lbl_Ferneture.Text = Dt.Rows[73]["EN"].ToString() ;
+                    lbl_Device.Text = Dt.Rows[74]["EN"].ToString() ;
+                    lbl_kitchen.Text = Dt.Rows[75]["EN"].ToString() ;
+                    lbl_electricity.Text = Dt.Rows[76]["EN"].ToString() ;
+                    lbl_Floor.Text = Dt.Rows[77]["EN"].ToString() ;
+                    lbl_Pathroom.Text = Dt.Rows[78]["EN"].ToString() ;
+                    lbl_Wall.Text = Dt.Rows[79]["EN"].ToString() ;
+                    lbl_Door.Text = Dt.Rows[80]["EN"].ToString() ;
+                    lbl_Window.Text = Dt.Rows[81]["EN"].ToString() ;
+                    lbl_AC.Text = Dt.Rows[82]["EN"].ToString() ;
+                    lbl_Discription.Text = Dt.Rows[71]["EN"].ToString() ;
+
+
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    RequiredFieldValidator1.ErrorMessage = "* Required ";
+                    RequiredFieldValidator2.ErrorMessage = "* Required ";
+
+                }
+                else
+                {
+                    //Fill Tenant Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Tenan_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    //Prosees_DropDownList 
+                    Prosees_DropDownList.Items.Clear();
+                    Prosees_DropDownList.Items.Add(new ListItem("تسليم", "2"));
+                    Prosees_DropDownList.Items.Add(new ListItem("إستلام", "1"));
+                    Prosees_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    //Key_Radio 
+                    Key_Radio.Items.Clear();
+                    Key_Radio.Items.Add(new ListItem("كاملة", "1"));
+                    Key_Radio.Items.Add(new ListItem("ناقصة", "2"));
+
+                    //Ferneture_Radio 
+                    Ferneture_Radio.Items.Clear();
+                    Ferneture_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Ferneture_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+
+                    //Device_Radio 
+                    Device_Radio.Items.Clear();
+                    Device_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Device_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //kitchen_Radio 
+                    kitchen_Radio.Items.Clear();
+                    kitchen_Radio.Items.Add(new ListItem("سليم", "1"));
+                    kitchen_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //electricity_Radio 
+                    electricity_Radio.Items.Clear();
+                    electricity_Radio.Items.Add(new ListItem("سليم", "1"));
+                    electricity_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //Floor_Radio 
+                    Floor_Radio.Items.Clear();
+                    Floor_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Floor_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //Pathroom_Radio 
+                    Pathroom_Radio.Items.Clear();
+                    Pathroom_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Pathroom_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //Wall_Radio 
+                    Wall_Radio.Items.Clear();
+                    Wall_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Wall_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //Door_Radio 
+                    Door_Radio.Items.Clear();
+                    Door_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Door_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //Window_Radio 
+                    Window_Radio.Items.Clear();
+                    Window_Radio.Items.Add(new ListItem("سليم", "1"));
+                    Window_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    //AC_Radio 
+                    AC_Radio.Items.Clear();
+                    AC_Radio.Items.Add(new ListItem("سليم", "1"));
+                    AC_Radio.Items.Add(new ListItem("متضرر", "2"));
+
+                    lbl_Titel.Text = Dt.Rows[85]["AR"].ToString();
+                    lbl_Tenan_Name.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[83]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_Units.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Prosees.Text = Dt.Rows[84]["AR"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[64]["AR"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[67]["AR"].ToString();
+                    btn_Pickup_Delivery.Text = "إضافة";
+
+
+                    lbl_Titel_List.Text = Dt.Rows[69]["AR"].ToString();
+                    lbl_Titel_Status.Text = Dt.Rows[70]["AR"].ToString();
+                    lbl_Titel_Note.Text = Dt.Rows[71]["AR"].ToString();
+                    lbl_Key.Text = Dt.Rows[72]["AR"].ToString();
+                    lbl_Ferneture.Text = Dt.Rows[73]["AR"].ToString();
+                    lbl_Device.Text = Dt.Rows[74]["AR"].ToString();
+                    lbl_kitchen.Text = Dt.Rows[75]["AR"].ToString();
+                    lbl_electricity.Text = Dt.Rows[76]["AR"].ToString();
+                    lbl_Floor.Text = Dt.Rows[77]["AR"].ToString();
+                    lbl_Pathroom.Text = Dt.Rows[78]["AR"].ToString();
+                    lbl_Wall.Text = Dt.Rows[79]["AR"].ToString();
+                    lbl_Door.Text = Dt.Rows[80]["AR"].ToString();
+                    lbl_Window.Text = Dt.Rows[81]["AR"].ToString();
+                    lbl_AC.Text = Dt.Rows[82]["AR"].ToString();
+                    lbl_Discription.Text = Dt.Rows[71]["AR"].ToString();
+
+
+                    Tenan_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    Building_Name_RequiredFieldValidator.ErrorMessage = "*مطلوب ";
+                    RequiredFieldValidator1.ErrorMessage = "*مطلوب ";
+                    RequiredFieldValidator2.ErrorMessage = "*مطلوب ";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

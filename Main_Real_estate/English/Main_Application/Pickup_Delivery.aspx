@@ -9,7 +9,7 @@
     <link href="../CSS/DDL.css" rel="stylesheet" /> 
 
 
-    <style>
+   <%-- <style>
         table, th, td {
             
             text-align: center !important;
@@ -63,13 +63,26 @@
         } 
        
         .table-row-stripe td, .table-row-stripe th{
-            text-align: right !important;
             padding: 5px;
+            text-align: center;
         }
         
+    </style>--%>
+
+    <style>
+        .Tbl table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .Tbl td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
     </style>
-
-
     
 
     <div class="container-fluid" id="container-wrapper" style="margin: auto;">
@@ -77,7 +90,9 @@
             <div class="col-lg-12">
                 <div class="card mb-10">
                     <div class="card-body">
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4"><h1 class="h3 mb-0 text-gray-800">تسليم و إستلام الوحدة</h1></div><br />
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4"><h1 class="h3 mb-0 text-gray-800">
+                            <asp:Label ID="lbl_Titel" runat="server" />
+                        </h1></div><br />
                         <div class="row">
                              <div class="col-lg-2">
                                 <div class="form-group">
@@ -85,7 +100,7 @@
                                     <asp:DropDownList ID="Tenan_Name_DropDownList" runat="server"  CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Tenan_Name_RequiredFieldValidator" ControlToValidate="Tenan_Name_DropDownList"
-                                        InitialValue="إختر المستأجر ..." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -96,7 +111,7 @@
                                         OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر اسم الملكية ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -107,7 +122,7 @@
                                         OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم البناء ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                       InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -117,7 +132,7 @@
                                     <asp:DropDownList ID="Units_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="Units_DropDownList"
-                                        InitialValue="إختر الوحدة ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -127,12 +142,9 @@
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Prosees" runat="server" Text="العملية"></asp:Label>
-                                    <asp:DropDownList ID="Prosees_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="تسليم"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="إستلام"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Prosees_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="Prosees_DropDownList"
-                                        InitialValue="إختر العملية ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -172,190 +184,88 @@
                         </div>
                     </div>
                     
-                         <table id="tblData" runat="server" style="margin: 10px; padding: 10px; " class="table-row-stripe">
+                         <table id="tblData" runat="server" style="margin: 10px; padding: 10px; " class="Tbl">
                         <tr>
-                            <th>قائمة الجرد</th>
-                            <th>الحالة</th>
-                            <th>الملاحظات</th>
+                            <th><asp:Label ID="lbl_Titel_List" runat="server"/></th><%--قائمة الجرد--%>
+                            <th><asp:Label ID="lbl_Titel_Status" runat="server"/></th><%-- الحالة--%>
+                            <th><asp:Label ID="lbl_Titel_Note" runat="server"/></th><%-- ملاحظات--%>
                         </tr>
 
                         <tr>
-                            <td>المغاتيح</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Key_Radio" runat="server" RepeatDirection="Horizontal" >
-                                    <asp:ListItem Value="1" Text="كاملة"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="ناقصة"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Key" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Key" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Key_Radio" runat="server" RepeatDirection="Horizontal" ></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_Key" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الأثاث</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Ferneture_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Ferneture" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Ferneture" runat="server"/></td>
+                            <td> <asp:RadioButtonList ID="Ferneture_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_Ferneture" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الأجهزة المنزلية</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Device_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Device" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Device" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Device_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList> </td>
+                            <td><asp:TextBox ID="txt_Device" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>المطبخ</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="kitchen_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_kitchen" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_kitchen" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="kitchen_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_kitchen" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>المنافذ الكهربائية</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="electricity_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_electricity" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_electricity" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="electricity_Radio" runat="server" RepeatDirection="Horizontal"> </asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_electricity" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الأرضيات</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Floor_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Floor" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Floor" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Floor_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_Floor" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الحمامات / غرفة الغسيل</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Pathroom_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Pathroom" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Pathroom" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Pathroom_Radio" runat="server" RepeatDirection="Horizontal"> </asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_Pathroom" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الجدران والأسقف</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Wall_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Wall" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Wall" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Wall_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_Wall" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>الأبواب </td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Door_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Dor" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Door" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Door_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList> </td>
+                            <td><asp:TextBox ID="txt_Dor" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>النوافذ</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="Window_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_Window" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_Window" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="Window_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td> <asp:TextBox ID="txt_Window" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
                         <tr>
-                            <td>المكيفات</td>
-
-                            <td>
-                                <asp:RadioButtonList ID="AC_Radio" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Value="1" Text="سليم"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="متضرر"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-
-                            <td>
-                                <asp:TextBox ID="txt_AC" runat="server" Width="100%"></asp:TextBox></td>
+                            <td><asp:Label ID="lbl_AC" runat="server"/></td>
+                            <td><asp:RadioButtonList ID="AC_Radio" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                            <td><asp:TextBox ID="txt_AC" runat="server" Width="100%"></asp:TextBox></td>
                         </tr>
                         <%-----------------------------------------------------------------------------%>
-                        
-                        <tr>
-                            <td colspan="3" >ملاحظات</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <asp:TextBox ID="txt_Discription" runat="server" TextMode="MultiLine" Width="100%"></asp:TextBox>
-                            </td>
-                        </tr>
+                        <tr><td colspan="3" ><asp:Label ID="lbl_Discription" runat="server"/></td> </tr>
+                        <tr><td colspan="3"> <asp:TextBox ID="txt_Discription" runat="server" TextMode="MultiLine" Width="100%"></asp:TextBox></td> </tr>
                     </table>
-                          
-
                 </div>
-            
           </div>
         </div>
-
         <br />
-  
     <asp:Button ID="btn_Pickup_Delivery" runat="server" Text="إضافة " CssClass="btn" BackColor="#52a2da" ValidationGroup="Contract_RequiredField" ForeColor="White" OnClick="btn_Pickup_Delivery_Click" />
       <br /><br />  
-
-
     </div>
 
    

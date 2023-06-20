@@ -51,6 +51,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
+        /// lbl_Titel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel;
+
+        /// <summary>
         /// lbl_Tenan_Name control.
         /// </summary>
         /// <remarks>
@@ -67,15 +76,6 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Tenan_Name_DropDownList;
-
-        /// <summary>
-        /// Tenan_Name_RequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Tenan_Name_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Ownership_Name control.
@@ -96,22 +96,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Ownership_Name_DropDownList;
 
         /// <summary>
-        /// Ownership_Name_RequiredFieldValidator control.
+        /// lbl_Building_Name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Ownership_Name_RequiredFieldValidator;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Building_Name;
 
         /// <summary>
         /// Building_Name_DropDownList control.
@@ -121,15 +112,6 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Building_Name_DropDownList;
-
-        /// <summary>
-        /// Building_Name_RequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Building_Name_RequiredFieldValidator;
 
         /// <summary>
         /// lbl_Units control.
@@ -150,15 +132,6 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Units_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
         /// lbl_Prosees control.
         /// </summary>
         /// <remarks>
@@ -177,15 +150,6 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Prosees_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
-        /// <summary>
         /// lbl_date control.
         /// </summary>
         /// <remarks>
@@ -202,15 +166,6 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList date_DropDownList;
-
-        /// <summary>
-        /// RequiredFieldValidator3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// Pickup_Delivery_List control.
