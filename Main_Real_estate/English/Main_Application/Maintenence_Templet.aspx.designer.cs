@@ -24,6 +24,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// lbl_Titel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel;
+
+        /// <summary>
         /// lbl_Employee_Name control.
         /// </summary>
         /// <remarks>
@@ -204,6 +213,69 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlTable tblData;
 
         /// <summary>
+        /// lbl_tbl_Titel_One control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_One;
+
+        /// <summary>
+        /// lbl_tbl_Titel_Two control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_Two;
+
+        /// <summary>
+        /// lbl_tbl_Titel_Three control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_Three;
+
+        /// <summary>
+        /// lbl_tbl_Titel_Four control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_Four;
+
+        /// <summary>
+        /// lbl_tbl_Titel_Five control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_Five;
+
+        /// <summary>
+        /// lbl_tbl_Titel_Six control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Titel_Six;
+
+        /// <summary>
+        /// lbl_tbl_One control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_One;
+
+        /// <summary>
         /// CheckBox1 control.
         /// </summary>
         /// <remarks>
@@ -247,6 +319,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
+        /// lbl_tbl_Two control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Two;
 
         /// <summary>
         /// CheckBox5 control.
@@ -294,6 +375,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
+        /// lbl_tbl_Three control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Three;
+
+        /// <summary>
         /// CheckBox9 control.
         /// </summary>
         /// <remarks>
@@ -337,6 +427,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
+
+        /// <summary>
+        /// lbl_tbl_Four control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Four;
 
         /// <summary>
         /// CheckBox13 control.
@@ -384,6 +483,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox TextBox4;
 
         /// <summary>
+        /// lbl_tbl_Five control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Five;
+
+        /// <summary>
         /// CheckBox17 control.
         /// </summary>
         /// <remarks>
@@ -427,6 +535,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox5;
+
+        /// <summary>
+        /// lbl_tbl_six control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_six;
 
         /// <summary>
         /// CheckBox21 control.
@@ -474,6 +591,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox TextBox6;
 
         /// <summary>
+        /// lbl_tbl_Seven control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Seven;
+
+        /// <summary>
         /// CheckBox25 control.
         /// </summary>
         /// <remarks>
@@ -517,6 +643,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox7;
+
+        /// <summary>
+        /// lbl_tbl_eight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_eight;
 
         /// <summary>
         /// CheckBox29 control.
@@ -564,6 +699,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox TextBox8;
 
         /// <summary>
+        /// lbl_tbl_nine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_nine;
+
+        /// <summary>
         /// CheckBox33 control.
         /// </summary>
         /// <remarks>
@@ -607,6 +751,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox9;
+
+        /// <summary>
+        /// lbl_tbl_ten control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_ten;
 
         /// <summary>
         /// CheckBox37 control.
@@ -654,6 +807,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox TextBox10;
 
         /// <summary>
+        /// lbl_tbl_Eleven control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Eleven;
+
+        /// <summary>
         /// CheckBox41 control.
         /// </summary>
         /// <remarks>
@@ -697,6 +859,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox11;
+
+        /// <summary>
+        /// lbl_tbl_Twelev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tbl_Twelev;
 
         /// <summary>
         /// CheckBox45 control.
@@ -807,13 +978,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Calendar One_Date_Calendar;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_One_Date_Type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_One_Date_Type;
 
         /// <summary>
         /// Radio_1 control.
@@ -888,13 +1059,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Calendar Two_Date_Calendar;
 
         /// <summary>
-        /// Label2 control.
+        /// lbl_Two_Date_Type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbl_Two_Date_Type;
 
         /// <summary>
         /// Radio_2 control.

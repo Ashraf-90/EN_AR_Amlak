@@ -23,29 +23,33 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                //    //Fill Ownership Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList,
-                "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "إختر الملكية ....");
-
-                //    //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList,
-                    "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Name_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                Employee_Name_DropDownList.Items.Insert(0, "إختر المراقب ....");
+                language();
             }
         }
         //******************  Get The Building Of Selected Ownership ***************************************************
         protected void Ownership_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //    //Fill Buildings Name DropDownList
-            Helper.LoadDropDownList(
+            if (Session["Langues"].ToString() == "1")
+            {
+                //Fill Buildings Name DropDownList
+                Helper.LoadDropDownList(
+                "SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id = '" +
+                Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList,
+                "Building_English_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+            else
+            {
+                //Fill Buildings Name DropDownList
+                Helper.LoadDropDownList(
                 "SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id = '" +
                 Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList,
                 "Building_Arabic_Name", "Building_Id");
-            Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+
+
+                
         }
         //******************  Date ***************************************************
         protected void Sign_Date_Calendar_SelectionChanged1(object sender, EventArgs e)
@@ -349,6 +353,168 @@ namespace Main_Real_estate.English.Main_Application
                 addMaintenence_Templet_13Cmd.ExecuteNonQuery();
                 _sqlCon.Close();
             }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_maintenance", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Employee Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Name_DropDownList, "Employee_English_name", "Employee_Id");
+                    Employee_Name_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    Radio_1.Items.Clear();
+                    Radio_1.Items.Add(new ListItem("Periodically", "1"));
+                    Radio_1.Items.Add(new ListItem("Non-Periodic", "2"));
+
+                    Radio_2.Items.Clear();
+                    Radio_2.Items.Add(new ListItem("Periodically", "1"));
+                    Radio_2.Items.Add(new ListItem("Non-Periodic", "2"));
+
+
+                    lbl_Titel.Text = Dt.Rows[111]["EN"].ToString();
+                    lbl_Employee_Name.Text = Dt.Rows[44]["EN"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[83]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[64]["EN"].ToString();
+                    lbl_Location_IFO.Text = Dt.Rows[88]["EN"].ToString();
+                    lbl_One_Date_Type.Text = Dt.Rows[108]["EN"].ToString();
+                    lbl_One_Date.Text = Dt.Rows[106]["EN"].ToString();
+                    lbl_Two_Date.Text = Dt.Rows[107]["EN"].ToString();
+                    lbl_Two_Date_Type.Text = Dt.Rows[108]["EN"].ToString();
+                    lbl_Discription.Text = Dt.Rows[71]["EN"].ToString();
+                    btn_Maintenence_Templet.Text = Dt.Rows[66]["EN"].ToString();
+                    Two_Date_Chosee.Text = Dt.Rows[67]["EN"].ToString();
+                    One_Date_Chosee.Text = Dt.Rows[67]["EN"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[67]["EN"].ToString();
+
+                    lbl_tbl_Titel_One.Text = Dt.Rows[89]["EN"].ToString();
+                    lbl_tbl_Titel_Two.Text = Dt.Rows[90]["EN"].ToString();
+                    lbl_tbl_Titel_Three.Text = Dt.Rows[91]["EN"].ToString();
+                    lbl_tbl_Titel_Four.Text = Dt.Rows[92]["EN"].ToString();
+                    lbl_tbl_Titel_Five.Text = Dt.Rows[93]["EN"].ToString();
+                    lbl_tbl_Titel_Six.Text = Dt.Rows[71]["EN"].ToString();
+
+                    lbl_tbl_One.Text = Dt.Rows[94]["EN"].ToString();
+                    lbl_tbl_Two.Text = Dt.Rows[95]["EN"].ToString();
+                    lbl_tbl_Three.Text = Dt.Rows[96]["EN"].ToString();
+                    lbl_tbl_Four.Text = Dt.Rows[97]["EN"].ToString();
+                    lbl_tbl_Five.Text = Dt.Rows[98]["EN"].ToString();
+                    lbl_tbl_six.Text = Dt.Rows[99]["EN"].ToString();
+                    lbl_tbl_Seven.Text = Dt.Rows[100]["EN"].ToString();
+                    lbl_tbl_eight.Text = Dt.Rows[101]["EN"].ToString();
+                    lbl_tbl_nine.Text = Dt.Rows[102]["EN"].ToString();
+                    lbl_tbl_ten.Text = Dt.Rows[103]["EN"].ToString();
+                    lbl_tbl_Eleven.Text = Dt.Rows[104]["EN"].ToString();
+                    lbl_tbl_Twelev.Text = Dt.Rows[105]["EN"].ToString();
+                }
+                else
+                {
+
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList,"Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList,"Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Employee Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Name_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Employee_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    Radio_1.Items.Clear();
+                    Radio_1.Items.Add(new ListItem("دورية", "1"));
+                    Radio_1.Items.Add(new ListItem("حادثة", "2"));
+
+                    Radio_2.Items.Clear();
+                    Radio_2.Items.Add(new ListItem("دورية", "1"));
+                    Radio_2.Items.Add(new ListItem("حادثة", "2"));
+
+
+
+                    lbl_Titel.Text = Dt.Rows[111]["AR"].ToString();
+                    lbl_Employee_Name.Text = Dt.Rows[44]["AR"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[83]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_Sign_Date.Text = Dt.Rows[64]["AR"].ToString();
+                    lbl_Location_IFO.Text = Dt.Rows[88]["AR"].ToString();
+                    lbl_One_Date_Type.Text = Dt.Rows[108]["AR"].ToString();
+                    lbl_One_Date.Text = Dt.Rows[106]["AR"].ToString();
+                    lbl_Two_Date.Text = Dt.Rows[107]["AR"].ToString();
+                    lbl_Two_Date_Type.Text = Dt.Rows[108]["AR"].ToString();
+                    lbl_Discription.Text = Dt.Rows[71]["AR"].ToString();
+                    btn_Maintenence_Templet.Text = Dt.Rows[66]["AR"].ToString();
+                    Two_Date_Chosee.Text = Dt.Rows[67]["AR"].ToString();
+                    One_Date_Chosee.Text = Dt.Rows[67]["AR"].ToString();
+                    Sign_Date_Chosee.Text = Dt.Rows[67]["AR"].ToString();
+
+                    lbl_tbl_Titel_One.Text = Dt.Rows[89]["AR"].ToString();
+                    lbl_tbl_Titel_Two.Text = Dt.Rows[90]["AR"].ToString();
+                    lbl_tbl_Titel_Three.Text = Dt.Rows[91]["AR"].ToString();
+                    lbl_tbl_Titel_Four.Text = Dt.Rows[92]["AR"].ToString();
+                    lbl_tbl_Titel_Five.Text = Dt.Rows[93]["AR"].ToString();
+                    lbl_tbl_Titel_Six.Text = Dt.Rows[71]["AR"].ToString();
+
+                    lbl_tbl_One.Text = Dt.Rows[94]["AR"].ToString();
+                    lbl_tbl_Two.Text = Dt.Rows[95]["AR"].ToString();
+                    lbl_tbl_Three.Text = Dt.Rows[96]["AR"].ToString();
+                    lbl_tbl_Four.Text = Dt.Rows[97]["AR"].ToString();
+                    lbl_tbl_Five.Text = Dt.Rows[98]["AR"].ToString();
+                    lbl_tbl_six.Text = Dt.Rows[99]["AR"].ToString();
+                    lbl_tbl_Seven.Text = Dt.Rows[100]["AR"].ToString();
+                    lbl_tbl_eight.Text = Dt.Rows[101]["AR"].ToString();
+                    lbl_tbl_nine.Text = Dt.Rows[102]["AR"].ToString();
+                    lbl_tbl_ten.Text = Dt.Rows[103]["AR"].ToString();
+                    lbl_tbl_Eleven.Text = Dt.Rows[104]["AR"].ToString();
+                    lbl_tbl_Twelev.Text = Dt.Rows[105]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

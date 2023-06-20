@@ -54,23 +54,18 @@
 
         }
 
-        
-        .table-row-stripe tr, .table-row-stripe td { background-color: #fff; }
-        .table-row-stripe table tr, .table-row-stripe table tr td{ border: none; padding: 10px;}
-        .table-row-stripe tr{
-            text-align: right !important;
-            border-bottom: 1px solid #ddd;
-            border-top: 1px solid #ddd;
-            border-collapse: collapse;
-        } 
-       
-        .table-row-stripe td, .table-row-stripe th{
-            text-align: right !important;
-            padding: 5px;
-        }
-        .right-float{
-            float: right;
-        }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+            }
         </style>
         <%-----------------------------------------------------------------------------------%>
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -79,7 +74,7 @@
                 <div class="card mb-10">
                     <div class="card-body">
                         <div class="container" style="color: red; font-weight: bold">
-                            <h3>نموذج الرقابة الدورية للعقار</h3>
+                            <h3><asp:Label ID="lbl_Titel" runat="server"/></h3>
                         </div>
                         <br />
                         <div class="row">
@@ -157,18 +152,18 @@
                         <div class="row">
                             <table id="tblData" runat="server" style="margin: 10px; padding: 10px; " class="table-row-stripe">
                                 <tr>
-                                    <th style="width:200px">المرافق</th>
-                                    <th>نظافة</th>
-                                    <th>حماية</th>
-                                    <th>صيانة</th>
-                                    <th>مخالفات</th>
-                                    <th style="width:300px">ملاحظات</th>
+                                    <th style="width:200px"><asp:Label ID="lbl_tbl_Titel_One" runat="server"/></th><%--المرافق--%>
+                                    <th><asp:Label ID="lbl_tbl_Titel_Two" runat="server"/></th><%--نظافة--%>
+                                    <th><asp:Label ID="lbl_tbl_Titel_Three" runat="server"/></th><%--حماية--%>
+                                    <th><asp:Label ID="lbl_tbl_Titel_Four" runat="server"/></th><%--صيانة--%>
+                                    <th><asp:Label ID="lbl_tbl_Titel_Five" runat="server"/></th><%--مخالفات--%>
+                                    <th style="width:300px"><asp:Label ID="lbl_tbl_Titel_Six" runat="server"/></th><%--ملاحظات--%>
                                 </tr>
 
 
 
                                 <tr>
-                                    <td>مواقف</td>
+                                    <td><asp:Label ID="lbl_tbl_One" runat="server"/></td><%--مواقف--%>
                                     <td><asp:CheckBox ID="CheckBox1" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox2" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox3" runat="server" /></td>
@@ -176,7 +171,7 @@
                                     <td><asp:TextBox ID="TextBox1" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>مداخل</td>
+                                    <td><asp:Label ID="lbl_tbl_Two" runat="server"/></td><%--مداخل--%>
                                     <td><asp:CheckBox ID="CheckBox5" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox6" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox7" runat="server" /></td>
@@ -184,7 +179,7 @@
                                     <td><asp:TextBox ID="TextBox2" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>الدرج</td>
+                                    <td><asp:Label ID="lbl_tbl_Three" runat="server"/></td><%--الدرج--%>
                                     <td><asp:CheckBox ID="CheckBox9" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox10" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox11" runat="server" /></td>
@@ -192,7 +187,7 @@
                                     <td><asp:TextBox ID="TextBox3" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>السطح</td>
+                                    <td><asp:Label ID="lbl_tbl_Four" runat="server"/></td><%--السطح--%>
                                    <td><asp:CheckBox ID="CheckBox13" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox14" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox15" runat="server" /></td>
@@ -200,7 +195,7 @@
                                     <td><asp:TextBox ID="TextBox4" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>القبو</td>
+                                    <td><asp:Label ID="lbl_tbl_Five" runat="server"/></td><%--القبو--%>
                                     <td><asp:CheckBox ID="CheckBox17" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox18" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox19" runat="server" /></td>
@@ -208,7 +203,7 @@
                                     <td><asp:TextBox ID="TextBox5" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>غرفة المولد</td>
+                                    <td><asp:Label ID="lbl_tbl_six" runat="server"/></td><%--غرفة المولد--%>
                                     <td><asp:CheckBox ID="CheckBox21" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox22" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox23" runat="server" /></td>
@@ -216,7 +211,7 @@
                                     <td><asp:TextBox ID="TextBox6" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>غرفة الكهرباء</td>
+                                    <td><asp:Label ID="lbl_tbl_Seven" runat="server"/></td><%--غرفة الكهرباء--%>
                                     <td><asp:CheckBox ID="CheckBox25" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox26" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox27" runat="server" /></td>
@@ -224,7 +219,7 @@
                                     <td><asp:TextBox ID="TextBox7" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>غرفة الدفاع المدني</td>
+                                    <td><asp:Label ID="lbl_tbl_eight" runat="server"/></td><%--غرفة المدني--%>
                                     <td><asp:CheckBox ID="CheckBox29" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox30" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox31" runat="server" /></td>
@@ -232,7 +227,7 @@
                                     <td><asp:TextBox ID="TextBox8" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>مكب القمامة</td>
+                                    <td><asp:Label ID="lbl_tbl_nine" runat="server"/></td><%--مكب القمامة--%>
                                     <td><asp:CheckBox ID="CheckBox33" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox34" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox35" runat="server" /></td>
@@ -240,7 +235,7 @@
                                     <td><asp:TextBox ID="TextBox9" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>المصاعد</td>
+                                    <td><asp:Label ID="lbl_tbl_ten" runat="server"/></td><%--مصاعد--%>
                                     <td><asp:CheckBox ID="CheckBox37" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox38" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox39" runat="server" /></td>
@@ -248,7 +243,7 @@
                                     <td><asp:TextBox ID="TextBox10" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>الممرات</td>
+                                    <td><asp:Label ID="lbl_tbl_Eleven" runat="server"/></td><%--ممرات--%>
                                     <td><asp:CheckBox ID="CheckBox41" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox42" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox43" runat="server" /></td>
@@ -256,7 +251,7 @@
                                     <td><asp:TextBox ID="TextBox11" runat="server" Width="100%"></asp:TextBox></td>
                                 </tr>
                                  <tr>
-                                    <td>أجهزة عامة / أثاث عام</td>
+                                    <td><asp:Label ID="lbl_tbl_Twelev" runat="server"/></td><%--أجهزة عامة--%>
                                     <td><asp:CheckBox ID="CheckBox45" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox46" runat="server" /></td>
                                     <td><asp:CheckBox ID="CheckBox47" runat="server" /></td>
@@ -298,11 +293,8 @@
                                 </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <asp:Label ID="Label1" runat="server" Text="نوعها"></asp:Label>
-                                    <asp:RadioButtonList ID="Radio_1" runat="server"  RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Text="دورية"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="حادثة"></asp:ListItem>
-                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lbl_One_Date_Type" runat="server" Text="نوعها"></asp:Label>
+                                    <asp:RadioButtonList ID="Radio_1" runat="server"  RepeatDirection="Horizontal"></asp:RadioButtonList>
                                 </div>
                             </div>
                             <div class="row">
@@ -339,11 +331,8 @@
                                 </div>
                                  <div class="col-lg-4">
                                     <div class="form-group">
-                                        <asp:Label ID="Label2" runat="server" Text="نوعها"></asp:Label>
-                                        <asp:RadioButtonList ID="Radio_2" runat="server"  RepeatDirection="Horizontal">
-                                            <asp:ListItem Value="1" Text="دورية"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="حادثة"></asp:ListItem>
-                                        </asp:RadioButtonList>
+                                        <asp:Label ID="lbl_Two_Date_Type" runat="server" Text="نوعها"></asp:Label>
+                                        <asp:RadioButtonList ID="Radio_2" runat="server"  RepeatDirection="Horizontal"></asp:RadioButtonList>
                                     </div>
                                 </div>
                             </div>
