@@ -4,9 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <link href="../CSS/DDL.css" rel="stylesheet" /> -->
+    <link href="../CSS/DDL.css" rel="stylesheet" /> 
     <style>
         .table-condensed tr th {
             border: 0px solid #fff;
@@ -58,22 +58,22 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_En_Tenant_Name" runat="server" Text="إسم المستأجر بالإنكليزية"></asp:Label>
-                                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_En_Tenant_Name"
+                                    &nbsp;<asp:RegularExpressionValidator ID="En_Tenant_Name_Reg_Exp_Vali" runat="server" ControlToValidate="txt_En_Tenant_Name"
                                         EnableClientScript="True" ErrorMessage="!!! أحرف إنكليزية فقط" ForeColor="#fc544b"
                                         ValidationExpression="[a-z A-Z0-9]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_En_Tenant_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="reqFuild1" ControlToValidate="txt_En_Tenant_Name"
+                                    <asp:RequiredFieldValidator ID="En_Tenant_Name_reqFuild" ControlToValidate="txt_En_Tenant_Name"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b" ValidationGroup="Tenant_RequiredField"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Ar_Tenant_Name" runat="server" Text="اسم المستأجر بالعربية"></asp:Label>
-                                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txt_Ar_Tenant_Name"
+                                    &nbsp;<asp:RegularExpressionValidator ID="Ar_Tenant_Name_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Ar_Tenant_Name"
                                         EnableClientScript="True" ErrorMessage="!!! أحرف عربية فقط" ForeColor="#fc544b"
                                         ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Ar_Tenant_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Tenant_RequiredField" ControlToValidate="txt_Ar_Tenant_Name"
+                                    <asp:RequiredFieldValidator ID="AR_Tenant_Name_reqFuild" ValidationGroup="Tenant_RequiredField" ControlToValidate="txt_Ar_Tenant_Name"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <asp:DropDownList ID="Tenant_Type_DropDownList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Tenant_Type_DropDownList_SelectedIndexChanged" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Tenant_Type_RequiredFieldValidator" ValidationGroup="Tenant_RequiredField" ControlToValidate="Tenant_Type_DropDownList"
-                                        InitialValue="إختر نوع المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -102,8 +102,6 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_P_O_Box" runat="server" Text="صندوق بريد"></asp:Label>
                                     <asp:TextBox ID="txt_P_O_Box" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txt__Tenant_Nationality_Address" 
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
 
@@ -111,8 +109,6 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbl_business_records" runat="server" Text="السجل التجاري"></asp:Label>
                                         <asp:TextBox ID="txt_business_records" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <%--<asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="nationality_DropDownList"
-                                        InitialValue="إختر جنسية المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
 
@@ -122,15 +118,13 @@
                                     <asp:DropDownList ID="nationality_DropDownList" runat="server" CssClass="form-control" ValidationGroup="Tenant_RequiredField">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="nationality_DropDownList"
-                                        InitialValue="إختر جنسية المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-4" id="Tenant_Nationality_Address" runat="server" visible="false">
                                 <div class="form-group" >
                                     <asp:Label ID="lbl_Tenant_Nationality_Address" runat="server" Text="العنوان في البلد الأصل"></asp:Label>
                                     <asp:TextBox ID="txt__Tenant_Nationality_Address" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txt__Tenant_Nationality_Address" 
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
                             </div>
@@ -143,8 +137,6 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbl_business_records_File" runat="server" Text=" تحميل صورة عن السجل التجاري"></asp:Label>
                                         <asp:FileUpload ID="business_records_File_FileUpload" runat="server" CssClass="form-control" />
-                                        <%--<asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="nationality_DropDownList"
-                                        InitialValue="إختر جنسية المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
 
@@ -152,8 +144,6 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Establishment_Registration_Number" runat="server" Text="رقم قيد المنشأة"></asp:Label>
                                         <asp:TextBox ID="txt_Establishment_Registration_Number" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <%--<asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="nationality_DropDownList"
-                                        InitialValue="إختر جنسية المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
 
@@ -161,15 +151,13 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Company_registration" runat="server" Text=" تحميل صورة عن قيد المنشأة"></asp:Label>
                                         <asp:FileUpload ID="Company_registration_FileUpload" runat="server" CssClass="form-control" />
-                                        <%--<asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="nationality_DropDownList"
-                                        InitialValue="إختر جنسية المستأجر ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
 
 
                                  <div class="col-lg-3" id="Add_Tenant_Div" runat="server" visible="false">
                                     <div class="form-group">
-                                        <asp:Label ID="Label1" runat="server" Text="إضافة ممثل عن الشركة"></asp:Label><br />
+                                        <asp:Label ID="lbl_Add_Representative" runat="server" Text="إضافة ممثل عن الشركة"></asp:Label><br />
                                         <asp:ImageButton ID="Add_Tenantt" runat="server" ImageUrl="Main_Image/plus.png" OnClick="Add_Tenant_Click" Width="40px" Height=40px/>
                                     </div>
                                 </div>
@@ -192,7 +180,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <asp:Label ID="lbl_Tenant_Tell" runat="server" Text="هاتف "></asp:Label>&nbsp;
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txt_Tenant_Tell"
+                                        <asp:RegularExpressionValidator ID="Tell_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Tenant_Tell"
                                             EnableClientScript="True" ErrorMessage="!!!ارقام فقط" ForeColor="#fc544b"
                                             ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                 <asp:TextBox ID="txt_Tenant_Tell" runat="server" CssClass="form-control"></asp:TextBox>
@@ -201,11 +189,11 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Tenant_Mobile" runat="server" Text="جوال "></asp:Label>&nbsp;
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txt_Tenant_Mobile"
+                                            <asp:RegularExpressionValidator ID="Mobile_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Tenant_Mobile"
                                                 EnableClientScript="True" ErrorMessage="!!!ارقام فقط" ForeColor="#fc544b"
                                                 ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Tenant_Mobile" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="Tenant_RequiredField" ControlToValidate="txt_Tenant_Mobile"
+                                    <asp:RequiredFieldValidator ID="Mobile_Req_Fiel_Vali" ValidationGroup="Tenant_RequiredField" ControlToValidate="txt_Tenant_Mobile"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -213,7 +201,7 @@
                             <div class="col-lg-4">
                                 <asp:Label ID="lbl_Tenant_Fax" runat="server" Text="فاكس "></asp:Label>
                                 &nbsp;
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="txt_Tenant_Fax"
+                                        <asp:RegularExpressionValidator ID="Fax_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Tenant_Fax"
                                             EnableClientScript="True" ErrorMessage="!!!ارقام فقط" ForeColor="#fc544b"
                                             ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                 <asp:TextBox ID="txt_Tenant_Fax" runat="server" CssClass="form-control"></asp:TextBox>
@@ -224,20 +212,16 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Tenant_Email" runat="server" Text="البريد الألكتروني"></asp:Label>
-                                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txt_Tenant_Email"
+                                    &nbsp;<asp:RegularExpressionValidator ID="Email_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Tenant_Email"
                                         EnableClientScript="True" ErrorMessage="البريد الاكتروني غير صالح" ForeColor="#fc544b"
                                         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Tenant_Email" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txt_Tenant_Email"  
-                        runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Tenant_Address" runat="server" Text="عنوان المستأجر"></asp:Label>
                                     <asp:TextBox ID="txt_Tenant_Address" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <%-- <asp:RequiredFieldValidator ID="reqFuild6" ControlToValidate="txt_Tenant_Address" 
-                                     runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
                         </div>
@@ -248,8 +232,6 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Passport" runat="server" Text="تحميل جواز سفر المستأجر"></asp:Label>
                                     <asp:FileUpload ID="Passport_FileUpload" runat="server" CssClass="form-control" />
-                                    <%--<asp:RequiredFieldValidator ID="reqFuild8" ControlToValidate="FUL_Tenant_QID"  
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
 
@@ -257,8 +239,6 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Tenant_QID" runat="server" Text="تحميل بطاقة المستأجر"></asp:Label>
                                     <asp:FileUpload ID="FUL_Tenant_QID" runat="server" CssClass="form-control" />
-                                    <%--<asp:RequiredFieldValidator ID="reqFuild8" ControlToValidate="FUL_Tenant_QID"  
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
 
@@ -266,8 +246,6 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_ID_NO" runat="server" Text="رقم البطاقة"></asp:Label>
                                     <asp:TextBox ID="txt_ID_NO" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <%-- <asp:RequiredFieldValidator ID="reqFuild6" ControlToValidate="txt_Tenant_Address" 
-                                    runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="#fc544b"></asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
 

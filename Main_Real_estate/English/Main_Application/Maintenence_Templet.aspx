@@ -84,7 +84,7 @@
                                     <asp:DropDownList ID="Employee_Name_DropDownList" runat="server"  CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Employee_Name_ReqFieldVal" ControlToValidate="Employee_Name_DropDownList"
-                                        InitialValue="إختر المراقب ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                         OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر الملكية ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر البناء ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>

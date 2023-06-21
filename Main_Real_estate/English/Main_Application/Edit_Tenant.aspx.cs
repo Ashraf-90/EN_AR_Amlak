@@ -22,12 +22,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!Page.IsPostBack)
             {
-                //Fill Tenant Type DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenant_type", _sqlCon, Tenant_Type_DropDownList, "Tenant_Arabic_Type", "Tenant_Type_Id");
-                Tenant_Type_DropDownList.Items.Insert(0, "إختر نوع المستأجر ....");
-
-                Helper.LoadDropDownList("SELECT * FROM nationality", _sqlCon, nationality_DropDownList, "Arabic_nationality", "nationality_ID");
-                nationality_DropDownList.Items.Insert(0, "إختر جنسية المستأجر ....");
+                language();
 
                 string tenantId = Request.QueryString["Id"];
                 string getTenantQuery = "SELECT * From tenants Where Tenants_ID=@Id";
@@ -84,7 +79,10 @@ namespace Main_Real_estate.English.Main_Application
                 }
                 txt_En_Tenant_Name.Text = getTenantSdr["Tenants_English_Name"].ToString();
                 txt_Ar_Tenant_Name.Text = getTenantSdr["Tenants_Arabic_Name"].ToString();
-                lbl_Name_Of_Tenant.Text = getTenantSdr["Tenants_Arabic_Name"].ToString();
+
+                if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Tenant.Text = getTenantSdr["Tenants_English_Name"].ToString(); }
+                else { lbl_Name_Of_Tenant.Text = getTenantSdr["Tenants_Arabic_Name"].ToString(); }
+                    
                 txt_Tenant_Tell.Text = getTenantSdr["Tenants_Tell"].ToString();
                 txt_Tenant_Mobile.Text = getTenantSdr["Tenants_Mobile"].ToString();
                 txt_Tenant_Fax.Text = getTenantSdr["Tenants_Fax"].ToString();
@@ -275,7 +273,10 @@ namespace Main_Real_estate.English.Main_Application
 
                 updateTenantsCmd.ExecuteNonQuery();
                 _sqlCon.Close();
-                lbl_Success_Edit_Tenant.Text = "تم التعديل بنجاح";
+
+                if (Session["Langues"].ToString() == "1") { lbl_Success_Edit_Tenant.Text = "Edited successfully"; } else { lbl_Success_Edit_Tenant.Text = "تم التعديل بنجاح"; }
+
+                    
                 // ****************************** Creat tenant Acount **************************
 
                 DataTable getTenant_AccountDt = new DataTable();
@@ -414,6 +415,156 @@ namespace Main_Real_estate.English.Main_Application
             {
                 txt_Tenant_PassPword.TextMode = TextBoxMode.Password;
             }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_tenant", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Tenant Type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenant_type", _sqlCon, Tenant_Type_DropDownList, "Tenant_English_Type", "Tenant_Type_Id");
+                    Tenant_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill nationality_DropDownList DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM nationality", _sqlCon, nationality_DropDownList, "English_nationality", "nationality_ID");
+                    nationality_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    lbl_titel_Edit_Tenant.Text = Dt.Rows[27]["EN"].ToString();
+                    lbl_En_Tenant_Name.Text = Dt.Rows[1]["EN"].ToString();
+                    lbl_Ar_Tenant_Name.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_En_Tenant_Type.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_P_O_Box.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_business_records.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_nationality.Text = Dt.Rows[6]["EN"].ToString();
+                    lbl_Tenant_Nationality_Address.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_business_records_File.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Establishment_Registration_Number.Text = Dt.Rows[9]["EN"].ToString();
+
+                    lbl_Company_registration.Text = Dt.Rows[10]["EN"].ToString();
+                    lbl_Add_Representative.Text = Dt.Rows[11]["EN"].ToString();
+                    lbl_Tenant_Tell.Text = Dt.Rows[12]["EN"].ToString();
+                    lbl_Tenant_Mobile.Text = Dt.Rows[13]["EN"].ToString();
+                    lbl_Tenant_Fax.Text = Dt.Rows[14]["EN"].ToString();
+                    lbl_Tenant_Email.Text = Dt.Rows[15]["EN"].ToString();
+                    lbl_Tenant_Address.Text = Dt.Rows[16]["EN"].ToString();
+                    lbl_Passport.Text = Dt.Rows[17]["EN"].ToString();
+                    lbl_Tenant_QID.Text = Dt.Rows[18]["EN"].ToString();
+                    lbl_ID_NO.Text = Dt.Rows[18]["EN"].ToString();
+                    lbl_Expiry.Text = Dt.Rows[19]["EN"].ToString();
+                    lbl_Sign_UP.Text = Dt.Rows[29]["EN"].ToString();
+                    lbl_Tenant_User_Name.Text = Dt.Rows[30]["EN"].ToString();
+                    lbl_Tenant_PassPword.Text = Dt.Rows[31]["EN"].ToString();
+                    CheckBox1.Text = Dt.Rows[32]["EN"].ToString();
+                    btn_Edit_Tenant.Text = Dt.Rows[28]["EN"].ToString();
+                    btn_Back_To_Tenant_List.Text = Dt.Rows[20]["EN"].ToString();
+                    Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+
+
+                    En_Tenant_Name_Reg_Exp_Vali.ErrorMessage = Dt.Rows[26]["EN"].ToString();
+                    Ar_Tenant_Name_Reg_Exp_Vali.ErrorMessage = Dt.Rows[25]["EN"].ToString();
+                    Tell_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["EN"].ToString();
+                    Fax_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["EN"].ToString();
+                    Mobile_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["EN"].ToString();
+                    Email_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["EN"].ToString();
+
+
+
+
+                    En_Tenant_Name_reqFuild.ErrorMessage = "* Required ";
+                    AR_Tenant_Name_reqFuild.ErrorMessage = "* Required ";
+                    Tenant_Type_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    nationality_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Mobile_Req_Fiel_Vali.ErrorMessage = "* Required ";
+
+                }
+                else
+                {
+
+                    //Fill Tenant Type DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenant_type", _sqlCon, Tenant_Type_DropDownList, "Tenant_Arabic_Type", "Tenant_Type_Id");
+                    Tenant_Type_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill nationality_DropDownList DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM nationality", _sqlCon, nationality_DropDownList, "Arabic_nationality", "nationality_ID");
+                    nationality_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_titel_Edit_Tenant.Text = Dt.Rows[27]["AR"].ToString();
+                    lbl_En_Tenant_Name.Text = Dt.Rows[1]["AR"].ToString();
+                    lbl_Ar_Tenant_Name.Text = Dt.Rows[2]["AR"].ToString();
+                    lbl_En_Tenant_Type.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_P_O_Box.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_business_records.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_nationality.Text = Dt.Rows[6]["AR"].ToString();
+                    lbl_Tenant_Nationality_Address.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_business_records_File.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Establishment_Registration_Number.Text = Dt.Rows[9]["AR"].ToString();
+
+                    lbl_Company_registration.Text = Dt.Rows[10]["AR"].ToString();
+                    lbl_Add_Representative.Text = Dt.Rows[11]["AR"].ToString();
+                    lbl_Tenant_Tell.Text = Dt.Rows[12]["AR"].ToString();
+                    lbl_Tenant_Mobile.Text = Dt.Rows[13]["AR"].ToString();
+                    lbl_Tenant_Fax.Text = Dt.Rows[14]["AR"].ToString();
+                    lbl_Tenant_Email.Text = Dt.Rows[15]["AR"].ToString();
+                    lbl_Tenant_Address.Text = Dt.Rows[16]["AR"].ToString();
+                    lbl_Passport.Text = Dt.Rows[17]["AR"].ToString();
+                    lbl_Tenant_QID.Text = Dt.Rows[18]["AR"].ToString();
+                    lbl_ID_NO.Text = Dt.Rows[18]["AR"].ToString();
+                    lbl_Expiry.Text = Dt.Rows[19]["AR"].ToString();
+                    lbl_Sign_UP.Text = Dt.Rows[29]["AR"].ToString();
+                    lbl_Tenant_User_Name.Text = Dt.Rows[30]["AR"].ToString();
+                    lbl_Tenant_PassPword.Text = Dt.Rows[31]["AR"].ToString();
+                    CheckBox1.Text = Dt.Rows[32]["AR"].ToString();
+                    btn_Edit_Tenant.Text = Dt.Rows[28]["AR"].ToString();
+                    btn_Back_To_Tenant_List.Text = Dt.Rows[20]["AR"].ToString();
+                    Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+
+
+                    En_Tenant_Name_Reg_Exp_Vali.ErrorMessage = Dt.Rows[26]["AR"].ToString();
+                    Ar_Tenant_Name_Reg_Exp_Vali.ErrorMessage = Dt.Rows[25]["AR"].ToString();
+                    Tell_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["AR"].ToString();
+                    Fax_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["AR"].ToString();
+                    Mobile_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["AR"].ToString();
+                    Email_Reg_Exp_Vali.ErrorMessage = Dt.Rows[22]["AR"].ToString();
+
+
+
+
+                    En_Tenant_Name_reqFuild.ErrorMessage = "* مطلوب ";
+                    AR_Tenant_Name_reqFuild.ErrorMessage = "* مطلوب ";
+                    Tenant_Type_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    nationality_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Mobile_Req_Fiel_Vali.ErrorMessage = "* مطلوب ";
+                }
+            }
+            _sqlCon.Close();
         }
     }
 }

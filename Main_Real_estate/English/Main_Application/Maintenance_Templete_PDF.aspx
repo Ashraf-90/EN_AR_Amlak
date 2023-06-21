@@ -137,7 +137,7 @@
 
 
 
-                <h3>كشوفات الرقابة الدورية العقار</h3>
+                <h3><asp:Label ID="lbl_Titel" runat="server" Text="اسم المراقب"/></h3>
                 <br />
                 <div class="card mb-10">
                     <div class="card-body">
@@ -147,9 +147,7 @@
                                     <asp:Label ID="lbl_Employee_Name" runat="server" Text="اسم المراقب"></asp:Label>
                                     <asp:DropDownList ID="Employee_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Employee_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Employee_Name_ReqFieldVal" ControlToValidate="Employee_Name_DropDownList"
-                                        InitialValue="إختر المراقب ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-                                    </asp:RequiredFieldValidator>
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -158,9 +156,7 @@
                                     <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر الملكية ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-                                    </asp:RequiredFieldValidator>
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -169,9 +165,7 @@
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر البناء ...." runat="server" ValidationGroup="Maintenence_Templet_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-                                    </asp:RequiredFieldValidator>
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -179,9 +173,7 @@
                                     <asp:Label ID="lbl_date" runat="server" Text="التاريخ"></asp:Label>
                                     <asp:DropDownList ID="date_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="date_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="date_DropDownList"
-                                        InitialValue="إختر التاريخ ...." runat="server" ValidationGroup="PDF_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
-                                    </asp:RequiredFieldValidator>
+                                   
                                 </div>
                             </div>
                             
@@ -189,26 +181,34 @@
                          <%--------------------------------------------------------------------------------------------------------------------------------------------------------------%>
                         <div class="row">
                             <div class="table-responsive" id="Grid">
-                                <asp:Repeater ID="Maintenance_Templete_List" runat="server" ClientIDMode="Static">
+                                <asp:Repeater ID="Maintenance_Templete_List" runat="server" ClientIDMode="Static" OnItemDataBound="Maintenance_Templete_List_ItemDataBound">
                                     <HeaderTemplate>
                                         <table cellspacing="0" style="width: 100%; font-size: 13px" class="datatable table table-striped table-bordered">
                                             <thead>
-                                                <th style="text-align: center;">مسلسل</th>
-                                                <th style="text-align: center">الملكية</th>
-                                                <th style="text-align: center">البناء</th>
-                                                <th style="text-align: center">المراقب</th>
-                                                <th style="text-align: center">التاريخ</th>
-
-                                                <th style="width: 200px"></th>
+                                                <th style="text-align: center;">#</th>
+                                                <th style="text-align: center"><asp:Label ID="lbl_Tbl_H_Ownership" runat="server" /></th> <%--ملكية--%>
+                                                <th style="text-align: center"><asp:Label ID="lbl_Tbl_H_Building" runat="server" /></th> <%--بناء--%>
+                                                <th style="text-align: center"><asp:Label ID="lbl_Tbl_H_Observer" runat="server" /></th> <%--مراقب--%>
+                                                <th style="text-align: center"><asp:Label ID="lbl_Tbl_H_Date" runat="server" /></th> <%--التاريخ--%>
+                                                <th></th>
                                             </thead>
                                             <tbody>
                                     </HeaderTemplate>
                                     <ItemTemplate>
                                         <tr>
                                             <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
-                                            <td> <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
-                                            <td> <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
-                                            <td> <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />  </td>
+                                            <td> 
+                                                <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                                <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                            </td>
+                                            <td> 
+                                                <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                                <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                            </td>
+                                            <td> 
+                                                <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />  
+                                                <asp:Label ID="lbl_Employee_English_name" runat="server" Text='<%# Eval("Employee_English_name") %>' />
+                                            </td>
                                             <td> <asp:Label ID="lbl_Date" runat="server" Text='<%# Eval("Date") %>' /></td>
 
                                             <td>
@@ -232,7 +232,7 @@
 
                                 <button runat="server" id="printt" visible="false" style="font-size: 18px; width: 150px"  class="btn btn-lg btn-primary"
                                     onclick="printDiv('print')">
-                                    <i class="fa fa-print" aria-hidden="true"></i>&nbsp;طباعة 
+                                    <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print 
                                 </button>
                             </div>
                         <div class="row">
@@ -244,40 +244,42 @@
                                                     <table cellspacing="0" style="width: 100%; font-size: 15px" class="datatable table table-striped table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th style="text-align: center; font-size: 25px; color: #5a5c69; background-color: #fff !important" colspan="7">شركة المنارة للصيانة والتجارة</th>
+                                                                <th style="text-align: center; font-size: 25px; color: #5a5c69; background-color: #fff !important" colspan="7">
+                                                                    <asp:Label ID="lbl_Com_Name" runat="server"/></th>
                                                             </tr>
                                                             <tr>
-                                                                <th style="text-align: center; font-size: 19px; color:#d770ad; background-color: #fff !important" colspan="7">نموذج الرقابة الدورية للعقار</th>
+                                                                <th style="text-align: center; font-size: 19px; color:#d770ad; background-color: #fff !important" colspan="7">
+                                                                    <asp:Label ID="lbl_Temp_Titel" runat="server"/></th>
                                                             </tr>
                                                             <tr>
                                                                 <th style="text-align: center; font-size: 19px; color: #5a5c69; background-color: #fff !important" colspan="7">
-                                                                    المراقب :
+                                                                    <asp:Label ID="lbl_Titel_Employee" runat="server"/>:
                                                                     <asp:Label ID="lbl_Employee" runat="server"  />
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    التاريخ :
+                                                                    <asp:Label ID="lbl_Titel_Date" runat="server"/>:
                                                                     <asp:Label ID="lbl_Date" runat="server"  />
                                                                     <br />
-                                                                    العقار :
+                                                                    <asp:Label ID="lbl_Titel_Building" runat="server"/>:
                                                                     <asp:Label ID="lbl_Building" runat="server"  />
 
                                                                 </th>
                                                             </tr>
                                                             <tr>
                                                                 <th style="text-align: center; font-size: 19px; color: #5a5c69; background-color: #fff !important" colspan="7">
-                                                                    معلومات مطلوبة من الموقع  :
+                                                                    <asp:Label ID="lbl_Titel_Location_Ifo" runat="server"/>
                                                                     <asp:Label ID="lbl_Location_Ifo" runat="server"  Text='<%# Eval("Location_Ifo") %>'/>
                                                                 </th>
                                                             </tr>
 
                                                             <tr>
                                                                 <th style="width: 10px">#</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center; ">المرافق</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">نظافة</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">حماية</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">صيانة</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">مخالفات</th>
-                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;">ملاحظات</th>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center; "><asp:Label ID="lbl_Titel_One" runat="server"/></th><%--المرافق--%>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Titel_Two" runat="server"/></th><%--نظافة--%>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Titel_Three" runat="server"/></th><%--حماية--%>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Titel_Four" runat="server"/></th><%--صيانة--%>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Titel_Five" runat="server"/></th><%--مخالفات--%>
+                                                                <th style="font-size: 15px; font-weight: bold; text-align: center;"><asp:Label ID="lbl_Titel_Six" runat="server"/></th><%--ملاحظات--%>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -312,16 +314,16 @@
                                                     </tr>
                                                      <tr id="row2" runat="server">
                                                         <td colspan="7" style="font-size: 15px;text-align: center;">
-                                                            تاريخ أخر صيانة : 
+                                                            <asp:Label ID="lbl_Titel_LastMaintenance_Date" runat="server"/> :
                                                             <asp:Label ID="lbl_Last_Maintenece_Date" runat="server" Text='<%# Eval("Last_Maintenece_Date") %>' />
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            نوعها : 
+                                                            <asp:Label ID="lbl_T_Last_Maintenece_Type" runat="server"/> :
                                                             <asp:Label ID="lbl_R_Last_Maintenece_Type" runat="server" Text='<%# Eval("Last_Maintenece_Type") %>' />
                                                             <br />
-                                                            تاريخ أخر نظافة : 
+                                                            <asp:Label ID="lbl_Titel_Last_Clean_Date" runat="server"/> :
                                                             <asp:Label ID="lbl_Last_Clean_Date" runat="server" Text='<%# Eval("Last_Clean_Date") %>' />
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            نوعها : 
+                                                            <asp:Label ID="lbl_T_Last_Clean_Type" runat="server"/> : 
                                                             <asp:Label ID="lbl_R_Last_Clean_Type" runat="server" Text='<%# Eval("Last_Clean_Type") %>' />
                                                         </td>
                                                     </tr>
@@ -331,7 +333,7 @@
 
                                                     <tr id="Tr2" runat="server">
                                                         <td colspan="7" style="font-size: 15px;text-align: center;">
-                                                              ملاحظات : 
+                                                              <asp:Label ID="lbl_T_Discription" runat="server"/> :
                                                             <asp:Label ID="lbl_Discription" runat="server" Text='<%# Eval("Discription") %>' />
                                                         </td>
                                                     </tr>

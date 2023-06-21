@@ -42,13 +42,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_En_Tenant_Name;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// En_Tenant_Name_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator En_Tenant_Name_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_En_Tenant_Name control.
@@ -60,13 +60,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_En_Tenant_Name;
 
         /// <summary>
-        /// reqFuild1 control.
+        /// En_Tenant_Name_reqFuild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFuild1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator En_Tenant_Name_reqFuild;
 
         /// <summary>
         /// lbl_Ar_Tenant_Name control.
@@ -78,13 +78,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Ar_Tenant_Name;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
+        /// Ar_Tenant_Name_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Ar_Tenant_Name_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Ar_Tenant_Name control.
@@ -96,13 +96,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Ar_Tenant_Name;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// AR_Tenant_Name_reqFuild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator AR_Tenant_Name_reqFuild;
 
         /// <summary>
         /// ScriptManager1 control.
@@ -348,13 +348,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Add_Tenant_Div;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_Add_Representative control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Add_Representative;
 
         /// <summary>
         /// Add_Tenantt control.
@@ -375,13 +375,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Tenant_Tell;
 
         /// <summary>
-        /// RegularExpressionValidator6 control.
+        /// Tell_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator6;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Tell_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Tenant_Tell control.
@@ -402,13 +402,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Tenant_Mobile;
 
         /// <summary>
-        /// RegularExpressionValidator4 control.
+        /// Mobile_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Mobile_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Tenant_Mobile control.
@@ -420,13 +420,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.TextBox txt_Tenant_Mobile;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Mobile_Req_Fiel_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Mobile_Req_Fiel_Vali;
 
         /// <summary>
         /// lbl_Tenant_Fax control.
@@ -438,13 +438,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Tenant_Fax;
 
         /// <summary>
-        /// RegularExpressionValidator7 control.
+        /// Fax_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator7;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Fax_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Tenant_Fax control.
@@ -465,13 +465,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Tenant_Email;
 
         /// <summary>
-        /// RegularExpressionValidator5 control.
+        /// Email_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator5;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Email_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Tenant_Email control.
