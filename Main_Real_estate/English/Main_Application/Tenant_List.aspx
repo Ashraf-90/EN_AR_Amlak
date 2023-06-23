@@ -7,13 +7,10 @@
                // lengthChange: false,
                 "pageLength": 10000,
                 buttons: [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -54,9 +51,6 @@
             <div class="form-group">
                 <asp:Label ID="lbl_Tenant_Type" runat="server" Text="نوع المستأجر"></asp:Label>
                 <asp:DropDownList ID="Tenant_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Tenant_Type_DropDownList_SelectedIndexChanged">
-                    <asp:ListItem Value="1" Text="الكل"></asp:ListItem>
-                    <asp:ListItem Value="2" Text="شركات"></asp:ListItem>
-                    <asp:ListItem Value="3" Text="أفراد"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -74,12 +68,12 @@
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th style="text-align: center;vertical-align: middle;">مسلسل</th>
-                                    <th style="text-align: center;vertical-align: middle;">اسم المستأجر</th>
-                                    <th style="text-align: center;vertical-align: middle;">الجوال</th>
-                                    <th style="text-align: center;vertical-align: middle;">الهاتف</th>
-                                    <th style="text-align: center;vertical-align: middle;">البريد الإلكتروني</th>
-                                    <th style="text-align: center;vertical-align: middle;">تقيم العميل</th>
+                                    <th style="text-align: center;vertical-align: middle;">#</th>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_TItel_Name" runat="server" /></th> <%--اسم--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_TItel_Mobile" runat="server" /></th> <%--جوال--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_TItel_Tell" runat="server" /></th> <%--هاتف--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_TItel_Email" runat="server" /></th> <%--ايملي--%>
+                                    <th style="text-align: center;vertical-align: middle;"><asp:Label ID="lbl_TItel_EV" runat="server" /></th> <%--تصنيف--%>
                                 </thead>
                             <tbody>
                         </HeaderTemplate>
@@ -89,15 +83,12 @@
                                 <td>
                                     <asp:Label  runat="server"  />
                                     <asp:LinkButton ID="lbl_Tenants_Arabic_Name" Text='<%# Eval("Tenants_Arabic_Name") %>'  runat="server" CommandArgument='<%# Eval("Tenants_ID") %>' OnClick="Details_Tenant" > </asp:LinkButton>
+                                    <asp:LinkButton ID="lbl_Tenants_English_Name" Text='<%# Eval("Tenants_English_Name") %>'  runat="server" CommandArgument='<%# Eval("Tenants_ID") %>' OnClick="Details_Tenant" > </asp:LinkButton>
                                 </td>
-                                <td>
-                                    <asp:Label ID="lbl_Tenants_Mobile" runat="server" Text='<%# Eval("Tenants_Mobile") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Tenants_Tell" runat="server" Text='<%# Eval("Tenants_Tell") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Tenants_Email" runat="server" Text='<%# Eval("Tenants_Email") %>' /></td>
-                                <td>
-                                    <asp:Label ID="lbl_Persenteg" runat="server" Text='<%# Eval("Persenteg") %>' /></td>
+                                <td><asp:Label ID="lbl_Tenants_Mobile" runat="server" Text='<%# Eval("Tenants_Mobile") %>' /></td>
+                                <td><asp:Label ID="lbl_Tenants_Tell" runat="server" Text='<%# Eval("Tenants_Tell") %>' /></td>
+                                <td><asp:Label ID="lbl_Tenants_Email" runat="server" Text='<%# Eval("Tenants_Email") %>' /></td>
+                                <td><asp:Label ID="lbl_Persenteg" runat="server" Text='<%# Eval("Persenteg") %>' /></td>
                             </tr>
                         </ItemTemplate>
                         <FooterTemplate>

@@ -33,6 +33,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ownership_Div;
 
         /// <summary>
+        /// lbl_Titel_SMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_SMS;
+
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -159,13 +168,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_Tenant_Name_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Tenant_Name_2;
 
         /// <summary>
         /// DropDownList1 control.
@@ -186,13 +195,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.GridView Cheque_GridView;
 
         /// <summary>
-        /// lbl_tenant_Sms control.
+        /// lbl_Text_Sms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_tenant_Sms;
+        protected global::System.Web.UI.WebControls.Label lbl_Text_Sms;
 
         /// <summary>
         /// txt_tenant_Sms control.
@@ -229,6 +238,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
+
+        /// <summary>
+        /// lbl_Titel_Att control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Titel_Att;
 
         /// <summary>
         /// UpdatePanel2 control.

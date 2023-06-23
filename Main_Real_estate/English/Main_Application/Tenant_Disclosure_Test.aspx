@@ -49,9 +49,9 @@
                 <div class="card">
                     <div id="Grid">
                         <ul class="UUL">
-                            <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick">كشف مستأجرين للكل</a></li>
-                            <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick">كشف مستأجرين العقود المفردة</a></li>
-                            <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick">كشف مستأجرين العقود المجملة</a></li>
+                            <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick"><asp:Label  runat="server" ID="Filtter_All"/></a></li>
+                            <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick"><asp:Label  runat="server" ID="Filtter_Singel"/></a></li>
+                            <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick"><asp:Label  runat="server" ID="Filtter_Multi"/></a></li>
                         </ul>
                         <asp:Label ID="Typee" runat="server" />
                         <br />
@@ -72,16 +72,22 @@
                         <asp:Button ID="Excel" runat="server" Text="Excel" OnClick="Excel_Click" CssClass="btn btn-secondary right-spaced" /><br />
                         <div class="row" style="">
                             <div class="col-lg-12 mb-4">
-                                <asp:Repeater ID="Header_Repeater" runat="server">
+                                <asp:Repeater ID="Header_Repeater" runat="server" ClientIDMode="Static" OnItemDataBound="Header_Repeater_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="card" style="padding: 20px">
                                             <table class="datatable table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th style="background-color: #0779c9; color: white; font-size: 16px !important;" colspan="15">
-                                                            <asp:Label ID="lbl_tenants_Tenants_ID" runat="server" Text='<%# Eval("tenants_Tenants_ID") %>' Visible="false"></asp:Label>&nbsp;&nbsp; اسم المستأجر :&nbsp;
-                                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'></asp:Label>&nbsp;&nbsp;/ جنسية المستأجر :&nbsp;
-                                                            <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>'></asp:Label>&nbsp;&nbsp;/ موبايل المستأجر :&nbsp;
+
+                                                            <asp:Label ID="lbl_tenants_Tenants_ID" runat="server" Text='<%# Eval("tenants_Tenants_ID") %>' Visible="false"></asp:Label>
+                                                            &nbsp;&nbsp; <asp:Label ID="lbl_Titel_1_Name" runat="server"/> :&nbsp;
+                                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'></asp:Label>
+                                                            <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>'></asp:Label>
+                                                            &nbsp;&nbsp;/ <asp:Label ID="lbl_Titel_1_Nationalty" runat="server"/> :&nbsp;
+                                                            <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>'></asp:Label>
+                                                            <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>'></asp:Label>
+                                                            &nbsp;&nbsp;/ <asp:Label ID="lbl_Titel_1_Mobile" runat="server"/> :&nbsp;
                                                             <asp:Label ID="lbl_Tenants_Mobile" runat="server" Text='<%# Eval("Tenants_Mobile") %>'></asp:Label>
                                                         </th>
                                                     </tr>
@@ -89,36 +95,48 @@
                                                 <tbody>
                                                     <tr>
                                                         <%------------------------------------------------------------------------------------------------------------------------------------------------------------------------------%>
-                                                        <asp:Repeater ID="Body_Repeater" runat="server" ClientIDMode="Static">
+                                                        <asp:Repeater ID="Body_Repeater" runat="server" ClientIDMode="Static" OnItemDataBound="Body_Repeater_ItemDataBound">
                                                             <HeaderTemplate>
                                                                 <tr>
-                                                                    <th>رمز الملكية</th>
-                                                                    <th>اسم الملكية</th>
-                                                                    <th>اسم البناء</th>
-                                                                    <th>رقم البناء</th>
-                                                                    <th>رقم / نوع الوحدة</th>
-                                                                    <th>التصنيف</th>
-                                                                    <th>الحالة</th>
-                                                                    <th>عداد الكهرباء</th>
-                                                                    <th>عداد الماء</th>
-                                                                    <th>مدة الإيجار</th>
-                                                                    <th>بداية الإيجار</th>
-                                                                    <th>نهايةالإيجار</th>
-                                                                    <th>مبلغ الإيجار</th>
-                                                                    <th>طريقة السداد</th>
-                                                                    <th>ملاحظات</th>
+                                                                    <th><asp:Label ID="Label1" runat="server"/></th><%--رمز--%>
+                                                                    <th><asp:Label ID="Label2" runat="server"/></th><%--إسم الملكية--%>
+                                                                    <th><asp:Label ID="Label3" runat="server"/></th><%--اسم البناء--%>
+                                                                    <th><asp:Label ID="Label4" runat="server"/></th><%--رقم البناء--%>
+                                                                    <th><asp:Label ID="Label5" runat="server"/></th><%--رقم /  نوع الوحدة--%>
+                                                                    <th><asp:Label ID="Label6" runat="server"/></th><%--تصنيف--%>
+                                                                    <th><asp:Label ID="Label7" runat="server"/></th><%--الحالة--%>
+                                                                    <th><asp:Label ID="Label8" runat="server"/></th><%--كهربا--%>
+                                                                    <th><asp:Label ID="Label9" runat="server"/></th><%--ماء--%>
+                                                                    <th><asp:Label ID="Label10" runat="server"/></th><%--مدة الإيجار--%>
+                                                                    <th><asp:Label ID="Label11" runat="server"/></th><%--بداية الإيجار--%>
+                                                                    <th><asp:Label ID="Label12" runat="server"/></th><%--نهاية الإيجار--%>
+                                                                    <th><asp:Label ID="Label13" runat="server"/></th><%--مبلغ--%>
+                                                                    <th><asp:Label ID="Label14" runat="server"/></th><%--طريقة السداد--%>
+                                                                    <th><asp:Label ID="Label15" runat="server"/></th><%--ملاحظات--%>
                                                                 </tr>
 
                                                             </HeaderTemplate>
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>'></asp:Label></td>
-                                                                    <td><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:Label></td>
-                                                                    <td><asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>'></asp:Label></td>
+                                                                    <td>
+                                                                        <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:Label>
+                                                                        <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>'></asp:Label>
+                                                                        <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>'></asp:Label>
+                                                                    </td>
                                                                     <td><asp:Label ID="lbl_Building_NO" runat="server" Text='<%# Eval("Building_NO") %>'></asp:Label></td>
                                                                     <td><asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>'></asp:Label></td>
-                                                                    <td><asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_Arabic_Detail") %>'></asp:Label></td>
-                                                                    <td><asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_Arabic_Condition") %>'></asp:Label></td>
+                                                                    <td>
+                                                                        <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_Arabic_Detail") %>'></asp:Label>
+                                                                        <asp:Label ID="lbl_Unit_English_Detail" runat="server" Text='<%# Eval("Unit_English_Detail") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_Arabic_Condition") %>'></asp:Label>
+                                                                        <asp:Label ID="lbl_Unit_English_Condition" runat="server" Text='<%# Eval("Unit_English_Condition") %>'></asp:Label>
+                                                                    </td>
                                                                     <td><asp:Label ID="lbl_Electricityt_Number" runat="server" Text='<%# Eval("Electricityt_Number") %>'></asp:Label></td>
                                                                     <td><asp:Label ID="lbl_Water_Number" runat="server" Text='<%# Eval("Water_Number") %>'></asp:Label></td>
                                                                     <td><asp:Label ID="lbl_Number_Of_Years" runat="server" Text='<%# Eval("Number_Of_Years") %>'></asp:Label></td>

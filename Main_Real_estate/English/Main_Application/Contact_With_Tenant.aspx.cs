@@ -24,35 +24,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                //Fill Tenant _Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Tenan_DropDownList.Items.Insert(0, "...... كل المستأجرين........");
-
-                Type_DropDownList.Items.Insert(0, "...... الكل........");
-
-
-
-
-                //Fill Tenant _Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenant_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Tenant_Name_DropDownList.Items.Insert(0, "...... كل المستأجرين........");
-
-                //    //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
-                //    //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Att_Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Att_Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
-                //Fill Tenant _Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Att_Tenant_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Att_Tenant_Name_DropDownList.Items.Insert(0, "...... كل المستأجرين........");
-
-
-                //Fill Tenant _Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, DropDownList1, "Tenants_Arabic_Name", "Tenants_Mobile");
-                DropDownList1.Items.Insert(0, "...... كل المستأجرين........");
+                
 
 
                 DataTable Ch_Dt = new DataTable();
@@ -380,8 +352,8 @@ namespace Main_Real_estate.English.Main_Application
         protected void Tenant_List_BindData()
         {
             string Tenant = ""; string Type = "";
-            if (Tenan_DropDownList.SelectedItem.Text != "...... كل المستأجرين........") { Tenant = " and TS.Tenant_Tenant_Id = " + Tenan_DropDownList.SelectedValue; } else { Tenant = ""; }
-            if (Type_DropDownList.SelectedItem.Text != "...... الكل........") { Type = " and TS.Type = '" + Type_DropDownList.SelectedItem.Text.Trim() + "'"; } else { Type = ""; }
+            if (Tenan_DropDownList.SelectedItem.Text != "...............") { Tenant = " and TS.Tenant_Tenant_Id = " + Tenan_DropDownList.SelectedValue; } else { Tenant = ""; }
+            if (Type_DropDownList.SelectedItem.Text != "...............") { Type = " and TS.Type = '" + Type_DropDownList.SelectedItem.Text.Trim() + "'"; } else { Type = ""; }
 
             string tenantListQuery = "SELECT TS.* , T.* " +
                                      "FROM tenant_sending TS " +
@@ -451,6 +423,157 @@ namespace Main_Real_estate.English.Main_Application
         protected void Type_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Tenant_List_BindData();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_tenant", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Get Level_DropDownList 
+                    Level_DropDownList.Items.Clear();
+                    Level_DropDownList.Items.Add(new ListItem("Send To All Tenants", "1"));
+                    Level_DropDownList.Items.Add(new ListItem("Send To Tenants in a Specific Building", "2"));
+                    Level_DropDownList.Items.Add(new ListItem("Send To a Specific Tenants", "3"));
+                    Level_DropDownList.Items.Add(new ListItem("Send To a Group of Tenants", "4"));
+                    Level_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Att_Level_DropDownList 
+                    Att_Level_DropDownList.Items.Clear();
+                    Att_Level_DropDownList.Items.Add(new ListItem("All Tenants", "1"));
+                    Att_Level_DropDownList.Items.Add(new ListItem("Tenants in a Specific Building", "2"));
+                    Att_Level_DropDownList.Items.Add(new ListItem("Specific Tenants", "3"));
+                    Att_Level_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    lbl_Titel_SMS.Text = Dt.Rows[45]["EN"].ToString();
+                    lbl_Level.Text = Dt.Rows[47]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[49]["EN"].ToString();
+                    lbl_Tenant_Name.Text = Dt.Rows[35]["EN"].ToString();
+                    lbl_tenant_NO.Text = Dt.Rows[13]["EN"].ToString();
+                    lbl_Tenant_Name_2.Text = Dt.Rows[35]["EN"].ToString();
+                    lbl_Text_Sms.Text = Dt.Rows[50]["EN"].ToString();
+                    lbl_Titel_Att.Text = Dt.Rows[46]["EN"].ToString();
+                    lbl_Att_Level.Text = Dt.Rows[48]["EN"].ToString();
+                    lbl_Att_Building_Name.Text = Dt.Rows[49]["EN"].ToString();
+                    lbl_Att_Tenant_Name.Text = Dt.Rows[35]["EN"].ToString();
+                    lbl_Att.Text = Dt.Rows[51]["EN"].ToString();
+                    lbl_Att_Discription.Text = Dt.Rows[52]["EN"].ToString();
+                    lbl_Tenan.Text = Dt.Rows[35]["EN"].ToString();
+                    lbl_Type.Text = Dt.Rows[53]["EN"].ToString();
+
+                    btn_Send_Sms.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Att.Text = Dt.Rows[55]["EN"].ToString();
+                }
+                else
+                {
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Tenan_DropDownList.Items.Insert(0, "...............");
+
+                    Type_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenant_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Tenant_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Att_Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Att_Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Att_Tenant_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
+                    Att_Tenant_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, DropDownList1, "Tenants_Arabic_Name", "Tenants_Mobile");
+                    DropDownList1.Items.Insert(0, "...............");
+
+
+
+
+
+                    //Get Level_DropDownList 
+                    Level_DropDownList.Items.Clear();
+                    Level_DropDownList.Items.Add(new ListItem("مراسلة كافة العملاء", "1"));
+                    Level_DropDownList.Items.Add(new ListItem("مراسلة عملاء في بناء محدد", "2"));
+                    Level_DropDownList.Items.Add(new ListItem("مراسلة عميل محدد", "3"));
+                    Level_DropDownList.Items.Add(new ListItem("مجموعة عملاء", "4"));
+                    Level_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    //Get Att_Level_DropDownList 
+                    Att_Level_DropDownList.Items.Clear();
+                    Att_Level_DropDownList.Items.Add(new ListItem("كافة العملاء", "1"));
+                    Att_Level_DropDownList.Items.Add(new ListItem("عملاء في بناء محدد", "2"));
+                    Att_Level_DropDownList.Items.Add(new ListItem("عميل محدد", "3"));
+                    Att_Level_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    lbl_Titel_SMS.Text = Dt.Rows[45]["AR"].ToString();
+                    lbl_Level.Text = Dt.Rows[47]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[49]["AR"].ToString();
+                    lbl_Tenant_Name.Text = Dt.Rows[35]["AR"].ToString();
+                    lbl_tenant_NO.Text = Dt.Rows[13]["AR"].ToString();
+                    lbl_Tenant_Name_2.Text = Dt.Rows[35]["AR"].ToString();
+                    lbl_Text_Sms.Text = Dt.Rows[50]["AR"].ToString();
+                    lbl_Titel_Att.Text = Dt.Rows[46]["AR"].ToString();
+                    lbl_Att_Level.Text = Dt.Rows[48]["AR"].ToString();
+                    lbl_Att_Building_Name.Text = Dt.Rows[49]["AR"].ToString();
+                    lbl_Att_Tenant_Name.Text = Dt.Rows[35]["AR"].ToString();
+                    lbl_Att.Text = Dt.Rows[51]["EN"].ToString();
+                    lbl_Att_Discription.Text = Dt.Rows[52]["AR"].ToString();
+                    lbl_Tenan.Text = Dt.Rows[35]["AR"].ToString();
+                    lbl_Type.Text = Dt.Rows[53]["AR"].ToString();
+
+                    btn_Send_Sms.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Att.Text = Dt.Rows[55]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
         }
     }
 }

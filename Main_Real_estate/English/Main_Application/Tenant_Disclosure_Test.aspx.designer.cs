@@ -33,6 +33,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
 
         /// <summary>
+        /// Filtter_All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Filtter_All;
+
+        /// <summary>
         /// A_1 control.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
 
         /// <summary>
+        /// Filtter_Singel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Filtter_Singel;
+
+        /// <summary>
         /// A_2 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
+
+        /// <summary>
+        /// Filtter_Multi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Filtter_Multi;
 
         /// <summary>
         /// Typee control.

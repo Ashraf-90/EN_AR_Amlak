@@ -189,7 +189,7 @@
         <div id="tenanatRelation" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="Tenant_List.aspx"><asp:Label runat="server" ID="lbl_Tenant_List" Font-Size="15px"/></a>
-                <a class="collapse-item" href="Tenant_Disclosure.aspx"><asp:Label runat="server" ID="lbl_Tenant_Disclosure" Font-Size="15px"/></a>
+                <a class="collapse-item" href="Tenant_Disclosure_Test.aspx"><asp:Label runat="server" ID="lbl_Tenant_Disclosure" Font-Size="15px"/></a>
                 <a class="collapse-item" href="Contact_With_Tenant.aspx"><asp:Label runat="server" ID="lbl_Contact_With_Tenant" Font-Size="15px"/></a>
                 <a class="collapse-item" href="Tenant_Evaluation.aspx"><asp:Label runat="server" ID="lbl_Tenant_Evaluation" Font-Size="15px"/></a>
             </div>

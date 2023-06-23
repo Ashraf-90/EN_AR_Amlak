@@ -20,7 +20,7 @@
                     /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -59,7 +59,7 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#M_Ownership" aria-expanded="true"
                             aria-controls="M_Ownership" style="width: 270px;">
                             <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
-                            <span style="font-size: 19px;">التواصل مع العملاء SMS </span>
+                            <span style="font-size: 19px;"><asp:Label ID="lbl_Titel_SMS" runat="server" Font-Size="19px"/></span>
                         </a>
                         <div id="M_Ownership" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                             <div class="row">
@@ -75,10 +75,6 @@
                                                                 <asp:Label ID="lbl_Level" runat="server" Text="إختر  لمن تريد أن ترسل"></asp:Label>
                                                                 <asp:DropDownList ID="Level_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true"
                                                                     OnSelectedIndexChanged="Level_DropDownList_SelectedIndexChanged">
-                                                                    <asp:ListItem Value ="1" Text="مراسلة كافة العملاء"> </asp:ListItem>
-                                                                    <asp:ListItem Value ="2" Text="مراسلة عملاء في بناء محدد"> </asp:ListItem>
-                                                                    <asp:ListItem Value ="3" Text="مراسلة عميل محدد"> </asp:ListItem>
-                                                                    <asp:ListItem Value ="4" Text="مجموعة عملاء"> </asp:ListItem>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -122,7 +118,7 @@
                                                      <div class="row" runat="server" id="Div1">
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
-                                                                <asp:Label ID="Label1" runat="server" Text="اسم العميل"></asp:Label>
+                                                                <asp:Label ID="lbl_Tenant_Name_2" runat="server" Text="اسم العميل"></asp:Label>
                                                                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -142,7 +138,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
-                                                                <asp:Label ID="lbl_tenant_Sms" runat="server" Text="نص الرسالة"></asp:Label>
+                                                                <asp:Label ID="lbl_Text_Sms" runat="server" Text="نص الرسالة"></asp:Label>
                                                                 <asp:TextBox ID="txt_tenant_Sms" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                                             </div>
                                                         </div>
@@ -203,7 +199,7 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Attatchment" aria-expanded="true"
                             aria-controls=" Attatchment" style="width: 270px;">
                             <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
-                            <span style="font-size: 19px;">المراسلات و المرفقات</span>
+                            <span style="font-size: 19px;"><asp:Label ID="lbl_Titel_Att" runat="server" Font-Size="19px"/></span>
                         </a>
                         <div id="Attatchment" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                             <div class="row">

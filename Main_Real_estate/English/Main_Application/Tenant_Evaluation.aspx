@@ -8,13 +8,10 @@
                // lengthChange: false,
                 "pageLength": 10000,
                 buttons: [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -57,7 +54,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#M_Ownership" aria-expanded="true"
                     aria-controls="M_Ownership" style="width: 270px;">
                     <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
-                    <span style="font-size: 18px;">تقييم العملاء </span>
+                    <span style="font-size: 18px;"><asp:Label ID="lbl_Titel" runat="server"/></span>
                 </a>
                 <div id="M_Ownership" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="row">
@@ -75,7 +72,7 @@
                                                         <asp:DropDownList ID="Tenant_Name_DropDownList" runat="server" CssClass="form-control">
                                                         </asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="Tenant_Name_Req_Field_Val" ControlToValidate="Tenant_Name_DropDownList" ValidationGroup="Evaluation"
-                                                            InitialValue="أختر إسم العميل...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
 
@@ -85,7 +82,7 @@
                                                         <asp:DropDownList ID="Main_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Main_Type_DropDownList_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="Main_Type_Req_Field_Val" ControlToValidate="Main_Type_DropDownList" ValidationGroup="Evaluation"
-                                                            InitialValue="أختر النوع الرئيسي...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
 
@@ -96,7 +93,7 @@
                                                         <asp:DropDownList ID="Sub_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Sub_Type_DropDownList_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="Sub_Type_Req_Field_Val" ControlToValidate="Sub_Type_DropDownList" ValidationGroup="Evaluation"
-                                                            InitialValue="أختر النوع الفرعي...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,62 +152,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <%--<div class="row" style="padding: 20px; display:none">
-                        <asp:Repeater ID="Tenant_Repeater" runat="server">
-                            <ItemTemplate>
-                                <div class="col-lg-3">
-                                    <table cellspacing="0" class="datatable table table-striped table-bordered">
-                                        <tr>
-                                            <th colspan="3" style="background-color: #0779c9; color: white">
-                                                <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
-                                                <asp:Label ID="lbl_Tenant_Id" runat="server" Visible="false" Text='<%# Eval("Tenant_Id") %>' />
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th>الحالة</th>
-                                            <th>عدد المرات</th>
-                                            <th>عدد النقاط</th>
-                                        </tr>
-
-
-
-                                        <asp:Repeater ID="Cases_Repeater" runat="server">
-                                            <ItemTemplate>
-                                                <tr>
-
-                                                    <td>
-                                                        <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Ar_Name") %>' /></td>
-                                                    <td>
-                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Cases_Count") %>' /></td>
-                                                    <td>
-                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("PP") %>' /></td>
-                                                </tr>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                <tr style="background-color: #d670ac; color: white">
-                                                    <td>Total</td>
-                                                    <td>
-                                                        <asp:Label ID="lblTotal" runat="server" /></td>
-                                                    <td>
-                                                        <asp:Label ID="lbl_Pesenteg_Total" runat="server" />
-                                                        %</td>
-                                                </tr>
-
-                                                <tr style="background-color: #eb87bf; color: white">
-                                                    <td colspan="3">
-                                                        <asp:Label ID="Label4" runat="server" /></td>
-                                                </tr>
-                                                </table>
-                                            </FooterTemplate>
-                                        </asp:Repeater>
-                                    </table>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-
-                    </div>--%>
                     <%--**********************************************************************************************************************************************************************--%>
                     <div class="row" style="padding: 20px">
                         <div class="col-lg-12 mb-4">
@@ -222,13 +163,13 @@
                                             <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                                 <thead>
                                                     <th></th>
-                                                    <th style="text-align: center; vertical-align: middle;">مسلسل</th>
-                                                    <th style="text-align: center; vertical-align: middle;">اسم المستأجر</th>
-                                                    <th style="text-align: center; vertical-align: middle;">الجوال</th>
-                                                    <th style="text-align: center; vertical-align: middle;">الهاتف</th>
-                                                    <th style="text-align: center; vertical-align: middle;">البريد الإلكتروني</th>
-                                                    <th style="text-align: center; vertical-align: middle;">تقيم العميل</th>
-                                                    <th style="text-align: center; vertical-align: middle;">تقيم العميل</th>
+                                                    <th style="text-align: center; vertical-align: middle;">#</th>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_Name" runat="server" /></th> <%--اسم--%>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_Mobile" runat="server" /></th> <%--جوال--%>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_Tell" runat="server" /></th> <%--هاتف--%>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_Email" runat="server" /></th> <%--ايميل--%>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_EV" runat="server" /></th> <%--تقيم--%>
+                                                    <th style="text-align: center; vertical-align: middle;"><asp:Label ID="lbl_Titel_1_EVV" runat="server" /></th> <%--تقيم--%>
                                                 </thead>
                                                 <tbody>
                                         </HeaderTemplate>
@@ -238,10 +179,14 @@
                                                 <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                                 <td>
                                                     <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
-                                                    <asp:Label ID="Tenant_Id" runat="server" Text='<%# Eval("Tenant_Id") %>' />
+                                                    <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                                    <asp:Label ID="Tenant_Id" runat="server" Visible="false" Text='<%# Eval("Tenant_Id") %>' />
 
                                                 </td>
-                                                <td><asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' /></td>
+                                                <td>
+                                                    <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' />
+                                                    <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>' />
+                                                </td>
                                                 <td><asp:Label ID="lbl_Tenants_Mobile" runat="server" Text='<%# Eval("Tenants_Mobile") %>' /></td>
                                                 <td><asp:Label ID="lbl_Tenants_Tell" runat="server" Text='<%# Eval("Tenants_Tell") %>' /></td>
                                                 <td><asp:Label ID="lbl_Persenteg" runat="server" Text='<%# Eval("Persenteg") %>' /></td>
@@ -249,13 +194,13 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="8"><div id="collapse<%# Container.ItemIndex%>name" class="accordian-body collapse">
-                                                    <asp:Repeater ID="Cases_Repeater" runat="server" ClientIDMode="Static">
+                                                    <asp:Repeater ID="Cases_Repeater" runat="server" ClientIDMode="Static" OnItemDataBound="Cases_Repeater_ItemDataBound">
                                                         <HeaderTemplate>
                                                             <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered">
                                                                 <thead style="background-color:#d670ac">
-                                                                    <th style="text-align: center; vertical-align: middle; background-color:#d670ac">م</th>
-                                                                    <th style="text-align: center; vertical-align: middle;background-color:#d670ac">الحالة</th>
-                                                                    <th style="text-align: center; vertical-align: middle;background-color:#d670ac">التاريخ</th>
+                                                                    <th style="text-align: center; vertical-align: middle; background-color:#d670ac">#</th>
+                                                                    <th style="text-align: center; vertical-align: middle;background-color:#d670ac"><asp:Label ID="lbl_Titel_2_Satus" runat="server" /></th> <%--حالة--%>
+                                                                    <th style="text-align: center; vertical-align: middle;background-color:#d670ac"><asp:Label ID="lbl_Titel_2_Date" runat="server" /></th> <%--تاريخ--%>
                                                                     <th style="background-color:#d670ac"></th>
                                                                 </thead>
                                                                 <tbody>
@@ -264,9 +209,12 @@
                                                             <tr>
                                                                 <td>
                                                                 <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
-                                                                <td><asp:Label ID="lbl_E_Ar_Name" runat="server" Text='<%# Eval("Ar_Name") %>' /></td>
+                                                                <td>
+                                                                    <asp:Label ID="lbl_E_Ar_Name" runat="server" Text='<%# Eval("Ar_Name") %>' />
+                                                                    <asp:Label ID="lbl_E_En_Name" runat="server" Text='<%# Eval("En_Name") %>' />
+                                                                </td>
                                                                 <td><asp:Label ID="lbl_E_Date" runat="server" Text='<%# Eval("Date") %>' /></td>
-                                                                <td><asp:LinkButton  runat="server" CommandArgument='<%# Eval("Tenant_Evaluation_Id") %>' OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton></td>
+                                                                <td><asp:LinkButton  runat="server" CommandArgument='<%# Eval("Tenant_Evaluation_Id") %>' OnClientClick="return confirm('Are you sure you want to delete?');" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton></td>
                                                             </tr>
                                                         </ItemTemplate>
                                                         <FooterTemplate>
