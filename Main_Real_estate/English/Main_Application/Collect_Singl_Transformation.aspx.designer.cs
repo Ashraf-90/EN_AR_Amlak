@@ -78,13 +78,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label Tenant_ID;
 
         /// <summary>
-        /// lbl_Cheuqe_NO control.
+        /// lbl_Transformation_NO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Cheuqe_NO;
+        protected global::System.Web.UI.WebControls.Label lbl_Transformation_NO;
 
         /// <summary>
         /// txt_Cheuqe_NO control.

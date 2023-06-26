@@ -22,6 +22,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
+                language();
                 Singl_Cash();
             }
         }
@@ -65,7 +66,12 @@ namespace Main_Real_estate.English.Main_Application
                 txt_Cash_Date.Text = getSingl_CashDataTable.Rows[0]["Cash_Date"].ToString();
                 txt_Cash_Amount.Text = getSingl_CashDataTable.Rows[0]["Cash_Amount"].ToString();
                 txt_Collect_Date.Text = getSingl_CashDataTable.Rows[0]["Collection_Date"].ToString();
-                Collect_Type_DropDownList.Items.FindByText(getSingl_CashDataTable.Rows[0]["Satuts"].ToString()).Selected = true;
+                if (getSingl_CashDataTable.Rows[0]["Satuts"].ToString() == "Uncollected" ||
+                getSingl_CashDataTable.Rows[0]["Satuts"].ToString() == "غير محصل")
+                {
+                    Collect_Type_DropDownList.SelectedValue = "1";
+                }
+                else { Collect_Type_DropDownList.SelectedValue = "2"; }
 
             }
         }
@@ -194,6 +200,76 @@ namespace Main_Real_estate.English.Main_Application
             string Collection = Request.QueryString["Collection"];
             string Singel_Multi = Request.QueryString["Singel_Multi"];
             Response.Redirect("Income_New.aspx?Cq_T_Ca=" + Cq_T_Ca + "&Collection=" + Collection + "&Singel_Multi=" + Singel_Multi);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Uncollected", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Collected", "2"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_Cash_Date.Text = Dt.Rows[33]["EN"].ToString();
+                    lbl_Cash_Amount.Text = Dt.Rows[32]["EN"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["EN"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["EN"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["EN"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["EN"].ToString();
+
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* Required ";
+                }
+                else
+                {
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("غير محصل", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("محصل", "2"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_Cash_Date.Text = Dt.Rows[33]["EN"].ToString();
+                    lbl_Cash_Amount.Text = Dt.Rows[32]["EN"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["EN"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["EN"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["EN"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["EN"].ToString();
+
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* Required ";
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

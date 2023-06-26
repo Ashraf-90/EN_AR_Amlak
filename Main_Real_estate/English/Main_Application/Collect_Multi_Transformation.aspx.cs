@@ -22,6 +22,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
+                language();
                 Multi_Transformation();
             }
         }
@@ -63,7 +64,12 @@ namespace Main_Real_estate.English.Main_Application
                 txt_Transformation_Date.Text = getMulti_TransformationDataTable.Rows[0]["transformation_Date"].ToString();
                 txt_Acount_No.Text = getMulti_TransformationDataTable.Rows[0]["Account_No"].ToString();
                 ltxt_Soft_Cde.Text = getMulti_TransformationDataTable.Rows[0]["Soaft_Code_No"].ToString();
-                Collect_Type_DropDownList.Items.FindByText(getMulti_TransformationDataTable.Rows[0]["Status"].ToString()).Selected = true;
+                if (getMulti_TransformationDataTable.Rows[0]["Status"].ToString() == "Uncollected" ||
+                getMulti_TransformationDataTable.Rows[0]["Status"].ToString() == "غير محصل")
+                {
+                    Collect_Type_DropDownList.SelectedValue = "1";
+                }
+                else { Collect_Type_DropDownList.SelectedValue = "2"; }
                 txt_transformation_Amount.Text = getMulti_TransformationDataTable.Rows[0]["Amount"].ToString();
             }
         }
@@ -196,6 +202,76 @@ namespace Main_Real_estate.English.Main_Application
             string Collection = Request.QueryString["Collection"];
             string Singel_Multi = Request.QueryString["Singel_Multi"];
             Response.Redirect("Income_New.aspx?Cq_T_Ca=" + Cq_T_Ca + "&Collection=" + Collection + "&Singel_Multi=" + Singel_Multi);
+        }
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Uncollected", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Collected", "2"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Transformation_NO.Text = Dt.Rows[29]["EN"].ToString();
+                    lbl_Transformation_Date.Text = Dt.Rows[30]["EN"].ToString();
+                    lbl_transformation_Amount.Text = Dt.Rows[31]["EN"].ToString();
+                    lbl_Acount_No.Text = Dt.Rows[80]["EN"].ToString();
+                    lbl_Soft_Cde.Text = Dt.Rows[81]["EN"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["EN"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["EN"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["EN"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["EN"].ToString();
+
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* Required ";
+                }
+                else
+                {
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("غير محصل", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("محصل", "2"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_Transformation_NO.Text = Dt.Rows[29]["AR"].ToString();
+                    lbl_Transformation_Date.Text = Dt.Rows[30]["AR"].ToString();
+                    lbl_transformation_Amount.Text = Dt.Rows[31]["AR"].ToString();
+                    lbl_Acount_No.Text = Dt.Rows[80]["AR"].ToString();
+                    lbl_Soft_Cde.Text = Dt.Rows[81]["AR"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["AR"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["AR"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["AR"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["AR"].ToString();
+
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* مطلوب ";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

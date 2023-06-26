@@ -20,18 +20,10 @@ namespace Main_Real_estate.English.Main_Application
             catch { Response.Redirect("Log_In.aspx"); }
             
             if (!this.IsPostBack)
-                {
-
-                    txt_Start_Date.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
-                    //    //Fill department DropDownList
-                    Helper.LoadDropDownList("SELECT * FROM department", _sqlCon, Department_DropDownList, "Department_Arabic_Name", "Department_Id");
-                    Department_DropDownList.Items.Insert(0, "إختر القسم المطلوب ....");
-
-                    //    //Fill Employee Name DropDownList
-                    Helper.LoadDropDownList("SELECT * FROM employee",  _sqlCon, Employee_Name_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                    Employee_Name_DropDownList.Items.Insert(0, "إختر اسم الموظف ....");
-                }
+            {
+                language();
+                txt_Start_Date.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
            
         }
 
@@ -64,10 +56,23 @@ namespace Main_Real_estate.English.Main_Application
 
         protected void Department_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //    //Fill Employee Name DropDownList
-            Helper.LoadDropDownList("SELECT * FROM employee where department_Department_Id = '" + Department_DropDownList.SelectedValue + "'",
+            if (Session["Langues"].ToString() == "1")
+            {
+                //Fill Employee Name DropDownList
+                Helper.LoadDropDownList("SELECT * FROM employee where department_Department_Id = '" + Department_DropDownList.SelectedValue + "'",
+            _sqlCon, Employee_Name_DropDownList, "Employee_English_name", "Employee_Id");
+                Employee_Name_DropDownList.Items.Insert(0, "...............");
+            }
+            else
+            {
+                //Fill Employee Name DropDownList
+                Helper.LoadDropDownList("SELECT * FROM employee where department_Department_Id = '" + Department_DropDownList.SelectedValue + "'",
             _sqlCon, Employee_Name_DropDownList, "Employee_Arabic_name", "Employee_Id");
-            Employee_Name_DropDownList.Items.Insert(0, "إختر اسم الموظف ....");
+                Employee_Name_DropDownList.Items.Insert(0, "...............");
+            }
+
+
+                    
         }
         protected void btn_Add_Task_Click(object sender, EventArgs e)
         {
@@ -107,19 +112,114 @@ namespace Main_Real_estate.English.Main_Application
                 addTaskCmd.Parameters.AddWithValue("@Task_Priority_Word", priority_DropDownList.SelectedItem.Text.Trim());
                 addTaskCmd.Parameters.AddWithValue("@Notification_Activ", "1");
 
-                if (Department_DropDownList.SelectedItem.Text == "إختر القسم المطلوب ....") { addTaskCmd.Parameters.AddWithValue("@Department_Id", "");}
+                if (Department_DropDownList.SelectedItem.Text == "...............") { addTaskCmd.Parameters.AddWithValue("@Department_Id", "");}
                 else { addTaskCmd.Parameters.AddWithValue("@Department_Id", Department_DropDownList.SelectedValue); }
 
-                if(Employee_Name_DropDownList.SelectedItem.Text== "إختر اسم الموظف ...." ){ addTaskCmd.Parameters.AddWithValue("@Employee_Id", ""); }
+                if(Employee_Name_DropDownList.SelectedItem.Text== "...............") { addTaskCmd.Parameters.AddWithValue("@Employee_Id", ""); }
                 else { addTaskCmd.Parameters.AddWithValue("@Employee_Id", Employee_Name_DropDownList.SelectedValue); }
 
                 addTaskCmd.ExecuteNonQuery();
                 _sqlCon.Close();
-                lbl_Success_Add_Task.Text = "تمت الإضافة بنجاح";
+
                 Response.Redirect("Task_list.aspx");
 
 
             }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_task", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //    //Fill department DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM department", _sqlCon, Department_DropDownList, "Department_English_Name", "Department_Id");
+                    Department_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Employee Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Name_DropDownList, "Employee_English_name", "Employee_Id");
+                    Employee_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Get priority_DropDownList
+                    priority_DropDownList.Items.Clear();
+                    priority_DropDownList.Items.Add(new ListItem("First Level Priority", "1"));
+                    priority_DropDownList.Items.Add(new ListItem("Second Level Priority", "2"));
+                    priority_DropDownList.Items.Add(new ListItem("Third Level Priority", "3"));
+                    priority_DropDownList.Items.Add(new ListItem("Fourth Level Priority", "4"));
+                    priority_DropDownList.Items.Add(new ListItem("Fifth Level Priority", "5"));
+
+                    lbl_Add_New_Task.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Task_Type.Text = Dt.Rows[0]["EN"].ToString();
+                    lbl_Department.Text = Dt.Rows[1]["EN"].ToString();
+                    lbl_Employee_Name.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Task_Discreption.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_priority.Text = Dt.Rows[7]["EN"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[6]["EN"].ToString();
+                    btn_Add_Task.Text = Dt.Rows[8]["EN"].ToString();
+                    btn_Back_To_Task_List.Text = Dt.Rows[9]["EN"].ToString();
+                }
+                else
+                {
+                    //    //Fill department DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM department", _sqlCon, Department_DropDownList, "Department_Arabic_Name", "Department_Id");
+                    Department_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Employee Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, Employee_Name_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    Employee_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Get priority_DropDownList
+                    priority_DropDownList.Items.Clear();
+                    priority_DropDownList.Items.Add(new ListItem("اولوية من الدرجة الأولى", "1"));
+                    priority_DropDownList.Items.Add(new ListItem("اولوية من الدرجة الثانية", "2"));
+                    priority_DropDownList.Items.Add(new ListItem("اولوية من الدرجة الثالثة", "3"));
+                    priority_DropDownList.Items.Add(new ListItem("اولوية من الدرجة الرابعة", "4"));
+                    priority_DropDownList.Items.Add(new ListItem("اولوية من الدرجة الخامسة", "5"));
+
+                    lbl_Add_New_Task.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Task_Type.Text = Dt.Rows[0]["AR"].ToString();
+                    lbl_Department.Text = Dt.Rows[1]["AR"].ToString();
+                    lbl_Employee_Name.Text = Dt.Rows[2]["AR"].ToString();
+                    lbl_Task_Discreption.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_Start_Date.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_End_Date.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_priority.Text = Dt.Rows[7]["AR"].ToString();
+                    End_Date_Chosee.Text = Dt.Rows[6]["AR"].ToString();
+                    btn_Add_Task.Text = Dt.Rows[8]["AR"].ToString();
+                    btn_Back_To_Task_List.Text = Dt.Rows[9]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

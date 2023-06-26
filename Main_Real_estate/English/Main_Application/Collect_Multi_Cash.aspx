@@ -38,7 +38,7 @@
                                         <asp:ListItem Value="2" Text="محصل"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Collect_Type_Req_Fiel_dVal" ControlToValidate="Collect_Type_DropDownList"
-                                        InitialValue="إختر نوع التحصيل ...." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>

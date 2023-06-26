@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <asp:Label ID="lbl_Cheuqe_NO" runat="server" Text="رقم الحوالة"></asp:Label>
+                                    <asp:Label ID="lbl_Transformation_NO" runat="server" Text="رقم الحوالة"></asp:Label>
                                     <asp:TextBox ID="txt_Cheuqe_NO" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                         <asp:ListItem Value="2" Text="محصل"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Collect_Type_Req_Fiel_dVal" ControlToValidate="Collect_Type_DropDownList"
-                                        InitialValue="إختر نوع التحصيل ...." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>

@@ -93,14 +93,14 @@
                                 <asp:ImageButton ID="ImageButton3" ImageUrl="Main_Image/Calander_Close.png" Width="10px" Height="10px" Visible="false" OnClick="ImageButton3_Click" runat="server" />
                                 <div id="End_Date_Div" runat="server" visible="false" style="position: page;">
                                     <asp:Calendar ID="End_Date_Calendar" runat="server" Height="200px" Width="220px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" OnSelectionChanged="End_Date_Calendar_SelectionChanged1">
-                                          <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
-                                                            <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
-                                                            <OtherMonthDayStyle ForeColor="#5a5c69" />
-                                                            <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
-                                                            <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
-                                                            <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
-                                                            <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
-                                                            <WeekendDayStyle BackColor="#dfeef8" />
+                                        <DayHeaderStyle BackColor="#52a2da" ForeColor="#ffffff" Height="1px" />
+                                        <NextPrevStyle Font-Size="8pt" ForeColor="#ffffff" />
+                                        <OtherMonthDayStyle ForeColor="#5a5c69" />
+                                        <SelectedDayStyle BackColor="#ff8d4f" Font-Bold="True" ForeColor="#ffffff" />
+                                        <SelectorStyle BackColor="#5a5c69" ForeColor="#ffffff" />
+                                        <TitleStyle CssClass="calendarMonthStyle" Height="25px" />
+                                        <TodayDayStyle BackColor="#37bc9b" ForeColor="#ffffff" />
+                                        <WeekendDayStyle BackColor="#dfeef8" />
                                     </asp:Calendar>
                                 </div>
                             </div>
@@ -108,13 +108,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_priority" runat="server" Text="أولوية المهمة"></asp:Label>
-                                    <asp:DropDownList ID="priority_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="اولوية من الدرجة الأولى"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="اولوية من الدرجة الثانية"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="اولوية من الدرجة الثالثة"></asp:ListItem>
-                                        <asp:ListItem Value="4" Text="اولوية من الدرجة الرابعة"></asp:ListItem>
-                                        <asp:ListItem Value="5" Text="اولوية من الدرجة الخامسة"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="priority_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>

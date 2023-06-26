@@ -137,13 +137,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_priority" runat="server" Text="أولوية المهمة"></asp:Label>
-                                    <asp:DropDownList ID="priority_DropDownList" runat="server" CssClass="form-control">
-                                        <asp:ListItem Value="1" Text="اولوية من الدرجة الأولى"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="اولوية من الدرجة الثانية"></asp:ListItem>
-                                        <asp:ListItem Value="3" Text="اولوية من الدرجة الثالثة"></asp:ListItem>
-                                        <asp:ListItem Value="4" Text="اولوية من الدرجة الرابعة"></asp:ListItem>
-                                        <asp:ListItem Value="5" Text="اولوية من الدرجة الخامسة"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="priority_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -159,15 +153,7 @@
                             </div>
                             <div >
                                 <br />
-                                <asp:LinkButton ID="Delete_Task"  runat="server" ValidationGroup="Delete" OnClick="Delete_Task_Click" OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');"><i class="fa fa-trash" style="font-size:40px; color:#0779c9"></i></asp:LinkButton>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="form-group" runat="server" id="Delete_Reason">
-                                    <asp:Label ID="lbl_Reason_Delete" runat="server" Text="سبب الحذف"></asp:Label>
-                                    <asp:TextBox ID="txt_Reason_Delete" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="Delete_ReqFieVal" ControlToValidate="txt_Reason_Delete"
-                                        runat="server" ErrorMessage="* يرجى توضيح سبب الحذف" ForeColor="#fc544b" ValidationGroup="Delete"></asp:RequiredFieldValidator>
-                                </div>
+                                <asp:LinkButton ID="Delete_Task"  runat="server" ValidationGroup="Delete" OnClick="Delete_Task_Click" OnClientClick="return confirm('Are you sure you want to delete?');"><i class="fa fa-trash" style="font-size:40px; color:#0779c9"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>
