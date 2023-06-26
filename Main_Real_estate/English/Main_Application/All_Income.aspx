@@ -11,7 +11,7 @@
                     'excelHtml5',
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -98,7 +98,7 @@
     <%---------------------------------------------------------------------------------------------------------------------------------%>
     <div class="container-fluid" id="container-wrapper">
         <div class="row">
-            <div class="col-lg-2 mb-3">
+            <div class="col-lg-12 mb-3">
                 <h1 class="h4 mb-0 text-gray-800">
                     <asp:Label ID="lbl_titel_Incomes_New_List" runat="server" Text="كشف التحصيل"></asp:Label>
                 </h1>
@@ -110,33 +110,26 @@
                     <div class="row">
                         <div class="col-lg-12 mb-4">
                             <ul class="UUL">
-                                <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick">تحصيل الشيكات</a></li>
-                                <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick">تحصيل الحولات</a></li>
-                                <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick">تحصيل الدفعات النقدية</a></li>
-                                <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick">الكل</a></li>
-                                <li>
-                                    <asp:Label ID="lbl_Cq_T_Ch_Filter" runat="server"></asp:Label></li>
+                                <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick"><asp:Label ID="lbl_Cheque" runat="server"/></a></li>
+                                <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick"><asp:Label ID="lbl_Trans" runat="server"/></a></li>
+                                <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick"><asp:Label ID="lbl_Cashe" runat="server"/></a></li>
+                                <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick"><asp:Label ID="lbl_All" runat="server"/></a></li>
+                                <li><asp:Label ID="lbl_Cq_T_Ch_Filter" runat="server"></asp:Label></li>
                             </ul>
                         </div>
                     </div>
                     <div class="row" style="padding: 20px">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="Label5" runat="server" Text="فرز حسب الكل / محصل / غير محصل"></asp:Label><br />
+                                <asp:Label ID="lbl_Collected_NotCollected" runat="server" Text="فرز حسب الكل / محصل / غير محصل"></asp:Label><br />
                                 <asp:DropDownList ID="Collected_Or_NotCollected_DropDownList" runat="server" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="Collected_Or_NotCollected_DropDownList_SelectedIndexChanged">
-                                    <asp:ListItem Value="1" Text="الكل"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="محصل"></asp:ListItem>
-                                    <asp:ListItem Selected="True" Value="3"  Text="غير محصل"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="Label8" runat="server" Text="فرز حسب مفردة / مجملة "></asp:Label><br />
+                                <asp:Label ID="lbl_Singel_Multi" runat="server" Text="فرز حسب مفردة / مجملة "></asp:Label><br />
                                 <asp:DropDownList ID="Singel_Multi_DropDownList" runat="server" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="Singel_Multi_DropDownList_SelectedIndexChanged">
-                                    <asp:ListItem Value="1" Text="الكل"></asp:ListItem>
-                                    <asp:ListItem Value="2" Text="مفردة"></asp:ListItem>
-                                    <asp:ListItem Value="3" Text="مجملة"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -144,8 +137,6 @@
                              <div class="form-group">
                                  <asp:Label ID="lbl_Date_Filter" runat="server" Text="فرز حسب تاريخ اليوم / الكل"></asp:Label>
                                  <asp:DropDownList ID="Date_Filter_DropDownList" runat="server" Width="200px" AutoPostBack="true" OnSelectedIndexChanged="Date_Filter_DropDownList_SelectedIndexChanged">
-                                     <asp:ListItem Value="1" Text="الكل"></asp:ListItem>
-                                     <asp:ListItem Value="2" Text="تاريخ اليوم الحالي"></asp:ListItem>
                                  </asp:DropDownList>
                              </div>
                          </div>
@@ -154,41 +145,53 @@
                     <div class="row" runat="server" id="Cheuqe">
                         <h4><asp:Label ID="lbl_Cheques" runat="server"></asp:Label></h4>
                         <div class="table-responsive" id="Grid" >
-                            <asp:Repeater ID="Avilabel_Cheuqes" runat="server" ClientIDMode="Static" OnItemDataBound="Avilabel_Cheuqes_ItemDataBound">
+                            <asp:Repeater ID="Avilabel_Cheuqes" runat="server"  OnItemDataBound="Avilabel_Cheuqes_ItemDataBound1">
                                 <HeaderTemplate>
                                     <table cellspacing="0" cellpadding="0" style="font-size: 12px;" class="datatable table table-striped table-bordered">
                                         <thead>
                                             <th style="display:none"></th>
-                                            <th style="text-align: center;">كود الملكية</th>
-                                            <th style="text-align: center;"> الملكية</th>
-                                            <th style="text-align: center;">البناء أو الوحدة</th>
-                                            <th style="text-align: center;"> المستأجر</th>
-                                            <th style="text-align: center;">رقم الشيك</th>
-                                            <th style="text-align: center;">تاريخ الشيك</th>
-                                            <th style="text-align: center;">قيمة الشيك </th>
-                                            <th style="text-align: center;">صاحب الشيك </th>
-                                            <th style="text-align: center;">اسم المستفيد</th>
-                                            <th style="text-align: center;">البنك </th>
-                                            <th style="text-align: center;"> الحالة</th>
-                                            <th style="text-align: center;">تاريخ التحصيل</th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Code" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Che_T_ownership" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Building_Unit" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Che_T_Tenant" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_NO" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Date" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Value" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Owner" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Beneficiary" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Bank" runat="server"/> </th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Che_T_satuts" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Che_T_Collect_Date" runat="server"/></th>
                                         </thead>
                                         <tbody>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr runat="server" id="row">
-                                        <td style="display:none"> <asp:Label ID="lbl_Cheques_Id" runat="server" Text='<%# Eval("Cheques_Id") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Ownership_Code"  runat="server" Text='<%# Eval("O_Code") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Ownership_Name" runat="server" Text='<%# Eval("O_Name") %>'></asp:Label></td>
-                                        <td> <asp:Label ID="lbl_U_NO" runat="server" Text='<%# Eval("U_NO") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Cheques_No" runat="server" Text='<%# Eval("Cheques_No") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Cheques_Date" runat="server" Text='<%# Eval("Cheques_Date") %>'>  </asp:Label></td>
-                                        <td><asp:Label ID="lbl_Cheques_Amount" runat="server" Text='<%# Eval("Cheques_Amount") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Cheque_Owner" runat="server" Text='<%# Eval("Cheque_Owner") %>'></asp:Label></td>
-                                        <td> <asp:Label ID="lbl_beneficiary_person" runat="server" Text='<%# Eval("beneficiary_person") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Arabic_Name") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_cheque_Status" runat="server" Text='<%# Eval("Cheques_Status")%>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Collection_Date" runat="server" Text='<%# Eval("Collection_Date") %>'>  </asp:Label></td>
+                                        <td style="display:none"> <asp:Label ID="lbl_Cheques_Id" runat="server" Text='<%# Eval("Cheques_Id") %>'/></td>
+                                        <td><asp:Label ID="lbl_Ownership_Code"  runat="server" Text='<%# Eval("O_Code") %>'/></td>
+                                        <td>
+                                            <asp:Label ID="XXXX" runat="server" Text='<%# Eval("O_Name") %>'/>
+                                            <asp:Label ID="YYYY" runat="server" Text='<%# Eval("EN_O_Name") %>'/>
+                                        </td>
+                                        <td> 
+                                            <asp:Label ID="lbl_AR_U_NO" runat="server" Text='<%# Eval("U_NO") %>'/>
+                                            <asp:Label ID="lbl_EN_U_NO" runat="server" Text='<%# Eval("EN_U_NO") %>'/>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'/>
+                                            <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>'/>
+                                        </td>
+                                        <td><asp:Label ID="lbl_Cheques_No" runat="server" Text='<%# Eval("Cheques_No") %>'/></td>
+                                        <td><asp:Label ID="lbl_Cheques_Date" runat="server" Text='<%# Eval("Cheques_Date") %>'/></td>
+                                        <td><asp:Label ID="lbl_Cheques_Amount" runat="server" Text='<%# Eval("Cheques_Amount") %>'/></td>
+                                        <td><asp:Label ID="lbl_Cheque_Owner" runat="server" Text='<%# Eval("Cheque_Owner") %>'/></td>
+                                        <td> <asp:Label ID="lbl_beneficiary_person" runat="server" Text='<%# Eval("beneficiary_person") %>'/></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Arabic_Name") %>'/>
+                                            <asp:Label ID="lbl_Bank_English_Name" runat="server" Text='<%# Eval("Bank_English_Name") %>'/>
+                                        </td>
+                                        <td><asp:Label ID="lbl_cheque_Status" runat="server" Text='<%# Eval("Cheques_Status")%>'/></td>
+                                        <td><asp:Label ID="lbl_Collection_Date" runat="server" Text='<%# Eval("Collection_Date") %>'/></td>
                                     </tr>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -202,25 +205,24 @@
                     <div class="row" runat="server" id="Transformation">
                         <h4><asp:Label ID="lbl_Transformation" runat="server"></asp:Label></h4>
                         <div class="table-responsive" >
-                            <asp:Repeater ID="Repeater1" runat="server" ClientIDMode="Static" OnItemDataBound="Avilabel_Cheuqes_ItemDataBound">
+                            <asp:Repeater ID="Repeater1" runat="server" ClientIDMode="Static" OnItemDataBound="Repeater1_ItemDataBound">
                                 <HeaderTemplate>
                                     <table cellspacing="0" cellpadding="0" style="font-size: 12px;" class="datatable table table-striped table-bordered">
                                         <thead>
                                             <th style="display:none"></th>
-                                            <th style="text-align: center;">كود الملكية</th>
-                                            <th style="text-align: center;"> الملكية</th>
-                                            <th style="text-align: center;">البناء أو الوحدة</th>
-                                            <th style="text-align: center;"> المستأجر</th>
-                                            <th style="text-align: center;">رقم الحوالة</th>
-                                            <th style="text-align: center;">تاريخ الحوالة</th>
-                                            <th style="text-align: center;">قيمة الحوالة </th>
-                                            <th style="text-align: center;">اسم المستفيد </th>
-                                            <th style="text-align: center;">البنك </th>
-                                            <th style="text-align: center;">رقم الحساب </th>
-                                            <th style="text-align: center;">سوفت كود</th>
-                                            <th style="text-align: center;"> الحالة</th>
-
-                                            <th style="text-align: center;">تاريخ التحصيل</th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Code" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Tr_T_ownership" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Building_Unit" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Tr_T_Tenant" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_NO" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Date" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Value" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Beneficiary" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Bank" runat="server"/> </th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Account_No" runat="server"/> </th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Soft_Code" runat="server"/> </th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Tr_T_satuts" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Tr_T_Collect_Date" runat="server"/></th>
                                         </thead>
                                         <tbody>
                                 </HeaderTemplate>
@@ -228,14 +230,29 @@
                                     <tr runat="server" id="row">
                                         <td style="display:none"> <asp:Label ID="lbl_Cheques_Id" runat="server" Text='<%# Eval("transformation_Id") %>'></asp:Label></td>
                                         <td><asp:Label ID="lbl_Ownership_Code"  runat="server" Text='<%# Eval("O_Code") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Ownership_Name" runat="server" Text='<%# Eval("O_Name") %>'></asp:Label></td>
-                                        <td> <asp:Label ID="lbl_U_NO" runat="server" Text='<%# Eval("U_NO") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="XXXX" runat="server" Text='<%# Eval("O_Name") %>'/>
+                                            <asp:Label ID="YYYY" runat="server" Text='<%# Eval("EN_O_Name") %>'/>
+                                        </td>
+                                         <td> 
+                                            <asp:Label ID="lbl_AR_U_NO" runat="server" Text='<%# Eval("U_NO") %>'/>
+                                            <asp:Label ID="lbl_EN_U_NO" runat="server" Text='<%# Eval("EN_U_NO") %>'/>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'/>
+                                            <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>'/>
+                                        </td>
                                         <td><asp:Label ID="lbl_transformation_No" runat="server" Text='<%# Eval("transformation_No") %>'></asp:Label></td>
                                         <td><asp:Label ID="lbl_transformation_Date" runat="server" Text='<%# Eval("transformation_Date") %>'>  </asp:Label></td>
                                         <td><asp:Label ID="lbl_Amount" runat="server" Text='<%# Eval("Amount") %>'></asp:Label></td>
-                                        <td> <asp:Label ID="lbl_beneficiary_person" runat="server" Text='<%# Eval("Beneficiary_Name") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Name") %>'></asp:Label></td>
+                                        <td> 
+                                            <asp:Label ID="lbl_beneficiary_person" runat="server" Text='<%# Eval("Beneficiary_Name") %>'></asp:Label>
+                                            <asp:Label ID="lbl_EN_beneficiary_person" runat="server" Text='<%# Eval("Beneficiary_Name_En") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lbl_Bank_Arabic_Name" runat="server" Text='<%# Eval("Bank_Name") %>'/>
+                                            <asp:Label ID="lbl_Bank_English_Name" runat="server" Text='<%# Eval("Bank_Name_En") %>'/>
+                                        </td>
                                         <td><asp:Label ID="lbl_Account_No_En" runat="server" Text='<%# Eval("Account_No_En")%>'></asp:Label></td>
                                         <td><asp:Label ID="lbl_Soaft_Code_No_En" runat="server" Text='<%# Eval("Soaft_Code_No_En") %>'>  </asp:Label></td>
                                         <td><asp:Label ID="lbl_cheque_Status" runat="server" Text='<%# Eval("Status") %>'>  </asp:Label></td>
@@ -253,19 +270,19 @@
                     <div class="row" runat="server" id="Cash">
                         <h4><asp:Label ID="lbl_Cash" runat="server"></asp:Label></h4>
                         <div class="table-responsive" >
-                            <asp:Repeater ID="Repeater2" runat="server" ClientIDMode="Static" OnItemDataBound="Avilabel_Cheuqes_ItemDataBound">
+                            <asp:Repeater ID="Repeater2" runat="server" ClientIDMode="Static" OnItemDataBound="Repeater2_ItemDataBound">
                                 <HeaderTemplate>
                                     <table cellspacing="0" cellpadding="0" style="font-size: 12px;" class="datatable table table-striped table-bordered">
                                         <thead>
                                             <th style="display:none"></th>
-                                            <th style="text-align: center;">كود الملكية</th>
-                                            <th style="text-align: center;"> الملكية</th>
-                                            <th style="text-align: center;">البناء أو الوحدة</th>
-                                            <th style="text-align: center;"> المستأجر</th>
-                                            <th style="text-align: center;">تاريخ الدفعة</th>
-                                            <th style="text-align: center;">قيمة الشيك </th>
-                                            <th style="text-align: center;"> الحالة</th>
-                                            <th style="text-align: center;">تاريخ التحصيل</th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Ca_T_Code" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Ca_T_ownership" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Ca_T_Building_Unit" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Ca_T_Tenant" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Ca_T_Date" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Ca_T_Value" runat="server"/></th>
+                                            <th style="text-align: center;"> <asp:Label ID="lbl_Ca_T_satuts" runat="server"/></th>
+                                            <th style="text-align: center;"><asp:Label ID="lbl_Ca_T_Collect_Date" runat="server"/></th>
                                         </thead>
                                         <tbody>
                                 </HeaderTemplate>
@@ -273,9 +290,18 @@
                                     <tr runat="server" id="row">
                                         <td style="display:none"> <asp:Label ID="lbl_Cheques_Id" runat="server" Text='<%# Eval("Cash_Amount_ID") %>'></asp:Label></td>
                                         <td><asp:Label ID="lbl_Ownership_Code"  runat="server" Text='<%# Eval("O_Code") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Ownership_Name" runat="server" Text='<%# Eval("O_Name") %>'></asp:Label></td>
-                                        <td> <asp:Label ID="lbl_U_NO" runat="server" Text='<%# Eval("U_NO") %>'></asp:Label></td>
-                                        <td><asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="XXXX" runat="server" Text='<%# Eval("O_Name") %>'/>
+                                            <asp:Label ID="YYYY" runat="server" Text='<%# Eval("EN_O_Name") %>'/>
+                                        </td>
+                                         <td> 
+                                            <asp:Label ID="lbl_AR_U_NO" runat="server" Text='<%# Eval("U_NO") %>'/>
+                                            <asp:Label ID="lbl_EN_U_NO" runat="server" Text='<%# Eval("EN_U_NO") %>'/>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'/>
+                                            <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>'/>
+                                        </td>
                                         <td><asp:Label ID="lbl_Cash_Date" runat="server" Text='<%# Eval("Cash_Date") %>'>  </asp:Label></td>
                                         <td><asp:Label ID="lbl_Cash_Amount" runat="server" Text='<%# Eval("Cash_Amount") %>'></asp:Label></td>
                                         <td><asp:Label ID="lbl_cheque_Status" runat="server" Text='<%# Eval("Satuts")%>'></asp:Label></td>

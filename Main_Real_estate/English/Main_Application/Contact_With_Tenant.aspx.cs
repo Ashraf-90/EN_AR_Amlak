@@ -24,7 +24,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                
+                language();
 
 
                 DataTable Ch_Dt = new DataTable();
@@ -93,7 +93,7 @@ namespace Main_Real_estate.English.Main_Application
                 _sqlCon.Close();
                 // ******************  Get User Name *****************************************************************************
 
-                string UserNameQuery = "SELECT Users_Ar_First_Name  From users Where user_ID = '"+ Session["user_ID"].ToString() + "'";
+                string UserNameQuery = "SELECT Users_Ar_First_Name , Users_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
                 MySqlCommand UserNameCmd = new MySqlCommand(UserNameQuery, _sqlCon);
                 MySqlDataAdapter UserNameDt = new MySqlDataAdapter(UserNameCmd);
                 UserNameCmd.Connection = _sqlCon;
@@ -111,25 +111,34 @@ namespace Main_Real_estate.English.Main_Application
                 string addSMSQuary =
                    "Insert Into tenant_sending (" +
                    "Level , " +
+                   "EN_Level , " +
                    "Type , " +
+                   "EN_Type , " +
                    "Mounth , " +
                    "Year , " +
                    "User_Name , " +
+                   "User_EN_Name , " +
                    "SMS) " +
                    "VALUES(" +
                    "@Level , " +
+                   "@EN_Level , " +
                    "@Type , " +
+                   "@EN_Type , " +
                    "@Mounth , " +
                    "@Year , " +
                    "@User_Name , " +
+                   "@User_EN_Name , " +
                    "@SMS)";
                 _sqlCon.Open();
                 MySqlCommand addSMSCmd = new MySqlCommand(addSMSQuary, _sqlCon);
                 addSMSCmd.Parameters.AddWithValue("@Level", "جميع العملاء");
+                addSMSCmd.Parameters.AddWithValue("@EN_Level", "All Tenants");
                 addSMSCmd.Parameters.AddWithValue("@Type", "رسالة SMS");
+                addSMSCmd.Parameters.AddWithValue("@EN_Type", " SMS");
                 addSMSCmd.Parameters.AddWithValue("@Mounth", DateTime.Now.Month.ToString());
                 addSMSCmd.Parameters.AddWithValue("@Year", DateTime.Now.Year.ToString());
                 addSMSCmd.Parameters.AddWithValue("@User_Name", UserNameDataTable.Rows[0]["Users_Ar_First_Name"].ToString());
+                addSMSCmd.Parameters.AddWithValue("@User_EN_Name", UserNameDataTable.Rows[0]["Users_Name"].ToString());
                 addSMSCmd.Parameters.AddWithValue("@SMS", txt_tenant_Sms.Text);
                 addSMSCmd.ExecuteNonQuery();
                 _sqlCon.Close();
@@ -142,7 +151,7 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-                string UserNameQuery = "SELECT Users_Ar_First_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
+                string UserNameQuery = "SELECT Users_Ar_First_Name , Users_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
                 MySqlCommand UserNameCmd = new MySqlCommand(UserNameQuery, _sqlCon);
                 MySqlDataAdapter UserNameDt = new MySqlDataAdapter(UserNameCmd);
                 UserNameCmd.Connection = _sqlCon;
@@ -158,27 +167,36 @@ namespace Main_Real_estate.English.Main_Application
                 string addSMSQuary =
                    "Insert Into tenant_sending (" +
                    "Level , " +
+                   "EN_Level , " +
                    "Type , " +
+                   "EN_Type , " +
                    "Mounth , " +
                    "Year , " +
                    "User_Name , " +
+                   "User_EN_Name , " +
                    "Tenant_Tenant_Id , " +
                    "SMS ) " +
                    "VALUES(" +
                    "@Level , " +
+                   "@EN_Level , " +
                    "@Type , " +
+                   "@EN_Type , " +
                    "@Mounth , " +
                    "@Year , " +
                    "@User_Name , " +
+                   "@User_EN_Name , " +
                    "@Tenant_Tenant_Id , " +
                    "@SMS)";
                 _sqlCon.Open();
                 MySqlCommand addSMSCmd = new MySqlCommand(addSMSQuary, _sqlCon);
                 addSMSCmd.Parameters.AddWithValue("@Level", "عميل محدد");
+                addSMSCmd.Parameters.AddWithValue("@EN_Level", "Specific Tenant");
                 addSMSCmd.Parameters.AddWithValue("@Type", "رسالة SMS");
+                addSMSCmd.Parameters.AddWithValue("@EN_Type", " SMS");
                 addSMSCmd.Parameters.AddWithValue("@Mounth", DateTime.Now.Month.ToString());
                 addSMSCmd.Parameters.AddWithValue("@Year", DateTime.Now.Year.ToString());
                 addSMSCmd.Parameters.AddWithValue("@User_Name", UserNameDataTable.Rows[0]["Users_Ar_First_Name"].ToString());
+                addSMSCmd.Parameters.AddWithValue("@User_EN_Name", UserNameDataTable.Rows[0]["Users_Name"].ToString());
                 addSMSCmd.Parameters.AddWithValue("@Tenant_Tenant_Id", Tenant_Name_DropDownList.SelectedValue);
                 addSMSCmd.Parameters.AddWithValue("@SMS", txt_tenant_Sms.Text);
                 addSMSCmd.ExecuteNonQuery();
@@ -190,7 +208,7 @@ namespace Main_Real_estate.English.Main_Application
                 {
                     Utilities.Helper.SendSms(g1.Cells[1].Text, txt_tenant_Sms.Text);
                 }
-                string UserNameQuery = "SELECT Users_Ar_First_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
+                string UserNameQuery = "SELECT Users_Ar_First_Name , Users_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
                 MySqlCommand UserNameCmd = new MySqlCommand(UserNameQuery, _sqlCon);
                 MySqlDataAdapter UserNameDt = new MySqlDataAdapter(UserNameCmd);
                 UserNameCmd.Connection = _sqlCon;
@@ -203,25 +221,34 @@ namespace Main_Real_estate.English.Main_Application
                 string addSMSQuary =
                   "Insert Into tenant_sending (" +
                   "Level , " +
-                  "Type , " +
+                   "EN_Level , " +
+                   "Type , " +
+                   "EN_Type , " +
                   "Mounth , " +
                   "Year , " +
                   "User_Name , " +
+                  "User_EN_Name , " +
                   "SMS ) " +
                   "VALUES(" +
                   "@Level , " +
-                  "@Type , " +
+                   "@EN_Level , " +
+                   "@Type , " +
+                   "@EN_Type , " +
                   "@Mounth , " +
                   "@Year , " +
                   "@User_Name , " +
+                  "@User_EN_Name , " +
                   "@SMS)";
                 _sqlCon.Open();
                 MySqlCommand addSMSCmd = new MySqlCommand(addSMSQuary, _sqlCon);
-                addSMSCmd.Parameters.AddWithValue("@Level", "مجموعة محددة من العملاء");
+                addSMSCmd.Parameters.AddWithValue("@Level", "مجموعة عملاء");
+                addSMSCmd.Parameters.AddWithValue("@EN_Level", "Group Of Tenants");
                 addSMSCmd.Parameters.AddWithValue("@Type", "رسالة SMS");
+                addSMSCmd.Parameters.AddWithValue("@EN_Type", " SMS");
                 addSMSCmd.Parameters.AddWithValue("@Mounth", DateTime.Now.Month.ToString());
                 addSMSCmd.Parameters.AddWithValue("@Year", DateTime.Now.Year.ToString());
                 addSMSCmd.Parameters.AddWithValue("@User_Name", UserNameDataTable.Rows[0]["Users_Ar_First_Name"].ToString());
+                addSMSCmd.Parameters.AddWithValue("@User_EN_Name", UserNameDataTable.Rows[0]["Users_Name"].ToString());
                 addSMSCmd.Parameters.AddWithValue("@SMS", txt_tenant_Sms.Text);
                 addSMSCmd.ExecuteNonQuery();
                 _sqlCon.Close();
@@ -235,25 +262,34 @@ namespace Main_Real_estate.English.Main_Application
         {
             if (Page.IsValid)
             {
-                string Level = ""; string Type = ""; string Tenant_Tenant_Id ="";
+                string Level = ""; string Type = ""; string EN_Level = ""; string EN_Type = ""; string Tenant_Tenant_Id ="";
 
                 if (Att_Level_DropDownList.SelectedValue == "1")
                 {
                     Level = "كافة العملاء";
+                    EN_Level = "All Tenants";
+
                     Type = "مرفق";
+                    EN_Type = "Attachments";
                     Tenant_Tenant_Id = ""; 
                     
                 }
                 else if (Att_Level_DropDownList.SelectedValue == "2")
                 {
                     Level = "عملاء في بناء محدد";
+                    EN_Level = "Tenants In Specific Building";
+
                     Type = "مرفق";
+                    EN_Type = "Attachments";
                     Tenant_Tenant_Id = "";
                 }
                 else
                 {
                     Level = "عميل محدد";
+                    EN_Level = "Specific Tenant";
+
                     Type = "مرفق";
+                    EN_Type = "Attachments";
                     Tenant_Tenant_Id = Tenant_Name_DropDownList.SelectedValue;
                 }
 
@@ -264,7 +300,7 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-                string UserNameQuery = "SELECT Users_Ar_First_Name  From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
+                string UserNameQuery = "SELECT Users_Ar_First_Name , Users_En_First_Name From users Where user_ID = '" + Session["user_ID"].ToString() + "'";
                 MySqlCommand UserNameCmd = new MySqlCommand(UserNameQuery, _sqlCon);
                 MySqlDataAdapter UserNameDt = new MySqlDataAdapter(UserNameCmd);
                 UserNameCmd.Connection = _sqlCon;
@@ -278,20 +314,27 @@ namespace Main_Real_estate.English.Main_Application
                 string addAttQuary =
                    "Insert Into tenant_sending (" +
                    "Level , " +
+                   "EN_Level , " +
                    "Type , " +
+                   "EN_Type , " +
                    "Mounth , " +
                    "Year , " +
                    "User_Name , " +
+                   "User_EN_Name , " +
+                   "User_EN_Name , " +
                    "Tenant_Tenant_Id , " +
                    "Attatchment_File_Name , " +
                    "Attatchment_File_Path , " +
                    "Discription) " +
                    "VALUES(" +
                    "@Level , " +
+                   "@EN_Level , " +
                    "@Type , " +
+                   "@EN_Type , " +
                    "@Mounth , " +
                    "@Year , " +
                    "@User_Name , " +
+                   "@User_EN_Name , " +
                    "@Tenant_Tenant_Id , " +
                    "@Attatchment_File_Name , " +
                    "@Attatchment_File_Path , " +
@@ -299,10 +342,13 @@ namespace Main_Real_estate.English.Main_Application
                 _sqlCon.Open();
                 MySqlCommand addAttCmd = new MySqlCommand(addAttQuary, _sqlCon);
                 addAttCmd.Parameters.AddWithValue("@Level", Level);
+                addAttCmd.Parameters.AddWithValue("@EN_Level", EN_Level);
                 addAttCmd.Parameters.AddWithValue("@Type", Type);
+                addAttCmd.Parameters.AddWithValue("@EN_Type", EN_Type);
                 addAttCmd.Parameters.AddWithValue("@Mounth", DateTime.Now.Month.ToString());
                 addAttCmd.Parameters.AddWithValue("@Year", DateTime.Now.Year.ToString());
                 addAttCmd.Parameters.AddWithValue("@User_Name", UserNameDataTable.Rows[0]["Users_Ar_First_Name"].ToString());
+                addAttCmd.Parameters.AddWithValue("@User_EN_Name", UserNameDataTable.Rows[0]["Users_Name"].ToString());
                 addAttCmd.Parameters.AddWithValue("@Tenant_Tenant_Id", Tenant_Tenant_Id);
                 addAttCmd.Parameters.AddWithValue("@Discription", txt_Att_Discription.Text);
 
@@ -462,6 +508,41 @@ namespace Main_Real_estate.English.Main_Application
             {
                 if (Session["Langues"].ToString() == "1")
                 {
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Tenan_DropDownList.Items.Insert(0, "...............");
+
+                    Type_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenant_Name_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Tenant_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Att_Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Att_Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Att_Tenant_Name_DropDownList, "Tenants_English_Name", "Tenants_ID");
+                    Att_Tenant_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Fill Tenant _Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, DropDownList1, "Tenants_English_Name", "Tenants_Mobile");
+                    DropDownList1.Items.Insert(0, "...............");
+
+
+                    Cheque_GridView.Columns[0].HeaderText = Dt.Rows[35]["EN"].ToString();
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[13]["EN"].ToString();
+
+
                     //Get Level_DropDownList 
                     Level_DropDownList.Items.Clear();
                     Level_DropDownList.Items.Add(new ListItem("Send To All Tenants", "1"));
@@ -476,6 +557,8 @@ namespace Main_Real_estate.English.Main_Application
                     Att_Level_DropDownList.Items.Add(new ListItem("Tenants in a Specific Building", "2"));
                     Att_Level_DropDownList.Items.Add(new ListItem("Specific Tenants", "3"));
                     Att_Level_DropDownList.Items.Insert(0, "...............");
+
+
 
 
 
@@ -531,7 +614,8 @@ namespace Main_Real_estate.English.Main_Application
                     DropDownList1.Items.Insert(0, "...............");
 
 
-
+                    Cheque_GridView.Columns[0].HeaderText = Dt.Rows[35]["AR"].ToString();
+                    Cheque_GridView.Columns[1].HeaderText = Dt.Rows[13]["AR"].ToString();
 
 
                     //Get Level_DropDownList 
@@ -574,6 +658,76 @@ namespace Main_Real_estate.English.Main_Application
                 }
             }
             _sqlCon.Close();
+        }
+
+        protected void tenant_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                var lbl_Titel_Tenants_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Tenants_Name");
+                var lbl_Titel_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Type");
+                var lbl_Titel_Mounth = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Mounth");
+                var lbl_Titel_Year = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Year");
+                var lbl_Titel_from = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_from");
+                var lbl_Titel_sms = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_sms");
+                var lbl_Titel_Att = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Att");
+                var lbl_Titel_Not = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Titel_Not");
+
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_tenant ", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_Titel_Tenants_Name.Text = Dt.Rows[35]["EN"].ToString();
+                        lbl_Titel_Type.Text = Dt.Rows[53]["EN"].ToString();
+                        lbl_Titel_Mounth.Text = "Month";
+                        lbl_Titel_Year.Text = "Year";
+                        lbl_Titel_from.Text = "From";
+                        lbl_Titel_sms.Text = Dt.Rows[50]["EN"].ToString();
+                        lbl_Titel_Att.Text = Dt.Rows[56]["EN"].ToString();
+                        lbl_Titel_Not.Text = Dt.Rows[52]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_Titel_Tenants_Name.Text = Dt.Rows[35]["AR"].ToString();
+                        lbl_Titel_Type.Text = Dt.Rows[53]["AR"].ToString();
+                        lbl_Titel_Mounth.Text = "الشهر";
+                        lbl_Titel_Year.Text = "السنة";
+                        lbl_Titel_from.Text = "من قبل";
+                        lbl_Titel_sms.Text = Dt.Rows[50]["AR"].ToString();
+                        lbl_Titel_Att.Text = Dt.Rows[56]["AR"].ToString();
+                        lbl_Titel_Not.Text = Dt.Rows[52]["AR"].ToString();
+                    }
+                }
+            }
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Tenants_Arabic_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_Arabic_Name");
+                var lbl_Tenants_English_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_English_Name");
+                var lbl_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Type");
+                var lbl_EN_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_EN_Type");
+                var lbl_User_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_User_Name");
+                var lbl_EN_User_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_EN_User_Name");
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Tenants_Arabic_Name.Visible= false; lbl_Tenants_English_Name.Visible= true;
+                    lbl_Type.Visible = false; lbl_EN_Type.Visible = true;
+                    lbl_User_Name.Visible = false; lbl_EN_User_Name.Visible = true;
+                }
+                else
+                {
+                    lbl_Tenants_Arabic_Name.Visible = true; lbl_Tenants_English_Name.Visible = false;
+                    lbl_Type.Visible = true; lbl_EN_Type.Visible = false;
+                    lbl_User_Name.Visible = true; lbl_EN_User_Name.Visible = false;
+                }
+            }
         }
     }
 }

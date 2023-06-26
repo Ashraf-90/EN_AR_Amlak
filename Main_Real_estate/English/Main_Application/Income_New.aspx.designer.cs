@@ -33,6 +33,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
 
         /// <summary>
+        /// lbl_Cheque control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cheque;
+
+        /// <summary>
         /// A_2 control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
+
+        /// <summary>
+        /// lbl_Trans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Trans;
 
         /// <summary>
         /// A_3 control.
@@ -51,6 +69,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
 
         /// <summary>
+        /// lbl_Cashe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cashe;
+
+        /// <summary>
         /// A_4 control.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_4;
+
+        /// <summary>
+        /// lbl_All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_All;
 
         /// <summary>
         /// Cq_T_Ca control.
@@ -69,13 +105,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label Cq_T_Ca;
 
         /// <summary>
-        /// Label5 control.
+        /// lbl_Collected_NotCollected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lbl_Collected_NotCollected;
 
         /// <summary>
         /// Collected_Or_NotCollected_DropDownList control.
@@ -87,13 +123,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Collected_Or_NotCollected_DropDownList;
 
         /// <summary>
-        /// Label8 control.
+        /// lbl_Singel_Multi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lbl_Singel_Multi;
 
         /// <summary>
         /// Singel_Multi_DropDownList control.

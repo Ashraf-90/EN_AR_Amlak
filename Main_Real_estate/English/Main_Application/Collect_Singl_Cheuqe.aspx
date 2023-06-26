@@ -124,7 +124,7 @@
                                         <asp:ListItem Value="9" Text="مستبدل بشيك اخر"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Cheuqe_Status_RequiredFieldValidator" ControlToValidate="Cheuqe_Status_DropDownList"
-                                        InitialValue="إختر حالة الشيك ...." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                                         <asp:ListItem Value="3" Text="محصل بالتحويل"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Collect_Type_Req_Fiel_dVal" ControlToValidate="Collect_Type_DropDownList"
-                                        InitialValue="إختر نوع التحصيل ...." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Collect_Singl_Cheuqe_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>

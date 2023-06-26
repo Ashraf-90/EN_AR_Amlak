@@ -22,6 +22,7 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
+                language();
                 Singl_Chueqe();
             }
         }
@@ -33,7 +34,7 @@ namespace Main_Real_estate.English.Main_Application
 
             string getSingl_ChueqeQuari = "SELECT  Cq.*, " +
                 "Cq_T.Cheque_arabic_Type  ,  " +
-                " B.Bank_Arabic_Name , " +
+                " B.Bank_Arabic_Name , B.Bank_English_Name ," +
                 " T.Tenants_Arabic_Name , " +
                 " T.Tenants_ID, " +
                 "(select units_Unit_ID from contract where Contract_Id = Cq.contract_Contract_Id )U_ID , " +
@@ -74,18 +75,28 @@ namespace Main_Real_estate.English.Main_Application
 
 
                 txt_Cheuqe_NO.Text = getSingl_ChueqeDataTable.Rows[0]["Cheques_No"].ToString();
-                txt_Bank_Name.Text = getSingl_ChueqeDataTable.Rows[0]["Bank_Arabic_Name"].ToString();
+                if (Session["Langues"].ToString() == "1") { txt_Bank_Name.Text = getSingl_ChueqeDataTable.Rows[0]["Bank_English_Name"].ToString(); }
+                else { txt_Bank_Name.Text = getSingl_ChueqeDataTable.Rows[0]["Bank_Arabic_Name"].ToString(); }
+                    
                 txt_Cheuqe_Date.Text = getSingl_ChueqeDataTable.Rows[0]["Cheques_Date"].ToString();
                 txt_Cheuqe_Amount.Text = getSingl_ChueqeDataTable.Rows[0]["Cheques_Amount"].ToString();
 
                 if (getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل بالشيك" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل بالتحويل" ||
-                    getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل نقداً" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل")
+                    getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل نقداً" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "محصل"||
+                   
+                    getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Collected By Cheque" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Collected By Transformation" ||
+                    getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Collected By Cash" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Collected")
                 {
                     Cheuqe_Status_DropDownList.SelectedValue = "3";
                     Collect_Type_Div.Visible = true;
                     if (getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() != "")
                     {
-                        Collect_Type_DropDownList.Items.FindByText(getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString()).Selected = true;
+                        if(getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString()== "محصل بالشيك" || getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() == "Collected By Cheque")
+                        { Collect_Type_DropDownList.SelectedValue = "1"; }
+                        else if (getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() == "محصل نقداً" || getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() == "Collected By Cash")
+                        { Collect_Type_DropDownList.SelectedValue = "2"; }
+                        else if (getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() == "محصل بالتحويل" || getSingl_ChueqeDataTable.Rows[0]["Collect_Type"].ToString() == "Collected By Transformation")
+                        { Collect_Type_DropDownList.SelectedValue = "3"; }
                     }
 
 
@@ -95,9 +106,27 @@ namespace Main_Real_estate.English.Main_Application
                 else
                 {
                     Collect_Type_Div.Visible = false;
-                    Cheuqe_Status_DropDownList.Items.FindByText(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString()).Selected = true;
                     Collect_Date_Chosee.Visible = false;
                     txt_Collect_Date.Enabled = false;
+
+
+
+
+                    if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مودع" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Deposited")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "1"; }
+                    else if (getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "غير مودع" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Not Deposited")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "2"; }
+                    else if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مؤجل" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Delayed")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "5"; }
+                    else if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مرتجع" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Back")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "6"; }
+                    else if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مستبدل بالتحويل" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Replaced By Transformation")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "7"; }
+                    else if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مستبدل نقداً" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Replaced By Cash")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "8"; }
+                    else if(getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "مستبدل بشيك اخر" || getSingl_ChueqeDataTable.Rows[0]["Cheques_Status"].ToString() == "Replaced By Onther Cheque")
+                    { Cheuqe_Status_DropDownList.SelectedValue = "9"; }
+                   
                 }
 
 
@@ -335,6 +364,116 @@ namespace Main_Real_estate.English.Main_Application
             string Collection = Request.QueryString["Collection"];
             string Singel_Multi = Request.QueryString["Singel_Multi"];
             Response.Redirect("Income_New.aspx?Cq_T_Ca=" + Cq_T_Ca + "&Collection=" + Collection + "&Singel_Multi=" + Singel_Multi);
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Get Cheuqe_Status_DropDownList
+                    Cheuqe_Status_DropDownList.Items.Clear();
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Deposited", "1"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Not Deposited", "2"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Collected", "3"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Uncollected", "4"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Delayed", "5"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Back", "6"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Replaced By Transformation", "7"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Replaced By Cash", "8"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("Replaced By Onther Cheque", "9"));
+                    Cheuqe_Status_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Collected By Cheque", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Collected By Cash", "2"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("Collected By Transformation", "3"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    lbl_Cheuqe_NO.Text = Dt.Rows[22]["EN"].ToString();
+                    lbl_Cheuqe_Amount.Text = Dt.Rows[24]["EN"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[26]["EN"].ToString();
+                    lbl_Cheuqe_Date.Text = Dt.Rows[23]["EN"].ToString();
+                    lbl_Cheuqe_Status.Text = Dt.Rows[78]["EN"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["EN"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["EN"].ToString();
+                    Cheuqe_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["EN"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["EN"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["EN"].ToString();
+
+                    Cheuqe_Status_RequiredFieldValidator.ErrorMessage = "* Required ";
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* Required ";
+                }
+                else
+                {
+                    //Get Cheuqe_Status_DropDownList
+                    Cheuqe_Status_DropDownList.Items.Clear();
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مودع", "1"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("غير مودع", "2"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("محصل", "3"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("غير محصل", "4"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مؤجل", "5"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مرتجع", "6"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مستبدل بالتحويل", "7"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مستبدل نقداً", "8"));
+                    Cheuqe_Status_DropDownList.Items.Add(new ListItem("مستبدل بشيك اخر", "9"));
+                    Cheuqe_Status_DropDownList.Items.Insert(0, "...............");
+
+                    //Get Collect_Type_DropDownList
+                    Collect_Type_DropDownList.Items.Clear();
+                    Collect_Type_DropDownList.Items.Add(new ListItem("محصل بالشيك", "1"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("محصل نقداً", "2"));
+                    Collect_Type_DropDownList.Items.Add(new ListItem("محصل بالتحويل", "3"));
+                    Collect_Type_DropDownList.Items.Insert(0, "...............");
+
+
+
+
+                    lbl_Cheuqe_NO.Text = Dt.Rows[22]["AR"].ToString();
+                    lbl_Cheuqe_Amount.Text = Dt.Rows[24]["AR"].ToString();
+                    lbl_Bank_Name.Text = Dt.Rows[26]["AR"].ToString();
+                    lbl_Cheuqe_Date.Text = Dt.Rows[23]["AR"].ToString();
+                    lbl_Cheuqe_Status.Text = Dt.Rows[78]["AR"].ToString();
+                    lbl_Collect_Type.Text = Dt.Rows[82]["AR"].ToString();
+                    lbl_Collect_Date.Text = Dt.Rows[79]["AR"].ToString();
+                    Cheuqe_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    Collect_Date_Chosee.Text = Dt.Rows[21]["AR"].ToString();
+                    btn_Sumit_Collect.Text = Dt.Rows[83]["AR"].ToString();
+                    btn_Back.Text = Dt.Rows[84]["AR"].ToString();
+
+                    Cheuqe_Status_RequiredFieldValidator.ErrorMessage = "* مطلوب ";
+                    Collect_Type_Req_Fiel_dVal.ErrorMessage = "* مطلوب ";
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

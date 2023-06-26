@@ -57,7 +57,7 @@
                 <ul style="background-color: #efefef; min-height: 0px; width: 100%" class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
                     <li class="nav-item" style="padding-bottom: 10px;" runat="server" id="Ownership_Div">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#M_Ownership" aria-expanded="true"
-                            aria-controls="M_Ownership" style="width: 270px;">
+                            aria-controls="M_Ownership" style="width: 400px;">
                             <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
                             <span style="font-size: 19px;"><asp:Label ID="lbl_Titel_SMS" runat="server" Font-Size="19px"/></span>
                         </a>
@@ -197,7 +197,7 @@
                 <ul style="background-color: #efefef; min-height: 0px; width: 100%" class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebars">
                     <li class="nav-item" style="padding-bottom: 10px;" runat="server" id="Li1">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Attatchment" aria-expanded="true"
-                            aria-controls=" Attatchment" style="width: 270px;">
+                            aria-controls=" Attatchment" style=" width: 400px;">
                             <i class="fa fa-plus" style="font-size: 25px; font-weight: bold"></i>
                             <span style="font-size: 19px;"><asp:Label ID="lbl_Titel_Att" runat="server" Font-Size="19px"/></span>
                         </a>
@@ -329,30 +329,39 @@
 
 
                     <div class="table-responsive" id="Grid">
-                        <asp:Repeater ID="tenant_List" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="tenant_List" runat="server" ClientIDMode="Static" OnItemDataBound="tenant_List_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0" style="width: 100%" class="datatable table table-striped table-bordered">
                                     <thead>
                                         <th style="text-align: center;">م</th>
-                                        <th style="text-align: center">اسم المستأجر</th>
-                                        <th style="text-align: center">نوع المراسلة</th>
-                                        <th style="text-align: center">الشهر</th>
-                                        <th style="text-align: center">السنة</th>
-                                        <th style="text-align: center">من قبل </th>
-                                        <th style="text-align: center">رسائل SMS</th>
-                                        <th style="text-align: center">المرفقات</th>
-                                        <th style="text-align: center">ملاحظات</th>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Tenants_Name" runat="server"/></th><%--Tenants_Name--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Type" runat="server"/></th><%--Type--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Mounth" runat="server"/></th><%--Mounth--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Year" runat="server"/></th><%--Year--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_from" runat="server"/></th><%--from--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_sms" runat="server"/></th><%--sms--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Att" runat="server"/></th><%--Att--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_Titel_Not" runat="server"/></th><%--Not--%>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
                                     <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
-                                    <td> <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
-                                    <td> <asp:Label ID="lbl_Type" runat="server" Text='<%# Eval("Type") %>' /></td>
+                                    <td> 
+                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' />
+                                    </td>
+                                    <td> 
+                                        <asp:Label ID="lbl_Type" runat="server" Text='<%# Eval("Type") %>' />
+                                        <asp:Label ID="lbl_EN_Type" runat="server" Text='<%# Eval("EN_Type") %>' />
+                                    </td>
                                     <td> <asp:Label ID="lbl_Mounth" runat="server" Text='<%# Eval("Mounth") %>' /></td>
                                     <td> <asp:Label ID="lbl_Year" runat="server" Text='<%# Eval("Year") %>' /></td>
-                                    <td> <asp:Label ID="lbl_User_Name" runat="server" Text='<%# Eval("User_Name") %>' /></td>
+                                    <td> 
+                                        <asp:Label ID="lbl_User_Name" runat="server" Text='<%# Eval("User_Name") %>' />
+                                        <asp:Label ID="lbl_EN_User_Name" runat="server" Text='<%# Eval("User_EN_Name") %>' />
+                                    </td>
                                     <td> <asp:Label ID="lbl_Tenants_Mobile" runat="server" Text='<%# Eval("SMS") %>' /></td>
                                     <td>
                                         <a href='<%# Eval("Attatchment_File_Path") %>' target="_blank" id="Link_Property_Scheme">
