@@ -2,12 +2,12 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
@@ -87,7 +87,7 @@
 
 
 </head>
-<body data-vide-bg="nature">
+<body data-vide-bg="nature" dir="ltr">
     <div class="layer"></div>
     <form id="form1" runat="server">
         <div class="container-login" style="padding-top: 70px">
@@ -103,30 +103,30 @@
                                         </div>--%>
 
                                         <div class="form-header">
-                                            <img src="Main_Image/P_Logo.jpg" alt="logo">
+                                            <img src="Main_Image/P_Logo.jpg" alt="logo"/>
                                             <h1>
-                                                <asp:Label runat="server" Text="مرحبًا بعودتك !"></asp:Label></h1>
+                                                <asp:Label runat="server" Text="Welcome Back !"></asp:Label></h1>
                                             <h3>
-                                                <asp:Label runat="server" Text="أدخل بيانات الاعتماد الخاصة بك لتسجيل الدخول"></asp:Label>
+                                                <asp:Label runat="server" Text="Enter Your Credentials To Log In"></asp:Label>
                                             </h3>
                                         </div>
                                         <div class="user">
                                             <asp:Login ID="Login1" runat="server" OnAuthenticate="ValidateUser" CssClass="col-lg-12">
                                                 <LayoutTemplate>
-                                                    <div class="form-group" style="text-align: right">
-                                                        <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">اسم المستخدم:</asp:Label>
+                                                    <div class="form-group" style="text-align: left">
+                                                        <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name</asp:Label>
                                                         <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                                         <br />
-                                                        <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">كلمة السر:</asp:Label>
+                                                        <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password</asp:Label>
                                                         <asp:TextBox ID="Password" CssClass="form-control pass" runat="server" TextMode="Password"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="كلمة السر مطلوبة" ToolTip="Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="Password is required" ToolTip="Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
 
-                                                        <asp:CheckBox ID="RememberMe" runat="server" Text="تذكرني في المرة القادمة" />
+                                                        <asp:CheckBox ID="RememberMe" runat="server" Text="Remember me next time" />
                                                         <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                                                     </div>
                                                     <div class="form-group">
-                                                        <asp:Button ID="LoginButton" CssClass="btn btn btn-block" BackColor="#52a2da" ForeColor="White" runat="server" CommandName="Login" Text="تسجيل الدخول" ValidationGroup="Login1" />
+                                                        <asp:Button ID="LoginButton" CssClass="btn btn btn-block" BackColor="#52a2da" ForeColor="White" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" />
                                                     </div>
                                                     <%--<hr />
                                                     <div class="form-group">

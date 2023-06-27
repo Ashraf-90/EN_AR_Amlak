@@ -648,6 +648,7 @@
     <Content Include="English\Main_Application\Contract_List.aspx" />
     <Content Include="English\Main_Application\DashBoard.aspx" />
     <Content Include="English\Main_Application\Detais_All_Ownership.aspx" />
+    <Content Include="English\Main_Application\Disclosure_properties.aspx" />
     <Content Include="English\Main_Application\Edit_Asset.aspx" />
     <Content Include="English\Main_Application\Edit_Building.aspx" />
     <Content Include="English\Main_Application\Edit_Building_Contract.aspx" />
@@ -659,6 +660,7 @@
     <Content Include="English\Main_Application\Edit_Tenant.aspx" />
     <Content Include="English\Main_Application\Edit_Unit_In_Building_Details.aspx" />
     <Content Include="English\Main_Application\Employee_Task_Management.aspx" />
+    <Content Include="English\Main_Application\ENDashBoard.aspx" />
     <Content Include="English\Main_Application\Excel_Report.aspx" />
     <Content Include="English\Main_Application\Excel_report_New.aspx" />
     <Content Include="English\Main_Application\Expaired_Contract.aspx" />
@@ -1356,6 +1358,13 @@
     <Compile Include="English\Main_Application\Detais_All_Ownership.aspx.designer.cs">
       <DependentUpon>Detais_All_Ownership.aspx</DependentUpon>
     </Compile>
+    <Compile Include="English\Main_Application\Disclosure_properties.aspx.cs">
+      <DependentUpon>Disclosure_properties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="English\Main_Application\Disclosure_properties.aspx.designer.cs">
+      <DependentUpon>Disclosure_properties.aspx</DependentUpon>
+    </Compile>
     <Compile Include="English\Main_Application\Edit_Asset.aspx.cs">
       <DependentUpon>Edit_Asset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1432,6 +1441,13 @@
     </Compile>
     <Compile Include="English\Main_Application\Employee_Task_Management.aspx.designer.cs">
       <DependentUpon>Employee_Task_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="English\Main_Application\ENDashBoard.aspx.cs">
+      <DependentUpon>ENDashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="English\Main_Application\ENDashBoard.aspx.designer.cs">
+      <DependentUpon>ENDashBoard.aspx</DependentUpon>
     </Compile>
     <Compile Include="English\Main_Application\English.Master.cs">
       <DependentUpon>English.Master</DependentUpon>

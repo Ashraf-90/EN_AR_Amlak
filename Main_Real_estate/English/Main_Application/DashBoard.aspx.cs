@@ -26,69 +26,70 @@ namespace Main_Real_estate.English.Main_Application
         private readonly MySqlConnection _sqlCon = Helper.GetConnection();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            if (!this.IsPostBack)
+            if (Session["Langues"].ToString() == "1")
             {
-                // Get OwnerShip Count
-                DataTable getOwnerShipDt = new DataTable();
-                _sqlCon.Open();
-                MySqlCommand getOwnerShipCmd = new MySqlCommand("select ( select count(*) from owner_ship)as OwnwerShip_Count", _sqlCon);
-                MySqlDataAdapter getOwnerShipDa = new MySqlDataAdapter(getOwnerShipCmd);
-                getOwnerShipDa.Fill(getOwnerShipDt);
-                if (getOwnerShipDt.Rows.Count > 0)
-                { lbl_OwnerShip_Count.Text = getOwnerShipDt.Rows[0]["OwnwerShip_Count"].ToString(); }
-                _sqlCon.Close();
-
-
-                // Get Building Count
-                DataTable getBuildingDt = new DataTable();
-                _sqlCon.Open();
-                MySqlCommand getBuildingCmd = new MySqlCommand("select ( select count(*) from building where Active != 0)as building_Count", _sqlCon);
-                MySqlDataAdapter getBuildingDa = new MySqlDataAdapter(getBuildingCmd);
-                getBuildingDa.Fill(getBuildingDt);
-                if (getBuildingDt.Rows.Count > 0)
-                { lbl_Building_Count.Text = getBuildingDt.Rows[0]["building_Count"].ToString(); }
-                _sqlCon.Close();
-
-
-                // Get Units Count
-                DataTable getUnitsDt = new DataTable();
-                _sqlCon.Open();
-                MySqlCommand getUnitsCmd = new MySqlCommand("select ( select count(*) from units where Half != 1)as units_Count", _sqlCon);
-                MySqlDataAdapter getUnitsDa = new MySqlDataAdapter(getUnitsCmd);
-                getUnitsDa.Fill(getUnitsDt);
-                if (getUnitsDt.Rows.Count > 0)
-                { lbl_Units_Count.Text = getUnitsDt.Rows[0]["units_Count"].ToString(); }
-                _sqlCon.Close();
-
-
-
-                // Fill Year &Mounth  DropDownList
-                int year = DateTime.Now.Year; int Mounth = DateTime.Now.Month;
-                for (int i = year - 5; i <= year + 10; i++)
-                {
-                    ListItem li = new ListItem(i.ToString());
-                    Year_DropDownList.Items.Add(li);
-                }
-                Year_DropDownList.Items.FindByText("2023").Selected = true;
-                //*************************************************************************
-                // Fill OWnersip DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "كل الملكيات");
-                //****************************************************************************
-                Mounth_DropDownList.Items.Insert(0, "كل الأشهر");
-
-                DashBoard_Function();
-
-
-
+                Response.Redirect("ENDashBoard.aspx");
             }
-            //}
-            //catch
-            //{
-            //    Response.Redirect(Request.RawUrl);
-            //}
+            else
+            {
+                if (!this.IsPostBack)
+                {
+                    // Get OwnerShip Count
+                    DataTable getOwnerShipDt = new DataTable();
+                    _sqlCon.Open();
+                    MySqlCommand getOwnerShipCmd = new MySqlCommand("select ( select count(*) from owner_ship)as OwnwerShip_Count", _sqlCon);
+                    MySqlDataAdapter getOwnerShipDa = new MySqlDataAdapter(getOwnerShipCmd);
+                    getOwnerShipDa.Fill(getOwnerShipDt);
+                    if (getOwnerShipDt.Rows.Count > 0)
+                    { lbl_OwnerShip_Count.Text = getOwnerShipDt.Rows[0]["OwnwerShip_Count"].ToString(); }
+                    _sqlCon.Close();
+
+
+                    // Get Building Count
+                    DataTable getBuildingDt = new DataTable();
+                    _sqlCon.Open();
+                    MySqlCommand getBuildingCmd = new MySqlCommand("select ( select count(*) from building where Active != 0)as building_Count", _sqlCon);
+                    MySqlDataAdapter getBuildingDa = new MySqlDataAdapter(getBuildingCmd);
+                    getBuildingDa.Fill(getBuildingDt);
+                    if (getBuildingDt.Rows.Count > 0)
+                    { lbl_Building_Count.Text = getBuildingDt.Rows[0]["building_Count"].ToString(); }
+                    _sqlCon.Close();
+
+
+                    // Get Units Count
+                    DataTable getUnitsDt = new DataTable();
+                    _sqlCon.Open();
+                    MySqlCommand getUnitsCmd = new MySqlCommand("select ( select count(*) from units where Half != 1)as units_Count", _sqlCon);
+                    MySqlDataAdapter getUnitsDa = new MySqlDataAdapter(getUnitsCmd);
+                    getUnitsDa.Fill(getUnitsDt);
+                    if (getUnitsDt.Rows.Count > 0)
+                    { lbl_Units_Count.Text = getUnitsDt.Rows[0]["units_Count"].ToString(); }
+                    _sqlCon.Close();
+
+
+
+                    // Fill Year &Mounth  DropDownList
+                    int year = DateTime.Now.Year; int Mounth = DateTime.Now.Month;
+                    for (int i = year - 5; i <= year + 10; i++)
+                    {
+                        ListItem li = new ListItem(i.ToString());
+                        Year_DropDownList.Items.Add(li);
+                    }
+                    Year_DropDownList.Items.FindByText("2023").Selected = true;
+                    //*************************************************************************
+                    // Fill OWnersip DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "كل الملكيات");
+                    //****************************************************************************
+                    Mounth_DropDownList.Items.Insert(0, "كل الأشهر");
+
+                    DashBoard_Function();
+
+
+
+                }
+            }
+                
 
 
             // *********************************************************** جلب قيم لوحة المؤشرات *************************************************
@@ -3380,18 +3381,6 @@ namespace Main_Real_estate.English.Main_Application
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         protected void Mortgage_All()
         {
             string M_Land_Value = "0";
@@ -3651,11 +3640,6 @@ namespace Main_Real_estate.English.Main_Application
         {
             Response.Redirect("Expaired_Contract.aspx");
         }
-
-
-
-
-
         protected void All_Building_Condition()
         {
             string Construction_Completion_Date_Quary = "select (select count(*) from building where building_condition_Building_Condition_Id = '1' and Active = '1' )All_Building_C1 , " +
@@ -3687,8 +3671,6 @@ namespace Main_Real_estate.English.Main_Application
             series5.Points.Add(new Points("متعدد", Convert.ToDouble(VConstruction_Completion_Date_Dt.Rows[0]["R_All_Building_C7"].ToString())));
             _sqlCon.Close();
         }
-
-
 
         protected void Building_Condition()
         {
