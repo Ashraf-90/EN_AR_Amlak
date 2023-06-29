@@ -105,6 +105,15 @@ namespace Main_Real_estate.English
         protected global::System.Web.UI.WebControls.Label lbl_TitelOwnersip;
 
         /// <summary>
+        /// lbl_Disclosure_properties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Disclosure_properties;
+
+        /// <summary>
         /// lbl_Ownersip control.
         /// </summary>
         /// <remarks>

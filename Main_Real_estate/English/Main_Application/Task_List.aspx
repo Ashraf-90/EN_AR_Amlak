@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/English/Main_Application/English.Master" AutoEventWireup="true" CodeBehind="Task_List.aspx.cs" Inherits="Main_Real_estate.English.Main_Application.Task_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.datatable').DataTable({
+                dom: 'Bfrtip',
+                /*lengthChange: false,*/
+                "pageLength": 10000,
+                buttons: [
+                    'excelHtml5',
+                    /*'pdfHtml5'*/
+                ],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
+                }
+            });
+
+            table.buttons().container()
+                .appendTo('#DataTables_Table_0_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
@@ -36,7 +55,7 @@
                 </h1>
             </div>
             <div class="col-lg-3 mb-3">
-                <asp:LinkButton CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Main_Application/Add_Task.aspx">
+                <asp:LinkButton ID="Add" CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Main_Application/Add_Task.aspx">
                     <i class="fa fa-plus" style="font-size:25px;"></i> &nbsp; إضافة مهمة جديدة</asp:LinkButton>
 
             </div>
@@ -53,16 +72,16 @@
                                 <table cellspacing="0" style="width: 100%; font-size: 13px" class="datatable table table-striped table-bordered">
                                     <thead>
                                         <th style="text-align: center; width: 10px"></th>
-                                        <th style="text-align: center">الأولوية</th>
-                                        <th style="text-align: center"> المهمة</th>
-                                        <th style="text-align: center">القسم</th>
-                                        <th style="text-align: center">اسم الموظف </th>
-                                        <th style="text-align: center">وصف المهمة</th>
-                                        <th style="text-align: center">تاريخ البدء</th>
-                                        <th style="text-align: center">تاريخ الإنتهاء</th>
-                                        <th style="text-align: center">تاريخ الإنتهاء الفعلي</th>
-                                        <th style="text-align: center">حالة المهمة</th>
-                                        <th style="text-align: center; display: none">الأولوية</th>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Prioroty" runat="server"/></th><%--الأولوية--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Task" runat="server"/></th><%--المهمة--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Department" runat="server"/></th><%--القسم--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Emplyee" runat="server"/></th><%--الموظف--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Descrioption" runat="server"/></th><%--وصف--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Start" runat="server"/></th><%--البدء--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_End" runat="server"/></th><%--الإنتهاء--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Acual_End" runat="server"/></th><%--أنتهاء فعلي--%>
+                                        <th style="text-align: center"><asp:Label ID="lbl_titel_Status" runat="server"/></th><%--حالة--%>
+                                        <th style="text-align: center; display: none"></th>
 
                                         <th style="width: 50px"></th>
                                     </thead>
@@ -72,14 +91,16 @@
                                 <tr id="row" runat="server">
                                     <td style="text-align: center; width: 10px">
                                         <asp:Button ID="But_Priority" runat="server" CssClass="Indicator_buttons" Enabled="false" /></td>
+                                    <td><asp:Label ID="lbl_Task_Priority_Word" Font-Bold="true" runat="server" Text='<%# Eval("Task_Priority_Word") %>' /></td>
+                                    <td><asp:Label ID="lbl_Task_Type" runat="server" Text='<%# Eval("Task_Type") %>' /></td>
                                     <td>
-                                        <asp:Label ID="lbl_Task_Priority_Word" Font-Bold="true" runat="server" Text='<%# Eval("Task_Priority_Word") %>' /></td>
+                                        <asp:Label ID="lbl_Department_Arabic_Name" runat="server" Text='<%# Eval("Department_Arabic_Name") %>' />
+                                        <asp:Label ID="lbl_Department_English_Name" runat="server" Text='<%# Eval("Department_English_Name") %>' />
+                                    </td>
                                     <td>
-                                        <asp:Label ID="lbl_Task_Type" runat="server" Text='<%# Eval("Task_Type") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="lbl_Department_Arabic_Name" runat="server" Text='<%# Eval("Department_Arabic_Name") %>' /></td>
-                                    <td>
-                                        <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' /></td>
+                                        <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />
+                                        <asp:Label ID="lbl_Employee_English_name" runat="server" Text='<%# Eval("Employee_English_name") %>' />
+                                    </td>
                                     <td>
                                         <asp:Label ID="lbl_Task_Descrioption" runat="server" Text='<%# Eval("Task_Descrioption") %>' /></td>
                                     <td>

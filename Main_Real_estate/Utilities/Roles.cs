@@ -130,13 +130,13 @@ namespace Main_Real_estate.Utilities
                     if (Page[2] != "E") { Edit.Visible = false; }
                 }
                 connection.Close();
-            }
+        }
             catch
             {
                 HttpContext.Current.Response.Redirect("Log_In.aspx");
             }
-            
-        }
+
+}
 
 
         public static void Delete_permission(MySqlConnection connection, string Role_ID, string Column , LinkButton Delete)

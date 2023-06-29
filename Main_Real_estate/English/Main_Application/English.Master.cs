@@ -212,6 +212,7 @@ namespace Main_Real_estate.English
 
 
                 Utilities.Helper.Lan(_sqlCon ,"1" , "EN" , lbl_Titel_Dashbard);
+                lbl_Disclosure_properties.Text = "Full Properties Disclosure";
 
                 Utilities.Helper.Lan(_sqlCon, "2", "EN", lbl_TitelOwnersip);
                 Utilities.Helper.Lan(_sqlCon, "2", "EN", lbl_Ownersip);
@@ -269,6 +270,7 @@ namespace Main_Real_estate.English
                 language_logo.ImageUrl = "Main_Image/AR_Logo.png";
 
                 Utilities.Helper.Lan(_sqlCon, "1", "AR", lbl_Titel_Dashbard);
+                lbl_Disclosure_properties.Text = "كشف الملكيات الشامل";
 
                 Utilities.Helper.Lan(_sqlCon, "2", "AR", lbl_TitelOwnersip);
                 Utilities.Helper.Lan(_sqlCon, "2", "AR", lbl_Ownersip);

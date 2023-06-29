@@ -26,9 +26,20 @@ namespace Main_Real_estate.English.Main_Application
 
             if (!this.IsPostBack)
             {
-                Ownership_List_BindData();
-                Building_List_BindData();
-                Units_List_BindData();
+                if (Session["Langues"].ToString() == "1")
+                {
+                    Ownership_List_BindData();
+                    Building_List_BindData();
+                    Units_List_BindData();
+                }
+                else
+                {
+                    Response.Redirect("Excel_report_New.aspx");
+                }
+
+
+
+               
             }
         }
 
@@ -161,31 +172,13 @@ namespace Main_Real_estate.English.Main_Application
                         }
 
 
-                        //if (lbl_Persenteg.Text != "")
-                        //{
+                        Label lbl_Com_rep_En_Name = (item_.FindControl("lbl_Com_rep_En_Name") as Label);
+                        if (lbl_Com_rep_En_Name.Text == "شيك") { lbl_Com_rep_En_Name.Text = "Cheque"; }
+                        else if (lbl_Com_rep_En_Name.Text == "تحويل") { lbl_Com_rep_En_Name.Text = "Trasfromation"; }
+                        else if (lbl_Com_rep_En_Name.Text == "نقداً") { lbl_Com_rep_En_Name.Text = "Cash"; }
 
 
-                        //    if (Convert.ToInt32(lbl_Persenteg.Text) >= 80 && Convert.ToInt32(lbl_Persenteg.Text) <= 100)
-                        //    {
-                        //        lbl_Persenteg.Text = "A";
-                        //    }
-                        //    else if (Convert.ToInt32(lbl_Persenteg.Text) >= 60 && Convert.ToInt32(lbl_Persenteg.Text) <= 79)
-                        //    {
-                        //        lbl_Persenteg.Text = "B";
-                        //    }
-                        //    else if (Convert.ToInt32(lbl_Persenteg.Text) >= 40 && Convert.ToInt32(lbl_Persenteg.Text) <= 59)
-                        //    {
-                        //        lbl_Persenteg.Text = "C";
-                        //    }
-                        //    else if (Convert.ToInt32(lbl_Persenteg.Text) >= 20 && Convert.ToInt32(lbl_Persenteg.Text) <= 39)
-                        //    {
-                        //        lbl_Persenteg.Text = "D";
-                        //    }
-                        //    else
-                        //    {
-                        //        lbl_Persenteg.Text = "E";
-                        //    }
-                        //}
+
 
                     }
 

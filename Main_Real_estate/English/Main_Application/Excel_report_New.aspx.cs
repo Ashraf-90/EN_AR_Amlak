@@ -26,9 +26,17 @@ namespace Main_Real_estate.English.Main_Application
             
             if (!this.IsPostBack)
             {
-                Ownership_List_BindData();
-                Building_List_BindData();
-                Units_List_BindData();
+                if (Session["Langues"].ToString() == "1")
+                {
+                    Response.Redirect("Disclosure_properties.aspx");
+                }
+                else
+                {
+                    Ownership_List_BindData();
+                    Building_List_BindData();
+                    Units_List_BindData();
+                }
+                    
             }
         }
 

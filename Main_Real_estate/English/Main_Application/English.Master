@@ -149,7 +149,7 @@
     </a>
     <div id="OwnershipReport" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="Excel_report_New.aspx">كشف الملكيات الشامل</a>
+            <a class="collapse-item" href="Excel_report_New.aspx"><asp:Label runat="server" ID="lbl_Disclosure_properties" Font-Size="15px"/></a>
             <%--<a class="collapse-item" href="Excel_Report.aspx">كشف بملكية واحدة</a>
             <a class="collapse-item" href="Test_4.aspx?Id=1">كشف الملكيات</a>
             <a class="collapse-item" href="Test_4.aspx?Id=2">عمليات الملكيات</a>

@@ -247,16 +247,16 @@
                                         <HeaderTemplate>
                                             <table cellspacing="0" style="width: 100%; font-size: 11px" class="datatable table table-striped table-bordered Building">
                                                 <thead>
-                                                    <th>م</th>
+                                                    <th>#</th>
                                                     <th><i class="fa fa-eye" aria-hidden="true" style="font-size: 9px"></i></th>
-                                                    <th>رقم المبنى</th>
-                                                    <th>اسم المبنى</th>
-                                                    <th>نوع المبنى</th>
-                                                    <th>مساحة البناء</th>
-                                                    <th>نوعية الوحدات</th>
-                                                    <th>تاريخ الإتمام</th>
-                                                    <th>عداد الكهرباء</th>
-                                                    <th>عداد الماء</th>
+                                                    <th>Building NO</th>
+                                                    <th>Building Name</th>
+                                                    <th>Building Type</th>
+                                                    <th>Building Area</th>
+                                                    <th>Units Type</th>
+                                                    <th>Construction Completion Date</th>
+                                                    <th>Electric Meter</th>
+                                                    <th>Water Meter</th>
                                                 </thead>
                                                 <tbody>
                                         </HeaderTemplate>
@@ -272,18 +272,18 @@
                                                 </td>
 
                                                 <td>
-                                                    <asp:LinkButton ID="lbl_Building_Arabic_Name" Text='<%# Eval("Building_Arabic_Name") %>'  runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="lbl_Building_Arabic_Name_Click" ></asp:LinkButton>
+                                                    <asp:LinkButton ID="lbl_Building_Arabic_Name" Text='<%# Eval("Building_English_Name") %>'  runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="lbl_Building_Arabic_Name_Click" ></asp:LinkButton>
                                                 </td>
                                                 <td>
-                                                    <asp:Label ID="lbl_Building_Arabic_Type" runat="server" Text='<%# Eval("Building_Arabic_Type") %>' /></td>
+                                                    <asp:Label ID="lbl_Building_Arabic_Type" runat="server" Text='<%# Eval("Building_English_Type") %>' /></td>
                                                 <td>
                                                     <asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("Construction_Area") %>' /></td>
 
-                                                <td>شقة:
+                                                <td>Apartment:
                                                     <asp:Label ID="Label3" runat="server" Text='<%# Eval("Sum_apartment") %>' />/
-                                                    مكتب :
+                                                    Office :
                                                     <asp:Label ID="Label6" runat="server" Text='<%# Eval("Sum_Office", "{0:N0}") %>' />/
-                                                    محل :
+                                                    Shop :
                                                     <asp:Label ID="Label4" runat="server" Text='<%# Eval("Sum_Stor", "{0:N0}") %>' />
                                                 </td>
 
@@ -298,27 +298,27 @@
                                             <tr id="collapse<%# Eval("Building_Id")%>Building_Two" class="accordian-body collapse">
                                                 <td colspan="12">
                                                     <table style="font-size: 10px;">
-                                                         <th  >العمر الحالي</th>
-                                                                <th  >حالة البناء</th>
-                                                                <th  >قيمة البناء</th>
-                                                                <th  >هالك سنوي</th>
-                                                                <th  >هالك تراكمي</th>
-                                                                <th  >الدخل الفرضي</th>
-                                                                <th  >المتبقي دفترياً</th>
-                                                                <th  >المتبقي تقديرياً</th>
-                                                                <th  >قيمة المتبقي</th>
-                                                                <th  >الدخل الفعلي</th>
-                                                                <th  >الإيجار التعاقدي</th>
-                                                                <th  >عدد الوحدات المؤجرة</th>
-                                                                <th  >عدد الوحدات الشاغرة</th>
-                                                                <th  >عدد الوحدات تحت الإنشاء او الصيانة</th>
-                                                                <th  >عدد حالات النزاع</th>
+                                                                <th>current age</th>
+                                                                <th>Building Condition</th>
+                                                                <th>Building Value</th>
+                                                                <th>Annual Depreciation</th>
+                                                                <th>Cumulative Depreciation</th>
+                                                                <th>Default Income</th>
+                                                                <th>Book Remainder</th>
+                                                                <th>Remainder Estimated</th>
+                                                                <th>Remaining Value</th>
+                                                                <th>Actual Income</th>
+                                                                <th>Contractual Rent</th>
+                                                                <th>Number Of Rental Units</th>
+                                                                <th>Number Of Vacant Units</th>
+                                                                <th>Number Of Units Under Construction Or Maintenance</th>
+                                                                <th>Number Of Conflict Cases</th>
                                                             </tr>
                                                             <tr style="background-color:white; color:red">
                                                                 <td>
                                                                     <asp:Label ID="lbl_Building_Age" runat="server" Text='<%# Eval("Building_Age") %>' /></td>
                                                                 <td>
-                                                                    <asp:Label ID="lbl_Parcel_Area" runat="server" Text='<%# Eval("Building_Arabic_Condition") %>' /></td>
+                                                                    <asp:Label ID="lbl_Parcel_Area" runat="server" Text='<%# Eval("Building_English_Condition") %>' /></td>
                                                                 <td>
                                                                     <asp:Label ID="lvl_Building_Value" runat="server" Text='<%# Eval("Building_Value","{0:N0}") %>' /></td>
                                                                 <td>
@@ -349,9 +349,9 @@
 
 
                                                             <tr>
-                                                                <th colspan="5">صورة البناء</th>
-                                                                <th colspan="5">صورة المدخل</th>
-                                                                <th colspan="5">مسقط أفقي</th>
+                                                                <th colspan="5">Building Photo</th>
+                                                                <th colspan="5">Entrance Photo</th>
+                                                                <th colspan="5">Horizontal Projection</th>
                                                                 
                                                             </tr>
 
@@ -381,37 +381,36 @@
 
 
                                                             <tr>
-                                                                <th colspan="5">رخص البناء</th>
-                                                                <th colspan="5">شهادة الإتمام</th>
-                                                                <th colspan="5">خرائط</th>
+                                                                <th colspan="5">Building Permits</th>
+                                                                <th colspan="5">Certificate Of Completion</th>
+                                                                <th colspan="5">Maps</th>
                                                             </tr>
 
                                                             <tr>
                                                                 <td colspan="5">
                                                                     <a href='<%# Eval("Building_Permit_Path") %>' target="_blank" id="Link_Building_Permit_Path" style="font-size: 11px;">
                                                                         <i class="fa fa-file-image" style="font-size: 11px;"></i>
-                                                                        <asp:Label ID="Label10" runat="server" Text="رخصة بناء"></asp:Label>
+                                                                        <asp:Label ID="Label10" runat="server" Text="Building Permits"></asp:Label>
                                                                     </a>
                                                                 </td>
 
                                                                 <td colspan="5">
                                                                     <a href='<%# Eval("certificate_of_completion_Path") %>' target="_blank" id="Link_certificate_of_completion_Path" style="font-size: 11px;">
                                                                         <i class="fa fa-file-pdf" style="font-size: 11px;"></i>
-                                                                        <asp:Label ID="Label7" runat="server" Text="شهادة إتمام"></asp:Label>
+                                                                        <asp:Label ID="Label7" runat="server" Text="Certificate Of Completion"></asp:Label>
                                                                     </a>
                                                                 </td>
 
                                                                 <td colspan="5">
                                                                     <a href='<%# Eval("Map_path") %>' target="_blank" id="Link_Map_path" style="font-size: 11px;">
                                                                         <i class="fa fa-file-image" style="font-size: 11px;"></i>
-                                                                        <asp:Label ID="Label8" runat="server" Text="خرائط"></asp:Label>
+                                                                        <asp:Label ID="Label8" runat="server" Text="Maps"></asp:Label>
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             <tr data-toggle="collapse" data-target="#collapse<%# Container.ItemIndex%>Unit" class="accordion-toggle">
-                                                                <td colspan="17">الوحدات
+                                                                <td colspan="17">Units
                                                                     <i class="fa fa-eye" aria-hidden="true" style="font-size: 15px"></i>
-                                                                    الموجودة
                                                                 </td>
                                                             </tr>
 
@@ -422,23 +421,23 @@
                                                                             <HeaderTemplate>
                                                                                 <table cellspacing="0" style=" font-size: 10px; " class="Unit">
                                                                                     <thead>
-                                                                                        <th   >م </th>
-                                                                                        <th   >نوع الوحدة </th>
-                                                                                        <th   > رقم الوحدة/ رقم الطابق</th>
-                                                                                        <th   >مساحة الوحدة</th>
-                                                                                        <th   >تفاصيل الوحدة</th>
-                                                                                        <th   >عداد الكهرباء / عداد الماء</th>
-                                                                                        <th   >الحالة الإيجارية</th>
-                                                                                        <th  >المستأجر</th>
-                                                                                        <th  >العقد</th>
-                                                                                        <th   >بداية العقد</th>
-                                                                                        <th   >نهاية العقد</th>
-                                                                                        <th   >الإيجار الفرضي</th>
-                                                                                        <th   >الإيجار التعاقدي</th>
-                                                                                        <th  >المحصل المفترض</th>
-                                                                                        <th   >المحصل الفعلي</th>
-                                                                                        <th   >تصنيف المستأجر</th>
-                                                                                        <th  >طريقة السداد</th>
+                                                                                        <th>#</th>
+                                                                                        <th>Unit Type</th>
+                                                                                        <th> Unit No/ Floor NO</th>
+                                                                                        <th>Unit Area</th>
+                                                                                        <th>Unit Details</th>
+                                                                                        <th>Electric Meter / Water Meter</th>
+                                                                                        <th>Rental Status</th>
+                                                                                        <th>Tenant</th>
+                                                                                        <th>Contract</th>
+                                                                                        <th>Start Date</th>
+                                                                                        <th>End Date</th>
+                                                                                        <th>Default Rent</th>
+                                                                                        <th>Contractual Rent</th>
+                                                                                        <th>Supposed Collected</th>
+                                                                                        <th>Actual Collected</th>
+                                                                                        <th>Tenant Evaluation</th>
+                                                                                        <th>Payment Method</th>
                                                                                     </thead>
                                                                                     <tbody>
                                                                             </HeaderTemplate>
@@ -447,7 +446,7 @@
                                                                                     <td>
                                                                                         <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                                                                     <td    >
-                                                                                        <asp:Label ID="lbl_Unit_Arabic_Type" runat="server" Text='<%# Eval("Unit_Arabic_Type") %>' />
+                                                                                        <asp:Label ID="lbl_Unit_Arabic_Type" runat="server" Text='<%# Eval("Unit_English_Type") %>' />
                                                                                     </td>
                                                                                     
                                                                                     <td   >
@@ -460,7 +459,7 @@
                                                                                         <asp:Label ID="lbl_Unit_Space" runat="server" Text='<%# Eval("Unit_Space") %>' /></td>
                                                                                     
                                                                                     <td   >
-                                                                                        <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_Arabic_Detail") %>' /></td>
+                                                                                        <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Eval("Unit_English_Detail") %>' /></td>
                                                                                     
                                                                                     <td   >
                                                                                         <asp:Label ID="lbl_Electricityt_Number" runat="server" Text='<%# Eval("Electricityt_Number") %>' />/
@@ -468,16 +467,16 @@
                                                                                     </td>
                                                                                     
                                                                                     <td   >
-                                                                                        <asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_Arabic_Condition") %>' /></td>
+                                                                                        <asp:Label ID="lbl_Unit_Arabic_Condition" runat="server" Text='<%# Eval("Unit_English_Condition") %>' /></td>
 
 
 
 
 
                                                                                     <td  >
-                                                                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>' /></td>
+                                                                                        <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>' /></td>
                                                                                     <td  >
-                                                                                        <asp:LinkButton ID="lnk_Contract_Id"  runat="server" CommandArgument='<%# Eval("Contract_Id") %>' Text="رابط العقد" OnClick="lnk_Contract_Id_Click"></asp:LinkButton>
+                                                                                        <asp:LinkButton ID="lnk_Contract_Id"  runat="server" CommandArgument='<%# Eval("Contract_Id") %>' Text="Contract Link" OnClick="lnk_Contract_Id_Click"></asp:LinkButton>
                                                                                         <asp:Label ID="lbl_Contract_Id" runat="server" Text='<%# Eval("Contract_Id") %>' Visible="false"/>
                                                                                     </td>
                                                                                     <td   >
