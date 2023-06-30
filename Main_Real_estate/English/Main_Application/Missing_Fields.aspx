@@ -12,7 +12,7 @@
                     /*'pdfHtml5'*/
                 ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
                 }
             });
 
@@ -110,7 +110,7 @@
     <%-----------------------------------------------------------------------------------------------------------%>
 <div class="container-fluid" id="container-wrapper">
       <div class="row">
-            <div class="col-lg-2 mb-3">
+            <div class="col-lg-12 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
                     <asp:Label ID="lbl_titel_Missing_Fields_List" runat="server" Text="كشف نواقص"></asp:Label>
                 </h1>
@@ -123,10 +123,10 @@
                  
                     <div  id="Grid" >
                         <ul class="UUL">
-                            <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick">ملكيات</a></li>
-                            <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick">أبنية</a></li>
-                            <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick">وحدات</a></li>
-                            <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick">الكل</a></li>
+                            <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick"><asp:Label ID="lbl_Properties" runat="server"/></a></li>
+                            <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick"><asp:Label ID="lbl_Buildings" runat="server"/></a></li>
+                            <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick"><asp:Label ID="lbl_units" runat="server"/></a></li>
+                            <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick"><asp:Label ID="lbl_All" runat="server"/></a></li>
                             <li style="margin-right: 200px">
                                 
                             </li>
@@ -152,27 +152,27 @@
         <div class="row">
             <div class="col-lg-12 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Contracts_List" runat="server" ForeColor="#52a2da" Text="كشف نواقص الملكيات"></asp:Label>
+                    <asp:Label ID="lbl_titel_Proreties_Missing_Fields" runat="server" ForeColor="#52a2da" Text="كشف نواقص الملكيات"></asp:Label>
                 </h1>
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-lg-12" runat="server" id="Ownership_Info_Div" visible="false">
-                <h5>نواقص المعلومات</h5>
+                <h5><asp:Label ID="lbl_Info" runat="server"/></h5>
                 <!-- Simple Tables -->
-                <asp:Repeater ID="Ownership_Info_List" runat="server" ClientIDMode="Static">
+                <asp:Repeater ID="Ownership_Info_List" runat="server" ClientIDMode="Static" OnItemDataBound="Ownership_Info_List_ItemDataBound">
                     <HeaderTemplate>
-                        <table cellspacing="0" cellpadding="0" style="font-size: 15px"  class="datatable table table-striped table-bordered">
+                        <table cellspacing="0"  style="font-size: 15px"  class="datatable table table-striped table-bordered">
                             <thead>
-                                <th style="width:5px">م</th>
-                                <th>اسم الملكية</th>
-                                <th>رمز الملكية</th>
-                                <th style="text-align:center">الرقم المساحي</th>
-                                <th style="text-align:center">المساحة </th>
-                                <th style="text-align:center">اسم الشارع </th>
-                                <th style="text-align:center">رقم الشارع</th>
-                                <th style="text-align:center">تاريخ السند</th>
+                                <th style="width:5px">#</th>
+                                <th><asp:Label ID="lbl_titel_Property_Name" runat="server"/></th><%--اسم الملكية--%>
+                                <th><asp:Label ID="lbl_titel_Property_Code" runat="server"/></th><%--رمز الملكية--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_BIN" runat="server"/></th><%--رقم مساحي--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Area" runat="server"/></th><%--مسااحة--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Street_Name" runat="server"/></th><%--اسم الشارع--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Street_NO" runat="server"/></th><%--رقم الشارع--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Bond_Date" runat="server"/></th><%--تاريخ السند--%>
                                 
                             </thead>
                             <tbody>
@@ -182,7 +182,12 @@
                             <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                             <td>
                                 <asp:LinkButton ID="LinK_Owner_Ship_Arabic_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
-                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton></td>
+                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton>
+
+                                <asp:LinkButton ID="LinK_Owner_Ship_English_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
+                                    Text='<%# Eval("Owner_Ship_EN_Name") %>'></asp:LinkButton>
+
+                            </td>
                             <td>
                                 <asp:Label ID="lbl_owner_ship_Code" ForeColor="#52a2da" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
                             <td>
@@ -207,17 +212,17 @@
 
 
             <div class="col-lg-12" runat="server" id="Ownership_Att_Div" visible="false">
-                <h5>نواقص المرفقات</h5>
+                 <h5><asp:Label ID="lbl_Att" runat="server"/></h5>
                 <!-- Simple Tables -->
-                <asp:Repeater ID="Ownership_Att_List" runat="server" ClientIDMode="Static">
+                <asp:Repeater ID="Ownership_Att_List" runat="server" ClientIDMode="Static" OnItemDataBound="Ownership_Att_List_ItemDataBound">
                     <HeaderTemplate>
                         <table cellspacing="0" cellpadding="0"  style="font-size: 15px" class="datatable table table-striped table-bordered">
                             <thead>
-                                <th style="width:5px">م</th>
-                                <th>اسم الملكية</th>
-                                <th>رمز الملكية</th>
-                                <th style="text-align:center">سند الملكية</th>
-                                <th style="text-align:center">المخطط</th>
+                                <th style="width:5px">#</th>
+                                <th><asp:Label ID="lbl_titel_Property_Name" runat="server"/></th><%--اسم الملكية--%>
+                                <th><asp:Label ID="lbl_titel_Property_Code" runat="server"/></th><%--رمز الملكية--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Property_Bond" runat="server"/></th><%--سند الملكية--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Property_Scheme" runat="server"/></th><%--مخطط الملكية--%>
                             </thead>
                             <tbody>
                     </HeaderTemplate>
@@ -226,7 +231,11 @@
                             <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                             <td>
                                 <asp:LinkButton ID="LinK_Owner_Ship_Arabic_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
-                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton></td>
+                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton>
+
+                                <asp:LinkButton ID="LinK_Owner_Ship_Englsih_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
+                                    Text='<%# Eval("Owner_Ship_EN_Name") %>'></asp:LinkButton>
+                            </td>
                             <td>
                                 <asp:Label ID="lbl_owner_ship_Code" ForeColor="#52a2da" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
                             <td>
@@ -244,22 +253,22 @@
 
 
             <div class="col-lg-12" runat="server" id="Ownership_ALL_Div">
-                <h5>كل النواقص</h5>
+                <h5><asp:Label ID="lbl_Alll" runat="server"/></h5>
                 <!-- Simple Tables -->
-                <asp:Repeater ID="Ownership_ALL" runat="server" ClientIDMode="Static">
+                <asp:Repeater ID="Ownership_ALL" runat="server" ClientIDMode="Static" OnItemDataBound="Ownership_ALL_ItemDataBound">
                     <HeaderTemplate>
                         <table cellspacing="0" cellpadding="0"  style="font-size: 15px" class="datatable table table-striped table-bordered">
                             <thead>
-                                <th style="width:5px">م</th>
-                                <th>اسم الملكية</th>
-                                <th>رمز الملكية</th>
-                                <th style="text-align:center">الرقم المساحي</th>
-                                <th style="text-align:center">المساحة </th>
-                                <th style="text-align:center">اسم الشارع </th>
-                                <th style="text-align:center">رقم الشارع</th>
-                                <th style="text-align:center">تاريخ السند</th>
-                                <th style="text-align:center">سند الملكية</th>
-                                <th style="text-align:center">المخطط</th>
+                                <th style="width:5px">#</th>
+                                <th><asp:Label ID="lbl_titel_Property_Name" runat="server"/></th><%--اسم الملكية--%>
+                                <th><asp:Label ID="lbl_titel_Property_Code" runat="server"/></th><%--رمز الملكية--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_BIN" runat="server"/></th><%--رقم مساحي--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Area" runat="server"/></th><%--مسااحة--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Street_Name" runat="server"/></th><%--اسم الشارع--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Street_NO" runat="server"/></th><%--رقم الشارع--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Bond_Date" runat="server"/></th><%--تاريخ السند--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Property_Bond" runat="server"/></th><%--سند الملكية--%>
+                                <th style="text-align:center"><asp:Label ID="lbl_titel_Property_Scheme" runat="server"/></th><%--مخطط الملكية--%>
                             </thead>
                             <tbody>
                     </HeaderTemplate>
@@ -268,7 +277,11 @@
                             <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                             <td>
                                 <asp:LinkButton ID="LinK_Owner_Ship_Arabic_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
-                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton></td>
+                                    Text='<%# Eval("Owner_Ship_AR_Name") %>'></asp:LinkButton>
+
+                                <asp:LinkButton ID="LinK_Owner_Ship_Englsih_Name" runat="server" CommandArgument='<%# Eval("Owner_Ship_Id") %>' OnClick="LinK_Owner_Ship_Arabic_Name_Click"
+                                    Text='<%# Eval("Owner_Ship_EN_Name") %>'></asp:LinkButton>
+                            </td>
                             <td>
                                 <asp:Label ID="lbl_owner_ship_Code" ForeColor="#52a2da" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
                             <td >
@@ -301,27 +314,27 @@
         <div class="row">
             <div class="col-lg-12 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="Label1" runat="server" ForeColor="#52a2da" Text="كشف نواقص الأبنية"></asp:Label>
+                    <asp:Label ID="lbl_Building_Missing_Feild" runat="server" ForeColor="#52a2da" Text="كشف نواقص الأبنية"></asp:Label>
                 </h1>
             </div>
             <br />
 
        <div class="row">
            <div class="col-lg-12" runat="server" id="Building_Info_Div" visible="false">
-                        <h5>نواقص المعلومات</h5>
+                        <h5><asp:Label ID="lbl_Missing_Information" runat="server"/></h5>
                         <!-- Simple Tables -->
-                        <asp:Repeater ID="Building_Info_List" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="Building_Info_List" runat="server" ClientIDMode="Static" OnItemDataBound="Building_Info_List_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0" cellpadding="0"  style="font-size: 15px" class="datatable table table-striped table-bordered">
                                     <thead>
-                                        <th>مسلسل</th>
-                                        <th >اسم البناء</th>
-                                        <th >رقم البناء</th>
-                                        <th>مساحة البناء</th>
-                                        <th>وضع الصيانة </th>
-                                        <th>عداد الكهرباء </th>
-                                        <th>عداد الماء</th>
-                                        <th>تاريخ الإتمام</th>
+                                        <th>#</th>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Name" runat="server"/></th><%--اسم البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_NO" runat="server"/></th><%--رقم البناء--%>
+                                        <th><asp:Label ID="lbl_Titel_Building_Area" runat="server"/></th><%--مساحة البناء--%>
+                                        <th><asp:Label ID="lbl_Titel_Maintenance" runat="server"/></th><%--وضع الصيانة--%>
+                                        <th><asp:Label ID="lbl_Titel_Electricity" runat="server"/></th><%--عداد الكهرباء--%>
+                                        <th><asp:Label ID="lbl_Titel_Water" runat="server"/></th><%--عداد الماء--%>
+                                        <th><asp:Label ID="lbl_Titel_Completion_Date" runat="server"/></th><%--تاريخ الإتمام--%>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
@@ -330,7 +343,12 @@
                                     <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                     <td>
                                         <asp:LinkButton ID="LinK_Building_Arabic_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
-                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton></td>
+                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton>
+
+                                         <asp:LinkButton ID="LinK_Building_English_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
+                                        Text='<%# Eval("Building_English_Name") %>'></asp:LinkButton>
+
+                                    </td>
                                     <td>
                                         <asp:Label ID="lbl_Building_NO" ForeColor="#52a2da" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
                                     <td>
@@ -356,22 +374,22 @@
 
 
                     <div class="col-lg-12" runat="server" id="Building_Att_Div" visible="false">
-                        <h5>نواقص المرفقات</h5>
+                        <h5><asp:Label ID="lbl_Att_2" runat="server"/></h5>
                         <!-- Simple Tables -->
-                        <asp:Repeater ID="Building_Att_List" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="Building_Att_List" runat="server" ClientIDMode="Static" OnItemDataBound="Building_Att_List_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0" cellpadding="0"  style="font-size: 15px" class="datatable table table-striped table-bordered">
                                     <thead>
-                                        <th>مسلسل</th>
-                                        <th>اسم البناء</th>
-                                        <th>رقم البناء</th>
+                                        <th>#</th>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Name" runat="server"/></th><%--اسم البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_NO" runat="server"/></th><%--رقم البناء--%>
                                        
-                                        <th >صورة البناء</th>
-                                        <th >صورة المدخل</th>
-                                        <th >رخصة البناء</th>
-                                        <th >شهادة إتمام</th>
-                                        <th > خرائط</th>
-                                        <th >مسقط ألفقي</th>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Photo" runat="server"/></th><%--صورة البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Entrance_Photo" runat="server"/></th><%--صورة المدخل--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Permit" runat="server"/></th><%--رخصة البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_certificate_of_completion" runat="server"/></th><%--شهادة إتمام--%>
+                                        <th ><asp:Label ID="lbl_Titel_Map" runat="server"/></th><%-- خرائط--%>
+                                        <th ><asp:Label ID="lbl_Titel_Plan" runat="server"/></th><%--مسقط أفقي--%>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
@@ -380,7 +398,11 @@
                                     <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                     <td>
                                         <asp:LinkButton ID="LinK_Building_Arabic_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
-                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton></td>
+                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton>
+
+                                        <asp:LinkButton ID="LinK_Building_English_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
+                                        Text='<%# Eval("Building_English_Name") %>'></asp:LinkButton>
+                                    </td>
                                     <td>
                                         <asp:Label ID="lbl_Building_NO" ForeColor="#52a2da" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
 
@@ -407,26 +429,27 @@
 
 
                     <div class="col-lg-12" runat="server" id="Building_All_Div">
-                        <h5>كل النواقص</h5>
+                        <h5><asp:Label ID="lbl_All_2" runat="server"/></h5>
                         <!-- Simple Tables -->
-                        <asp:Repeater ID="Building_All_List" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="Building_All_List" runat="server" ClientIDMode="Static" OnItemDataBound="Building_All_List_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0"  cellpadding="0" style="font-size: 15px" class="datatable table table-striped table-bordered">
                                     <thead>
-                                        <th>مسلسل</th>
-                                        <th>اسم البناء</th>
-                                        <th>رقم البناء</th>
-                                        <th>مساحة البناء</th>
-                                        <th>وضع الصيانة </th>
-                                        <th>عداد الكهرباء </th>
-                                        <th>عداد الماء</th>
-                                        <th>تاريخ الإتمام</th>
-                                        <th >صورة البناء</th>
-                                        <th >صورة المدخل</th>
-                                        <th >رخصة البناء</th>
-                                        <th >شهادة إتمام</th>
-                                        <th > خرائط</th>
-                                        <th >مسقط ألفقي</th>
+                                        <th>#</th>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Name" runat="server"/></th><%--اسم البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_NO" runat="server"/></th><%--رقم البناء--%>
+                                        <th><asp:Label ID="lbl_Titel_Building_Area" runat="server"/></th><%--مساحة البناء--%>
+                                        <th><asp:Label ID="lbl_Titel_Maintenance" runat="server"/></th><%--وضع الصيانة--%>
+                                        <th><asp:Label ID="lbl_Titel_Electricity" runat="server"/></th><%--عداد الكهرباء--%>
+                                        <th><asp:Label ID="lbl_Titel_Water" runat="server"/></th><%--عداد الماء--%>
+                                        <th><asp:Label ID="lbl_Titel_Completion_Date" runat="server"/></th><%--تاريخ الإتمام--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Photo" runat="server"/></th><%--صورة البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Entrance_Photo" runat="server"/></th><%--صورة المدخل--%>
+                                        <th ><asp:Label ID="lbl_Titel_Building_Permit" runat="server"/></th><%--رخصة البناء--%>
+                                        <th ><asp:Label ID="lbl_Titel_certificate_of_completion" runat="server"/></th><%--شهادة إتمام--%>
+                                        <th ><asp:Label ID="lbl_Titel_Map" runat="server"/></th><%-- خرائط--%>
+                                        <th ><asp:Label ID="lbl_Titel_Plan" runat="server"/></th><%--مسقط أفقي--%>
+
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
@@ -435,7 +458,11 @@
                                     <td> <asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
                                     <td>
                                         <asp:LinkButton ID="LinK_Building_Arabic_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
-                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton></td>
+                                        Text='<%# Eval("Building_Arabic_Name") %>'></asp:LinkButton>
+
+                                        <asp:LinkButton ID="LinK_Building_English_Name" runat="server" CommandArgument='<%# Eval("Building_Id") %>' OnClick="LinK_Building_Arabic_Name_Click" 
+                                        Text='<%# Eval("Building_English_Name") %>'></asp:LinkButton>
+                                    </td>
                                     <td>
                                         <asp:Label ID="lbl_Building_NO" ForeColor="#52a2da" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
                                     <td>
@@ -479,7 +506,7 @@
             <div class="row">
                 <div class="col-lg-12 mb-3">
                     <h1 class="h3 mb-0 text-gray-800">
-                        <asp:Label ID="Label2" runat="server" ForeColor="#52a2da" Text="كشف نواقص الوحدات"></asp:Label>
+                        <asp:Label ID="lbl_Unit_Missining_field" runat="server" ForeColor="#52a2da" Text="كشف نواقص الوحدات"></asp:Label>
                     </h1>
                 </div>
                 <br />
@@ -487,17 +514,17 @@
                 <div class="row">
                     <div class="col-lg-12 mb-4">
                         <!-- Simple Tables -->
-                        <asp:Repeater ID="Unit_List" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="Unit_List" runat="server" ClientIDMode="Static" OnItemDataBound="Unit_List_ItemDataBound">
                             <HeaderTemplate>
                                 <table cellspacing="0" cellpadding="0"  style="font-size: 15px" class="datatable table table-striped table-bordered">
                                     <thead>
-                                        <th>مسلسل</th>
-                                        <th >رقم الوحدة</th>
-                                        <th >الوضع الحالي</th>
-                                        <th >رقم أوريدو</th>
-                                        <th >عداد الكهرباء</th>
-                                        <th > عداد المياه</th>
-                                        <th >القيمة الإفتراضية</th>
+                                        <th>#</th>
+                                        <th ><asp:Label ID="lbl_Titel_Unit_Number" runat="server"/></th><%--رقم الوحدة--%>
+                                        <th ><asp:Label ID="lbl_Titel_current_situation" runat="server"/></th><%--الوضع الحالي--%>
+                                        <th ><asp:Label ID="lbl_Titel_Oreedo_Number" runat="server"/></th><%--رقم أوريدو--%>
+                                        <th ><asp:Label ID="lbl_Titel_Electricityt_Number" runat="server"/></th><%--رقم الكهرباء--%>
+                                        <th ><asp:Label ID="lbl_Titel_Water_Number" runat="server"/></th><%--رقم الماء--%>
+                                        <th ><asp:Label ID="lbl_Titel_virtual_Value" runat="server"/></th><%--القيمة الإفتراضية--%>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>

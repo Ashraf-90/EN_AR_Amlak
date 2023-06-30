@@ -10,7 +10,7 @@
             /*'pdfHtml5'*/
         ],
         language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/ar.json'
+            url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
         }
     });
     table.buttons().container()

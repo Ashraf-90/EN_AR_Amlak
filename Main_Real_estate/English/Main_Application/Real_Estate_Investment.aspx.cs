@@ -29,16 +29,9 @@ namespace Main_Real_estate.English.Main_Application
                 }
                 Year_DropDownList.Items.FindByText(year.ToString()).Selected = true;
                 //************************************************************************
-                Ownership_Or_Building_DropDownList.Items.Insert(0, "إختر ملكلية أو بناء ....");
 
-                //Fill Ownership Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "إختر الملكية ....");
 
-                //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList,"Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
-
+                language();
 
 
                 Get_ERI_BindData();
@@ -154,16 +147,147 @@ namespace Main_Real_estate.English.Main_Application
             }
             else
             {
-                //Fill Building Name DropDownList
-                Helper.LoadDropDownList("SELECT * FROM building Where Active ='1' and owner_ship_Owner_Ship_Id = '"+ Ownership_Id + "'", 
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1' and owner_ship_Owner_Ship_Id = '" + Ownership_Id + "'",
+                    _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+                }
+                else
+                {
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1' and owner_ship_Owner_Ship_Id = '"+ Ownership_Id + "'", 
                     _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-                Building_Name_DropDownList.Items.Insert(0, "إختر البناء ....");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+                }
+
+                    
             }
         }
 
         protected void Building_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             txt_REI_Name.Text = Building_Name_DropDownList.SelectedItem.Text.Trim();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_expensess", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    //Get Ownership_Or_Building_DropDownList 
+                    Ownership_Or_Building_DropDownList.Items.Clear();
+                    Ownership_Or_Building_DropDownList.Items.Add(new ListItem("Property", "1"));
+                    Ownership_Or_Building_DropDownList.Items.Add(new ListItem("Building", "2"));
+                    Ownership_Or_Building_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_titel_Add_New_REI.Text = Dt.Rows[13]["EN"].ToString();
+                    lbl_Ownership_Or_Building.Text = Dt.Rows[14]["EN"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_REI_Value.Text = Dt.Rows[15]["EN"].ToString();
+                    lbl_Year.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_REI_Name.Text = Dt.Rows[16]["EN"].ToString();
+                    Add.Text = Dt.Rows[12]["EN"].ToString();
+
+                    Ownership_Or_Building_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Building_Name_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    REI_Req_Fuild.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    RequiredFieldValidator2.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    REI_Req_Fiel.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+
+                    ERI_GridView1.Columns[0].HeaderText = Dt.Rows[16]["EN"].ToString();
+                    ERI_GridView1.Columns[1].HeaderText = Dt.Rows[15]["EN"].ToString();
+                    ERI_GridView1.Columns[2].HeaderText = Dt.Rows[3]["EN"].ToString();
+                }
+                else
+                {
+                    //Fill Ownership Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship where Active !='1'", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    //Fill Building Name DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM building Where Active ='1'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                    Building_Name_DropDownList.Items.Insert(0, "................");
+
+
+
+
+                    //Get Ownership_Or_Building_DropDownList 
+                    Ownership_Or_Building_DropDownList.Items.Clear();
+                    Ownership_Or_Building_DropDownList.Items.Add(new ListItem("ملكية", "1"));
+                    Ownership_Or_Building_DropDownList.Items.Add(new ListItem("بناء", "2"));
+                    Ownership_Or_Building_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_titel_Add_New_REI.Text = Dt.Rows[13]["AR"].ToString();
+                    lbl_Ownership_Or_Building.Text = Dt.Rows[14]["AR"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_REI_Value.Text = Dt.Rows[15]["AR"].ToString();
+                    lbl_Year.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_REI_Name.Text = Dt.Rows[16]["AR"].ToString();
+                    Add.Text = Dt.Rows[12]["AR"].ToString();
+
+                    Ownership_Or_Building_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Ownership_Name_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Building_Name_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    REI_Req_Fuild.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    RequiredFieldValidator2.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    REI_Req_Fiel.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+
+
+
+
+                    ERI_GridView1.Columns[0].HeaderText = Dt.Rows[16]["AR"].ToString();
+                    ERI_GridView1.Columns[1].HeaderText = Dt.Rows[15]["AR"].ToString();
+                    ERI_GridView1.Columns[2].HeaderText = Dt.Rows[3]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

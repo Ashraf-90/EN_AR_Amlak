@@ -49,7 +49,7 @@
                                         <asp:ListItem Value="2" Text="بناء"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Or_Building_RequiredFieldValidator" ControlToValidate="Ownership_Or_Building_DropDownList"
-                                        InitialValue="إختر ملكلية أو بناء ...." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر اسم الملكية ...." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم المستأجر ...." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
+                                        InitialValue="..............." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                     <asp:DropDownList ID="Year_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="Year_DropDownList"
-                                        InitialValue="إخترالسنة ...." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="REI_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -124,15 +124,15 @@
                                             CssClass="datatable table table-striped table-bordered" BackColor="White" BorderColor="#CCCCCC"
                                             BorderStyle="None" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Horizontal" Font-Size="11px" OnRowDataBound="ERI_GridView1_RowDataBound">
                                             <Columns>
-                                                <asp:BoundField DataField="Name" HeaderText="إسم الإستثمار العقاري" />
+                                                <asp:BoundField DataField="Name" HeaderText="إسم الإستثمار العقاري" /><%--0--%>
 
-                                                <asp:TemplateField HeaderText="قيمة الإستثمار ">
+                                                <asp:TemplateField HeaderText="قيمة الإستثمار "><%--1--%>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lbl_Value" runat="server" Text='<%# String.Format("{0:###,###,####}",Convert.ToInt64(DataBinder.Eval(Container.DataItem, "Value")))%>'> </asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:BoundField DataField="Year" HeaderText="السنة" />
+                                                <asp:BoundField DataField="Year" HeaderText="السنة" /><%--2--%>
 
 
                                                 <asp:TemplateField>

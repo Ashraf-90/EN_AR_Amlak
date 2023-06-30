@@ -21,13 +21,9 @@
                 <div class="form-group">
                     <asp:Label ID="lbl_O_B_U" runat="server" Text="المصاريف على مستوى ( ملكية / بناء / وحدة / مصاريف إدارية)"></asp:Label>
                     <asp:DropDownList ID="O_B_U_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="O_B_U_DropDownList_SelectedIndexChanged">
-                        <asp:ListItem Value="1" Text="ملكية"></asp:ListItem>
-                        <asp:ListItem Value="2" Text="بناء"></asp:ListItem>
-                        <asp:ListItem Value="3" Text="وحدة"></asp:ListItem>
-                        <asp:ListItem Value="4" Text="مصاريف إدارية"></asp:ListItem>
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="O_B_U_RequiredFieldValidator" ControlToValidate="O_B_U_DropDownList"
-                        InitialValue="إختر (بناء / وحدة ) ...." runat="server" ValidationGroup="collection_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                        InitialValue="..............." runat="server" ValidationGroup="collection_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                     </asp:RequiredFieldValidator>
                 </div>
             </div>
@@ -41,7 +37,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Mounth" runat="server" Text="الشهر"></asp:Label>
                                 <asp:DropDownList ID="Mounth_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Mounth_DropDownList_SelectedIndexChanged">
-                                    <asp:ListItem Value="13" Text="كل الأشهر"></asp:ListItem>
+                                    <asp:ListItem Value="13" Text="... All ..."></asp:ListItem>
                                     <asp:ListItem Value="1" Text="Jan"></asp:ListItem>
                                     <asp:ListItem Value="2" Text="Feb"></asp:ListItem>
                                     <asp:ListItem Value="3" Text="Mar"></asp:ListItem>
@@ -56,7 +52,7 @@
                                     <asp:ListItem Value="12" Text="Dec"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="Mounth_RequiredFieldValidator" ControlToValidate="Mounth_DropDownList"
-                                    InitialValue="إختر الشهر ...." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                    InitialValue="..............." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                 </asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -65,8 +61,8 @@
                                 <asp:Label ID="lbl_Year" runat="server" Text="السنة"></asp:Label>
                                 <asp:DropDownList ID="Year_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Year_DropDownList_SelectedIndexChanged">
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="Year_DropDownList"
-                                    InitialValue="إخترالسنة ...." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                <asp:RequiredFieldValidator ID="Year_Req_Field_Val" ControlToValidate="Year_DropDownList"
+                                    InitialValue="..............." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                 </asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -76,8 +72,8 @@
                                 <asp:Label ID="lbl_Ownership_Name" runat="server" Text="اسم الملكية"></asp:Label>
                                 <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                    InitialValue="إختر اسم الملكية ...." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                <asp:RequiredFieldValidator ID="Ownership_Req_Field_Val" ControlToValidate="Ownership_Name_DropDownList"
+                                    InitialValue="..............." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                 </asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -86,8 +82,8 @@
                                 <asp:Label ID="lbl_Building_Name" runat="server" Text="اسم البناء"></asp:Label>
                                 <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                    InitialValue="إختر اسم البناء ...." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                <asp:RequiredFieldValidator ID="Building_Req_Field_Val" ControlToValidate="Building_Name_DropDownList"
+                                    InitialValue="..............." runat="server" ValidationGroup="Expenses_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                 </asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -97,8 +93,8 @@
                                 <asp:Label ID="lbl_Unit_Name" runat="server" Text="رقم الوحدة"></asp:Label>
                                 <asp:DropDownList ID="Unit_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Unit_Name_DropDownList_SelectedIndexChanged" >
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="Unit_Name_RequiredFieldValidator" ControlToValidate="Unit_Name_DropDownList"
-                                    InitialValue="إختر رقم الوحدة ...." runat="server" ValidationGroup="collection_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                <asp:RequiredFieldValidator ID="Unit_Req_Field_Val" ControlToValidate="Unit_Name_DropDownList"
+                                    InitialValue="..............." runat="server" ValidationGroup="collection_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                 </asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -154,20 +150,26 @@
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th>إسم الملكية</th>
-                                    <th>إسم البناء</th>
-                                    <th> رقم الوحدة</th>
-                                    <th> الشهر</th>
-                                    <th> السنة</th>
-                                    <th>المصاريف العقارية</th>
-                                    <th>مصاريف الصيانة</th>
+                                    <th><asp:Label ID="lbl_Titel_Owner_Ship_AR_Name" runat="server"/></th><%--اسم الملكية--%>
+                                    <th><asp:Label ID="lbl_Titel_Building_Arabic_Name" runat="server"/></th><%--اسم البناء--%>
+                                    <th><asp:Label ID="lbl_Titel_Unit_Number" runat="server"/></th><%--رقم الوحدة--%>
+                                    <th><asp:Label ID="lbl_Titel_Mounth" runat="server"/></th><%-- الشهر--%>
+                                    <th><asp:Label ID="lbl_Titel_Year" runat="server"/></th><%-- السنة--%>
+                                    <th><asp:Label ID="lbl_Titel_RealEstate_Expenses" runat="server"/></th><%--المصاريف العقارية--%>
+                                    <th><asp:Label ID="lbl_Titel_Maintenance_Expenses" runat="server"/></th><%--المصاريف الصيانة--%>
                                 </thead>
                             <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr runat="server" id="row">
-                                <td> <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' /></td>
-                                <td> <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' /></td>
+                                <td>
+                                    <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                    <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                </td>
+                                <td> 
+                                    <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                </td>
                                 <td> <asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
                                 <td> <asp:Label ID="lbl_Mounth" runat="server" Text='<%# Eval("Mounth") %>' /></td>
                                 <td> <asp:Label ID="lbl_Year" runat="server" Text='<%# Eval("Year") %>' /></td>

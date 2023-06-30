@@ -49,7 +49,7 @@
 
          <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
-                <asp:Label ID="lbl_titelt" runat="server" Text="المهام الموكلة للسيد : "></asp:Label>&nbsp;&nbsp;
+                <asp:Label ID="lbl_titelt" runat="server" ></asp:Label>&nbsp;&nbsp;
                 <asp:Label ID="lbl_Employee" runat="server"></asp:Label>
             </h1>
         </div>
@@ -64,15 +64,15 @@
                                 <table>
                                     <tr>
                                         <th style="display: none">ID</th>
-                                        <th>الأولوية</th>
-                                        <th>المهمة</th>
-                                        <th>القسم</th>
-                                        <th>الموظف</th>
-                                        <th>تاريخ البدء</th>
-                                        <th>تاريخ الإنتهاء</th>
-                                        <th>تاريخ الإنتهاء الفعلي</th>
-                                        <th style="width: 300px;">التقرير و الملاحظات</th>
-                                        <th>الحالة</th>
+                                        <th><asp:Label ID="lbl_Titel_Priority" runat="server"/></th><%--الأولوية--%>
+                                        <th><asp:Label ID="lbl_Titel_Task" runat="server"/></th><%--المهمة--%>
+                                        <th><asp:Label ID="lbl_Titel_Department" runat="server"/></th><%--القسم--%>
+                                        <th><asp:Label ID="lbl_Titel_Employee" runat="server"/></th><%--الموظف--%>
+                                        <th><asp:Label ID="lbl_Titel_Start" runat="server"/></th><%--البدء--%>
+                                        <th><asp:Label ID="lbl_Titel_End" runat="server"/></th><%--الإنتهاء--%>
+                                        <th><asp:Label ID="lbl_Titel_Acual_End" runat="server"/></th><%--فعلي--%>
+                                        <th style="width: 300px;"><asp:Label ID="lbl_Titel_Note" runat="server"/></th><%--ملاحظات--%>
+                                        <th><asp:Label ID="lbl_Titel_Status" runat="server"/></th><%--حالة--%>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -81,16 +81,20 @@
                                             <asp:Label ID="Id" runat="server" Text='<%# Eval("Task_Management_ID") %>'></asp:Label></td>
                                         <td>
                                             <asp:Button ID="But_Priority" runat="server" CssClass="Indicator_buttons" Enabled="false" /><br />
-                                            <asp:Label ID="lbl_Task_Priority_Word" runat="server" Text='<%# Eval("Task_Priority_Word") %>'></asp:Label>
                                             <asp:Label ID="lbl_Task_Priority" runat="server" Text='<%# Eval("Task_Priority") %>' Visible="false"></asp:Label>
 
                                         </td>
                                         <td>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Eval("Task_Type") %>'></asp:Label></td>
                                         <td>
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Department_Arabic_Name") %>'></asp:Label></td>
+                                            <asp:Label ID="lbl_Department_Arabic_Name" runat="server" Text='<%# Eval("Department_Arabic_Name") %>'></asp:Label>
+                                            <asp:Label ID="lbl_Department_English_Name" runat="server" Text='<%# Eval("Department_English_Name") %>'></asp:Label>
+                                        </td>
                                         <td>
-                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Employee_Arabic_name") %>'></asp:Label></td>
+                                            <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>'></asp:Label>
+                                            <asp:Label ID="lbl_Employee_English_name" runat="server" Text='<%# Eval("Employee_English_name") %>'></asp:Label>
+
+                                        </td>
                                         <td>
                                             <asp:Label ID="Label5" runat="server" Text='<%# Eval("Start_date") %>'></asp:Label></td>
                                         <td>
@@ -103,12 +107,6 @@
                                         <td>
                                             <asp:Label ID="lbl_Task_Status" runat="server" Text='<%# Eval("Task_Status") %>' Visible="false"></asp:Label>
                                             <asp:DropDownList ID="Task_Status_DropDownList" runat="server" Enabled="false">
-                                                <asp:ListItem Value="1" Text="قيد التنفيذ"></asp:ListItem>
-                                                <asp:ListItem Value="2" Text="إنتظار"></asp:ListItem>
-                                                <asp:ListItem Value="3" Text="مجزئة"></asp:ListItem>
-                                                <asp:ListItem Value="4" Text="معلقة"></asp:ListItem>
-                                                <asp:ListItem Value="5" Text="ملغاة"></asp:ListItem>
-                                                <asp:ListItem Value="6" Text="منجزة"></asp:ListItem>
                                             </asp:DropDownList>
                                         </td>
 

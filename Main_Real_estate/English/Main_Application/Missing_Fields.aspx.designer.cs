@@ -15,6 +15,15 @@ namespace Main_Real_estate.English.Main_Application
     {
 
         /// <summary>
+        /// lbl_titel_Missing_Fields_List control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Missing_Fields_List;
+
+        /// <summary>
         /// A_1 control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
+
+        /// <summary>
+        /// lbl_Properties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Properties;
 
         /// <summary>
         /// A_2 control.
@@ -33,6 +51,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
 
         /// <summary>
+        /// lbl_Buildings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Buildings;
+
+        /// <summary>
         /// A_3 control.
         /// </summary>
         /// <remarks>
@@ -42,6 +69,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
 
         /// <summary>
+        /// lbl_units control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_units;
+
+        /// <summary>
         /// A_4 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_4;
+
+        /// <summary>
+        /// lbl_All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_All;
 
         /// <summary>
         /// Label3 control.
@@ -78,13 +123,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl OS_Arcive;
 
         /// <summary>
-        /// lbl_titel_Contracts_List control.
+        /// lbl_titel_Proreties_Missing_Fields control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Contracts_List;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Proreties_Missing_Fields;
 
         /// <summary>
         /// Ownership_Info_Div control.
@@ -94,6 +139,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ownership_Info_Div;
+
+        /// <summary>
+        /// lbl_Info control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Info;
 
         /// <summary>
         /// Ownership_Info_List control.
@@ -114,6 +168,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ownership_Att_Div;
 
         /// <summary>
+        /// lbl_Att control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Att;
+
+        /// <summary>
         /// Ownership_Att_List control.
         /// </summary>
         /// <remarks>
@@ -130,6 +193,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ownership_ALL_Div;
+
+        /// <summary>
+        /// lbl_Alll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Alll;
 
         /// <summary>
         /// Ownership_ALL control.
@@ -150,13 +222,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl B_Arcive;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_Building_Missing_Feild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Building_Missing_Feild;
 
         /// <summary>
         /// Building_Info_Div control.
@@ -166,6 +238,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Building_Info_Div;
+
+        /// <summary>
+        /// lbl_Missing_Information control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Missing_Information;
 
         /// <summary>
         /// Building_Info_List control.
@@ -186,6 +267,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Building_Att_Div;
 
         /// <summary>
+        /// lbl_Att_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Att_2;
+
+        /// <summary>
         /// Building_Att_List control.
         /// </summary>
         /// <remarks>
@@ -202,6 +292,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Building_All_Div;
+
+        /// <summary>
+        /// lbl_All_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_All_2;
 
         /// <summary>
         /// Building_All_List control.
@@ -222,13 +321,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl U_Arcive;
 
         /// <summary>
-        /// Label2 control.
+        /// lbl_Unit_Missining_field control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbl_Unit_Missining_field;
 
         /// <summary>
         /// Unit_List control.

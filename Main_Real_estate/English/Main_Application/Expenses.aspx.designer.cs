@@ -96,13 +96,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Year_DropDownList;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Year_Req_Field_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Year_Req_Field_Val;
 
         /// <summary>
         /// Ownership_Div control.
@@ -132,13 +132,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Ownership_Name_DropDownList;
 
         /// <summary>
-        /// Ownership_Name_RequiredFieldValidator control.
+        /// Ownership_Req_Field_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Ownership_Name_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Ownership_Req_Field_Val;
 
         /// <summary>
         /// Building_Div control.
@@ -168,13 +168,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Building_Name_DropDownList;
 
         /// <summary>
-        /// Building_Name_RequiredFieldValidator control.
+        /// Building_Req_Field_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Building_Name_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Building_Req_Field_Val;
 
         /// <summary>
         /// Unit_Div control.
@@ -204,13 +204,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.DropDownList Unit_Name_DropDownList;
 
         /// <summary>
-        /// Unit_Name_RequiredFieldValidator control.
+        /// Unit_Req_Field_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Unit_Name_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Unit_Req_Field_Val;
 
         /// <summary>
         /// Management_Expenses_Div control.

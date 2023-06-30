@@ -29,7 +29,19 @@ namespace Main_Real_estate.English.Main_Application
                     get_Employee_Cmd.Parameters.AddWithValue("@Users_Name", Session["Users_Name"].ToString());
                     get_Employee_Da.Fill(get_Employee_DataTable);
                     if (get_Employee_DataTable.Rows.Count > 0)
-                    { lbl_Employee.Text = get_Employee_DataTable.Rows[0]["Users_Ar_First_Name"].ToString() + " " + get_Employee_DataTable.Rows[0]["Users_Ar_Last_Name"].ToString(); }
+                    {
+                        if (Session["Langues"].ToString() == "1")
+                        {
+                            lbl_titelt.Text = "Tasks Assigned To Mr :";
+                            lbl_Employee.Text = get_Employee_DataTable.Rows[0]["Users_Name"].ToString();
+                        }
+                        else
+                        {
+                            lbl_titelt.Text = "المهام الموكلة للسيد :";
+                            lbl_Employee.Text = get_Employee_DataTable.Rows[0]["Users_Ar_First_Name"].ToString() + " " + get_Employee_DataTable.Rows[0]["Users_Ar_Last_Name"].ToString();
+                        }
+                            
+                    }
                 }
                 else { Response.Redirect("Log_In.aspx"); }
                 _sqlCon.Close();
@@ -48,20 +60,120 @@ namespace Main_Real_estate.English.Main_Application
             {
                 var Task_Status_DropDownList = e.Item.FindControl("Task_Status_DropDownList") as DropDownList;
                 string selected_Value = (string)((DataRowView)e.Item.DataItem)["Task_Status"];
-                if(selected_Value == "قيد التنفيذ") { Task_Status_DropDownList.SelectedValue = "1"; }
-                else if (selected_Value == "إنتظار") { Task_Status_DropDownList.SelectedValue = "2"; }
-                else if (selected_Value == "مجزئة") { Task_Status_DropDownList.SelectedValue = "3"; }
-                else if (selected_Value == "معلقة") { Task_Status_DropDownList.SelectedValue = "4"; }
-                else if (selected_Value == "ملغاة") { Task_Status_DropDownList.SelectedValue = "5"; }
-                else  { Task_Status_DropDownList.SelectedValue = "6"; }
 
 
                 var lbl_Task_Priority = e.Item.FindControl("lbl_Task_Priority") as Label;
                 var lbl_Task_Priority_Word = e.Item.FindControl("lbl_Task_Priority_Word") as Label;
                 var But_Priority = e.Item.FindControl("But_Priority") as Button;
-                if(lbl_Task_Priority.Text == "1") { But_Priority.BackColor = Color.Red; lbl_Task_Priority_Word.ForeColor = Color.Red; }
-                else if (lbl_Task_Priority.Text == "2") { But_Priority.BackColor = Color.Green; lbl_Task_Priority_Word.ForeColor = Color.Green; }
-                else if (lbl_Task_Priority.Text == "3") { But_Priority.BackColor = Color.Blue; lbl_Task_Priority_Word.ForeColor = Color.Blue; }
+                if(lbl_Task_Priority.Text == "1") { But_Priority.BackColor = Color.Red; }
+                else if (lbl_Task_Priority.Text == "2") { But_Priority.BackColor = Color.Green;  }
+                else if (lbl_Task_Priority.Text == "3") { But_Priority.BackColor = Color.Blue; }
+
+
+                //******************************************************************************************************************************************
+                //************************************************** languages ****************************************************************
+                //******************************************************************************************************************************************
+
+
+                var lbl_Titel_Priority = e.Item.FindControl("lbl_Titel_Priority") as Label;
+                var lbl_Titel_Task = e.Item.FindControl("lbl_Titel_Task") as Label;
+                var lbl_Titel_Department = e.Item.FindControl("lbl_Titel_Department") as Label;
+                var lbl_Titel_Employee = e.Item.FindControl("lbl_Titel_Employee") as Label;
+                var lbl_Titel_Start = e.Item.FindControl("lbl_Titel_Start") as Label;
+                var lbl_Titel_End = e.Item.FindControl("lbl_Titel_End") as Label;
+                var lbl_Titel_Acual_End = e.Item.FindControl("lbl_Titel_Acual_End") as Label;
+                var lbl_Titel_Note = e.Item.FindControl("lbl_Titel_Note") as Label;
+                var lbl_Titel_Status = e.Item.FindControl("lbl_Titel_Status") as Label;
+
+                var lbl_Department_Arabic_Name = e.Item.FindControl("lbl_Department_Arabic_Name") as Label;
+                var lbl_Department_English_Name = e.Item.FindControl("lbl_Department_English_Name") as Label;
+                var lbl_Employee_Arabic_name = e.Item.FindControl("lbl_Employee_Arabic_name") as Label;
+                var lbl_Employee_English_name = e.Item.FindControl("lbl_Employee_English_name") as Label;
+
+                var lbl_titel_Part_Task = e.Item.FindControl("lbl_titel_Part_Task") as Label;
+
+                var Edit = e.Item.FindControl("Edit") as LinkButton;
+                var Cancel_Edit = e.Item.FindControl("Cancel_Edit") as LinkButton;
+                var OnEdit = e.Item.FindControl("OnEdit") as LinkButton;
+                var parting = e.Item.FindControl("parting") as LinkButton;
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_task", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        //Get Task_Status_DropDownList
+                        Task_Status_DropDownList.Items.Clear();
+                        Task_Status_DropDownList.Items.Add(new ListItem("Underway", "1"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Waiting", "2"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Fragmented", "3"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("On Hold", "4"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Canceled", "5"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Done", "6"));
+
+                        lbl_Titel_Priority.Text = Dt.Rows[7]["EN"].ToString();
+                        lbl_Titel_Task.Text = Dt.Rows[0]["EN"].ToString();
+                        lbl_Titel_Department.Text = Dt.Rows[13]["EN"].ToString();
+                        lbl_Titel_Employee.Text = Dt.Rows[2]["EN"].ToString();
+                        lbl_Titel_Start.Text = Dt.Rows[4]["EN"].ToString();
+                        lbl_Titel_End.Text = Dt.Rows[5]["EN"].ToString();
+                        lbl_Titel_Acual_End.Text = Dt.Rows[14]["EN"].ToString();
+                        lbl_Titel_Note.Text = Dt.Rows[16]["EN"].ToString();
+                        lbl_Titel_Status.Text = Dt.Rows[15]["EN"].ToString();
+                        lbl_titel_Part_Task.Text = Dt.Rows[21]["EN"].ToString();
+
+                        Edit.Text = Dt.Rows[17]["EN"].ToString();
+                        Cancel_Edit.Text = Dt.Rows[19]["EN"].ToString();
+                        OnEdit.Text = Dt.Rows[18]["EN"].ToString();
+                        parting.Text = Dt.Rows[20]["EN"].ToString();
+
+                        lbl_Department_Arabic_Name.Visible = false; lbl_Department_English_Name.Visible=true;
+                        lbl_Employee_Arabic_name.Visible = false; lbl_Employee_English_name.Visible = true;
+                    }
+                    else
+                    {
+                        //Get Task_Status_DropDownList
+                        Task_Status_DropDownList.Items.Clear();
+                        Task_Status_DropDownList.Items.Add(new ListItem("قيد التنفيذ", "1"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("إنتظار", "2"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("مجزئة", "3"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("معلقة", "4"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("ملغاة", "5"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("منجزة", "6"));
+
+
+                        lbl_Titel_Priority.Text = Dt.Rows[7]["AR"].ToString();
+                        lbl_Titel_Task.Text = Dt.Rows[0]["AR"].ToString();
+                        lbl_Titel_Department.Text = Dt.Rows[13]["AR"].ToString();
+                        lbl_Titel_Employee.Text = Dt.Rows[2]["AR"].ToString();
+                        lbl_Titel_Start.Text = Dt.Rows[4]["AR"].ToString();
+                        lbl_Titel_End.Text = Dt.Rows[5]["AR"].ToString();
+                        lbl_Titel_Acual_End.Text = Dt.Rows[14]["AR"].ToString();
+                        lbl_Titel_Note.Text = Dt.Rows[16]["AR"].ToString();
+                        lbl_Titel_Status.Text = Dt.Rows[15]["AR"].ToString();
+                        lbl_titel_Part_Task.Text = Dt.Rows[21]["AR"].ToString();
+
+                        Edit.Text = Dt.Rows[17]["AR"].ToString();
+                        Cancel_Edit.Text = Dt.Rows[19]["AR"].ToString();
+                        OnEdit.Text = Dt.Rows[18]["AR"].ToString();
+                        parting.Text = Dt.Rows[20]["AR"].ToString();
+
+                        lbl_Department_Arabic_Name.Visible = true; lbl_Department_English_Name.Visible = false;
+                        lbl_Employee_Arabic_name.Visible = true; lbl_Employee_English_name.Visible = false;
+                    }
+                }
+
+                
+                if (selected_Value == "قيد التنفيذ" || selected_Value == "Underway") { Task_Status_DropDownList.SelectedValue = "1"; }
+                else if (selected_Value == "إنتظار" || selected_Value == "Waiting") { Task_Status_DropDownList.SelectedValue = "2"; }
+                else if (selected_Value == "مجزئة" || selected_Value == "Fragmented") { Task_Status_DropDownList.SelectedValue = "3"; }
+                else if (selected_Value == "معلقة" || selected_Value == "On Hold") { Task_Status_DropDownList.SelectedValue = "4"; }
+                else if (selected_Value == "ملغاة" || selected_Value == "Canceled") { Task_Status_DropDownList.SelectedValue = "5"; }
+                else { Task_Status_DropDownList.SelectedValue = "6"; }
             }
         }
         protected void ON_Edit(object sender, EventArgs e)
@@ -131,8 +243,8 @@ namespace Main_Real_estate.English.Main_Application
         {
             string get_Task_Quari = "SELECT " +
                                 "TM.* , " +
-                                "D.Department_Arabic_Name ," +
-                                "E.Employee_Arabic_name " +
+                                "D.Department_Arabic_Name , D.Department_English_Name ," +
+                                "E.Employee_Arabic_name , E.Employee_English_name " +
                                 "FROM task_management TM " +
                                 "left join department D on(TM.Department_Id = D.Department_Id) " +
                                 "left join employee E on(TM.Employee_Id = E.Employee_Id) Where TM.Employee_Id = '" + Session["Employee_Id"].ToString() + "' ORDER BY Task_Priority;";
@@ -239,12 +351,62 @@ namespace Main_Real_estate.English.Main_Application
             {
                 var Task_Status_DropDownList = e.Item.FindControl("Task_Status_DropDownList") as DropDownList;
                 string selected_Value = (string)((DataRowView)e.Item.DataItem)["Status"];
-                if (selected_Value == "قيد التنفيذ") { Task_Status_DropDownList.SelectedValue = "1"; }
-                else if (selected_Value == "إنتظار") { Task_Status_DropDownList.SelectedValue = "2"; }
-                else if (selected_Value == "مجزئة") { Task_Status_DropDownList.SelectedValue = "3"; }
-                else if (selected_Value == "معلقة") { Task_Status_DropDownList.SelectedValue = "4"; }
-                else if (selected_Value == "ملغاة") { Task_Status_DropDownList.SelectedValue = "5"; }
-                else { Task_Status_DropDownList.SelectedValue = "6"; }
+
+                var Edit = e.Item.FindControl("Edit") as LinkButton;
+                var Cancel_Edit = e.Item.FindControl("Cancel_Edit") as LinkButton;
+                var OnEdit = e.Item.FindControl("OnEdit") as LinkButton;
+                var Delete_Pate_Task = e.Item.FindControl("Delete_Pate_Task") as LinkButton;
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_task", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        //Get Task_Status_DropDownList
+                        Task_Status_DropDownList.Items.Clear();
+                        Task_Status_DropDownList.Items.Add(new ListItem("Underway", "1"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Waiting", "2"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Fragmented", "3"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("On Hold", "4"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Canceled", "5"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("Done", "6"));
+
+                        Edit.Text = Dt.Rows[17]["EN"].ToString();
+                        Cancel_Edit.Text = Dt.Rows[19]["EN"].ToString();
+                        OnEdit.Text = Dt.Rows[18]["EN"].ToString();
+                        Delete_Pate_Task.Text = Dt.Rows[22]["EN"].ToString();
+
+                    }
+                    else
+                    {
+                        //Get Task_Status_DropDownList
+                        Task_Status_DropDownList.Items.Clear();
+                        Task_Status_DropDownList.Items.Add(new ListItem("قيد التنفيذ", "1"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("إنتظار", "2"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("مجزئة", "3"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("معلقة", "4"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("ملغاة", "5"));
+                        Task_Status_DropDownList.Items.Add(new ListItem("منجزة", "6"));
+
+
+
+                        Edit.Text = Dt.Rows[17]["AR"].ToString();
+                        Cancel_Edit.Text = Dt.Rows[19]["AR"].ToString();
+                        OnEdit.Text = Dt.Rows[18]["AR"].ToString();
+                        Delete_Pate_Task.Text = Dt.Rows[22]["AR"].ToString();
+
+                    }
+
+                    if (selected_Value == "قيد التنفيذ" || selected_Value == "Underway") { Task_Status_DropDownList.SelectedValue = "1"; }
+                    else if (selected_Value == "إنتظار" || selected_Value == "Waiting") { Task_Status_DropDownList.SelectedValue = "2"; }
+                    else if (selected_Value == "مجزئة" || selected_Value == "Fragmented") { Task_Status_DropDownList.SelectedValue = "3"; }
+                    else if (selected_Value == "معلقة" || selected_Value == "On Hold") { Task_Status_DropDownList.SelectedValue = "4"; }
+                    else if (selected_Value == "ملغاة" || selected_Value == "Canceled") { Task_Status_DropDownList.SelectedValue = "5"; }
+                    else { Task_Status_DropDownList.SelectedValue = "6"; }
+                }
             }
         }
 

@@ -23,13 +23,7 @@ namespace Main_Real_estate.English.Main_Application
             if (!this.IsPostBack)
             {
                 //*************************************************************************
-                // Fill OWnersip DropDownList
-                Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
-                Ownership_Name_DropDownList.Items.Insert(0, "إختر اسم الملكية ....");
-
-                Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
-
-                Unit_Name_DropDownList.Items.Insert(0, "إختر رقم الوحدة ....");
+                language();
                 //*************************************************************************
                 // Fill Year & Mounth  DropDownList
                 int year = DateTime.Now.Year; int Mounth = DateTime.Now.Month;
@@ -85,9 +79,20 @@ namespace Main_Real_estate.English.Main_Application
         protected void Ownership_Name_DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Building_Name_DropDownList.Enabled = true;
-            // Fill Building DropDownList
-            Helper.LoadDropDownList("SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id='" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
-            Building_Name_DropDownList.Items.Insert(0, "إختر اسم البناء ....");
+
+            if (Session["Langues"].ToString() == "1")
+            {
+                // Fill Building DropDownList
+                Helper.LoadDropDownList("SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id='" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_English_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+            else
+            {
+                // Fill Building DropDownList
+                Helper.LoadDropDownList("SELECT * FROM building where Active ='1' and owner_ship_Owner_Ship_Id='" + Ownership_Name_DropDownList.SelectedValue + "'", _sqlCon, Building_Name_DropDownList, "Building_Arabic_Name", "Building_Id");
+                Building_Name_DropDownList.Items.Insert(0, "...............");
+            }
+                
 
 
 
@@ -101,7 +106,7 @@ namespace Main_Real_estate.English.Main_Application
         {
             // Fill OWnersip DropDownList
             Helper.LoadDropDownList("SELECT * FROM units where Half ='0' and building_Building_Id ='" + Building_Name_DropDownList.SelectedValue + "' ", _sqlCon, Unit_Name_DropDownList, "Unit_Number", "Unit_ID");
-            Unit_Name_DropDownList.Items.Insert(0, "إختر رقم الوحدة ....");
+            Unit_Name_DropDownList.Items.Insert(0, "...............");
 
 
             // Get The Cheque_Expenses , transfer_Expenses , Cash_Expenses for Chossen Building
@@ -430,17 +435,17 @@ namespace Main_Real_estate.English.Main_Application
             string O_Where = ""; string B_Where = ""; string U_Where = ""; string Mounth = "";
             if (O_B_U_DropDownList.SelectedValue == "1")
             {
-                if (Ownership_Name_DropDownList.SelectedItem.Text == "إختر اسم الملكية ....") { O_Where = ""; }
+                if (Ownership_Name_DropDownList.SelectedItem.Text == "...............") { O_Where = ""; }
                 else { O_Where = "and CT.Ownersip_Id = " + Ownership_Name_DropDownList.SelectedValue + ""; }
             }
             else if (O_B_U_DropDownList.SelectedValue == "2")
             {
-                if (Building_Name_DropDownList.SelectedItem.Text == "إختر اسم البناء ....") { B_Where = ""; }
+                if (Building_Name_DropDownList.SelectedItem.Text == "...............") { B_Where = ""; }
                 else { B_Where = "and CT.Building_Id = " + Building_Name_DropDownList.SelectedValue + " "; }
             }
             else if (O_B_U_DropDownList.SelectedValue == "3")
             {
-                if (Unit_Name_DropDownList.SelectedItem.Text == "إختر رقم الوحدة ....") { U_Where = ""; }
+                if (Unit_Name_DropDownList.SelectedItem.Text == "...............") { U_Where = ""; }
                 else { U_Where = "and CT.Unit_Id = " + Unit_Name_DropDownList.SelectedValue + ""; }
             }
 
@@ -453,7 +458,7 @@ namespace Main_Real_estate.English.Main_Application
 
 
             string Query = "select CT.Ownersip_Id , CT.Building_Id , CT.Unit_Id , CT.Mounth , CT.Year , CT.RealEstate_Expenses , CT.Maintenance_Expenses ,  " +
-            "O.Owner_Ship_AR_Name , B.Building_Arabic_Name , U.Unit_Number " +
+            "O.Owner_Ship_AR_Name , O.Owner_Ship_EN_Name , B.Building_Arabic_Name , B.Building_English_Name , U.Unit_Number " +
             "from collection_table CT " +
             "left join owner_ship O on (CT.Ownersip_Id = O.Owner_Ship_Id) " +
             "left join building B on (CT.Building_Id = B.Building_Id) " +
@@ -464,17 +469,207 @@ namespace Main_Real_estate.English.Main_Application
 
         protected void The_Table_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            HtmlTableRow tr = e.Item.FindControl("row") as HtmlTableRow;
-            Label lbl_RealEstate_Expenses = (e.Item.FindControl("lbl_RealEstate_Expenses") as Label);
-            Label lbl_Maintenance_Expenses = (e.Item.FindControl("lbl_Maintenance_Expenses") as Label);
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                Label lbl_Titel_Owner_Ship_AR_Name = (e.Item.FindControl("lbl_Titel_Owner_Ship_AR_Name") as Label);
+                Label lbl_Titel_Building_Arabic_Name = (e.Item.FindControl("lbl_Titel_Building_Arabic_Name") as Label);
+                Label lbl_Titel_Unit_Number = (e.Item.FindControl("lbl_Titel_Unit_Number") as Label);
+                Label lbl_Titel_Mounth = (e.Item.FindControl("lbl_Titel_Mounth") as Label);
+                Label lbl_Titel_Year = (e.Item.FindControl("lbl_Titel_Year") as Label);
+                Label lbl_Titel_RealEstate_Expenses = (e.Item.FindControl("lbl_Titel_RealEstate_Expenses") as Label);
+                Label lbl_Titel_Maintenance_Expenses = (e.Item.FindControl("lbl_Titel_Maintenance_Expenses") as Label);
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_expensess", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_Titel_Owner_Ship_AR_Name.Text = Dt.Rows[4]["EN"].ToString();
+                        lbl_Titel_Building_Arabic_Name.Text = Dt.Rows[5]["EN"].ToString();
+                        lbl_Titel_Unit_Number.Text = Dt.Rows[6]["EN"].ToString();
+                        lbl_Titel_Mounth.Text = Dt.Rows[2]["EN"].ToString();
+                        lbl_Titel_Year.Text = Dt.Rows[3]["EN"].ToString();
+                        lbl_Titel_RealEstate_Expenses.Text = Dt.Rows[8]["EN"].ToString();
+                        lbl_Titel_Maintenance_Expenses.Text = Dt.Rows[9]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_Titel_Owner_Ship_AR_Name.Text = Dt.Rows[4]["AR"].ToString();
+                        lbl_Titel_Building_Arabic_Name.Text = Dt.Rows[5]["AR"].ToString();
+                        lbl_Titel_Unit_Number.Text = Dt.Rows[6]["AR"].ToString();
+                        lbl_Titel_Mounth.Text = Dt.Rows[2]["AR"].ToString();
+                        lbl_Titel_Year.Text = Dt.Rows[3]["AR"].ToString();
+                        lbl_Titel_RealEstate_Expenses.Text = Dt.Rows[8]["AR"].ToString();
+                        lbl_Titel_Maintenance_Expenses.Text = Dt.Rows[9]["AR"].ToString();
+
+                    }
+                }
+            }
+
+
+
+                
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                if((lbl_RealEstate_Expenses.Text=="" && lbl_Maintenance_Expenses.Text == "") || (lbl_RealEstate_Expenses.Text == "0" && lbl_Maintenance_Expenses.Text == "0")||
+                HtmlTableRow tr = e.Item.FindControl("row") as HtmlTableRow;
+                Label lbl_RealEstate_Expenses = (e.Item.FindControl("lbl_RealEstate_Expenses") as Label);
+                Label lbl_Maintenance_Expenses = (e.Item.FindControl("lbl_Maintenance_Expenses") as Label);
+
+                Label lbl_Owner_Ship_AR_Name = (e.Item.FindControl("lbl_Owner_Ship_AR_Name") as Label);
+                Label lbl_Owner_Ship_EN_Name = (e.Item.FindControl("lbl_Owner_Ship_EN_Name") as Label);
+                Label lbl_Building_Arabic_Name = (e.Item.FindControl("lbl_Building_Arabic_Name") as Label);
+                Label lbl_Building_English_Name = (e.Item.FindControl("lbl_Building_English_Name") as Label);
+
+
+
+                if ((lbl_RealEstate_Expenses.Text=="" && lbl_Maintenance_Expenses.Text == "") || (lbl_RealEstate_Expenses.Text == "0" && lbl_Maintenance_Expenses.Text == "0")||
                 (lbl_RealEstate_Expenses.Text == "0" && lbl_Maintenance_Expenses.Text == "") || (lbl_RealEstate_Expenses.Text == ""  && lbl_Maintenance_Expenses.Text == "0"))
                 { tr.Visible = false; }
                 else { tr.Visible = true; }
+
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Owner_Ship_AR_Name.Visible= false; lbl_Owner_Ship_EN_Name.Visible= true;
+                    lbl_Building_Arabic_Name.Visible = false; lbl_Building_English_Name.Visible = true;
+                }
+                else
+                {
+                    lbl_Owner_Ship_AR_Name.Visible = true; lbl_Owner_Ship_EN_Name.Visible = false;
+                    lbl_Building_Arabic_Name.Visible = true; lbl_Building_English_Name.Visible = false;
+                }
             }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_expensess", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    // Fill OWnersip DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_EN_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    Unit_Name_DropDownList.Items.Insert(0, "...............");
+
+
+
+                    //Get O_B_U_DropDownList 
+                    O_B_U_DropDownList.Items.Clear();
+                    O_B_U_DropDownList.Items.Add(new ListItem("Property", "1"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("Building", "2"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("Unit", "3"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("Management Expenses", "4"));
+                    O_B_U_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_titel_Expenses.Text = Dt.Rows[0]["EN"].ToString();
+                    lbl_O_B_U.Text = Dt.Rows[1]["EN"].ToString();
+                    lbl_Mounth.Text = Dt.Rows[2]["EN"].ToString();
+                    lbl_Year.Text = Dt.Rows[3]["EN"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["EN"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["EN"].ToString();
+                    lbl_Unit_Name.Text = Dt.Rows[6]["EN"].ToString();
+                    lbl_Management_Expenses.Text = Dt.Rows[7]["EN"].ToString();
+                    lbl_RealEstate_Expenses.Text = Dt.Rows[8]["EN"].ToString();
+                    lbl_Maintenance_Expenses.Text = Dt.Rows[9]["EN"].ToString();
+                    Add.Text = Dt.Rows[12]["EN"].ToString();
+
+
+
+                    O_B_U_RequiredFieldValidator.ErrorMessage= Dt.Rows[11]["EN"].ToString();
+                    Mounth_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Year_Req_Field_Val.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Ownership_Req_Field_Val.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Building_Req_Field_Val.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+                    Unit_Req_Field_Val.ErrorMessage = Dt.Rows[11]["EN"].ToString();
+
+
+                    Management_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["EN"].ToString();
+                    RealEstate_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["EN"].ToString();
+                    Maintenance_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["EN"].ToString();
+
+                }
+                else
+                {
+
+                    // Fill OWnersip DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM owner_ship", _sqlCon, Ownership_Name_DropDownList, "Owner_Ship_AR_Name", "Owner_Ship_Id");
+                    Ownership_Name_DropDownList.Items.Insert(0, "...............");
+
+                    Building_Name_DropDownList.Items.Insert(0, "...............");
+
+                    Unit_Name_DropDownList.Items.Insert(0, "...............");
+
+
+                    //Get O_B_U_DropDownList 
+                    O_B_U_DropDownList.Items.Clear();
+                    O_B_U_DropDownList.Items.Add(new ListItem("ملكية", "1"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("بناء", "2"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("وحدة", "3"));
+                    O_B_U_DropDownList.Items.Add(new ListItem("مصاريف إدارية", "4"));
+                    O_B_U_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_titel_Expenses.Text = Dt.Rows[0]["AR"].ToString();
+                    lbl_O_B_U.Text = Dt.Rows[1]["AR"].ToString();
+                    lbl_Mounth.Text = Dt.Rows[2]["AR"].ToString();
+                    lbl_Year.Text = Dt.Rows[3]["AR"].ToString();
+                    lbl_Ownership_Name.Text = Dt.Rows[4]["AR"].ToString();
+                    lbl_Building_Name.Text = Dt.Rows[5]["AR"].ToString();
+                    lbl_Unit_Name.Text = Dt.Rows[6]["AR"].ToString();
+                    lbl_Management_Expenses.Text = Dt.Rows[7]["AR"].ToString();
+                    lbl_RealEstate_Expenses.Text = Dt.Rows[8]["AR"].ToString();
+                    lbl_Maintenance_Expenses.Text = Dt.Rows[9]["AR"].ToString();
+                    Add.Text = Dt.Rows[12]["AR"].ToString();
+
+
+
+                    O_B_U_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Mounth_RequiredFieldValidator.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Year_Req_Field_Val.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Ownership_Req_Field_Val.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Building_Req_Field_Val.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+                    Unit_Req_Field_Val.ErrorMessage = Dt.Rows[11]["AR"].ToString();
+
+
+                    Management_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["AR"].ToString();
+                    RealEstate_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["AR"].ToString();
+                    Maintenance_Expenses_RegularExpressionValidator.ErrorMessage = Dt.Rows[10]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }
