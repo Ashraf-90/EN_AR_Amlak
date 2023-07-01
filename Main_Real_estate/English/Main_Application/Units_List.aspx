@@ -22,17 +22,23 @@
      </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            font-size: 13px;
-            text-align: center !important;
-            padding: 10px !important;
+     <style>
+        .table-condensed tr th {
+            border: 0px solid #fff;
+            color: black;
+            background-color: #cacff1;
         }
-        th{
-            background-color: #52a2da;
-            color: #ffffff;
+
+        .table-condensed, .table-condensed tr td {
+            border: 0px solid #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #d7d7d7;
+        }
+
+        tr:nth-child(odd) {
+            background: #e3e3e3;
         }
     </style>
     <%--***********************************************************************************************--%>
@@ -56,7 +62,6 @@
             <!-- Simple Tables -->
             <div class="card">
                 <div class="table-responsive" id="Grid" >
-                  
                     <asp:Repeater ID="eeeee" runat="server" ClientIDMode="Static" OnItemDataBound="eeeee_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" class="datatable table table-striped table-bordered">

@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/English/Main_Application/English.Master" AutoEventWireup="true" CodeBehind="OS_B_U_Arcive.aspx.cs" Inherits="Main_Real_estate.English.Main_Application.OS_B_U_Arcive" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.datatable').DataTable({
+                dom: 'Bfrtip',
+                /*lengthChange: false,*/
+                "pageLength": 10000,
+                buttons: [
+                    'excelHtml5',
+                    /*'pdfHtml5'*/
+                ],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/en.json'
+                }
+            });
+
+            table.buttons().container()
+                .appendTo('#DataTables_Table_0_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
@@ -10,6 +29,7 @@
             padding: 0;
             overflow: hidden;
             background-color: #52a2da;
+            display: flex;
         }
 
         li {
@@ -32,7 +52,7 @@
             }
     </style>
 
-    <style>
+      <style>
         .table-condensed tr th {
             border: 0px solid #fff;
             color: black;
@@ -62,57 +82,68 @@
 
 
     <ul class="UUL">
-        <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick">أرشيف الملكيات</a></li>
-        <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick">أرشيف الأبنية</a></li>
-        <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick">أرشيف الوحدات</a></li>
-        <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick">أرشيف الكل</a></li>
+        <li><a runat="server" id="A_1" onserverclick="A_1_ServerClick"><asp:Label ID="lbl_Property" runat="server"/></a></li>
+        <li><a runat="server" id="A_2" onserverclick="A_2_ServerClick"><asp:Label ID="lbl_Building" runat="server"/></a></li>
+        <li><a runat="server" id="A_3" onserverclick="A_3_ServerClick"><asp:Label ID="lbl_Unit" runat="server"/></a></li>
+        <li><a runat="server" id="A_4" onserverclick="A_4_ServerClick"><asp:Label ID="lbl_All" runat="server"/></a></li>
     </ul>
     <br />
     <div class="container-fluid" runat="server" id="OS_Arcive">
         <div class="row">
             <div class="col-lg-12 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Contracts_List" ForeColor="#52a2da" runat="server" Text=" أرشيف الملكيات"></asp:Label>
+                    <asp:Label ID="lbl_titel_Property" ForeColor="#52a2da" runat="server" Text=" أرشيف الملكيات"></asp:Label>
                 </h1>
             </div>
             <br />
 
+
             <div class="row">
-                <div class="col-lg-12 mb-4">
-                    <!-- Simple Tables -->
-                    <div class="card">
-                        <div class="table-responsive">
-                            <asp:GridView AutoGenerateColumns="false" ID="Ownership_GridView" runat="server"
-                                CssClass="datatable table table-striped table-bordered" BackColor="White" BorderColor="#CCCCCC"
-                                BorderStyle="None" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Horizontal" Font-Size="11px">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="مسلسل" ItemStyle-Width="10">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="Users_Ar_First_Name" HeaderText="إسم  المستخدم" />
-                                    <asp:BoundField DataField="Delete_Date" HeaderText="تاريخ الحذف" />
-                                    <asp:BoundField DataField="Owner_Ship_AR_Name" HeaderText="إسم الملكية " />
-                                    <asp:BoundField DataField="owner_ship_Code" HeaderText="رمز الملكية " />
-                                    <asp:BoundField DataField="Reason_Delete" HeaderText="سبب الحذف " />
-                                </Columns>
-                                <EditRowStyle HorizontalAlign="Center" />
-                                <FooterStyle BackColor="#CCCC99" ForeColor="Black" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#cacff1" Font-Bold="false" ForeColor="Black" Font-Size="11px" HorizontalAlign="Center" />
-                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                                <RowStyle HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="false" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                <SortedDescendingHeaderStyle BackColor="#242121" />
-                            </asp:GridView>
-                        </div>
-                        <asp:Label ID="lbl_NO_O_Data" runat="server" />
-                    </div>
+        <div class="col-lg-12 mb-4">
+            <!-- Simple Tables -->
+            <div class="card">
+                <div class="table-responsive" id="Grid" >
+                   <asp:Repeater ID="Ownership_GridView" runat="server" ClientIDMode="Static" OnItemDataBound="Ownership_GridView_ItemDataBound">
+                                <HeaderTemplate>
+                                    <table cellspacing="0" style="width: 100%; font-size: 15px" class="datatable table table-striped table-bordered">
+                                        <thead>
+                                            <th style="vertical-align: middle;">#</th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Users_Ar_First_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Delete_Date" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_owner_ship_Code" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Reason_Delete" runat="server" /></th>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Users_Ar_First_Name" runat="server" Text='<%# Eval("Users_Ar_First_Name") %>' />
+                                            <asp:Label ID="lbl_Users_EN_First_Name" runat="server" Text='<%# Eval("Users_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_Delete_Date" runat="server" Text='<%# Eval("Delete_Date") %>' /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                            <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Reason_Delete" runat="server" Text='<%# Eval("Reason_Delete") %>' /></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                                </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
                 </div>
             </div>
+        </div>
+    </div>
+
         </div>
         <hr />
     </div>
@@ -121,7 +152,7 @@
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="Label1" ForeColor="#52a2da" runat="server" Text=" أرشيف الأبنية"></asp:Label>
+                    <asp:Label ID="lbl_titel_Builidng" ForeColor="#52a2da" runat="server" Text=" أرشيف الأبنية"></asp:Label>
                 </h1>
             </div>
 
@@ -131,36 +162,51 @@
                     <!-- Simple Tables -->
                     <div class="card">
                         <div class="table-responsive">
-                            <asp:GridView AutoGenerateColumns="false" ID="Building_GridView" runat="server"
-                                CssClass="datatable table table-striped table-bordered" BackColor="White" BorderColor="#CCCCCC"
-                                BorderStyle="None" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Horizontal" Font-Size="11px">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="مسلسل" ItemStyle-Width="10">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="Users_Ar_First_Name" HeaderText="إسم  المستخدم" />
-                                    <asp:BoundField DataField="Delete_Date" HeaderText="تاريخ الحذف" />
-                                    <asp:BoundField DataField="Owner_Ship_AR_Name" HeaderText="إسم الملكية " />
-                                     <asp:BoundField DataField="owner_ship_Code" HeaderText="رمز الملكية " />
-                                    <asp:BoundField DataField="Building_Arabic_Name" HeaderText="إسم البناء " />
-                                    <asp:BoundField DataField="Building_NO" HeaderText="رقم البناء " />
-                                    <asp:BoundField DataField="Reason_Delete" HeaderText="سبب الحذف " />
-                                </Columns>
-                                <EditRowStyle HorizontalAlign="Center" />
-                                <FooterStyle BackColor="#CCCC99" ForeColor="Black" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#cacff1" Font-Bold="false" ForeColor="Black" Font-Size="11px" HorizontalAlign="Center" />
-                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                                <RowStyle HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="false" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                <SortedDescendingHeaderStyle BackColor="#242121" />
-                            </asp:GridView>
+                             <asp:Repeater ID="Building_Table" runat="server" ClientIDMode="Static" OnItemDataBound="Building_GridView_ItemDataBound">
+                                <HeaderTemplate>
+                                    <table cellspacing="0" style="width: 100%; font-size: 15px" class="datatable table table-striped table-bordered">
+                                        <thead>
+                                            <th style="vertical-align: middle;">#</th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Users_Ar_First_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Delete_Date" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_owner_ship_Code" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Building_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Building_NO" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Reason_Delete" runat="server" /></th>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Users_Ar_First_Name" runat="server" Text='<%# Eval("Users_Ar_First_Name") %>' />
+                                            <asp:Label ID="lbl_Users_EN_First_Name" runat="server" Text='<%# Eval("Users_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_Delete_Date" runat="server" Text='<%# Eval("Delete_Date") %>' /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                            <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
+
+
+                                        <td>
+                                            <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                            <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_Building_NO" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
+
+                                        <td><asp:Label ID="lbl_Reason_Delete" runat="server" Text='<%# Eval("Reason_Delete") %>' /></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                                </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
                         </div>
-                        <asp:Label ID="lbl_NO_B_Data" runat="server" />
                     </div>
                 </div>
             </div>
@@ -172,7 +218,7 @@
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="Label2" ForeColor="#52a2da" runat="server" Text=" أرشيف الوحدات"></asp:Label>
+                    <asp:Label ID="lbl_titel_unit" ForeColor="#52a2da" runat="server" Text=" أرشيف الوحدات"></asp:Label>
                 </h1>
             </div>
 
@@ -182,37 +228,55 @@
                     <!-- Simple Tables -->
                     <div class="card">
                         <div class="table-responsive">
-                            <asp:GridView AutoGenerateColumns="false" ID="Unit_GridView" runat="server"
-                                CssClass="datatable table table-striped table-bordered" BackColor="White" BorderColor="#CCCCCC"
-                                BorderStyle="None" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Horizontal" Font-Size="11px">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="مسلسل" ItemStyle-Width="10">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="Users_Ar_First_Name" HeaderText="إسم  المستخدم" />
-                                    <asp:BoundField DataField="Delete_Date" HeaderText="تاريخ الحذف" />
-                                    <asp:BoundField DataField="Owner_Ship_AR_Name" HeaderText="إسم الملكية " />
-                                     <asp:BoundField DataField="owner_ship_Code" HeaderText="رمز الملكية " />
-                                    <asp:BoundField DataField="Building_Arabic_Name" HeaderText="إسم البناء " />
-                                    <asp:BoundField DataField="Building_NO" HeaderText="رقم البناء " />
-                                    <asp:BoundField DataField="Unit_Number" HeaderText="رقم الوحدة " />
-                                    <asp:BoundField DataField="Reason_Delete" HeaderText="سبب الحذف " />
-                                </Columns>
-                                <EditRowStyle HorizontalAlign="Center" />
-                                <FooterStyle BackColor="#CCCC99" ForeColor="Black" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#cacff1" Font-Bold="false" ForeColor="Black" Font-Size="11px" HorizontalAlign="Center" />
-                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" />
-                                <RowStyle HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="false" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                <SortedDescendingHeaderStyle BackColor="#242121" />
-                            </asp:GridView>
+
+
+
+                            <asp:Repeater ID="Unit_Table" runat="server" ClientIDMode="Static" OnItemDataBound="Unit_Table_ItemDataBound">
+                                <HeaderTemplate>
+                                    <table cellspacing="0" style="width: 100%; font-size: 15px" class="datatable table table-striped table-bordered">
+                                        <thead>
+                                            <th style="vertical-align: middle;">#</th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Users_Ar_First_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Delete_Date" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_owner_ship_Code" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Building_Name" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Building_NO" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Unit_Number" runat="server" /></th>
+                                            <th style="vertical-align: middle;"><asp:Label ID="lbl_Reason_Delete" runat="server" /></th>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Label ID="lblRowNumber" Text='<%# Container.ItemIndex + 1 %>' runat="server" /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Users_Ar_First_Name" runat="server" Text='<%# Eval("Users_Ar_First_Name") %>' />
+                                            <asp:Label ID="lbl_Users_EN_First_Name" runat="server" Text='<%# Eval("Users_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_Delete_Date" runat="server" Text='<%# Eval("Delete_Date") %>' /></td>
+                                        <td>
+                                            <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Eval("Owner_Ship_AR_Name") %>' />
+                                            <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Eval("Owner_Ship_EN_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_owner_ship_Code" runat="server" Text='<%# Eval("owner_ship_Code") %>' /></td>
+
+
+                                        <td>
+                                            <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Eval("Building_Arabic_Name") %>' />
+                                            <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Eval("Building_English_Name") %>' />
+                                        </td>
+                                        <td><asp:Label ID="lbl_Building_NO" runat="server" Text='<%# Eval("Building_NO") %>' /></td>
+                                        <td><asp:Label ID="Label4" runat="server" Text='<%# Eval("Unit_Number") %>' /></td>
+                                        <td><asp:Label ID="lbl_Reason_Delete" runat="server" Text='<%# Eval("Reason_Delete") %>' /></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                                </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
                         </div>
-                        <asp:Label ID="lbl_NO_U_Data" runat="server" />
                     </div>
                 </div>
             </div>

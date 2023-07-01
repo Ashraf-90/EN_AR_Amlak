@@ -24,6 +24,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_1;
 
         /// <summary>
+        /// lbl_Property control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Property;
+
+        /// <summary>
         /// A_2 control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_2;
+
+        /// <summary>
+        /// lbl_Building control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Building;
 
         /// <summary>
         /// A_3 control.
@@ -42,6 +60,15 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_3;
 
         /// <summary>
+        /// lbl_Unit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Unit;
+
+        /// <summary>
         /// A_4 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace Main_Real_estate.English.Main_Application
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A_4;
+
+        /// <summary>
+        /// lbl_All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_All;
 
         /// <summary>
         /// OS_Arcive control.
@@ -60,13 +96,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl OS_Arcive;
 
         /// <summary>
-        /// lbl_titel_Contracts_List control.
+        /// lbl_titel_Property control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Contracts_List;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Property;
 
         /// <summary>
         /// Ownership_GridView control.
@@ -75,16 +111,7 @@ namespace Main_Real_estate.English.Main_Application
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Ownership_GridView;
-
-        /// <summary>
-        /// lbl_NO_O_Data control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_NO_O_Data;
+        protected global::System.Web.UI.WebControls.Repeater Ownership_GridView;
 
         /// <summary>
         /// B_Arcive control.
@@ -96,31 +123,22 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl B_Arcive;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_titel_Builidng control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_Builidng;
 
         /// <summary>
-        /// Building_GridView control.
+        /// Building_Table control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Building_GridView;
-
-        /// <summary>
-        /// lbl_NO_B_Data control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_NO_B_Data;
+        protected global::System.Web.UI.WebControls.Repeater Building_Table;
 
         /// <summary>
         /// U_Arcive control.
@@ -132,30 +150,21 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl U_Arcive;
 
         /// <summary>
-        /// Label2 control.
+        /// lbl_titel_unit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbl_titel_unit;
 
         /// <summary>
-        /// Unit_GridView control.
+        /// Unit_Table control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Unit_GridView;
-
-        /// <summary>
-        /// lbl_NO_U_Data control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_NO_U_Data;
+        protected global::System.Web.UI.WebControls.Repeater Unit_Table;
     }
 }

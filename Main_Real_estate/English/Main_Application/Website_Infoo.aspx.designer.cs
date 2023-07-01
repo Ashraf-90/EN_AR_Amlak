@@ -195,13 +195,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.GridView Service_GridView;
 
         /// <summary>
-        /// Label1 control.
+        /// lbl_Main_Info control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbl_Main_Info;
 
         /// <summary>
         /// lbl_WebSite_Info control.
@@ -546,13 +546,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.LinkButton Add_Info;
 
         /// <summary>
-        /// lbl_Websit_Info control.
+        /// lbl_Websit_Units control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Websit_Info;
+        protected global::System.Web.UI.WebControls.Label lbl_Websit_Units;
 
         /// <summary>
         /// lbl_ownership_Name control.

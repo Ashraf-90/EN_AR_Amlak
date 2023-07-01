@@ -66,6 +66,7 @@
             overflow: hidden;
             background-color: #52a2da;
             border-radius: .375rem .375rem 0 0;
+            display: flex;
         }
 
         .UUL li {

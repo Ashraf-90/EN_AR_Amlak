@@ -36,13 +36,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <%--<asp:RegularExpressionValidator ID="Reg_Ex_Servic_EN_Titlee" runat="server" ControlToValidate="txt_Servic_EN_Title"
-                                EnableClientScript="True" ErrorMessage="English Only" ForeColor="Red"
-                                ValidationExpression="[a-z A-Z0-9]+"></asp:RegularExpressionValidator>--%>
-
                                <asp:Label ID="lbl_Servic_EN_Title" runat="server" Text="Service Titel"></asp:Label>
                                 <asp:TextBox ID="txt_Servic_EN_Title" runat="server"  CssClass="form-control" ></asp:TextBox>
-
                                 <asp:RequiredFieldValidator ID="Servic_EN_Title_Req_Field_Vali" ControlToValidate="txt_Servic_EN_Title"
                                 runat="server" ErrorMessage="* Required field!!!" ForeColor="Red" ValidationGroup="Add_Servic"></asp:RequiredFieldValidator>
                              </div>
@@ -50,13 +45,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                <asp:Label ID="lbl_Servic_AR_Title" runat="server" Text="اسم الخدمة"></asp:Label>
-
-                                <%--<asp:RegularExpressionValidator ID="Reg_Ex_Servic_AR_Titlee" runat="server" ControlToValidate="txt_Servic_AR_Title"
-                                EnableClientScript="True" ErrorMessage="أحرف عربية فقط" ForeColor="Red"
-                                ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>--%>
-
                               <asp:TextBox ID="txt_Servic_AR_Title" runat="server"  CssClass="form-control"></asp:TextBox>
-
                                 <asp:RequiredFieldValidator ID="Servic_AR_Title_Req_Field_Vali" ControlToValidate="txt_Servic_AR_Title"
                                 runat="server" ErrorMessage="* حقل مطلوب!!!" ForeColor="Red" ValidationGroup="Add_Servic"></asp:RequiredFieldValidator>
                              </div>
@@ -66,13 +55,8 @@
                      <div class="row">
                         <div class="col-lg-6" >
                             <div class="form-group">
-                                <%--<asp:RegularExpressionValidator ID="Reg_Ex_Servic_EN_Descriptione" runat="server" ControlToValidate="txt_Servic_EN_Description"
-                                EnableClientScript="True" ErrorMessage="English Only" ForeColor="Red"
-                                ValidationExpression="[a-z A-Z0-9]+"></asp:RegularExpressionValidator>--%>
-
                                <asp:Label ID="lbl_Servic_EN_Description" runat="server" Text="Service Description"></asp:Label>
                                 <asp:TextBox ID="txt_Servic_EN_Description" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                                
                                 <asp:RequiredFieldValidator ID="Servic_EN_Body_Req_Field_Vali" ControlToValidate="txt_Servic_EN_Description"
                                 runat="server" ErrorMessage="* Required field!!!" ForeColor="Red" ValidationGroup="Add_Servic"></asp:RequiredFieldValidator>
                              </div>
@@ -80,12 +64,7 @@
                         <div class="col-lg-6" >
                             <div class="form-group">
                                <asp:Label ID="lbl_Servic_AR_Description" runat="server" Text="شرح الخدمة"></asp:Label>
-
-                                <%--<asp:RegularExpressionValidator ID="Reg_Ex_Servic_AR_Description" runat="server" ControlToValidate="txt_Servic_AR_Description"
-                                EnableClientScript="True" ErrorMessage="أحرف عربية فقط" ForeColor="Red"
-                                ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>--%>
                                 <asp:TextBox ID="txt_Servic_AR_Description" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                                
                                 <asp:RequiredFieldValidator ID="Servic_AR_Body_Req_Field_Vali" ControlToValidate="txt_Servic_AR_Description"
                                 runat="server" ErrorMessage="* حقل مطلوب!!!" ForeColor="Red" ValidationGroup="Add_Servic"></asp:RequiredFieldValidator>
                              </div>
@@ -118,7 +97,7 @@
                                             OnRowEditing="Service_GridView_RowEditing" OnRowCancelingEdit="Service_GridView_RowCancelingEdit" OnRowUpdating="Service_GridView_RowUpdating">
                                             <Columns>
                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="اسم الخدمة">
+                                                <asp:TemplateField HeaderText="اسم الخدمة"><%--0--%>
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txt_Arabic_Titel" TextMode="MultiLine" runat="server" Text='<%# Bind("Arabic_Titel") %>'></asp:TextBox>
                                                     </EditItemTemplate>
@@ -127,7 +106,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="Service Titel">
+                                                <asp:TemplateField HeaderText="Service Titel"><%--1--%>
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txt_English_Titel" TextMode="MultiLine" runat="server" Text='<%# Bind("English_Titel") %>'></asp:TextBox>
                                                     </EditItemTemplate>
@@ -136,7 +115,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="وصف الخدمة" ItemStyle-Width="300px">
+                                                <asp:TemplateField HeaderText="وصف الخدمة" ItemStyle-Width="300px"><%--2--%>
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txt_Arabic_Description" TextMode="MultiLine" runat="server" Text='<%# Bind("Arabic_Description") %>'></asp:TextBox>
                                                     </EditItemTemplate>
@@ -145,7 +124,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="Servic Description">
+                                                <asp:TemplateField HeaderText="Servic Description"><%--3--%>
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txt_English_Description" TextMode="MultiLine" runat="server" Text='<%# Bind("English_Description") %>'></asp:TextBox>
                                                     </EditItemTemplate>
@@ -154,7 +133,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--------------------------------------------------------------------------------------------------%>
-                                                <asp:TemplateField HeaderText="NewsImage">
+                                                <asp:TemplateField HeaderText="NewsImage"><%--4--%>
                                                     <ItemTemplate>
                                                         <asp:Image ID="Image_One_Path_Image" runat="server" ImageUrl='<%# Eval("Servic_Image_Path") %>' Width="100px" Height="100px" />
                                                     </ItemTemplate>
@@ -203,7 +182,7 @@
         <div class="col-lg-12">
             <div class="card mb-12">
                 <div class="card-body">
-                    <asp:Label ID="Label1" runat="server" Font-Size="30px" Text="إضافة المعلومات الأساسية إلى الموقع العام"></asp:Label>&nbsp;&nbsp;
+                    <asp:Label ID="lbl_Main_Info" runat="server" Font-Size="30px" Text="إضافة المعلومات الأساسية إلى الموقع العام"></asp:Label>&nbsp;&nbsp;
                     <asp:Label ID="lbl_WebSite_Info" Font-Size="30px" runat="server" ForeColor="Green"></asp:Label><br />
                     <div class="row">
                         <div class="col-lg-4">
@@ -343,7 +322,7 @@
     <!-- Container Fluid-->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
-                <asp:Label ID="lbl_Websit_Info" runat="server" Text="إختيار الواحدات التي ستعرض في الموقع العام "></asp:Label>
+                <asp:Label ID="lbl_Websit_Units" runat="server" Text="إختيار الواحدات التي ستعرض في الموقع العام "></asp:Label>
             </h1>
         </div>
 
@@ -386,62 +365,66 @@
                             ForeColor="Black" GridLines="Both">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:TemplateField HeaderText="" Visible="false">
+                                <asp:TemplateField HeaderText="" Visible="false"><%--0--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Unit_Id" runat="server" Text='<%# Bind("Unit_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="رقم الوحدة">
+                                <asp:TemplateField HeaderText="رقم الوحدة"><%--1--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Unit_Number" runat="server" Text='<%# Bind("Unit_Number") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="المساحة">
+                                <asp:TemplateField HeaderText="المساحة"><%--2--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Unit_Space" runat="server" Text='<%# Bind("Unit_Space") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="النوع">
+                                <asp:TemplateField HeaderText="النوع"><%--3--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Unit_Arabic_Type" runat="server" Text='<%# Bind("Unit_Arabic_Type") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Unit_English_Type" runat="server" Text='<%# Bind("Unit_English_Type") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="التفاصيل">
+                                <asp:TemplateField HeaderText="التفاصيل"><%--4--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Unit_Arabic_Detail" runat="server" Text='<%# Bind("Unit_Arabic_Detail") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Unit_English_Detail" runat="server" Text='<%# Bind("Unit_English_Detail") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="البناء">
+                                <asp:TemplateField HeaderText="البناء"><%--5--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Building_Arabic_Name" runat="server" Text='<%# Bind("Building_Arabic_Name") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Building_English_Name" runat="server" Text='<%# Bind("Building_English_Name") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="رقم البناء">
+                                <asp:TemplateField HeaderText="رقم البناء"><%--6--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Building_NO" runat="server" Text='<%# Bind("Building_NO") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="الملكية">
+                                <asp:TemplateField HeaderText="الملكية"><%--7--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Owner_Ship_AR_Name" runat="server" Text='<%# Bind("Owner_Ship_AR_Name") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Owner_Ship_EN_Name" runat="server" Text='<%# Bind("Owner_Ship_EN_Name") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="رقم الشارع">
+                                <asp:TemplateField HeaderText="رقم الشارع"><%--8--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Street_NO" runat="server" Text='<%# Bind("Street_NO") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="الشارع">
+                                <asp:TemplateField HeaderText="الشارع"><%--9--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Street_Name" runat="server" Text='<%# Bind("Street_Name") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="الطابق">
+                                <asp:TemplateField HeaderText="الطابق"><%--10--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Floor_Number" runat="server" Text='<%# Bind("Floor_Number") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="الصورة الاساسية">
+                                <asp:TemplateField HeaderText="الصورة الاساسية"><%--11--%>
                                     <ItemTemplate>
                                         <asp:Image ID="Image_One_Path_Image" runat="server" ImageUrl='<%# Eval("Image_One_Path") %>' Width="100" Height="100" />
                                     </ItemTemplate>
