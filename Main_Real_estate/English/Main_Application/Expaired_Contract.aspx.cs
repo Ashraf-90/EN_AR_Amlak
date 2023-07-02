@@ -121,6 +121,108 @@ namespace Main_Real_estate.English.Main_Application
             {
                 Response.Redirect("Log_In.aspx");
             }
+
+
+
+
+
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                var lbl_Contract_NO = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Contract_NO");
+                var lbl_Zone = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Zone");
+                var lbl_Code = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Code");
+                var lbl_Property = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Property");
+                var lbl_Item = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Item");
+                var lbl_Tenant = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenant");
+                var lbl_Nationality = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Nationality");
+                var lbl_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Type");
+                var lbl_Years = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Years");
+                var lbl_Amount = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Amount");
+                var lbl_Start = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Start");
+                var lbl_End = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_End");
+
+
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_contract", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_Contract_NO.Text = Dt.Rows[53]["EN"].ToString();
+                        lbl_Zone.Text = Dt.Rows[54]["EN"].ToString();
+                        lbl_Code.Text = Dt.Rows[67]["EN"].ToString();
+                        lbl_Property.Text = Dt.Rows[4]["EN"].ToString();
+                        lbl_Item.Text = "Rented Item"; ;
+                        lbl_Tenant.Text = Dt.Rows[2]["EN"].ToString();
+                        lbl_Nationality.Text = Dt.Rows[56]["EN"].ToString();
+                        lbl_Type.Text = Dt.Rows[1]["EN"].ToString();
+                        lbl_Years.Text = Dt.Rows[57]["EN"].ToString();
+                        lbl_Amount.Text = Dt.Rows[58]["EN"].ToString();
+                        lbl_Start.Text = Dt.Rows[10]["EN"].ToString();
+                        lbl_End.Text = Dt.Rows[11]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_Contract_NO.Text = Dt.Rows[53]["AR"].ToString();
+                        lbl_Zone.Text = Dt.Rows[54]["AR"].ToString();
+                        lbl_Code.Text = Dt.Rows[67]["AR"].ToString();
+                        lbl_Property.Text = Dt.Rows[4]["AR"].ToString();
+                        lbl_Item.Text = "العنصر المؤجر"; ;
+                        lbl_Tenant.Text = Dt.Rows[2]["AR"].ToString();
+                        lbl_Nationality.Text = Dt.Rows[56]["AR"].ToString();
+                        lbl_Type.Text = Dt.Rows[1]["AR"].ToString();
+                        lbl_Years.Text = Dt.Rows[57]["AR"].ToString();
+                        lbl_Amount.Text = Dt.Rows[58]["AR"].ToString();
+                        lbl_Start.Text = Dt.Rows[10]["AR"].ToString();
+                        lbl_End.Text = Dt.Rows[11]["AR"].ToString();
+                    }
+                }
+                _sqlCon.Close();
+            }
+
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_zone_arabic_name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_zone_arabic_name");
+                var lbl_zone_English_name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_zone_English_name");
+                var lbl_Owner_Ship_AR_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Owner_Ship_AR_Name");
+                var lbl_Owner_Ship_EN_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Owner_Ship_EN_Name");
+                var lbl_Tenants_Arabic_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_Arabic_Name");
+                var lbl_Tenants_English_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_English_Name");
+                var lbl_Arabic_nationality = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Arabic_nationality");
+                var lbl_English_nationality = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_English_nationality");
+                var lbl_Contract_Arabic_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Contract_Arabic_Type");
+                var lbl_Contract_English_Type = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Contract_English_Type");
+
+                var lbl_AR_Unit_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_AR_Unit_Number");
+                var lbl_EN_Unit_Number = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_EN_Unit_Number");
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_zone_arabic_name.Visible= false; lbl_zone_English_name.Visible= true;
+                    lbl_Owner_Ship_AR_Name.Visible = false; lbl_Owner_Ship_EN_Name.Visible = true;
+                    lbl_Tenants_Arabic_Name.Visible = false; lbl_Tenants_English_Name.Visible = true;
+                    lbl_Arabic_nationality.Visible = false; lbl_English_nationality.Visible = true;
+                    lbl_Contract_Arabic_Type.Visible = false; lbl_Contract_English_Type.Visible = true;
+                    lbl_AR_Unit_Number.Visible = false; lbl_EN_Unit_Number.Visible = true;
+                }
+                else
+                {
+                    lbl_zone_arabic_name.Visible = true; lbl_zone_English_name.Visible = false;
+                    lbl_Owner_Ship_AR_Name.Visible = true; lbl_Owner_Ship_EN_Name.Visible = false;
+                    lbl_Tenants_Arabic_Name.Visible = true; lbl_Tenants_English_Name.Visible = false;
+                    lbl_Arabic_nationality.Visible = true; lbl_English_nationality.Visible = false;
+                    lbl_Contract_Arabic_Type.Visible = true; lbl_Contract_English_Type.Visible = false;
+                    lbl_AR_Unit_Number.Visible = true; lbl_EN_Unit_Number.Visible = false;
+                }
+
+
+
+            }
         }
 
         protected void U_Edit_Click(object sender, EventArgs e)

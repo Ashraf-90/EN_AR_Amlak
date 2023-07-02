@@ -258,13 +258,13 @@ namespace Main_Real_estate.English.Main_Application
         protected global::System.Web.UI.WebControls.Label lbl_Dtl_ID_Expiry;
 
         /// <summary>
-        /// Label11 control.
+        /// lbl_Title_ATT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label lbl_Title_ATT;
 
         /// <summary>
         /// lbl_Titel_Tenant_Photo control.

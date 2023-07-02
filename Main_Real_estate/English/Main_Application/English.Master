@@ -440,7 +440,7 @@
                   <h6 class="dropdown-header"><asp:Label runat="server" ID="lbl_Tenant_Toti"/></h6>
                   <div class="drop-scroll" style="width: 350px;">
                         <ul class="media-list">
-                            <asp:Repeater ID="T_Notification_Repeater" runat="server">
+                            <asp:Repeater ID="T_Notification_Repeater" runat="server" OnItemDataBound="T_Notification_Repeater_ItemDataBound">
                                 <ItemTemplate>
                                     <li class="media notification-message">
                                         <asp:LinkButton ID="T_Notification_Link" runat="server" OnClick="T_Notification_Link_Click" CommandArgument='<%# Eval("Tenant_Notification_Id")%>'>
@@ -451,9 +451,12 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <p class="m-0 noti-details">
-                                                        <span >( <%#Eval("Request_Classification")%> )</span>
-                                                        <span >من العميل :</span>
-                                                        <span >( <%#Eval("Tenants_Arabic_Name")%> )</span>
+                                                        <span >( <asp:Label ID="lbl_Request_Classification" runat="server" Text='<%# Eval("Request_Classification") %>'/> )</span>
+                                                        <span >From Tenant :</span>
+                                                        <span >( 
+                                                            <asp:Label ID="lbl_Tenants_Arabic_Name" runat="server" Text='<%# Eval("Tenants_Arabic_Name") %>'/>
+                                                            <asp:Label ID="lbl_Tenants_English_Name" runat="server" Text='<%# Eval("Tenants_English_Name") %>'/>
+                                                            )</span>
                                                         <br />
                                                         <span style="font-size:10px"> <%#Eval("From_Whoo")%></span>
                                                     </p>
@@ -496,23 +499,10 @@
                     <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="#52a2da" Font-Bold="true" Font-Size="25px"></asp:Label></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <%--Profile--%>
-                    الحساب
-                </a>
-                  <a class="dropdown-item" href="#">
-                      <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                      <%--Settings--%>
-                      إعدادات الحساب 
-                  </a>
-                  <a class="dropdown-item" href="#">
-                      <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                      <%--Activity Log--%>سجل النشاطات
-                  </a>
+                
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                      <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">تسجيل الخروج</asp:LinkButton>
+                      <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Log Out</asp:LinkButton>
                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                       
                   </a>

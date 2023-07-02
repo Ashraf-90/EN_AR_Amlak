@@ -15,24 +15,6 @@ namespace Main_Real_estate.English.Main_Application
     {
 
         /// <summary>
-        /// lbl_titel_Unit_List control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Unit_List;
-
-        /// <summary>
-        /// lbl_titel_Unit_Status control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Unit_Status;
-
-        /// <summary>
         /// eeeee control.
         /// </summary>
         /// <remarks>

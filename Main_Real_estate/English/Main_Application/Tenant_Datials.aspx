@@ -12,7 +12,6 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <h1 class="h4 text-gray-900 mb-4" style="margin-left: 40%">
-                                        &nbsp;تفاصيل : 
                                         <asp:Label ID="lbl_Details_Tenant_Name" runat="server" Text=""></asp:Label>
 
                                     </h1>
@@ -144,7 +143,7 @@
                                             </div>
                                         </div><br />
 
-                                        <h4><asp:Label ID="Label11" runat="server" Text=" الملفات الشخصية للمستأجر"></asp:Label></h4>
+                                        <h4><asp:Label ID="lbl_Title_ATT" runat="server" Text=" الملفات الشخصية للمستأجر"></asp:Label></h4>
 
 
 
@@ -193,7 +192,7 @@
                                             </div>
                                             <div class="col-lg-1">
                                                 <asp:LinkButton Id="Delete_Tenant"  runat="server" CommandArgument='<%# Eval("Tenants_ID") %>'
-                                                OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete_Tenant_Click" >
+                                                OnClientClick="return confirm('Are you sure you want to delete?');" OnClick="Delete_Tenant_Click" >
                                                 <i class="fa fa-trash" style="font-size:25px;"></i></asp:LinkButton>
                                             </div>
 

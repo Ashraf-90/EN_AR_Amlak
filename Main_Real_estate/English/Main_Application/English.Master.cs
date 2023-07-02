@@ -44,8 +44,8 @@ namespace Main_Real_estate.English
         {
             // *********************************** جلب الإشعارات ضمن مربع الإشعارات ***************************************************************
             string get_Notification_Quari =
-            "SELECT TN.* , T.Tenants_Arabic_Name , " +
-            "(SELECT IF(TN.From_Who = '', TN.From_Who, CONCAT('تمت مشاهدته من قبل', TN.From_Who)))From_Whoo " +
+            "SELECT TN.* , T.Tenants_English_Name , T.Tenants_Arabic_Name ," +
+            "(SELECT IF(TN.From_Who = '', TN.From_Who, CONCAT('Seen By', TN.From_Who)))From_Whoo " +
             " FROM tenant_notification TN  " +
             "left join tenants T on (TN.Tenant_ID = T.Tenants_ID) ";
 
@@ -99,7 +99,32 @@ namespace Main_Real_estate.English
 
             Response.Redirect("complaint_report_request_List.aspx");
         }
+        protected void T_Notification_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var lbl_Request_Classification = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Request_Classification");
 
+                var lbl_Tenants_Arabic_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_Arabic_Name");
+                var lbl_Tenants_English_Name = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbl_Tenants_English_Name");
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_Tenants_Arabic_Name.Visible= false; lbl_Tenants_English_Name.Visible= true;
+
+                    if (lbl_Request_Classification.Text == "بلاغ") { lbl_Request_Classification.Text = "Report"; }
+                    else if (lbl_Request_Classification.Text == "شكوى") { lbl_Request_Classification.Text = "Complaint"; }
+                }
+                else
+                {
+                    lbl_Tenants_Arabic_Name.Visible = true; lbl_Tenants_English_Name.Visible = false;
+
+                    if (lbl_Request_Classification.Text == "Report") { lbl_Request_Classification.Text = "بلاغ"; }
+                    else if (lbl_Request_Classification.Text == "Complaint") { lbl_Request_Classification.Text = "شكوى"; }
+                }
+            }
+        }
 
 
 
@@ -320,5 +345,6 @@ namespace Main_Real_estate.English
             }
         }
 
+       
     }
 }
