@@ -26,10 +26,10 @@ namespace Main_Real_estate.English.Main_Application
         private readonly MySqlConnection _sqlCon = Helper.GetConnection();
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (Session["Langues"].ToString() == "1")
-                {
+            //try
+            //{
+                //if (Session["Langues"].ToString() == "1")
+                //{
                     if (!this.IsPostBack)
                     {
                         // Get OwnerShip Count
@@ -86,18 +86,18 @@ namespace Main_Real_estate.English.Main_Application
 
 
                     }
-                }
-                else
-                {
-                    Response.Redirect("DashBoard.aspx");
-                }
-            }
-            catch
-            {
-                Response.Redirect("Log_In.aspx");
-            }
-            
-                
+                //}
+                //else
+                //{
+                //    Response.Redirect("DashBoard.aspx");
+                //}
+            //}
+            //catch
+            //{
+            //    Response.Redirect("Start.aspx");
+            //}
+
+
         }
 
 

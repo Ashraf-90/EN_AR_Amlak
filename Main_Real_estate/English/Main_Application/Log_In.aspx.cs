@@ -16,12 +16,12 @@ namespace Main_Real_estate.English.Main_Application
         {
             if (e.Authenticated)
             {
-                Response.Redirect("~/English/Main_Application/DashBoard.aspx");
+                Response.Redirect("~/English/Main_Application/ENDashBoard.aspx");
             }
 
             if (ValidateUser(Login1.UserName, Login1.Password))
             {
-                Response.Redirect("~/English/Main_Application/DashBoard.aspx");
+                Response.Redirect("~/English/Main_Application/ENDashBoard.aspx");
             }
             else
             {

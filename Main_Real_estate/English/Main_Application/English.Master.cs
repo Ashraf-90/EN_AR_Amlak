@@ -219,7 +219,14 @@ namespace Main_Real_estate.English
         {
             if (Lan.SelectedValue == "1") {Session["Langues"] = "1"; }
             else{Session["Langues"] = "2";}
-            Response.Redirect(Request.RawUrl);
+
+
+            if(Request.UrlReferrer.ToString()== "https://amlakdev.almanara.qa/English/Main_Application/ENDashBoard")
+            { Response.Redirect("DashBoard.aspx"); }
+            else if (Request.UrlReferrer.ToString() == "https://amlakdev.almanara.qa/English/Main_Application/DashBoard")
+            { Response.Redirect("ENDashBoard.aspx"); }
+            else { Response.Redirect(Request.RawUrl); }
+            
         }
 
 

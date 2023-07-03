@@ -729,6 +729,7 @@
     <Content Include="English\Main_Application\Renew_Contract.aspx" />
     <Content Include="English\Main_Application\Rental_Disclosure.aspx" />
     <Content Include="English\Main_Application\Rental_Disclosure_test.aspx" />
+    <Content Include="English\Main_Application\Start.aspx" />
     <Content Include="English\Main_Application\Task_List.aspx" />
     <Content Include="English\Main_Application\Task_Segmentation.aspx" />
     <Content Include="English\Main_Application\Tenant_Datials.aspx" />
@@ -1655,6 +1656,13 @@
     </Compile>
     <Compile Include="English\Main_Application\R_E_S_LINE_CHART.cs" />
     <Compile Include="English\Main_Application\R_E_V_LINE_CHART.cs" />
+    <Compile Include="English\Main_Application\Start.aspx.cs">
+      <DependentUpon>Start.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="English\Main_Application\Start.aspx.designer.cs">
+      <DependentUpon>Start.aspx</DependentUpon>
+    </Compile>
     <Compile Include="English\Main_Application\Task_List.aspx.cs">
       <DependentUpon>Task_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
