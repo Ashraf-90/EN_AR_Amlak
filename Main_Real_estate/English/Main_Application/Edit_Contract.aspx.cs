@@ -93,8 +93,8 @@ namespace Main_Real_estate.English.Main_Application
 
 
 
-                    Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_DropDownList.SelectedValue + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                    Com_Rep_DropDownList.Items.Insert(0, "...............");
+                    //Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_DropDownList.SelectedValue + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                    //Com_Rep_DropDownList.Items.Insert(0, "...............");
                     Com_Rep_DropDownList.SelectedValue = get_Contract_Dt.Rows[0]["Com_rep"].ToString();
 
                     Contarct_tenant_Name.Text = Tenan_Name_DropDownList.SelectedItem.Text;
@@ -407,7 +407,7 @@ namespace Main_Real_estate.English.Main_Application
                         Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
                         Com_Rep_DropDownList.Items.Insert(0, "...............");
                     }
-                    //Com_Rep_DropDownList.SelectedValue = "1";
+                    Com_Rep_DropDownList.SelectedValue = "1";
                 }
             }
         }
@@ -705,9 +705,9 @@ namespace Main_Real_estate.English.Main_Application
         protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
         {
             if (txt_Cheque_NO.Text != "" & txt_Cheque_Date.Text != ""
-                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "إخترنوع الشيك ...."
-                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "إختراسم البنك ...." &&
-                Tenan_Name_DropDownList.SelectedItem.Text != "إختر اسم المستأجر ....")
+                && txt_Cheque_Value.Text != "" & Cheque_Type_DropDownList.SelectedItem.Text != "..............."
+                && Bank_Cheque_Name_DropDownList.SelectedItem.Text != "..............." &&
+                Tenan_Name_DropDownList.SelectedItem.Text != "...............")
             {
                 string contractId = Request.QueryString["Id"];
                 string Add_Cheque_In_Edit_Contract = "Insert Into cheques (" +
@@ -750,16 +750,7 @@ namespace Main_Real_estate.English.Main_Application
                     Add_Cheque_In_Edit_Contract_Cmd.ExecuteNonQuery();
                     _sqlCon.Close();
                 }
-                txt_Cheque_NO.Text = ""; txt_Cheque_Date.Text = ""; txt_Cheque_Value.Text = ""; txt_Cheque_Owner.Text = ""; txt_beneficiary_person.Text = "";
-
-                Helper.LoadDropDownList("SELECT * FROM cheque_type", _sqlCon, Cheque_Type_DropDownList, "Cheque_arabic_Type", "Cheque_Type_id");
-                Cheque_Type_DropDownList.Items.Insert(0, "إخترنوع الشيك ....");
-
-                Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Bank_Cheque_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
-                Bank_Cheque_Name_DropDownList.Items.Insert(0, "إختراسم البنك ....");
-
-                Helper.LoadDropDownList("SELECT * FROM tenants", _sqlCon, Tenan_Name_DropDownList, "Tenants_Arabic_Name", "Tenants_ID");
-                Tenan_Name_DropDownList.Items.Insert(0, "إختر اسم المستأجر ....");
+                   
                 BindGrid_Contract_Cheque_List();
             }
             else

@@ -434,6 +434,7 @@ namespace Main_Real_estate.English.Main_Application
                     lbl_Building_Name.Text = Dt.Rows[7]["EN"].ToString();
                     lbl_Units.Text = Dt.Rows[8]["EN"].ToString();
                     lbl_Prosees.Text = Dt.Rows[84]["EN"].ToString();
+                    lbl_date.Text= Dt.Rows[64]["EN"].ToString();
 
                 }
                 else
@@ -467,6 +468,7 @@ namespace Main_Real_estate.English.Main_Application
                     lbl_Building_Name.Text = Dt.Rows[7]["AR"].ToString();
                     lbl_Units.Text = Dt.Rows[8]["AR"].ToString();
                     lbl_Prosees.Text = Dt.Rows[84]["AR"].ToString();
+                    lbl_date.Text = Dt.Rows[64]["AR"].ToString();
 
                 }
             }

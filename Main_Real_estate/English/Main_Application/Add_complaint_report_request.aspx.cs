@@ -793,6 +793,7 @@ namespace Main_Real_estate.English.Main_Application
                     Achievement_Verification_RadioButtonList.Items.Add(new ListItem("On Hold", "1"));
                     Achievement_Verification_RadioButtonList.Items.Add(new ListItem("Done", "2"));
                     Achievement_Verification_RadioButtonList.Items.Add(new ListItem("Under The Procedure", "3"));
+                    Achievement_Verification_RadioButtonList.SelectedValue= "1";    
 
                     //Get Maintenance_Status_DropDownList 
                     Maintenance_Status_DropDownList.Items.Clear();

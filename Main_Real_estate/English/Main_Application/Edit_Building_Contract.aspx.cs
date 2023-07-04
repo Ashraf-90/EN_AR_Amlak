@@ -732,15 +732,31 @@ namespace Main_Real_estate.English.Main_Application
                     Com_Rep_Div.Visible = true;
                     //    //Fill Com_Rep_DropDownList
                     string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
-                    Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_Ar_Name", "Company_representative_Id");
+                        Com_Rep_DropDownList.Items.Insert(0, "...............");
+                    }
+                    else
+                    {
+                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                        Com_Rep_DropDownList.Items.Insert(0, "...............");
+                    }
                 }
                 else
                 {
                     string Tenan_Name_ID = Tenan_Name_DropDownList.SelectedValue;
                     Com_Rep_Div.Visible = false;
-                    Helper.LoadDropDownList("SELECT * FROM company_representative ", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
-                    Com_Rep_DropDownList.Items.Insert(0, "إختر اسم الممثل ....");
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_Ar_Name", "Company_representative_Id");
+                        Com_Rep_DropDownList.Items.Insert(0, "...............");
+                    }
+                    else
+                    {
+                        Helper.LoadDropDownList("SELECT * FROM company_representative where tenants_Tenants_ID ='" + Tenan_Name_ID + "'", _sqlCon, Com_Rep_DropDownList, "Com_rep_En_Name", "Company_representative_Id");
+                        Com_Rep_DropDownList.Items.Insert(0, "...............");
+                    }
                     Com_Rep_DropDownList.SelectedValue = "1";
                 }
             }

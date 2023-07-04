@@ -572,7 +572,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <%--------------------------------------------------------------------------------------------------%>
-                                                        <asp:CommandField ShowDeleteButton="true" ShowEditButton="True" ButtonType="Button" DeleteText="حذف" EditText="تعديل" CancelText="إلغاء" UpdateText="تحديث" ControlStyle-Width="70px" />
+                                                        <asp:CommandField ShowDeleteButton="true"  ButtonType="Image" DeleteImageUrl="~/English/Main_Application/Main_Image/Calander_Close.png" ControlStyle-Width="25px" ControlStyle-Height="25px" />
                                                     </Columns>
                                                     <RowStyle HorizontalAlign="Center" />
                                                 </asp:GridView>

@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin_Panel.master.cs" Inherits="Main_Real_estate.English.Master_Panal.Admin_Panel" %>
 <!DOCTYPE html>
-<html dir="rtl">
+<html runat="server" id="html" dir="rtl">
 <head runat="server">  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,9 +55,9 @@
     
 
 
-    <link href="../CSS/all-rtl.min.css" rel="stylesheet" />
-    <link href="../CSS/bootstrap-rtl.min.css" rel="stylesheet" />
-    <link href="../CSS/ruang-admin-rtl.min.css" rel="stylesheet" />
+    <link id="link1" runat="server"  href="../CSS/all-rtl.min.css" rel="stylesheet" />
+    <link id="link2" runat="server" href="../CSS/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link id="link3" runat="server" href="../CSS/ruang-admin-rtl.min.css" rel="stylesheet" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
     <title>Ammlak</title>
@@ -110,7 +110,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Owner_List.aspx">
                         <i class="fa fa-address-card" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">المُلّاك</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label3" runat="server" Font-Size="18px"/></span>
                     </a>
                 </li>
 
@@ -120,7 +120,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Zone_List.aspx">
                         <i class="fa fa-thumb-tack" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">المناطق</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label4" runat="server" Font-Size="18px"/></span>
                     </a>
                 </li>
 
@@ -137,12 +137,12 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#BuildingItem" aria-expanded="true"
                         aria-controls="BuildingItem">
                         <i class="fa fa-building" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">عناصر الأبنية</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label5" runat="server" Font-Size="18px"/></span>
                     </a>
                     <div id="BuildingItem" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="Building_Type_List.aspx">نوع البناء</a>
-                            <a class="collapse-item" href="Building_Condition_List.aspx">حالة البناء</a>
+                            <a class="collapse-item" href="Building_Type_List.aspx"><asp:Label ID="Label6" runat="server" /></a>
+                            <a class="collapse-item" href="Building_Condition_List.aspx"><asp:Label ID="Label7" runat="server" /></a>
                         </div>
                     </div>
                 </li>
@@ -152,13 +152,13 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#UnitItem" aria-expanded="true"
                         aria-controls="UnitItem">
                         <i class="fa fa-university" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">عناصر الوحدات</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label8" runat="server" Font-Size="18px"/></span>
                     </a>
                     <div id="UnitItem" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="Unit_Type_List.aspx">نوع الوحدة</a>
-                            <a class="collapse-item" href="Unit_Details_List.aspx">تفاصيل الوحدة</a>
-                            <a class="collapse-item" href="unit_Condition_List.aspx">حالة الوحدة</a>
+                            <a class="collapse-item" href="Unit_Type_List.aspx"><asp:Label ID="Label9" runat="server" /></a>
+                            <a class="collapse-item" href="Unit_Details_List.aspx"><asp:Label ID="Label10" runat="server" /></a>
+                            <a class="collapse-item" href="unit_Condition_List.aspx"><asp:Label ID="Label11" runat="server" /></a>
                         </div>
                     </div>
                 </li>
@@ -167,14 +167,14 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TenantUnit" aria-expanded="true"
                         aria-controls="TenantUnit">
                         <i class="fa fa-users" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">عناصر المستأجرين</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label12" runat="server" Font-Size="18px"/></span>
                     </a>
                     <div id="TenantUnit" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="Tenant_Type_List.aspx">أنواع المستأجرين</a>
-                            <a class="collapse-item" href="Company_rep_List.aspx" ">ممثلو الشركات</a>
-                            <a class="collapse-item" href="Main_Type_Evaluation_List.aspx" ">الأنواع الرئيسية لتقيم العملاء</a>
-                            <a class="collapse-item" href="Sub_Type_Evaluation_List.aspx" ">الأنواع الفرعية لتقيم العملاء</a>
+                            <a class="collapse-item" href="Tenant_Type_List.aspx"><asp:Label ID="Label13" runat="server" /></a>
+                            <a class="collapse-item" href="Company_rep_List.aspx" "><asp:Label ID="Label14" runat="server" /></a>
+                            <a class="collapse-item" href="Main_Type_Evaluation_List.aspx" "><asp:Label ID="Label15" runat="server" /></a>
+                            <a class="collapse-item" href="Sub_Type_Evaluation_List.aspx" "><asp:Label ID="Label16" runat="server" /></a>
                         </div>
                     </div>
                 </li>
@@ -183,15 +183,15 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ContractItem" aria-expanded="true"
                         aria-controls="ContractItem">
                         <i class="fas fa-file-contract" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">عناصر العقود</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label17" runat="server" Font-Size="18px"/></span>
                     </a>
                     <div id="ContractItem" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="Contract_Type_List.aspx">نوع العقد</a>
-                            <a class="collapse-item" href="Contract_Template_List.aspx">نموذج العقد</a>
+                            <a class="collapse-item" href="Contract_Type_List.aspx"><asp:Label ID="Label18" runat="server" /></a>
+                            <a class="collapse-item" href="Contract_Template_List.aspx"><asp:Label ID="Label19" runat="server" /></a>
                             <a style="display:none" class="collapse-item" href="Under_Contract_Type_List.aspx">بموجب عقد</a>
-                            <a class="collapse-item" href="payment_frequency_List.aspx">نوع الدفعات</a>
-                            <a class="collapse-item" href="payment_type_List.aspx">نوع الدفع</a>
+                            <a class="collapse-item" href="payment_frequency_List.aspx"><asp:Label ID="Label20" runat="server" /></a>
+                            <a class="collapse-item" href="payment_type_List.aspx"><asp:Label ID="Label21" runat="server" /></a>
                             
                         </div>
                     </div>
@@ -202,12 +202,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#MaintenanceItems" aria-expanded="true"
                    aria-controls="MaintenanceItems">
                     <i class="fa fa-wrench" style="font-size: 18px;"></i>
-                    <span style="font-size: 18px;">عناصر الصيانة</span>
+                    <span style="font-size: 18px;"><asp:Label ID="Label22" runat="server" Font-Size="18px"/></span>
                 </a>
                 <div id="MaintenanceItems" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Maintenance_Type_List.aspx">الأنواع الرئيسية للصيانة</a>
-                        <a class="collapse-item" href="Maintenance_SubType_List.aspx">الأنواع الفرعية للصيانة</a>
+                        <a class="collapse-item" href="Maintenance_Type_List.aspx"><asp:Label ID="Label23" runat="server" /></a>
+                        <a class="collapse-item" href="Maintenance_SubType_List.aspx"><asp:Label ID="Label24" runat="server" /></a>
                     </div>
                 </div>
             </li>
@@ -218,7 +218,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Requst_Source_List.aspx">
                         <i class="fa fa-commenting" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">مصادر الطلبات</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label25" runat="server" Font-Size="18px"/></span>
                     </a>
                 </li>
 
@@ -227,16 +227,16 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#AssetItems" aria-expanded="true"
                    aria-controls="AssetItems">
                     <i class="fa fa-cubes" style="font-size: 18px;"></i>
-                    <span style="font-size: 18px;">الجرد و المخازن</span>
+                    <span style="font-size: 18px;"><asp:Label ID="Label26" runat="server" Font-Size="15px"/></span>
                 </a>
                 <div id="AssetItems" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Asset_List.aspx">الأصول</a>
-                        <a class="collapse-item" href="Asset_Type_List.aspx">نوع الأصل</a>
-                        <a class="collapse-item" href="Asset_Condition_List.aspx">حالة الاصل</a>
-                        <a class="collapse-item" href="Asset_Location_List.aspx">مكان الاصل</a>
-                        <a class="collapse-item" href="Inventory_List.aspx">المخزون</a>
-                        <a class="collapse-item" href="contractor_List.aspx">المقاولين</a>
+                        <a class="collapse-item" href="Asset_List.aspx"><asp:Label ID="Label27" runat="server" /></a>
+                        <a class="collapse-item" href="Asset_Type_List.aspx"><asp:Label ID="Label28" runat="server" /></a>
+                        <a class="collapse-item" href="Asset_Condition_List.aspx"><asp:Label ID="Label29" runat="server" /></a>
+                        <a class="collapse-item" href="Asset_Location_List.aspx"><asp:Label ID="Label30" runat="server" /></a>
+                        <a class="collapse-item" href="Inventory_List.aspx"><asp:Label ID="Label31" runat="server" /></a>
+                        <a class="collapse-item" href="contractor_List.aspx"><asp:Label ID="Label32" runat="server" /></a>
                     </div>
                 </div>
             </li>
@@ -245,13 +245,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ChequeItems" aria-expanded="true"
                    aria-controls="ChequeItems">
                     <i class="fa fa-pencil" style="font-size: 18px;"></i>
-                    <span style="font-size: 18px;">عناصر الشيكات</span>
+                    <span style="font-size: 18px;"><asp:Label ID="Label33" runat="server" Font-Size="18px"/></span>
                 </a>
                 <div id="ChequeItems" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Cheque_Type_List.aspx">نوع الشيك</a>
-                        <a class="collapse-item" href="Bank_List.aspx">المصرف</a>
-                        <a class="collapse-item" href="transformation_Bank_List.aspx">مصارف الحولات</a>
+                        <a class="collapse-item" href="Cheque_Type_List.aspx"><asp:Label ID="Label34" runat="server" /></a>
+                        <a class="collapse-item" href="Bank_List.aspx"><asp:Label ID="Label35" runat="server" /></a>
+                        <a class="collapse-item" href="transformation_Bank_List.aspx"><asp:Label ID="Label36" runat="server" /></a>
                     </div>
                 </div>
             </li>
@@ -260,17 +260,17 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ListingItems" aria-expanded="true"
                    aria-controls="ListingItems">
                     <i class="fa fa-list-ul" style="font-size: 18px;"></i>
-                    <span style="font-size: 18px;">عناصر القوائم</span>
+                    <span style="font-size: 18px;"><asp:Label ID="Label37" runat="server" Font-Size="18px"/></span>
                 </a>
                 <div id="ListingItems" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Listing_Type_List.aspx">نوع القائمة</a>
-                        <a class="collapse-item" href="Employee_List.aspx">الموظفين</a>
-                        <a class="collapse-item" href="user_Account_List.aspx">حسابات المستخدمين</a>
-                        <a class="collapse-item" href="Roles_List.aspx">الصلاحيات</a>
-                        <a class="collapse-item" href="Department_List.aspx">الأقسام</a>
-                        <a class="collapse-item" href="Employee_Level_List.aspx">درجة الموظف</a>
-                        <a class="collapse-item" href="Task_Type.aspx">أنواع المهام</a>
+                        <a class="collapse-item" href="Listing_Type_List.aspx"><asp:Label ID="Label38" runat="server"  /></a>
+                        <a class="collapse-item" href="Employee_List.aspx"><asp:Label ID="Label39" runat="server" /></a>
+                        <a class="collapse-item" href="user_Account_List.aspx"><asp:Label ID="Label40" runat="server" /></a>
+                        <a class="collapse-item" href="Roles_List.aspx"><asp:Label ID="Label41" runat="server" /></a>
+                        <a class="collapse-item" href="Department_List.aspx"><asp:Label ID="Label42" runat="server" /></a>
+                        <a class="collapse-item" href="Employee_Level_List.aspx"><asp:Label ID="Label43" runat="server" /></a>
+                        <a class="collapse-item" href="Task_Type.aspx"><asp:Label ID="Label44" runat="server" /></a>
                     </div>
                 </div>
             </li>
@@ -289,7 +289,7 @@
 
 
 
-                <li class="nav-item">
+                <li class="nav-item" style="display:none">
                     <a class="nav-link" href="Website_Info.aspx">
                         <i class="fa fa-globe" style="font-size: 18px;"></i>
                         <%--<span style="font-size:18px;">Settings</span>--%>
@@ -304,7 +304,7 @@
                  <li class="nav-item" >
                     <a class="nav-link" href="../Main_Application/DashBoard.aspx">
                         <i class="fa fa-star" style="font-size: 18px;"></i>
-                        <span style="font-size: 18px;">تطبيق أملاك</span>
+                        <span style="font-size: 18px;"><asp:Label ID="Label45" runat="server" Font-Size="18px"/></span>
                     </a>
                 </li>
             </ul>
@@ -324,6 +324,16 @@
                                 <%--<asp:Label ID="Label2" runat="server" Text="Master Panel" Font-Size="40px"></asp:Label>--%>
                             </div>
                         </li>
+
+
+
+                        <li>
+                              <asp:Image ID="language_logo" runat="server" Width="30px" Height="30px"/>
+                              <asp:DropDownList runat="server" ID="Lan" Style="margin: 25px;" AutoPostBack="true" OnSelectedIndexChanged="Lan_SelectedIndexChanged">
+                                  <asp:ListItem Value="1" Text="English"></asp:ListItem>
+                                  <asp:ListItem Value="2" Text="عربي"></asp:ListItem>
+                              </asp:DropDownList>
+                          </li>
 
             <!-- My Profile Button ................................................................................ -->
           

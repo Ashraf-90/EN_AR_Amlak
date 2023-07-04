@@ -183,7 +183,7 @@
                         <%--------------------------------------------------------------------------------------------------------%>
                         <div class="row">
                             <div class="col-lg-5" style="border-style:solid;border-radius:5px;height: 140px;">
-                                <h4>الأولوية</h4>
+                                <h4>Priority</h4>
                                 <div class="row">
                                     <div class="col-lg-6">
                                 <div class="form-group">
