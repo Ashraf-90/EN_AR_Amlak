@@ -18,22 +18,12 @@
                           
                               <div class="form-group">
                                <asp:Label ID="lbl_En_Unit_Type_Name" runat="server" Text="نوع الوحدة بالانكليزية"></asp:Label>
-                                &nbsp;<%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_En_Unit_Type_Name" 
-                                EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف الإنكليزية" ForeColor="Red"
-                                ValidationExpression="[a-z A-Z]+"></asp:RegularExpressionValidator> --%> 
                                 <asp:TextBox ID="txt_En_Unit_Type_Name" runat="server" CssClass="form-control" ></asp:TextBox>
-                                <%--<asp:RequiredFieldValidator ID="reqFuild1" ControlToValidate="txt_En_Unit_Type_Name"  
-                                runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>--%>
                              </div>
 
                               <div class="form-group">
                                <asp:Label ID="lbl_Ar_Unit_Type_Name" runat="server" Text="نوع الوحدة بالعربية"></asp:Label>
-                              &nbsp;<%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txt_Ar_Unit_Type_Name" 
-                                EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
-                                ValidationExpression="[ا-ي أآى ة ئ ء]+"></asp:RegularExpressionValidator>--%>
                               <asp:TextBox ID="txt_Ar_Unit_Type_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                              <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txt_Ar_Unit_Type_Name"  
-                                runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>--%>
                              </div>
                       </div>
                 </div>

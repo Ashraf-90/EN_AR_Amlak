@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string unitConditionId = Request.QueryString["Id"];
                 DataTable getUnitConditionDt = new DataTable();
                 _sqlCon.Open();
@@ -29,7 +30,10 @@ namespace Main_Real_estate.English.Master_Panal
                     txt_En_Unit_Condition_Name.Text =
                         getUnitConditionDt.Rows[0]["Unit_English_Condition"].ToString();
                     txt_Ar_Unit_Condition_Name.Text = getUnitConditionDt.Rows[0]["Unit_Arabic_Condition"].ToString();
-                    lbl_Name_Of_Unit_Condition.Text = getUnitConditionDt.Rows[0]["Unit_Arabic_Condition"].ToString();
+
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Unit_Condition.Text = getUnitConditionDt.Rows[0]["Unit_English_Condition"].ToString(); }
+                    else { lbl_Name_Of_Unit_Condition.Text = getUnitConditionDt.Rows[0]["Unit_Arabic_Condition"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -60,6 +64,64 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_Unit_Condition.Text = "Edit successfully";
                 Response.Redirect("Unit_Condition_List.aspx");
             }
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_Unit_Condition.Text = Dt.Rows[88]["EN"].ToString();
+                    lbl_En_Unit_Condition_Name.Text = Dt.Rows[85]["EN"].ToString();
+                    lbl_Ar_Unit_Condition_Name.Text = Dt.Rows[86]["EN"].ToString();
+                    btn_Edit_Unit_Condition.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Unit_Condition_List.Text = Dt.Rows[87]["EN"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "English Only";
+                    RegularExpressionValidator2.ErrorMessage = "Arabic Only";
+
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_New_Unit_Condition.Text = Dt.Rows[88]["AR"].ToString();
+                    lbl_En_Unit_Condition_Name.Text = Dt.Rows[85]["AR"].ToString();
+                    lbl_Ar_Unit_Condition_Name.Text = Dt.Rows[86]["AR"].ToString();
+                    btn_Edit_Unit_Condition.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Unit_Condition_List.Text = Dt.Rows[87]["AR"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

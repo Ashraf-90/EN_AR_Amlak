@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <asp:Label ID="lbl_En_Owner_Name" runat="server" Text="اسم المالك بالانكليزية"></asp:Label>
-                                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_En_Owner_Name" 
+                                &nbsp;<asp:RegularExpressionValidator ID="En_Owner_Name_Reg_Exp_Val" runat="server" ControlToValidate="txt_En_Owner_Name" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف الإنكليزية" ForeColor="Red"
                                 ValidationExpression="[a-z A-Z0-9]+"></asp:RegularExpressionValidator>  
                                 <asp:TextBox ID="txt_En_Owner_Name" runat="server" CssClass="form-control" ></asp:TextBox>
@@ -26,7 +26,7 @@
                             
                             <div class="form-group">
                               <asp:Label ID="lbl_Ar_Owner_Name" runat="server" Text="اسم المالك بالعربية"></asp:Label>
-                              &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txt_Ar_Owner_Name" 
+                              &nbsp;<asp:RegularExpressionValidator ID="Ar_Owner_Name_Reg_Exp_Val" runat="server" ControlToValidate="txt_Ar_Owner_Name" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
                                 ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>
                               <asp:TextBox ID="txt_Ar_Owner_Name" runat="server" CssClass="form-control"></asp:TextBox>
@@ -34,7 +34,7 @@
 
                             <div class="form-group">
                               <asp:Label ID="lbl_Owner_tell" runat="server" Text="هاتف المالك"></asp:Label>&nbsp;
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_Owner_tell" 
+                                <asp:RegularExpressionValidator ID="Owner_tell_Reg_Exp_Val" runat="server" ControlToValidate="txt_Owner_tell" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="Red"
                                 ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                 <asp:TextBox ID="txt_Owner_tell" runat="server" CssClass="form-control"></asp:TextBox>
@@ -51,7 +51,7 @@
                             <div class="form-group">
                           <asp:Label ID="lbl_Owner_Salary" runat="server" Text="الرتب الشهري"></asp:Label>
                           <asp:TextBox ID="txt_Owner_Salary" runat="server" CssClass="form-control"></asp:TextBox> 
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txt_Owner_Salary" 
+                                <asp:RegularExpressionValidator ID="Salary_Reg_Exp_Val" runat="server" ControlToValidate="txt_Owner_Salary" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="Red"
                                 ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                         </div>
@@ -63,7 +63,7 @@
                  <div class="card-body">
                      <div class="form-group">
                         <asp:Label ID="lbl_Owner_Mobile" runat="server" Text="جوال المالك"></asp:Label>&nbsp;
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txt_Owner_Mobile" 
+                        <asp:RegularExpressionValidator ID="Mobile_Reg_Exp_Val" runat="server" ControlToValidate="txt_Owner_Mobile" 
                         EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="Red"
                         ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                         <asp:TextBox ID="txt_Owner_Mobile" runat="server" CssClass="form-control"></asp:TextBox>
@@ -71,7 +71,7 @@
 
                      <div class="form-group">
                         <asp:Label ID="lbl_Owner_Email" runat="server" Text="البريد الإلكتروني"></asp:Label>
-                        &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txt_Owner_Email" 
+                        &nbsp;<asp:RegularExpressionValidator ID="Email_Reg_Exp_Val" runat="server" ControlToValidate="txt_Owner_Email" 
                         EnableClientScript="True" ErrorMessage="بريد إلكتروني غير صالح" ForeColor="Red"
                         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>  
                         <asp:TextBox ID="txt_Owner_Email" runat="server" CssClass="form-control" ></asp:TextBox>

@@ -42,6 +42,6 @@
         <br />
         <asp:Button ID="btn_Add_Building_Type" runat="server" Text="إضافة نوع بناء" CssClass="btn btn" BackColor="#52a2da" ForeColor="White"  Width="248px" OnClick="btn_Add_Building_Type_Click"    />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btn_Back_To_Ownership_statu_List" runat="server" Text="العودة إلى قائمة أنواع الأبنية" ValidationGroup="x" CssClass="btn btn-light mb-1" OnClick="btn_Back_To_Ownership_statu_List_Click1" />
+            <asp:Button ID="btn_Back_To_Building_Type_List" runat="server" Text="العودة إلى قائمة أنواع الأبنية" ValidationGroup="x" CssClass="btn btn-light mb-1" OnClick="btn_Back_To_Ownership_statu_List_Click1" />
     </div>
 </asp:Content>

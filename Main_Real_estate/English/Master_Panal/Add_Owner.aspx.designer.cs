@@ -42,13 +42,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_En_Owner_Name;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// En_Owner_Name_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator En_Owner_Name_Reg_Exp_Val;
 
         /// <summary>
         /// txt_En_Owner_Name control.
@@ -69,13 +69,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Ar_Owner_Name;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
+        /// Ar_Owner_Name_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Ar_Owner_Name_Reg_Exp_Val;
 
         /// <summary>
         /// txt_Ar_Owner_Name control.
@@ -96,13 +96,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_tell;
 
         /// <summary>
-        /// RegularExpressionValidator3 control.
+        /// Owner_tell_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Owner_tell_Reg_Exp_Val;
 
         /// <summary>
         /// txt_Owner_tell control.
@@ -150,13 +150,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_Salary;
 
         /// <summary>
-        /// RegularExpressionValidator6 control.
+        /// Salary_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator6;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Salary_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_Mobile control.
@@ -168,13 +168,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_Mobile;
 
         /// <summary>
-        /// RegularExpressionValidator4 control.
+        /// Mobile_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Mobile_Reg_Exp_Val;
 
         /// <summary>
         /// txt_Owner_Mobile control.
@@ -195,13 +195,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_Email;
 
         /// <summary>
-        /// RegularExpressionValidator5 control.
+        /// Email_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator5;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Email_Reg_Exp_Val;
 
         /// <summary>
         /// txt_Owner_Email control.

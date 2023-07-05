@@ -42,13 +42,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.Label lbl_En_Zone_Name;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// En_Zone_Name_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator En_Zone_Name_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_En_Zone_Name control.
@@ -60,13 +60,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.TextBox txt_En_Zone_Name;
 
         /// <summary>
-        /// reqFuild1 control.
+        /// En_Zone_Name_reqFuild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFuild1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator En_Zone_Name_reqFuild;
 
         /// <summary>
         /// lbl_Ar_Zone_Name control.
@@ -78,13 +78,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.Label lbl_Ar_Zone_Name;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
+        /// Ar_Zone_Name_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Ar_Zone_Name_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Ar_Zone_Name control.
@@ -96,13 +96,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.TextBox txt_Ar_Zone_Name;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Ar_Zone_Name_reqFuild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Ar_Zone_Name_reqFuild;
 
         /// <summary>
         /// lbl_Zone_Number control.
@@ -114,13 +114,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.Label lbl_Zone_Number;
 
         /// <summary>
-        /// RegularExpressionValidator3 control.
+        /// Zone_Number_Reg_Exp_Vali control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Zone_Number_Reg_Exp_Vali;
 
         /// <summary>
         /// txt_Zone_Number control.
@@ -132,13 +132,13 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected global::System.Web.UI.WebControls.TextBox txt_Zone_Number;
 
         /// <summary>
-        /// reqFuild3 control.
+        /// Zone_Number_reqFuild control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFuild3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Zone_Number_reqFuild;
 
         /// <summary>
         /// btn_Add_Zone control.

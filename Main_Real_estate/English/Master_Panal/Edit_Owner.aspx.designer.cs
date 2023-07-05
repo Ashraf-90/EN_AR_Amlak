@@ -51,13 +51,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_En_Owner_Name;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// En_Owner_Name_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator En_Owner_Name_Reg_Exp_Val;
 
         /// <summary>
         /// txt_En_Owner_Name control.
@@ -87,15 +87,6 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Ar_Owner_Name;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-
-        /// <summary>
         /// txt_Ar_Owner_Name control.
         /// </summary>
         /// <remarks>
@@ -105,13 +96,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Ar_Owner_Name;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Ar_Owner_Name_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Ar_Owner_Name_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_tell control.
@@ -123,15 +114,6 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_tell;
 
         /// <summary>
-        /// RegularExpressionValidator3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
-
-        /// <summary>
         /// txt_Owner_tell control.
         /// </summary>
         /// <remarks>
@@ -141,13 +123,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_tell;
 
         /// <summary>
-        /// reqFuild3 control.
+        /// Owner_tell_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFuild3;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Owner_tell_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_Note control.
@@ -186,13 +168,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_Salary;
 
         /// <summary>
-        /// RegularExpressionValidator6 control.
+        /// Salary_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator6;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Salary_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_Mobile control.
@@ -204,15 +186,6 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_Mobile;
 
         /// <summary>
-        /// RegularExpressionValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
-
-        /// <summary>
         /// txt_Owner_Mobile control.
         /// </summary>
         /// <remarks>
@@ -222,13 +195,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_Mobile;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Mobile_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Mobile_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_Email control.
@@ -240,15 +213,6 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Owner_Email;
 
         /// <summary>
-        /// RegularExpressionValidator5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator5;
-
-        /// <summary>
         /// txt_Owner_Email control.
         /// </summary>
         /// <remarks>
@@ -258,13 +222,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_Email;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// Email_Reg_Exp_Val control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Email_Reg_Exp_Val;
 
         /// <summary>
         /// lbl_Owner_Website control.
@@ -285,13 +249,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Owner_Website;
 
         /// <summary>
-        /// Label8 control.
+        /// lbl_Owner_QID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lbl_Owner_QID;
 
         /// <summary>
         /// lbl_path control.

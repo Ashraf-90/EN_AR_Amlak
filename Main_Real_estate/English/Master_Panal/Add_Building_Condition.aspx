@@ -42,6 +42,6 @@
         <br />
         <asp:Button ID="btn_Add_Building_Condition" runat="server" Text="إضافة حالة بناء" CssClass="btn btn" Width="248px"  BackColor="#52a2da" ForeColor="White" OnClick="btn_Add_Building_Condition_Click"  />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btn_Back_To_Ownership_statu_List" runat="server" Text="العودة لقائمة حالات الأبنية" ValidationGroup="x" CssClass="btn btn-light mb-1" OnClick="btn_Back_To_Ownership_statu_List_Click"/>
+            <asp:Button ID="btn_Back_To_Building_Condition_List" runat="server" Text="العودة لقائمة حالات الأبنية" ValidationGroup="x" CssClass="btn btn-light mb-1" OnClick="btn_Back_To_Ownership_statu_List_Click"/>
     </div>
 </asp:Content>

@@ -114,12 +114,12 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Button btn_Add_Building_Condition;
 
         /// <summary>
-        /// btn_Back_To_Ownership_statu_List control.
+        /// btn_Back_To_Building_Condition_List control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Back_To_Ownership_statu_List;
+        protected global::System.Web.UI.WebControls.Button btn_Back_To_Building_Condition_List;
     }
 }

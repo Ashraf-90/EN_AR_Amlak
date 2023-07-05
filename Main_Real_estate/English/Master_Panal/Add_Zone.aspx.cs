@@ -1,6 +1,7 @@
 ﻿using Main_Real_estate.Utilities;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 
 namespace Main_Real_estate.English.Master_Panal.Owners_QID
 {
@@ -10,6 +11,7 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            language();
         }
 
         protected void btn_Back_To_Zone_List_Click(object sender, EventArgs e)
@@ -32,6 +34,68 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
                 _sqlCon.Close();
                 lbl_Success_Add_New_Zone.Text = "Added successfully";
             }
+        }
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Add_New_Zone.Text = Dt.Rows[58]["EN"].ToString();
+                    lbl_En_Zone_Name.Text = Dt.Rows[59]["EN"].ToString();
+                    lbl_Ar_Zone_Name.Text = Dt.Rows[60]["EN"].ToString();
+                    lbl_Zone_Number.Text = Dt.Rows[61]["EN"].ToString();
+                    btn_Add_Zone.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Back_To_Zone_List.Text = Dt.Rows[62]["EN"].ToString();
+
+
+                    En_Zone_Name_Reg_Exp_Vali.ErrorMessage = "Only English";
+                    Ar_Zone_Name_Reg_Exp_Vali.ErrorMessage = "Only Arabic";
+                    Zone_Number_Reg_Exp_Vali.ErrorMessage = "Only Numbers";
+
+
+                    En_Zone_Name_reqFuild.ErrorMessage = "* Required";
+                    Ar_Zone_Name_reqFuild.ErrorMessage = "* Required";
+                    Zone_Number_reqFuild.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    lbl_titel_Add_New_Zone.Text = Dt.Rows[58]["AR"].ToString();
+                    lbl_En_Zone_Name.Text = Dt.Rows[59]["AR"].ToString();
+                    lbl_Ar_Zone_Name.Text = Dt.Rows[60]["AR"].ToString();
+                    lbl_Zone_Number.Text = Dt.Rows[61]["AR"].ToString();
+                    btn_Add_Zone.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_Zone_List.Text = Dt.Rows[62]["AR"].ToString();
+
+
+                    En_Zone_Name_Reg_Exp_Vali.ErrorMessage = "إنكليزي فقط";
+                    Ar_Zone_Name_Reg_Exp_Vali.ErrorMessage = "عربي فقط";
+                    Zone_Number_Reg_Exp_Vali.ErrorMessage = "أرقام فقط";
+
+
+                    En_Zone_Name_reqFuild.ErrorMessage = "* مطلوب";
+                    Ar_Zone_Name_reqFuild.ErrorMessage = "* مطلوب";
+                    Zone_Number_reqFuild.ErrorMessage = "* مطلوب";
+                }
+            }
+            _sqlCon.Close();
+
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using Main_Real_estate.Utilities;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 
 namespace Main_Real_estate.English.Master_Panal.Owners_QID
 {
@@ -10,6 +11,7 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            language();
         }
 
         protected void btn_Add_Tenant_Type_Click(object sender, EventArgs e)
@@ -34,6 +36,64 @@ namespace Main_Real_estate.English.Master_Panal.Owners_QID
         protected void btn_Back_To_Tenant_Type_List_Click(object sender, EventArgs e)
         {
             Response.Redirect("Tenant_Type_List.aspx");
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Add_New_Tenant_Type.Text = Dt.Rows[89]["EN"].ToString();
+                    lbl_En_Tenant_Type_Name.Text = Dt.Rows[90]["EN"].ToString();
+                    lbl_Ar_Tenant_Type_Name.Text = Dt.Rows[91]["EN"].ToString();
+                    btn_Add_Tenant_Type.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Back_To_Tenant_Type_List.Text = Dt.Rows[92]["EN"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "English Only";
+                    RegularExpressionValidator2.ErrorMessage = "Arabic Only";
+
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Add_New_Tenant_Type.Text = Dt.Rows[89]["AR"].ToString();
+                    lbl_En_Tenant_Type_Name.Text = Dt.Rows[90]["AR"].ToString();
+                    lbl_Ar_Tenant_Type_Name.Text = Dt.Rows[91]["AR"].ToString();
+                    btn_Add_Tenant_Type.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_Tenant_Type_List.Text = Dt.Rows[92]["AR"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

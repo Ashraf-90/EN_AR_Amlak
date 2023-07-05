@@ -1,6 +1,7 @@
 ﻿using Main_Real_estate.Utilities;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 
 namespace Main_Real_estate.English.Master_Panal
 {
@@ -10,6 +11,7 @@ namespace Main_Real_estate.English.Master_Panal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            language();
         }
 
         protected void btn_Add_Building_Type_Click(object sender, EventArgs e)
@@ -34,6 +36,60 @@ namespace Main_Real_estate.English.Master_Panal
         protected void btn_Back_To_Ownership_statu_List_Click1(object sender, EventArgs e)
         {
             Response.Redirect("Building_Type_List.aspx");
+        }
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Add_New_Building_Type.Text = Dt.Rows[64]["EN"].ToString();
+                    lbl_En_Building_Type_Name.Text = Dt.Rows[65]["EN"].ToString();
+                    lbl_Ar_Building_Type_Name.Text = Dt.Rows[66]["EN"].ToString();
+                    btn_Add_Building_Type.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Back_To_Building_Type_List.Text = Dt.Rows[67]["EN"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    lbl_titel_Add_New_Building_Type.Text = Dt.Rows[64]["AR"].ToString();
+                    lbl_En_Building_Type_Name.Text = Dt.Rows[65]["AR"].ToString();
+                    lbl_Ar_Building_Type_Name.Text = Dt.Rows[66]["AR"].ToString();
+                    btn_Add_Building_Type.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_Building_Type_List.Text = Dt.Rows[67]["AR"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "فقط إنكليزي";
+                    RegularExpressionValidator2.ErrorMessage = "فقط عربي";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

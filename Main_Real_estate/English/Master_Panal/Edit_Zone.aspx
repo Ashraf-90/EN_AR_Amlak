@@ -20,31 +20,31 @@
                           
                               <div class="form-group">
                                <asp:Label ID="lbl_En_Zone_Name" runat="server" Text="إسم المنطفة بالإنكليزية"></asp:Label>
-                                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_En_Zone_Name" 
+                                &nbsp;<asp:RegularExpressionValidator ID="En_Zone_Name_Reg_Exp_Vali" runat="server" ControlToValidate="txt_En_Zone_Name" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف الإنكليزية" ForeColor="Red"
                                 ValidationExpression="[a-z A-Z0-9]+"></asp:RegularExpressionValidator>  
                                 <asp:TextBox ID="txt_En_Zone_Name" runat="server" CssClass="form-control" ></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="reqFuild1" ControlToValidate="txt_En_Zone_Name"  
+                                <asp:RequiredFieldValidator ID="En_Zone_Name_reqFuild" ControlToValidate="txt_En_Zone_Name"  
                                 runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
                              </div>
 
                               <div class="form-group">
                                <asp:Label ID="lbl_Ar_Zone_Name" runat="server" Text="إسم المنطقة بالعربية"></asp:Label>
-                              &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txt_Ar_Zone_Name" 
+                              &nbsp;<asp:RegularExpressionValidator ID="Ar_Zone_Name_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Ar_Zone_Name" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
                                 ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>
                               <asp:TextBox ID="txt_Ar_Zone_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txt_Ar_Zone_Name"  
+                              <asp:RequiredFieldValidator ID="Ar_Zone_Name_reqFuild" ControlToValidate="txt_Ar_Zone_Name"  
                                 runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
                              </div>
 
                               <div class="form-group">
                                <asp:Label ID="lbl_Zone_Number" runat="server" Text="رقم المنطقة"></asp:Label>&nbsp;
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_Zone_Number" 
+                                <asp:RegularExpressionValidator ID="Zone_Number_Reg_Exp_Vali" runat="server" ControlToValidate="txt_Zone_Number" 
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأرقام" ForeColor="Red"
                                 ValidationExpression="[0-9]+"></asp:RegularExpressionValidator>
                                 <asp:TextBox ID="txt_Zone_Number" runat="server" CssClass="form-control"></asp:TextBox>
-                              <asp:RequiredFieldValidator ID="reqFuild3" ControlToValidate="txt_Zone_Number"
+                              <asp:RequiredFieldValidator ID="Zone_Number_reqFuild" ControlToValidate="txt_Zone_Number"
                                runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
                              </div>
 
