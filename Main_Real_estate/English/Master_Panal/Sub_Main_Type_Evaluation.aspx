@@ -22,7 +22,7 @@
                                     <asp:DropDownList ID="main_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="main_Type_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="main_Type_Req_Field_Val" ControlToValidate="main_Type_DropDownList"
-                                        InitialValue="إختر النوع الرئيسي ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
 
 
@@ -44,7 +44,7 @@
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
                                 ValidationExpression="[ا-ي إ أ آ ى ة ئ ء ؤ 0-9 ]+"></asp:RegularExpressionValidator>
                               <asp:TextBox ID="txt_Ar_Sub_Type_Evaluation_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txt_Ar_Sub_Type_Evaluation_Name"  
+                              <asp:RequiredFieldValidator ID="reqFuild2" ControlToValidate="txt_Ar_Sub_Type_Evaluation_Name"  
                                 runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
                              </div>
 

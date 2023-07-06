@@ -190,8 +190,8 @@
                             <a class="collapse-item" href="Contract_Type_List.aspx"><asp:Label ID="Label18" runat="server" /></a>
                             <a class="collapse-item" href="Contract_Template_List.aspx"><asp:Label ID="Label19" runat="server" /></a>
                             <a style="display:none" class="collapse-item" href="Under_Contract_Type_List.aspx">بموجب عقد</a>
-                            <a class="collapse-item" href="payment_frequency_List.aspx"><asp:Label ID="Label20" runat="server" /></a>
-                            <a class="collapse-item" href="payment_type_List.aspx"><asp:Label ID="Label21" runat="server" /></a>
+                            <a class="collapse-item" href="payment_type_List.aspx"><asp:Label ID="Label20" runat="server" /></a>
+                            <%--<a class="collapse-item" href="payment_frequency_List.aspx"><asp:Label ID="Label21" runat="server" /></a>--%>
                             
                         </div>
                     </div>

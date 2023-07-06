@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace Main_Real_estate.English.Master_Panal
 {
@@ -12,9 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
-                Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty = 0",
-                    _sqlCon, Maintenance_Types_DropDownList, "Categoty_AR", "Categoty_Id");
-                Maintenance_Types_DropDownList.Items.Insert(0, "إختر نوع الصيانة ....");
+                language();
                 //*************************************************************************************************************************************
                 string MaintenanceSubtypesId = Request.QueryString["Id"];
                 DataTable getMaintenanceSubtypesDt = new DataTable();
@@ -33,7 +32,9 @@ namespace Main_Real_estate.English.Master_Panal
                     Maintenance_Types_DropDownList.SelectedValue = getMaintenanceSubtypesDt.Rows[0]["Main_Categoty"].ToString();
                     txt_En_Maintenance_Subtypes_Name.Text = getMaintenanceSubtypesDt.Rows[0]["Categoty_En"].ToString();
                     txt_Ar_Maintenance_Subtypes_Name.Text = getMaintenanceSubtypesDt.Rows[0]["Categoty_AR"].ToString();
-                    lbl_Name_Of_Maintenance_Subtypes.Text = getMaintenanceSubtypesDt.Rows[0]["Categoty_AR"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Maintenance_Subtypes.Text = getMaintenanceSubtypesDt.Rows[0]["Categoty_En"].ToString(); }
+                    else { lbl_Name_Of_Maintenance_Subtypes.Text = getMaintenanceSubtypesDt.Rows[0]["Categoty_AR"].ToString(); }
+                        
                 }
                 _sqlCon.Close();
             }
@@ -62,6 +63,67 @@ namespace Main_Real_estate.English.Master_Panal
         protected void btn_Back_To_Maintenance_Subtypes_List_Click(object sender, EventArgs e)
         {
             Response.Redirect("Maintenance_SubType_List.aspx");
+        }
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty = 0", _sqlCon, Maintenance_Types_DropDownList,
+                    "Categoty_EN", "Categoty_Id");
+                    Maintenance_Types_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_titel_Edit_New_Maintenance_Subtypes.Text = Dt.Rows[136]["EN"].ToString();
+                    lbl_Maintenance_Types.Text = Dt.Rows[133]["EN"].ToString();
+                    lbl_En_Maintenance_Subtypes_Name.Text = Dt.Rows[129]["EN"].ToString();
+                    lbl_Ar_Maintenance_Subtypes_Name.Text = Dt.Rows[130]["EN"].ToString();
+                    btn_Edit_Maintenance_Subtypes.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Maintenance_Subtypes_List.Text = Dt.Rows[135]["EN"].ToString();
+
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    reqFuild2.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    Helper.LoadDropDownList("SELECT * FROM maintenance_categoty where Main_Categoty = 0", _sqlCon, Maintenance_Types_DropDownList,
+                    "Categoty_AR", "Categoty_Id");
+                    Maintenance_Types_DropDownList.Items.Insert(0, "...............");
+
+
+                    lbl_titel_Edit_New_Maintenance_Subtypes.Text = Dt.Rows[136]["AR"].ToString();
+                    lbl_Maintenance_Types.Text = Dt.Rows[133]["AR"].ToString();
+                    lbl_En_Maintenance_Subtypes_Name.Text = Dt.Rows[129]["AR"].ToString();
+                    lbl_Ar_Maintenance_Subtypes_Name.Text = Dt.Rows[130]["AR"].ToString();
+                    btn_Edit_Maintenance_Subtypes.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Maintenance_Subtypes_List.Text = Dt.Rows[135]["AR"].ToString();
+
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    reqFuild2.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

@@ -15,13 +15,13 @@ namespace Main_Real_estate.English.Master_Panal
     {
 
         /// <summary>
-        /// lbl_titel_ُEdit_Com_rep control.
+        /// lbl_TTitel_Edit_Com_rep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_ُEdit_Com_rep;
+        protected global::System.Web.UI.WebControls.Label lbl_TTitel_Edit_Com_rep;
 
         /// <summary>
         /// Rep_Name control.

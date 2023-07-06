@@ -15,20 +15,7 @@ namespace Main_Real_estate.English.Master_Panal
             
             if (!this.IsPostBack)
             {
-                _sqlCon.Open();
-                //Fill Tenant Name DropDownList
-                using (MySqlCommand getTenantNameDropDownListCmd = new MySqlCommand("SELECT * FROM main_type_evaluation"))
-                {
-                    getTenantNameDropDownListCmd.CommandType = CommandType.Text;
-                    getTenantNameDropDownListCmd.Connection = _sqlCon;
-                    
-                    main_Type_DropDownList.DataSource = getTenantNameDropDownListCmd.ExecuteReader();
-                    main_Type_DropDownList.DataTextField = "Ar_Name";
-                    main_Type_DropDownList.DataValueField = "Main_Type_Evaluation_Id";
-                    main_Type_DropDownList.DataBind();
-                    main_Type_DropDownList.Items.Insert(0, "إختر النوع الرئيسي ....");
-                }
-                _sqlCon.Close();
+                language();
 
 
                 _sqlCon.Open();
@@ -137,6 +124,102 @@ namespace Main_Real_estate.English.Master_Panal
             }
 
             _sqlCon.Close();
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill Tenant Name DropDownList
+                    using (MySqlCommand getTenantNameDropDownListCmd = new MySqlCommand("SELECT * FROM main_type_evaluation"))
+                    {
+                        getTenantNameDropDownListCmd.CommandType = CommandType.Text;
+                        getTenantNameDropDownListCmd.Connection = _sqlCon;
+                        main_Type_DropDownList.DataSource = getTenantNameDropDownListCmd.ExecuteReader();
+                        main_Type_DropDownList.DataTextField = "En_Name";
+                        main_Type_DropDownList.DataValueField = "Main_Type_Evaluation_Id";
+                        main_Type_DropDownList.DataBind();
+                        main_Type_DropDownList.Items.Insert(0, "...............");
+                    }
+
+
+
+                    lbl_titel_Edit_New_Sub_Type_Evaluation.Text = Dt.Rows[112]["EN"].ToString();
+                    lbl_main_Type.Text = Dt.Rows[107]["EN"].ToString();
+                    lbl_En_Sub_Type_Evaluation_Name.Text = Dt.Rows[103]["EN"].ToString();
+                    lbl_Ar_Sub_Type_Evaluation_Name.Text = Dt.Rows[104]["EN"].ToString();
+                    lbl_Sub_Type_Evaluation_Number.Text = Dt.Rows[109]["EN"].ToString();
+                    lbl_Sub_Type_Evaluation_Number_Persenteg.Text = Dt.Rows[110]["EN"].ToString();
+                    btn_Edit_Sub_Type_Evaluation.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Sub_Type_Evaluation_List.Text = Dt.Rows[111]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "English Only";
+                    RegularExpressionValidator2.ErrorMessage = "Arabic Only";
+                    RegularExpressionValidator3.ErrorMessage = "Olny Numbers";
+
+
+                    main_Type_Req_Field_Val.ErrorMessage = "* Required";
+                    reqFuild1.ErrorMessage = "* Required";
+                    reqFuild2.ErrorMessage = "* Required";
+                    reqFuild3.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    //Fill Tenant Name DropDownList
+                    using (MySqlCommand getTenantNameDropDownListCmd = new MySqlCommand("SELECT * FROM main_type_evaluation"))
+                    {
+                        getTenantNameDropDownListCmd.CommandType = CommandType.Text;
+                        getTenantNameDropDownListCmd.Connection = _sqlCon;
+                        _sqlCon.Open();
+                        main_Type_DropDownList.DataSource = getTenantNameDropDownListCmd.ExecuteReader();
+                        main_Type_DropDownList.DataTextField = "Ar_Name";
+                        main_Type_DropDownList.DataValueField = "Main_Type_Evaluation_Id";
+                        main_Type_DropDownList.DataBind();
+                        main_Type_DropDownList.Items.Insert(0, "...............");
+                        _sqlCon.Close();
+                    }
+
+                    lbl_titel_Edit_New_Sub_Type_Evaluation.Text = Dt.Rows[112]["AR"].ToString();
+                    lbl_main_Type.Text = Dt.Rows[107]["AR"].ToString();
+                    lbl_En_Sub_Type_Evaluation_Name.Text = Dt.Rows[103]["AR"].ToString();
+                    lbl_Ar_Sub_Type_Evaluation_Name.Text = Dt.Rows[104]["AR"].ToString();
+                    lbl_Sub_Type_Evaluation_Number.Text = Dt.Rows[109]["AR"].ToString();
+                    lbl_Sub_Type_Evaluation_Number_Persenteg.Text = Dt.Rows[110]["AR"].ToString();
+                    btn_Edit_Sub_Type_Evaluation.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Sub_Type_Evaluation_List.Text = Dt.Rows[111]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+                    RegularExpressionValidator3.ErrorMessage = "أرقام فقط";
+
+                    main_Type_Req_Field_Val.ErrorMessage = "* مطلوب";
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    reqFuild2.ErrorMessage = "* مطلوب";
+                    reqFuild3.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

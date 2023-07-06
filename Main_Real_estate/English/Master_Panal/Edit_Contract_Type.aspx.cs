@@ -13,6 +13,9 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
+
+
                 string contractTypeId = Request.QueryString["Id"];
                 DataTable getContractTypeDt = new DataTable();
                 _sqlCon.Open();
@@ -28,7 +31,9 @@ namespace Main_Real_estate.English.Master_Panal
                 {
                     txt_En_Contract_Type_Name.Text = getContractTypeDt.Rows[0]["Contract_English_Type"].ToString();
                     txt_Ar_Contract_Type_Name.Text = getContractTypeDt.Rows[0]["Contract_Arabic_Type"].ToString();
-                    lbl_Name_Of_Contract_Type.Text = getContractTypeDt.Rows[0]["Contract_English_Type"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Contract_Type.Text = getContractTypeDt.Rows[0]["Contract_English_Type"].ToString(); }
+                    else { lbl_Name_Of_Contract_Type.Text = getContractTypeDt.Rows[0]["Contract_Arabic_Type"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -59,6 +64,64 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_Contract_Type.Text = "Edit successfully";
                 Response.Redirect("Contract_Type_List.aspx");
             }
+        }
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_Contract_Type.Text = Dt.Rows[117]["EN"].ToString();
+                    lbl_En_Contract_Type_Name.Text = Dt.Rows[114]["EN"].ToString();
+                    lbl_Ar_Contract_Type_Name.Text = Dt.Rows[115]["EN"].ToString();
+                    btn_Edit_Contract_Type.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Contract_Type_List.Text = Dt.Rows[116]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "English Only";
+                    RegularExpressionValidator2.ErrorMessage = "Arabic Only";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    reqFuild2.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    lbl_titel_Edit_New_Contract_Type.Text = Dt.Rows[117]["AR"].ToString();
+                    lbl_En_Contract_Type_Name.Text = Dt.Rows[114]["AR"].ToString();
+                    lbl_Ar_Contract_Type_Name.Text = Dt.Rows[115]["AR"].ToString();
+                    btn_Edit_Contract_Type.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_Contract_Type_List.Text = Dt.Rows[116]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "English Only";
+                    RegularExpressionValidator2.ErrorMessage = "Arabic Only";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    reqFuild2.ErrorMessage = "* Required";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

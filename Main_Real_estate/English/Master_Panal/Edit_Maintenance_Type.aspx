@@ -32,7 +32,7 @@
                                 EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
                                 ValidationExpression="[ا-ي أآى ة ئ ء]+"></asp:RegularExpressionValidator>
                               <asp:TextBox ID="txt_Ar_Maintenance_Type_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txt_Ar_Maintenance_Type_Name"  
+                              <asp:RequiredFieldValidator ID="reqFuild2" ControlToValidate="txt_Ar_Maintenance_Type_Name"  
                                 runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
                              </div>
                       </div>

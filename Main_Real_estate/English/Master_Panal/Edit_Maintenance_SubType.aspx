@@ -28,7 +28,7 @@
                                     <asp:DropDownList ID="Maintenance_Types_DropDownList" runat="server" CssClass="form-control"  >
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Maintenance_Types_RequiredFieldValidator" ControlToValidate="Maintenance_Types_DropDownList"
-                                        InitialValue="إختر نوع الصيانة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <asp:Label ID="lbl_Ar_Maintenance_Subtypes_Name" runat="server" Text="نوع  بالعربية"></asp:Label>
                             
                             <asp:TextBox ID="txt_Ar_Maintenance_Subtypes_Name" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txt_Ar_Maintenance_Subtypes_Name"
+                            <asp:RequiredFieldValidator ID="reqFuild2" ControlToValidate="txt_Ar_Maintenance_Subtypes_Name"
                                 runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>

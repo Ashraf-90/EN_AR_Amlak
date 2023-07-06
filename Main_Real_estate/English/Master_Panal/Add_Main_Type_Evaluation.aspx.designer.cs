@@ -96,13 +96,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Ar_Main_Type_Evaluation_Name;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// reqFuild2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFuild2;
 
         /// <summary>
         /// lbl_Main_Type_Evaluation_Number control.

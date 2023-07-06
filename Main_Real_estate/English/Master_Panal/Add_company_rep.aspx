@@ -53,7 +53,7 @@
                                     <asp:DropDownList ID="Nationality_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="Nationality_DropDownList"
-                                        InitialValue="إختر جنسية الممثل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                                     <asp:DropDownList ID="Company_Name_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Company_Name_RequiredFieldValidator" ControlToValidate="Company_Name_DropDownList"
-                                        InitialValue="إختر الشركة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>

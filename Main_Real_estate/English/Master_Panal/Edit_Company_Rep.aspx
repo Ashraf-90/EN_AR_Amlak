@@ -11,7 +11,7 @@
         <!----------------------------------------------------------------------------------------------------------->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
-                <asp:Label ID="lbl_titel_ُEdit_Com_rep" runat="server" Text="تعديل الممثل :"></asp:Label>
+                <asp:Label ID="lbl_TTitel_Edit_Com_rep" runat="server" Text="تعديل الممثل :"></asp:Label>
                 &nbsp;
                 <asp:Label ID="Rep_Name" runat="server" ></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -53,7 +53,7 @@
                                     <asp:DropDownList ID="Nationality_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="nationality_RequiredFieldValidator" ControlToValidate="Nationality_DropDownList"
-                                        InitialValue="إختر جنسية الممثل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                                     <asp:DropDownList ID="Company_Name_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Company_Name_RequiredFieldValidator" ControlToValidate="Company_Name_DropDownList"
-                                        InitialValue="إختر الشركة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
