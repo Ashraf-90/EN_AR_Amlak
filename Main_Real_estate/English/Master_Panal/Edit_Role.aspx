@@ -51,42 +51,42 @@
                             <ContentTemplate>
                                 <table>
                                     <tr style="color:#52a2da;">
-                                        <th>القسم</th>
-                                        <th>عرض</th>
-                                        <th>إضافة</th>
-                                        <th>تعديل</th>
-                                        <th>حذف</th>
+                                        <th><asp:Label ID="lbl_Module" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Read" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Add" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Edit" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Delete" runat="server"/></th>
                                     </tr>
                                     <tr>
-                                        <th>الملكيات</th>
+                                        <th><asp:Label ID="lbl_Properties" runat="server"/></th>
                                         <td><asp:CheckBox ID="Pro_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="Pro_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Pro_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Pro_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>التعاقد</th>
+                                        <th><asp:Label ID="lbl_Contracting" runat="server"/></th>
                                         <td><asp:CheckBox ID="Con_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="Con_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Con_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Con_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>شؤون العملاء</th>
+                                        <th><asp:Label ID="lbl_Customer_Affairs" runat="server"/></th>
                                         <td><asp:CheckBox ID="Te_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="Te_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Te_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Te_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>إدارة الأصول</th>
+                                        <th><asp:Label ID="lbl_Asset_Management" runat="server"/></th>
                                         <td><asp:CheckBox ID="AsM_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="AsM_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="AsM_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="AsM_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>التحصيل</th>
+                                        <th><asp:Label ID="lbl_Collection" runat="server"/></th>
                                         <td><asp:CheckBox ID="Col_R_Cb" runat="server" /></td>
                                         <td></td>
                                         <td><asp:CheckBox ID="Col_E_Cb" runat="server" Visible="false" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
@@ -124,42 +124,42 @@
                             <ContentTemplate>
                                 <table>
                                     <tr style="color:#52a2da;">
-                                        <th>القسم</th>
-                                        <th>عرض</th>
-                                        <th>إضافة</th>
-                                        <th>تعديل</th>
-                                        <th>حذف</th>
+                                        <th><asp:Label ID="lbl_Module2" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Read2" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Add2" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Edit2" runat="server"/></th>
+                                        <th><asp:Label ID="lbl_Delete2" runat="server"/></th>
                                     </tr>
                                     <tr>
-                                        <th>البيانات المالية</th>
+                                        <th><asp:Label ID="lbl_Financial_Statements" runat="server"/></th>
                                         <td><asp:CheckBox ID="FS_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="FS_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="FS_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="FS_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>التسويق</th>
+                                        <th><asp:Label ID="lbl_Marketing" runat="server"/></th>
                                         <td><asp:CheckBox ID="Mar_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="Mar_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Mar_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="Mar_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>إدارة المهام</th>
+                                        <th><asp:Label ID="lbl_Task_Management" runat="server"/></th>
                                         <td><asp:CheckBox ID="TM_R_Cb" runat="server" /></td>
                                         <td><asp:CheckBox ID="TM_A_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="TM_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td><asp:CheckBox ID="TM_D_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                     </tr>
                                     <tr>
-                                        <th>كشف النواقص</th>
+                                        <th><asp:Label ID="lbl_Missing_Fields" runat="server"/></th>
                                         <td><asp:CheckBox ID="MF_R_Cb" runat="server" /></td>
                                         <td></td>
                                         <td><asp:CheckBox ID="MF_E_Cb" runat="server" AutoPostBack="true" OnCheckedChanged="Pro_A_Cb_CheckedChanged"/></td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <th>إعدادات النظام</th>
+                                        <th><asp:Label ID="lbl_Settings" runat="server"/></th>
                                         <td><asp:CheckBox ID="SS_R_Cb" runat="server" /></td>
                                         <td></td>
                                         <td></td>

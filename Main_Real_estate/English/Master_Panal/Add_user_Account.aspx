@@ -28,7 +28,7 @@
                                             <asp:Label ID="lbl_Employee" runat="server" Text=" الموظف"></asp:Label>
                                             <asp:DropDownList ID="Employe_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Employe_DropDownList_SelectedIndexChanged"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="Employe_Req_Val" ValidationGroup="user_Account" ControlToValidate="Employe_DropDownList"
-                                                InitialValue="إختر الموظف ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                                InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                             <asp:Label ID="Photo_FileName" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="Photo_FilePath" runat="server" Visible="false"></asp:Label>
                                         </div>
@@ -86,7 +86,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Confirm_Password" runat="server" Text="تأكيد كلمة السر"></asp:Label>
                                     <asp:TextBox ID="txt_Confirm_Password" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:CompareValidator runat="server" ControlToCompare="txt_Password" ValidationGroup="user_Account" ControlToValidate="txt_Confirm_Password"
+                                    <asp:CompareValidator ID="PassCOm" runat="server" ControlToCompare="txt_Password" ValidationGroup="user_Account" ControlToValidate="txt_Confirm_Password"
                                         ErrorMessage="كلمة السر غير مطابقة" ForeColor="Red" Display="Dynamic"></asp:CompareValidator>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                     <asp:Label ID="lbl_Rull" runat="server" Text="الصلاحيات"></asp:Label>
                                     <asp:DropDownList ID="Role_DropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="user_Account" ControlToValidate="Role_DropDownList"
-                                        InitialValue="إختر الصلاحية ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="#fc544b"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>

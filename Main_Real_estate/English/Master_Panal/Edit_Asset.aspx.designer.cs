@@ -564,6 +564,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_purchase_Date;
 
         /// <summary>
+        /// Date_Regular1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Date_Regular1;
+
+        /// <summary>
         /// txt_purchase_Date control.
         /// </summary>
         /// <remarks>
@@ -735,6 +744,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label lbl_Start_Date;
 
         /// <summary>
+        /// Date_Regular2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Date_Regular2;
+
+        /// <summary>
         /// txt_Start_Date control.
         /// </summary>
         /// <remarks>
@@ -796,6 +814,15 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_End_Date;
+
+        /// <summary>
+        /// Date_Regular3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Date_Regular3;
 
         /// <summary>
         /// txt_End_Date control.

@@ -87,6 +87,60 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// lbl_Module control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Module;
+
+        /// <summary>
+        /// lbl_Read control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Read;
+
+        /// <summary>
+        /// lbl_Add control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Add;
+
+        /// <summary>
+        /// lbl_Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Edit;
+
+        /// <summary>
+        /// lbl_Delete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Delete;
+
+        /// <summary>
+        /// lbl_Properties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Properties;
+
+        /// <summary>
         /// Pro_R_Cb control.
         /// </summary>
         /// <remarks>
@@ -121,6 +175,15 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox Pro_D_Cb;
+
+        /// <summary>
+        /// lbl_Contracting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Contracting;
 
         /// <summary>
         /// Con_R_Cb control.
@@ -159,6 +222,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.CheckBox Con_D_Cb;
 
         /// <summary>
+        /// lbl_Customer_Affairs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Customer_Affairs;
+
+        /// <summary>
         /// Te_R_Cb control.
         /// </summary>
         /// <remarks>
@@ -193,6 +265,15 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox Te_D_Cb;
+
+        /// <summary>
+        /// lbl_Asset_Management control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Asset_Management;
 
         /// <summary>
         /// AsM_R_Cb control.
@@ -231,6 +312,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.CheckBox AsM_D_Cb;
 
         /// <summary>
+        /// lbl_Collection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Collection;
+
+        /// <summary>
         /// Col_R_Cb control.
         /// </summary>
         /// <remarks>
@@ -256,6 +346,60 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
+        /// lbl_Module2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Module2;
+
+        /// <summary>
+        /// lbl_Read2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Read2;
+
+        /// <summary>
+        /// lbl_Add2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Add2;
+
+        /// <summary>
+        /// lbl_Edit2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Edit2;
+
+        /// <summary>
+        /// lbl_Delete2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Delete2;
+
+        /// <summary>
+        /// lbl_Financial_Statements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Financial_Statements;
 
         /// <summary>
         /// FS_R_Cb control.
@@ -294,6 +438,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.CheckBox FS_D_Cb;
 
         /// <summary>
+        /// lbl_Marketing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Marketing;
+
+        /// <summary>
         /// Mar_R_Cb control.
         /// </summary>
         /// <remarks>
@@ -328,6 +481,15 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox Mar_D_Cb;
+
+        /// <summary>
+        /// lbl_Task_Management control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Task_Management;
 
         /// <summary>
         /// TM_R_Cb control.
@@ -366,6 +528,15 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.CheckBox TM_D_Cb;
 
         /// <summary>
+        /// lbl_Missing_Fields control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Missing_Fields;
+
+        /// <summary>
         /// MF_R_Cb control.
         /// </summary>
         /// <remarks>
@@ -382,6 +553,15 @@ namespace Main_Real_estate.English.Master_Panal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox MF_E_Cb;
+
+        /// <summary>
+        /// lbl_Settings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Settings;
 
         /// <summary>
         /// SS_R_Cb control.

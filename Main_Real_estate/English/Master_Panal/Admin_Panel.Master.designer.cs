@@ -375,15 +375,6 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.Label Label37;
 
         /// <summary>
-        /// Label38 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label38;
-
-        /// <summary>
         /// Label39 control.
         /// </summary>
         /// <remarks>

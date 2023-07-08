@@ -13,6 +13,8 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+
+                language();
                 string employeeLevelId = Request.QueryString["Id"];
                 DataTable getEmployeeLevelDt = new DataTable();
                 _sqlCon.Open();
@@ -29,7 +31,11 @@ namespace Main_Real_estate.English.Master_Panal
                     txt_En_Employee_Level_Name.Text =
                         getEmployeeLevelDt.Rows[0]["Employee_English_Level"].ToString();
                     txt_Ar_Employee_Level_Name.Text = getEmployeeLevelDt.Rows[0]["Employee_Arabic_Level"].ToString();
-                    lbl_Name_Of_Employee_Level.Text = getEmployeeLevelDt.Rows[0]["Employee_Arabic_Level"].ToString();
+
+
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Employee_Level.Text = getEmployeeLevelDt.Rows[0]["Employee_English_Level"].ToString(); }
+                    else { lbl_Name_Of_Employee_Level.Text = getEmployeeLevelDt.Rows[0]["Employee_Arabic_Level"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -60,6 +66,62 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_Employee_Level.Text = "Edit successfully";
                 Response.Redirect("Employee_Level_List.aspx");
             }
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_Employee_Level.Text = Dt.Rows[260]["EN"].ToString();
+                    lbl_En_Employee_Level_Name.Text = Dt.Rows[257]["EN"].ToString();
+                    lbl_Ar_Employee_Level_Name.Text = Dt.Rows[258]["EN"].ToString();
+                    btn_Edit_Employee_Level.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Employee_Level_List.Text = Dt.Rows[259]["EN"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    lbl_titel_Edit_New_Employee_Level.Text = Dt.Rows[260]["AR"].ToString();
+                    lbl_En_Employee_Level_Name.Text = Dt.Rows[257]["AR"].ToString();
+                    lbl_Ar_Employee_Level_Name.Text = Dt.Rows[258]["AR"].ToString();
+                    btn_Edit_Employee_Level.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Employee_Level_List.Text = Dt.Rows[259]["AR"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "فقط إنكليزي";
+                    RegularExpressionValidator2.ErrorMessage = "فقط عربي";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

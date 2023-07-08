@@ -1,7 +1,9 @@
 ﻿using Main_Real_estate.Utilities;
 using MySql.Data.MySqlClient;
 using System;
+using System.Data;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace Main_Real_estate.English.Master_Panal
 {
@@ -10,7 +12,7 @@ namespace Main_Real_estate.English.Master_Panal
         private readonly MySqlConnection _sqlCon = Helper.GetConnection();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            language();
         }
 
         protected void btn_Add_contractor_Click(object sender, EventArgs e)
@@ -51,6 +53,62 @@ namespace Main_Real_estate.English.Master_Panal
         protected void btn_Back_To_contractor_List_Click(object sender, EventArgs e)
         {
             Response.Redirect("contractor_List.aspx");
+        }
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Add_New_contractor.Text = Dt.Rows[193]["EN"].ToString();
+                    lbl_En_contractor_Name.Text = Dt.Rows[194]["EN"].ToString();
+                    lbl_Ar_contractor_Name.Text = Dt.Rows[195]["EN"].ToString();
+                    lbl_contractor_tell.Text = Dt.Rows[196]["EN"].ToString();
+                    lbl_Company_Name.Text = Dt.Rows[197]["EN"].ToString();
+                    lbl_Company_Address.Text = Dt.Rows[198]["EN"].ToString();
+                    btn_Add_contractor.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Back_To_contractor_List.Text = Dt.Rows[199]["EN"].ToString();
+
+                    En_contractor_Name_RegularExpressionValidator.ErrorMessage = "Only English";
+                    Ar_contractor_Name_RegularExpressionValidator.ErrorMessage = "Only Arabic";
+                    contractor_tell_RegularExpressionValidator.ErrorMessage = "Only Numbers";
+
+                }
+                else
+                {
+                    lbl_titel_Add_New_contractor.Text = Dt.Rows[193]["AR"].ToString();
+                    lbl_En_contractor_Name.Text = Dt.Rows[194]["AR"].ToString();
+                    lbl_Ar_contractor_Name.Text = Dt.Rows[195]["AR"].ToString();
+                    lbl_contractor_tell.Text = Dt.Rows[196]["AR"].ToString();
+                    lbl_Company_Name.Text = Dt.Rows[197]["AR"].ToString();
+                    lbl_Company_Address.Text = Dt.Rows[198]["AR"].ToString();
+                    btn_Add_contractor.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_contractor_List.Text = Dt.Rows[199]["AR"].ToString();
+
+                    En_contractor_Name_RegularExpressionValidator.ErrorMessage = "أنكليزي فقط";
+                    Ar_contractor_Name_RegularExpressionValidator.ErrorMessage = "عربي فقط";
+                    contractor_tell_RegularExpressionValidator.ErrorMessage = "أرقام فقط";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

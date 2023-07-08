@@ -13,9 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
-                //Fill storekeeper_DropDownList
-                Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, storekeeper_DropDownList, "Employee_Arabic_name", "Employee_Id");
-                storekeeper_DropDownList.Items.Insert(0, "إختر أمين المخزن  ....");
+                language();
 
 
                 string inventoryId = Request.QueryString["Id"];
@@ -33,7 +31,9 @@ namespace Main_Real_estate.English.Master_Panal
                     txt_Ar_Inventory_Name.Text = getInventoryDt.Rows[0]["Inventory_arabic_name"].ToString();
                     txt_Inventory_Location.Text = getInventoryDt.Rows[0]["Inventory_Location"].ToString();
                     storekeeper_DropDownList.SelectedValue = getInventoryDt.Rows[0]["employee_Employee_Id"].ToString();
-                    lbl_titel_Name_Edit_Inventory.Text = getInventoryDt.Rows[0]["Inventory_arabic_name"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_titel_Name_Edit_Inventory.Text = getInventoryDt.Rows[0]["Inventory_English_name"].ToString(); }
+                    else { lbl_titel_Name_Edit_Inventory.Text = getInventoryDt.Rows[0]["Inventory_arabic_name"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -68,6 +68,81 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_Inventory.Text = "تم التعديل بنجاح";
                 Response.Redirect("Inventory_List.aspx");
             }
+        }
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    //Fill storekeeper_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, storekeeper_DropDownList, "Employee_English_name", "Employee_Id");
+                    storekeeper_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_titel_Edit_Inventory.Text = Dt.Rows[192]["EN"].ToString();
+                    lbl_En_Inventory_Name.Text = Dt.Rows[187]["EN"].ToString();
+                    lbl_Ar_Inventory_Name.Text = Dt.Rows[188]["EN"].ToString();
+                    lbl_Inventory_Location.Text = Dt.Rows[189]["EN"].ToString();
+                    lbl_storekeeper.Text = Dt.Rows[190]["EN"].ToString();
+                    btn_Add_Inventory.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Inventory_List.Text = Dt.Rows[191]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+                    storekeeper_RequiredFieldValidator.ErrorMessage = "* Required";
+                    reqFuild3.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    //Fill storekeeper_DropDownList
+                    Helper.LoadDropDownList("SELECT * FROM employee", _sqlCon, storekeeper_DropDownList, "Employee_Arabic_name", "Employee_Id");
+                    storekeeper_DropDownList.Items.Insert(0, "...............");
+
+                    lbl_titel_Edit_Inventory.Text = Dt.Rows[192]["AR"].ToString();
+                    lbl_En_Inventory_Name.Text = Dt.Rows[187]["AR"].ToString();
+                    lbl_Ar_Inventory_Name.Text = Dt.Rows[188]["AR"].ToString();
+                    lbl_Inventory_Location.Text = Dt.Rows[189]["AR"].ToString();
+                    lbl_storekeeper.Text = Dt.Rows[190]["AR"].ToString();
+                    btn_Add_Inventory.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Inventory_List.Text = Dt.Rows[191]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+                    storekeeper_RequiredFieldValidator.ErrorMessage = "* مطلوب";
+                    reqFuild3.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

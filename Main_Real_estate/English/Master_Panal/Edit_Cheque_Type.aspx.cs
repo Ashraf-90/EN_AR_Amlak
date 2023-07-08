@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string chequeTypeId = Request.QueryString["Id"];
                 DataTable getChequeTypeDt = new DataTable();
                 _sqlCon.Open();
@@ -28,7 +29,10 @@ namespace Main_Real_estate.English.Master_Panal
                 {
                     txt_En_cheque_Type_Name.Text = getChequeTypeDt.Rows[0]["cheque_English_Type"].ToString();
                     txt_Ar_cheque_Type_Name.Text = getChequeTypeDt.Rows[0]["cheque_Arabic_Type"].ToString();
-                    lbl_Name_Of_cheque_Type.Text = getChequeTypeDt.Rows[0]["cheque_Arabic_Type"].ToString();
+
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_cheque_Type.Text = getChequeTypeDt.Rows[0]["cheque_English_Type"].ToString(); }
+                    else { lbl_Name_Of_cheque_Type.Text = getChequeTypeDt.Rows[0]["cheque_Arabic_Type"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -57,6 +61,58 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_cheque_Type.Text = "Edit successfully";
                 Response.Redirect("cheque_Type_List.aspx");
             }
+        }
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_cheque_Type.Text = Dt.Rows[205]["EN"].ToString();
+                    lbl_En_cheque_Type_Name.Text = Dt.Rows[202]["EN"].ToString();
+                    lbl_Ar_cheque_Type_Name.Text = Dt.Rows[203]["EN"].ToString();
+                    btn_Edit_cheque_Type.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_cheque_Type_List.Text = Dt.Rows[204]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_New_cheque_Type.Text = Dt.Rows[205]["AR"].ToString();
+                    lbl_En_cheque_Type_Name.Text = Dt.Rows[202]["AR"].ToString();
+                    lbl_Ar_cheque_Type_Name.Text = Dt.Rows[203]["AR"].ToString();
+                    btn_Edit_cheque_Type.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_cheque_Type_List.Text = Dt.Rows[204]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "أنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

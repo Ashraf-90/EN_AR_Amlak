@@ -94,7 +94,7 @@ namespace Main_Real_estate.English.Master_Panal
                 Label35.Text = Dt.Rows[32]["EN"].ToString();
                 Label36.Text = Dt.Rows[33]["EN"].ToString();
                 Label37.Text = Dt.Rows[34]["EN"].ToString();
-                Label38.Text = Dt.Rows[43]["EN"].ToString();
+                //Label38.Text = Dt.Rows[43]["EN"].ToString();
                 Label39.Text = Dt.Rows[35]["EN"].ToString();
                 Label40.Text = Dt.Rows[36]["EN"].ToString();
                 Label41.Text = Dt.Rows[37]["EN"].ToString();
@@ -149,7 +149,7 @@ namespace Main_Real_estate.English.Master_Panal
                 Label35.Text = Dt.Rows[32]["AR"].ToString();
                 Label36.Text = Dt.Rows[33]["AR"].ToString();
                 Label37.Text = Dt.Rows[34]["AR"].ToString();
-                Label38.Text = Dt.Rows[43]["AR"].ToString();
+                //Label38.Text = Dt.Rows[43]["AR"].ToString();
                 Label39.Text = Dt.Rows[35]["AR"].ToString();
                 Label40.Text = Dt.Rows[36]["AR"].ToString();
                 Label41.Text = Dt.Rows[37]["AR"].ToString();

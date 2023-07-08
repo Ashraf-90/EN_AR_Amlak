@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string assetTypeId = Request.QueryString["Id"];
                 DataTable getAssetTypeDt = new DataTable();
                 _sqlCon.Open();
@@ -28,7 +29,9 @@ namespace Main_Real_estate.English.Master_Panal
                 {
                     txt_En_Asset_Type_Name.Text = getAssetTypeDt.Rows[0]["Asset_English_Type"].ToString();
                     txt_Ar_Asset_Type_Name.Text = getAssetTypeDt.Rows[0]["Asset_Arabic_Type"].ToString();
-                    lbl_Name_Of_Asset_Type.Text = getAssetTypeDt.Rows[0]["Asset_Arabic_Type"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Asset_Type.Text = getAssetTypeDt.Rows[0]["Asset_English_Type"].ToString(); }
+                    else { lbl_Name_Of_Asset_Type.Text = getAssetTypeDt.Rows[0]["Asset_Arabic_Type"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -57,6 +60,61 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_Asset_Type.Text = "Edit successfully";
                 Response.Redirect("Asset_Type_List.aspx");
             }
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_Asset_Type.Text = Dt.Rows[175]["EN"].ToString();
+                    lbl_En_Asset_Type_Name.Text = Dt.Rows[172]["EN"].ToString();
+                    lbl_Ar_Asset_Type_Name.Text = Dt.Rows[173]["EN"].ToString();
+                    btn_Edit_Asset_Type.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Asset_Type_List.Text = Dt.Rows[174]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_New_Asset_Type.Text = Dt.Rows[175]["AR"].ToString();
+                    lbl_En_Asset_Type_Name.Text = Dt.Rows[172]["AR"].ToString();
+                    lbl_Ar_Asset_Type_Name.Text = Dt.Rows[173]["AR"].ToString();
+                    btn_Edit_Asset_Type.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Asset_Type_List.Text = Dt.Rows[174]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

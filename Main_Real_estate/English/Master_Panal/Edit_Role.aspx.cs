@@ -25,6 +25,8 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
+
                 string ID = Request.QueryString["Id"];
                 DataTable Dt = new DataTable();
                 _sqlCon.Open();
@@ -193,6 +195,105 @@ namespace Main_Real_estate.English.Master_Panal
             if (Mar_A_Cb.Checked == true || Mar_E_Cb.Checked == true || Mar_D_Cb.Checked == true) { Mar_R_Cb.Checked = true; }
             if (TM_A_Cb.Checked == true || TM_E_Cb.Checked == true || TM_D_Cb.Checked == true) { TM_R_Cb.Checked = true; }
             if (MF_E_Cb.Checked == true) { MF_R_Cb.Checked = true; }
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_Role.Text = Dt.Rows[250]["EN"].ToString();
+                    lbl_Role_Name.Text = Dt.Rows[233]["EN"].ToString();
+                    btn_Edit_Role.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back.Text = Dt.Rows[249]["EN"].ToString();
+
+
+                    lbl_Module.Text = Dt.Rows[234]["EN"].ToString();
+                    lbl_Read.Text = Dt.Rows[235]["EN"].ToString();
+                    lbl_Add.Text = Dt.Rows[236]["EN"].ToString();
+                    lbl_Edit.Text = Dt.Rows[237]["EN"].ToString();
+                    lbl_Delete.Text = Dt.Rows[238]["EN"].ToString();
+                    lbl_Module2.Text = Dt.Rows[234]["EN"].ToString();
+                    lbl_Read2.Text = Dt.Rows[235]["EN"].ToString();
+                    lbl_Add2.Text = Dt.Rows[236]["EN"].ToString();
+                    lbl_Edit2.Text = Dt.Rows[237]["EN"].ToString();
+                    lbl_Delete2.Text = Dt.Rows[238]["EN"].ToString();
+
+
+
+
+                    lbl_Properties.Text = Dt.Rows[239]["EN"].ToString();
+                    lbl_Contracting.Text = Dt.Rows[240]["EN"].ToString();
+                    lbl_Customer_Affairs.Text = Dt.Rows[241]["EN"].ToString();
+                    lbl_Asset_Management.Text = Dt.Rows[242]["EN"].ToString();
+                    lbl_Collection.Text = Dt.Rows[243]["EN"].ToString();
+                    lbl_Financial_Statements.Text = Dt.Rows[244]["EN"].ToString();
+                    lbl_Marketing.Text = Dt.Rows[245]["EN"].ToString();
+                    lbl_Task_Management.Text = Dt.Rows[246]["EN"].ToString();
+                    lbl_Missing_Fields.Text = Dt.Rows[247]["EN"].ToString();
+                    lbl_Settings.Text = Dt.Rows[248]["EN"].ToString();
+
+
+                    Role_Name_Req_Val.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_Role.Text = Dt.Rows[250]["AR"].ToString();
+                    lbl_Role_Name.Text = Dt.Rows[233]["AR"].ToString();
+                    btn_Edit_Role.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back.Text = Dt.Rows[249]["AR"].ToString();
+
+
+                    lbl_Module.Text = Dt.Rows[234]["AR"].ToString();
+                    lbl_Read.Text = Dt.Rows[235]["AR"].ToString();
+                    lbl_Add.Text = Dt.Rows[236]["AR"].ToString();
+                    lbl_Edit.Text = Dt.Rows[237]["AR"].ToString();
+                    lbl_Delete.Text = Dt.Rows[238]["AR"].ToString();
+                    lbl_Module2.Text = Dt.Rows[234]["AR"].ToString();
+                    lbl_Read2.Text = Dt.Rows[235]["AR"].ToString();
+                    lbl_Add2.Text = Dt.Rows[236]["AR"].ToString();
+                    lbl_Edit2.Text = Dt.Rows[237]["AR"].ToString();
+                    lbl_Delete2.Text = Dt.Rows[238]["AR"].ToString();
+
+
+
+
+                    lbl_Properties.Text = Dt.Rows[239]["AR"].ToString();
+                    lbl_Contracting.Text = Dt.Rows[240]["AR"].ToString();
+                    lbl_Customer_Affairs.Text = Dt.Rows[241]["AR"].ToString();
+                    lbl_Asset_Management.Text = Dt.Rows[242]["AR"].ToString();
+                    lbl_Collection.Text = Dt.Rows[243]["AR"].ToString();
+                    lbl_Financial_Statements.Text = Dt.Rows[244]["AR"].ToString();
+                    lbl_Marketing.Text = Dt.Rows[245]["AR"].ToString();
+                    lbl_Task_Management.Text = Dt.Rows[246]["AR"].ToString();
+                    lbl_Missing_Fields.Text = Dt.Rows[247]["AR"].ToString();
+                    lbl_Settings.Text = Dt.Rows[248]["AR"].ToString();
+
+
+                    Role_Name_Req_Val.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

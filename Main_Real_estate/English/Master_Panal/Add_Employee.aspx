@@ -68,9 +68,6 @@
                  <div class="card-body">
                     <div class="form-group">
                                 <asp:Label ID="lbl_Employee_Designation" runat="server" Text="تعيين الموظف"></asp:Label>
-                                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txt_Employee_Designation" 
-                                EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
-                                ValidationExpression="[ا-ي أآى ة ئ ء]+"></asp:RegularExpressionValidator>  
                                 <asp:TextBox ID="txt_Employee_Designation" runat="server" CssClass="form-control" ></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txt_Employee_Designation"  
                                 runat="server" ErrorMessage="* حقل مطلوب !!!"  ForeColor="Red"></asp:RequiredFieldValidator>
@@ -81,7 +78,7 @@
                                 <asp:DropDownList ID="Employee_Department_DropDownList" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="Ownership_Status_RequiredFieldValidator" ControlToValidate="Employee_Department_DropDownList"
-                                InitialValue="إختر القسم ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group">
@@ -89,7 +86,7 @@
                                 <asp:DropDownList ID="Employee_Level_DropDownList" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="Employee_Level_DropDownList"
-                                InitialValue="إختر الدرجة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                      <div class="form-group">

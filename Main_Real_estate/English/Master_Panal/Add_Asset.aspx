@@ -25,13 +25,13 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Ownership_Building_Unit" runat="server" Text="ملكية / بناء / وحدة / مخزن"></asp:Label>
                                     <asp:DropDownList ID="Ownership_Building_Unit_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Ownership_Building_Unit_DropDownList_SelectedIndexChanged">
-                                        <asp:ListItem Value="1" Text="ملكية"></asp:ListItem>
+                                       <%-- <asp:ListItem Value="1" Text="ملكية"></asp:ListItem>
                                         <asp:ListItem Value="2" Text="بناء"></asp:ListItem>
                                         <asp:ListItem Value="3" Text="وحدة"></asp:ListItem>
-                                        <asp:ListItem Value="4" Text="مخزن"></asp:ListItem>
+                                        <asp:ListItem Value="4" Text="مخزن"></asp:ListItem>--%>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Building_Unit_RequiredFieldValidator" ControlToValidate="Ownership_Building_Unit_DropDownList"
-                                        InitialValue="إختر ملكية / بناء / وحدة  ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -41,7 +41,7 @@
                                     <asp:DropDownList ID="Inventory_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Inventory_RequiredFieldValidator" ControlToValidate="Inventory_DropDownList"
-                                        InitialValue="إختر اسم المخزن  ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                     <asp:DropDownList ID="Asset_Type_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Asset_Type_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Asset_Type_RequiredFieldValidator" ControlToValidate="Asset_Type_DropDownList"
-                                        InitialValue="أختر النوع الأساسي للأصل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -62,7 +62,7 @@
                                     <asp:DropDownList ID="Asset_SubType_DropDownList" runat="server" CssClass="form-control" Enabled="false">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Asset_SubType_RequiredFieldValidator" ControlToValidate="Asset_SubType_DropDownList"
-                                        InitialValue="أختر النوع الفرعي للأصل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -71,7 +71,7 @@
                                     <asp:DropDownList ID="Asset_Condition_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Asset_Condition_RequiredFieldValidator" ControlToValidate="Asset_Condition_DropDownList"
-                                        InitialValue="أختر حالة الاصل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             
@@ -85,7 +85,7 @@
                                     <asp:DropDownList ID="Ownership_Name_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="Ownership_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Ownership_Name_RequiredFieldValidator" ControlToValidate="Ownership_Name_DropDownList"
-                                        InitialValue="إختر اسم الملكية ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                     <asp:DropDownList ID="Building_Name_DropDownList" runat="server" CssClass="form-control" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="Building_Name_DropDownList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Building_Name_RequiredFieldValidator" ControlToValidate="Building_Name_DropDownList"
-                                        InitialValue="إختر اسم البناء ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <asp:DropDownList ID="Units_DropDownList" runat="server" CssClass="form-control" Enabled="false">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="Units_DropDownList"
-                                        InitialValue="إختر الوحدة ...." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
+                                        InitialValue="..............." runat="server" ValidationGroup="Contract_RequiredField" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red">
                                     </asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                     <asp:DropDownList ID="Asset_Location_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Asset_Location_RequiredFieldValidator" ControlToValidate="Asset_Location_DropDownList"
-                                        InitialValue="إختر مكان الأصل ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -125,11 +125,11 @@
                                 <div class="form-group">
                                     <asp:Label ID="lbl_How_To_Get" runat="server" Text="طريقة التملك "></asp:Label>
                                     <asp:DropDownList ID="How_To_Get_DropDownList" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="How_To_Get_DropDownList_SelectedIndexChanged">
-                                        <asp:ListItem Value="1" Text="ضمن مشروع"></asp:ListItem>
-                                        <asp:ListItem Value="2" Text="شراء"></asp:ListItem>
+                                        <%--<asp:ListItem Value="1" Text="ضمن مشروع"></asp:ListItem>
+                                        <asp:ListItem Value="2" Text="شراء"></asp:ListItem>--%>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="How_To_Get_RequiredFieldValidator" ControlToValidate="How_To_Get_DropDownList"
-                                        InitialValue="أختر طريقة التملك ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -160,7 +160,7 @@
                                     <asp:DropDownList ID="Asset_Vendor_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="Asset_Vendor_RequiredFieldValidator" ControlToValidate="Asset_Vendor_DropDownList"
-                                        InitialValue="إختر الموّرد  ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -211,7 +211,7 @@
                                         <ContentTemplate>
                                             <asp:Label ID="lbl_purchase_Date" runat="server" Text="تاريخ شراء الأصل"></asp:Label>&nbsp;
 
-                                            <asp:RegularExpressionValidator runat="server" ControlToValidate="txt_purchase_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                            <asp:RegularExpressionValidator ID="Date_Regular1" runat="server" ControlToValidate="txt_purchase_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
                                             ErrorMessage="يجب أن يكون التاريخ بالنمط:  dd/MM/yyyy" ValidationGroup="Asst_RequiredField"  ForeColor="Red"/>
 
                                             <asp:TextBox ID="txt_purchase_Date" runat="server" CssClass="form-control"></asp:TextBox>
@@ -286,7 +286,7 @@
                                 <ContentTemplate>
                                     <asp:Label ID="lbl_Start_Date" runat="server" Text="تاريخ بدء الضمان"></asp:Label>&nbsp;
 
-                                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txt_Start_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                    <asp:RegularExpressionValidator ID="Date_Regular2" runat="server" ControlToValidate="txt_Start_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
                                             ErrorMessage="يجب أن يكون التاريخ بالنمط:  dd/MM/yyyy" ValidationGroup="Asst_RequiredField"  ForeColor="Red"/>
 
                                         <asp:TextBox ID="txt_Start_Date" runat="server" CssClass="form-control"></asp:TextBox>
@@ -317,7 +317,7 @@
                                 <ContentTemplate>
                                     <asp:Label ID="lbl_End_Date" runat="server" Text="تاريخ إنتهاء الضمان"></asp:Label>&nbsp;
 
-                                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txt_End_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                    <asp:RegularExpressionValidator ID="Date_Regular3" runat="server" ControlToValidate="txt_End_Date" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
                                             ErrorMessage="يجب أن يكون التاريخ بالنمط:  dd/MM/yyyy" ValidationGroup="Asst_RequiredField"  ForeColor="Red"/>
 
 

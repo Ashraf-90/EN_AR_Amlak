@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string bankId = Request.QueryString["Id"];
                 DataTable getBankDt = new DataTable();
                 _sqlCon.Open();
@@ -27,7 +28,9 @@ namespace Main_Real_estate.English.Master_Panal
                 {
                     txt_En_Bank_Name.Text = getBankDt.Rows[0]["Bank_English_name"].ToString();
                     txt_Ar_Bank_Name.Text = getBankDt.Rows[0]["Bank_arabic_name"].ToString();
-                    lbl_titel_Name_Edit_Bank.Text = getBankDt.Rows[0]["Bank_arabic_name"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_titel_Name_Edit_Bank.Text = getBankDt.Rows[0]["Bank_English_name"].ToString(); }
+                    else { lbl_titel_Name_Edit_Bank.Text = getBankDt.Rows[0]["Bank_arabic_name"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -56,6 +59,60 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_Bank.Text = "Edit successfully";
                 Response.Redirect("Bank_List.aspx");
             }
+        }
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_Bank.Text = Dt.Rows[210]["EN"].ToString();
+                    lbl_En_Bank_Name.Text = Dt.Rows[207]["EN"].ToString();
+                    lbl_Ar_Bank_Name.Text = Dt.Rows[208]["EN"].ToString();
+                    btn_Add_Bank.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Bank_List.Text = Dt.Rows[209]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_Bank.Text = Dt.Rows[210]["AR"].ToString();
+                    lbl_En_Bank_Name.Text = Dt.Rows[207]["AR"].ToString();
+                    lbl_Ar_Bank_Name.Text = Dt.Rows[208]["AR"].ToString();
+                    btn_Add_Bank.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Bank_List.Text = Dt.Rows[209]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "أنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

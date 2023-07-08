@@ -49,9 +49,6 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Inventory_Location" runat="server" Text="مكان المخزن"></asp:Label>&nbsp;
-                                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_Ar_Inventory_Name"
-                                        EnableClientScript="True" ErrorMessage="!!! يُسمح فقط بالأحرف العربية" ForeColor="Red"
-                                        ValidationExpression="[ا-ي أآى ة ئ ء]+"></asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txt_Inventory_Location" runat="server" CssClass="form-control"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="reqFuild3" ControlToValidate="txt_Inventory_Location"
                                         runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -63,7 +60,7 @@
                                     <asp:DropDownList ID="storekeeper_DropDownList" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="storekeeper_RequiredFieldValidator" ControlToValidate="storekeeper_DropDownList"
-                                        InitialValue="إختر أمين المخزن  ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>

@@ -82,7 +82,7 @@
                                 <asp:DropDownList ID="Employee_Department_DropDownList" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="Ownership_Status_RequiredFieldValidator" ControlToValidate="Employee_Department_DropDownList"
-                                InitialValue="إختر القسم ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group">
@@ -90,7 +90,7 @@
                                 <asp:DropDownList ID="Employee_Level_DropDownList" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="Employee_Level_DropDownList"
-                                InitialValue="إختر الدرجة ...." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                                InitialValue="..............." runat="server" ErrorMessage="* حقل مطلوب !!!" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
 
                       <div class="form-group">

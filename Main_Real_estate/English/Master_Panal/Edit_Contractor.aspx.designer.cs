@@ -141,13 +141,13 @@ namespace Main_Real_estate.English.Master_Panal
         protected global::System.Web.UI.WebControls.TextBox txt_Company_Name;
 
         /// <summary>
-        /// lbl_Company_Editress control.
+        /// lbl_Company_Address control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Company_Editress;
+        protected global::System.Web.UI.WebControls.Label lbl_Company_Address;
 
         /// <summary>
         /// txt_Company_Editress control.

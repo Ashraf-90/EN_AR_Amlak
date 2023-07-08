@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string assetConditionId = Request.QueryString["Id"];
                 DataTable getAssetConditionDt = new DataTable();
                 _sqlCon.Open();
@@ -26,12 +27,11 @@ namespace Main_Real_estate.English.Master_Panal
                 getAssetConditionDa.Fill(getAssetConditionDt);
                 if (getAssetConditionDt.Rows.Count > 0)
                 {
-                    txt_En_Asset_Condition_Name.Text =
-                        getAssetConditionDt.Rows[0]["Asset_English_Condition"].ToString();
-                    txt_Ar_Asset_Condition_Name.Text =
-                        getAssetConditionDt.Rows[0]["Asset_Arabic_Condition"].ToString();
-                    lbl_Name_Of_Asset_Condition.Text =
-                        getAssetConditionDt.Rows[0]["Asset_Arabic_Condition"].ToString();
+                    txt_En_Asset_Condition_Name.Text =getAssetConditionDt.Rows[0]["Asset_English_Condition"].ToString();
+                    txt_Ar_Asset_Condition_Name.Text = getAssetConditionDt.Rows[0]["Asset_Arabic_Condition"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_Name_Of_Asset_Condition.Text = getAssetConditionDt.Rows[0]["Asset_English_Condition"].ToString(); }
+                    else { lbl_Name_Of_Asset_Condition.Text = getAssetConditionDt.Rows[0]["Asset_Arabic_Condition"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -62,6 +62,65 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_New_Asset_Condition.Text = "Edit successfully";
                 Response.Redirect("Asset_Condition_List.aspx");
             }
+        }
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_New_Asset_Condition.Text = Dt.Rows[180]["EN"].ToString();
+                    lbl_En_Asset_Condition_Name.Text = Dt.Rows[177]["EN"].ToString();
+                    lbl_Ar_Asset_Condition_Name.Text = Dt.Rows[178]["EN"].ToString();
+                    btn_Edit_Asset_Condition.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Asset_Condition_List.Text = Dt.Rows[179]["EN"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_New_Asset_Condition.Text = Dt.Rows[180]["AR"].ToString();
+                    lbl_En_Asset_Condition_Name.Text = Dt.Rows[177]["AR"].ToString();
+                    lbl_Ar_Asset_Condition_Name.Text = Dt.Rows[178]["AR"].ToString();
+                    btn_Edit_Asset_Condition.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Asset_Condition_List.Text = Dt.Rows[179]["AR"].ToString();
+
+                    RegularExpressionValidator1.ErrorMessage = "إنكليزي فقط";
+                    RegularExpressionValidator2.ErrorMessage = "عربي فقط";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

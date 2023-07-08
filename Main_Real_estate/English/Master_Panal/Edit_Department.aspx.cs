@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string departmentId = Request.QueryString["Id"];
                 DataTable getDepartmentDt = new DataTable();
                 _sqlCon.Open();
@@ -28,8 +29,10 @@ namespace Main_Real_estate.English.Master_Panal
                 {
                     txt_En_Department_Name.Text = getDepartmentDt.Rows[0]["Department_English_name"].ToString();
                     txt_Ar_Department_Name.Text = getDepartmentDt.Rows[0]["Department_arabic_name"].ToString();
-                    lbl_titel_Name_Edit_Department.Text =
-                        getDepartmentDt.Rows[0]["Department_English_name"].ToString();
+
+                    if (Session["Langues"].ToString() == "1") { lbl_titel_Name_Edit_Department.Text = getDepartmentDt.Rows[0]["Department_English_name"].ToString(); }
+                    else { lbl_titel_Name_Edit_Department.Text = getDepartmentDt.Rows[0]["Department_arabic_name"].ToString(); }
+                        
                 }
 
                 _sqlCon.Close();
@@ -58,6 +61,62 @@ namespace Main_Real_estate.English.Master_Panal
                 lbl_Success_Edit_Department.Text = "Edit successfully";
                 Response.Redirect("Department_List.aspx");
             }
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_Department.Text = Dt.Rows[255]["EN"].ToString();
+                    lbl_En_Department_Name.Text = Dt.Rows[252]["EN"].ToString();
+                    lbl_Ar_Department_Name.Text = Dt.Rows[253]["EN"].ToString();
+                    btn_Add_Department.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_Department_List.Text = Dt.Rows[254]["EN"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "Only English";
+                    RegularExpressionValidator2.ErrorMessage = "Only Arabic";
+
+                    reqFuild1.ErrorMessage = "* Required";
+                    RequiredFieldValidator1.ErrorMessage = "* Required";
+                }
+                else
+                {
+                    lbl_titel_Edit_Department.Text = Dt.Rows[255]["AR"].ToString();
+                    lbl_En_Department_Name.Text = Dt.Rows[252]["AR"].ToString();
+                    lbl_Ar_Department_Name.Text = Dt.Rows[253]["AR"].ToString();
+                    btn_Add_Department.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_Department_List.Text = Dt.Rows[254]["AR"].ToString();
+
+
+                    RegularExpressionValidator1.ErrorMessage = "فقط إنكليزي";
+                    RegularExpressionValidator2.ErrorMessage = "فقط عربي";
+
+                    reqFuild1.ErrorMessage = "* مطلوب";
+                    RequiredFieldValidator1.ErrorMessage = "* مطلوب";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

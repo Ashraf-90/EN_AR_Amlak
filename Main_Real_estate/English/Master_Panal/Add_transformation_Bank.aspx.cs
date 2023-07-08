@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace Main_Real_estate.English.Master_Panal
 {
@@ -14,6 +15,7 @@ namespace Main_Real_estate.English.Master_Panal
             ClientScript.RegisterClientScriptBlock(this.GetType(), "", "window.onload=function(){window.scrollTo(0,document.body.scrollHeight)};", true);
             if (!this.IsPostBack)
             {
+                language();
                 //Get Ar_Bank_Name_DropDownList
                 Helper.LoadDropDownList("SELECT * FROM bank", _sqlCon, Ar_Bank_Name_DropDownList, "Bank_Arabic_Name", "Bank_Id");
                 Ar_Bank_Name_DropDownList.Items.Insert(0, "إختر اسم البنك ....");
@@ -120,6 +122,47 @@ namespace Main_Real_estate.English.Master_Panal
         protected void txt_En_Swift_Code_TextChanged(object sender, EventArgs e)
         {
             txt_Ar_Swift_Code.Text = txt_En_Swift_Code.Text.Trim();
+        }
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Add_New_Bank.Text = Dt.Rows[211]["EN"].ToString();
+                    btn_Add_Bank.Text = Dt.Rows[54]["EN"].ToString();
+                    btn_Back_To_Bank_List.Text = Dt.Rows[212]["EN"].ToString();
+
+
+                }
+                else
+                {
+                    lbl_titel_Add_New_Bank.Text = Dt.Rows[211]["AR"].ToString();
+                    btn_Add_Bank.Text = Dt.Rows[54]["AR"].ToString();
+                    btn_Back_To_Bank_List.Text = Dt.Rows[212]["AR"].ToString();
+
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

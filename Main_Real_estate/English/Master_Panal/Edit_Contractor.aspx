@@ -8,7 +8,7 @@
             <h1 class="h3 mb-0 text-gray-800">
                 <asp:Label ID="lbl_titel_Edit_contractor" runat="server" Text="تعديل معلومات المقاول  "></asp:Label>
                 ;&nbsp;&nbsp;
-                <asp:Label ID="lbl_Contractor_Name" runat="server" ForeColor="#00FF40"></asp:Label>
+                <asp:Label ID="lbl_Contractor_Name" runat="server"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lbl_Success_Edit_contractor" runat="server" ForeColor="#00FF40"></asp:Label>
             </h1>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="form-group">
-                                    <asp:Label ID="lbl_Company_Editress" runat="server" Text="عنوان الشركة"></asp:Label>
+                                    <asp:Label ID="lbl_Company_Address" runat="server" Text="عنوان الشركة"></asp:Label>
                                     <asp:TextBox ID="txt_Company_Editress" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>

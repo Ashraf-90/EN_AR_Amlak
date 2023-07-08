@@ -13,6 +13,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             if (!Page.IsPostBack)
             {
+                language();
                 string ContractorId = Request.QueryString["Id"];
                 DataTable getContractorDt = new DataTable();
                 _sqlCon.Open();
@@ -29,6 +30,10 @@ namespace Main_Real_estate.English.Master_Panal
                     txt_Company_Name.Text = getContractorDt.Rows[0]["Contractor_Company_Name"].ToString();
                     txt_Company_Editress.Text = getContractorDt.Rows[0]["Contractor_Company_Address"].ToString();
                     txt_contractor_tell.Text = getContractorDt.Rows[0]["Contractor_Phon"].ToString();
+                    if (Session["Langues"].ToString() == "1") { lbl_Contractor_Name.Text = getContractorDt.Rows[0]["Contractor_En_Name"].ToString(); }
+                    else { lbl_Contractor_Name.Text = getContractorDt.Rows[0]["Contractor_Ar_Name"].ToString(); }
+
+                        
                 }
 
                 _sqlCon.Close();
@@ -66,6 +71,69 @@ namespace Main_Real_estate.English.Master_Panal
         protected void btn_Back_To_contractor_List_Click(object sender, EventArgs e)
         {
             Response.Redirect("Contractor_List.aspx");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel_Edit_contractor.Text = Dt.Rows[200]["EN"].ToString();
+                    lbl_En_contractor_Name.Text = Dt.Rows[194]["EN"].ToString();
+                    lbl_Ar_contractor_Name.Text = Dt.Rows[195]["EN"].ToString();
+                    lbl_contractor_tell.Text = Dt.Rows[196]["EN"].ToString();
+                    lbl_Company_Name.Text = Dt.Rows[197]["EN"].ToString();
+                    lbl_Company_Address.Text = Dt.Rows[198]["EN"].ToString();
+                    btn_Edit_contractor.Text = Dt.Rows[57]["EN"].ToString();
+                    btn_Back_To_contractor_List.Text = Dt.Rows[199]["EN"].ToString();
+
+                    En_contractor_Name_RegularExpressionValidator.ErrorMessage = "Only English";
+                    Ar_contractor_Name_RegularExpressionValidator.ErrorMessage = "Only Arabic";
+                    contractor_tell_RegularExpressionValidator.ErrorMessage = "Only Numbers";
+
+                }
+                else
+                {
+                    lbl_titel_Edit_contractor.Text = Dt.Rows[200]["AR"].ToString();
+                    lbl_En_contractor_Name.Text = Dt.Rows[194]["AR"].ToString();
+                    lbl_Ar_contractor_Name.Text = Dt.Rows[195]["AR"].ToString();
+                    lbl_contractor_tell.Text = Dt.Rows[196]["AR"].ToString();
+                    lbl_Company_Name.Text = Dt.Rows[197]["AR"].ToString();
+                    lbl_Company_Address.Text = Dt.Rows[198]["AR"].ToString();
+                    btn_Edit_contractor.Text = Dt.Rows[57]["AR"].ToString();
+                    btn_Back_To_contractor_List.Text = Dt.Rows[199]["AR"].ToString();
+
+                    En_contractor_Name_RegularExpressionValidator.ErrorMessage = "أنكليزي فقط";
+                    Ar_contractor_Name_RegularExpressionValidator.ErrorMessage = "عربي فقط";
+                    contractor_tell_RegularExpressionValidator.ErrorMessage = "أرقام فقط";
+
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }
