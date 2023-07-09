@@ -16,7 +16,7 @@
                 </h1>
             </div>
             <div class="col-lg-4">
-                <button style="background-color:#52a2da; color:white; border-style:none; height:40px; border-radius:7px;" runat="server" onserverclick="GoToAdd"><i class="fa fa-plus-circle" aria-hidden="true"></i> إضافة </button>
+                <asp:LinkButton ID="ADD" CssClass="btn btn-primary" runat="server" OnClick="GoToAdd"></asp:LinkButton>
             </div>
         </div>
 
@@ -25,22 +25,28 @@
                 <!-- Simple Tables -->
                 <div class="card">
                     <div class="table-responsive" style="border-radius: 10px;" id="Grid">
-                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static" OnItemDataBound="The_Table_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th>النوع الرئيسي</th>
-                                    <th>النوع الفرعي</th>
-                                    <th>عدد النقاط</th>
-                                    <th>النسبة المؤوية %</th>
+                                    <th><asp:Label ID="lbl_1" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_2" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_3" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_4" runat="server"/></th>
                                     <th></th>
                                 </thead>
                             <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr>
-                                <td> <asp:Label ID="lbl_Main_Ar_Name" runat="server" Text='<%# Eval("Main_Ar_Name") %>' /></td>
-                                <td> <asp:Label ID="lbl_Ar_Name" runat="server" Text='<%# Eval("Ar_Name") %>' /></td>
+                                <td> 
+                                    <asp:Label ID="lbl_Main_Ar_Name" runat="server" Text='<%# Eval("Main_Ar_Name") %>' />
+                                    <asp:Label ID="lbl_Main_En_Name" runat="server" Text='<%# Eval("Main_EN_Name") %>' />
+                                </td>
+                                <td> 
+                                    <asp:Label ID="lbl_Ar_Name" runat="server" Text='<%# Eval("Ar_Name") %>' />
+                                    <asp:Label ID="lbl_En_Name" runat="server" Text='<%# Eval("En_Name") %>' />
+                                </td>
                                 <td> <asp:Label ID="lbl_Sub_Weight" runat="server" Text='<%# Eval("Sub_Weight") %>' /></td>
                                 <td> <asp:Label ID="lbl_R_Sub_Weight" runat="server" Text='<%# Eval("R_Sub_Weight") %>' /></td>
                                 <td>

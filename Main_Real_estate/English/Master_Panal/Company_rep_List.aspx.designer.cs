@@ -15,13 +15,22 @@ namespace Main_Real_estate.English.Master_Panal
     {
 
         /// <summary>
-        /// lbl_titel_Building_List control.
+        /// lbl_titel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titel_Building_List;
+        protected global::System.Web.UI.WebControls.Label lbl_titel;
+
+        /// <summary>
+        /// ADD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ADD;
 
         /// <summary>
         /// eeeee control.

@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-lg-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Building_List" runat="server" Text="قائمة ممثلو الشركات"></asp:Label>
+                    <asp:Label ID="lbl_titel" runat="server" Text="قائمة ممثلو الشركات"></asp:Label>
                 </h1>
             </div>
             <div class="col-lg-4">
-                <asp:LinkButton CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Master_Panal/Add_company_rep.aspx" >
+                <asp:LinkButton ID="ADD" CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Master_Panal/Add_company_rep.aspx" >
                     <i class="fa fa-plus" style="font-size:25px;"></i> &nbsp; إضافة </asp:LinkButton>
 
             </div>
@@ -29,16 +29,16 @@
             <div class="card">
                 <div class="table-responsive" id="Grid" >
                   
-                    <asp:Repeater ID="eeeee" runat="server" ClientIDMode="Static">
+                    <asp:Repeater ID="eeeee" runat="server" ClientIDMode="Static" OnItemDataBound="eeeee_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
 
-                                    <th>الاسم</th>
-                                    <th>الجنسية</th>
-                                    <th>رقم الجوال </th>
-                                    <th>البريد الإلكتروني</th>
-                                    <th>رقم البطاقة الشخصية</th>
+                                    <th><asp:Label ID="lbl_1" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_2" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_3" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_4" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_5" runat="server"/></th>
                                     <th style="width:200px"></th>
                                 </thead>
                             <tbody>
@@ -46,9 +46,13 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lbl_Com_rep_En_Name" runat="server" Text='<%# Eval("Com_rep_En_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Com_rep_AR_Name" runat="server" Text='<%# Eval("Com_rep_En_Name") %>' />
+                                    <asp:Label ID="lbl_Com_rep_En_Name" runat="server" Text='<%# Eval("Com_rep_AR_Name") %>' />
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_nationality_nationality_ID" runat="server" Text='<%# Eval("Arabic_nationality") %>' /></td>
+                                    <asp:Label ID="lbl_Arabic_nationality" runat="server" Text='<%# Eval("Arabic_nationality") %>' />
+                                    <asp:Label ID="lbl_English_nationality" runat="server" Text='<%# Eval("English_nationality") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Com_rep_Mobile" runat="server" Text='<%# Eval("Com_rep_Mobile") %>' /></td>
                                 <td>

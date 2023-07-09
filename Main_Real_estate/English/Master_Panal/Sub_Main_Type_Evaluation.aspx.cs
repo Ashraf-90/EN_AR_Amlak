@@ -163,13 +163,11 @@ namespace Main_Real_estate.English.Master_Panal
                     {
                         getTenantNameDropDownListCmd.CommandType = CommandType.Text;
                         getTenantNameDropDownListCmd.Connection = _sqlCon;
-                        _sqlCon.Open();
                         main_Type_DropDownList.DataSource = getTenantNameDropDownListCmd.ExecuteReader();
                         main_Type_DropDownList.DataTextField = "Ar_Name";
                         main_Type_DropDownList.DataValueField = "Main_Type_Evaluation_Id";
                         main_Type_DropDownList.DataBind();
                         main_Type_DropDownList.Items.Insert(0, "...............");
-                        _sqlCon.Close();
                     }
 
                     lbl_titel_Add_New_Sub_Type_Evaluation.Text = Dt.Rows[108]["AR"].ToString();

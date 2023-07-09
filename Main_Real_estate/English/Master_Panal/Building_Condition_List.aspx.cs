@@ -15,7 +15,7 @@ namespace Main_Real_estate.English.Master_Panal
         {
             //try { Helper.GetDataReader("SELECT * FROM building_condition", _sqlCon, The_Table); }
             //catch { Response.Write(@"<script language='javascript'>alert('لا يمكن عرض هذه الصفحة')</script>"); };
-
+            language();
             Helper.GetDataReader("SELECT * FROM building_condition", _sqlCon, The_Table);
         }
         protected void Delete(object sender, EventArgs e)
@@ -46,5 +46,68 @@ namespace Main_Real_estate.English.Master_Panal
             Response.Redirect("Add_Building_Condition.aspx");
         }
 
+        protected void The_Table_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                Label lbl_1 = (e.Item.FindControl("lbl_1") as Label);
+                Label lbl_2 = (e.Item.FindControl("lbl_2") as Label);
+                Label lbl_3 = (e.Item.FindControl("lbl_3") as Label);
+                Label lbl_4 = (e.Item.FindControl("lbl_4") as Label);
+                Label lbl_5 = (e.Item.FindControl("lbl_5") as Label);
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_1.Text = Dt.Rows[71]["EN"].ToString();
+                        lbl_2.Text = Dt.Rows[70]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_1.Text = Dt.Rows[71]["AR"].ToString();
+                        lbl_2.Text = Dt.Rows[70]["AR"].ToString();
+                    }
+                }
+            }
+        }
+
+
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel.Text = Dt.Rows[264]["EN"].ToString();
+                    ADD.Text = Dt.Rows[54]["EN"].ToString();
+                }
+                else
+                {
+                    lbl_titel.Text = Dt.Rows[264]["AR"].ToString();
+                    ADD.Text = Dt.Rows[54]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
+        }
     }
 }
