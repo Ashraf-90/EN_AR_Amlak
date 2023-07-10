@@ -16,11 +16,11 @@
          <div class="row">
             <div class="col-lg-2 mb-3">
                 <h1 class="h3 mb-0 text-gray-800">
-                    <asp:Label ID="lbl_titel_Building_List" runat="server" Text="قائمة  الأصول"></asp:Label>
+                    <asp:Label ID="lbl_titel" runat="server" Text="قائمة  الأصول"></asp:Label>
                 </h1>
             </div>
             <div class="col-lg-3 mb-3">
-                <asp:LinkButton CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Master_Panal/Add_Asset.aspx" >
+                <asp:LinkButton ID="ADD" CssClass="btn btn-primary" runat="server" PostBackUrl="~/English/Master_Panal/Add_Asset.aspx" >
                     <i class="fa fa-plus" style="font-size:25px;"></i> &nbsp; إضافة</asp:LinkButton>
 
             </div>
@@ -37,18 +37,18 @@
                     <div class="table-responsive" style="border-radius: 10px;">
 
 
-                        <asp:Repeater ID="Assset_List_1" runat="server" ClientIDMode="Static">
+                         <asp:Repeater ID="Assset_List_1" runat="server" ClientIDMode="Static" OnItemDataBound="The_Table_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
 
-                                    <th>نوع الأصل</th>
-                                    <th>اسم الأصل</th>
-                                    <th>الرقم التسلسلي </th>
-                                    <th>حالة الأصل</th>
-                                    <th>الموقع العام</th>
-                                    <th>مكان الأصل</th>
-                                    <th>الموّرد </th>
+                                    <th><asp:Label ID="lbl_1" runat="server"/></th><%--نوع--%>
+                                    <th><asp:Label ID="lbl_2" runat="server"/></th><%--اسم--%>
+                                    <th><asp:Label ID="lbl_3" runat="server"/></th><%--تسلسلي--%>
+                                    <th><asp:Label ID="lbl_4" runat="server"/></th><%--حالة--%>
+                                    <th><asp:Label ID="lbl_5" runat="server"/></th><%--موقع عام--%>
+                                    <th><asp:Label ID="lbl_6" runat="server"/></th><%--مكان--%>
+                                    <th><asp:Label ID="lbl_7" runat="server"/></th><%--مورد--%>
                                     <th style="width:200px"></th>
                                 </thead>
                             <tbody>
@@ -56,20 +56,34 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' /></td>
+                                    <asp:Label ID="lbl_Categoty_AR" runat="server" Text='<%# Eval("Categoty_AR") %>' />
+                                    <asp:Label ID="lbl_Categoty_EN" runat="server" Text='<%# Eval("Categoty_EN") %>' />
+
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Assets_Arabic_Name" runat="server" Text='<%# Eval("Assets_Arabic_Name") %>' /></td>
+                                    <asp:Label ID="lbl_Assets_Arabic_Name" runat="server" Text='<%# Eval("Assets_Arabic_Name") %>' />
+                                    <asp:Label ID="lbl_Assets_English_Name" runat="server" Text='<%# Eval("Assets_English_Name") %>' />
+
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Serial_Number" runat="server" Text='<%# Eval("Serial_Number") %>' /></td>
                                 
                                 <td>
-                                    <asp:Label ID="lbl_Asset_Arabic_Condition" runat="server" Text='<%# Eval("Asset_Arabic_Condition") %>' /></td>
+                                    <asp:Label ID="lbl_Asset_Arabic_Condition" runat="server" Text='<%# Eval("Asset_Arabic_Condition") %>' />
+                                    <asp:Label ID="lbl_Asset_English_Condition" runat="server" Text='<%# Eval("Asset_English_Condition") %>' />
+                                </td>
                                 <td>
                                     <asp:Label ID="lbl_Main_Place" runat="server" Text='<%# Eval("Main_Place") %>' /></td>
                                 <td>
-                                    <asp:Label ID="lbl_Asset_Arabic_Location" runat="server" Text='<%# Eval("Asset_Arabic_Location") %>' /></td>
+                                    <asp:Label ID="lbl_Asset_Arabic_Location" runat="server" Text='<%# Eval("Asset_Arabic_Location") %>' />
+                                    <asp:Label ID="lbl_Asset_English_Location" runat="server" Text='<%# Eval("Asset_English_Location") %>' />
+
+                                </td>
                                 <td>
-                                    <asp:Label ID="lbl_Vendor_Arabic_Type" runat="server" Text='<%# Eval("Vendor_Arabic_Type") %>' /></td>
+                                    <asp:Label ID="lbl_Vendor_Arabic_Type" runat="server" Text='<%# Eval("Vendor_Arabic_Type") %>' />
+                                    <asp:Label ID="lbl_Vendor_English_Type" runat="server" Text='<%# Eval("Vendor_English_Type") %>' />
+
+                                </td>
                                 <td>
                                     <asp:LinkButton  runat="server" CommandArgument='<%# Eval("Assets_Id") %>' OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete_Asset"  ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
                                     &nbsp;&nbsp;

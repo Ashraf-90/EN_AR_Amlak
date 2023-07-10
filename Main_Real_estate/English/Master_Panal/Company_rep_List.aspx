@@ -67,7 +67,7 @@
                                     &nbsp;&nbsp;
                                     <asp:LinkButton  runat="server" CommandArgument='<%# Eval("Company_representative_Id") %>' OnClick="Edit_Unit" > <i class="fa fa-pencil" style="font-size:18px;"></i> </asp:LinkButton>
                                     &nbsp;&nbsp;
-                                    <asp:LinkButton  runat="server" CommandArgument='<%# Eval("Company_representative_Id") %>' OnClick="Details_Unit" > <i class="fa fa-list" style="font-size:18px;"></i> </asp:LinkButton>
+                                    <%--<asp:LinkButton  runat="server" CommandArgument='<%# Eval("Company_representative_Id") %>' OnClick="Details_Unit" > <i class="fa fa-list" style="font-size:18px;"></i> </asp:LinkButton>--%>
                                 </td>
                             </tr>
                         </ItemTemplate>

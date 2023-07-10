@@ -83,6 +83,8 @@
                 margin: 10px;
                 font-weight: 100;
             }
+
+            .LTR{text-align:left}
     </style>
 
 
@@ -115,11 +117,11 @@
                                                 <LayoutTemplate>
                                                     <div class="form-group" style="text-align: left">
                                                         <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name</asp:Label>
-                                                        <asp:TextBox ID="UserName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="UserName" runat="server" CssClass="form-control LTR" ></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                                         <br />
                                                         <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password</asp:Label>
-                                                        <asp:TextBox ID="Password" CssClass="form-control pass" runat="server" TextMode="Password"></asp:TextBox>
+                                                        <asp:TextBox ID="Password" CssClass="form-control pass LTR" runat="server" TextMode="Password"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="Password is required" ToolTip="Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
 
                                                         <asp:CheckBox ID="RememberMe" runat="server" Text="Remember me next time" />

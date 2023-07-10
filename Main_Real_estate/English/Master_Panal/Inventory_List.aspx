@@ -17,7 +17,7 @@
                 </h1>
             </div>
             <div class="col-lg-4">
-                <button style="background-color:#52a2da; color:white; border-style:none; height:40px; border-radius:7px;" runat="server" onserverclick="GoToAdd"><i class="fa fa-plus-circle" aria-hidden="true"></i> إضافة </button>
+                <asp:LinkButton ID="ADD" CssClass="btn btn-primary" runat="server" OnClick="GoToAdd"></asp:LinkButton>
             </div>
         </div>
 
@@ -26,14 +26,14 @@
                 <!-- Simple Tables -->
                 <div class="card">
                     <div class="table-responsive" style="border-radius: 10px;" id="Grid">
-                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static" OnItemDataBound="The_Table_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th>اسم المخزن</th>
-                                    <th>Inventory Name </th>
-                                    <th>مكان المخزن</th>
-                                    <th>أمين المخزن</th>
+                                    <th><asp:Label ID="lbl_1" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_2" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_3" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_4" runat="server"/></th>
                                     <th></th>
                                 </thead>
                             <tbody>
@@ -43,7 +43,10 @@
                                 <td> <asp:Label ID="lbl_Inventory_arabic_name" runat="server" Text='<%# Eval("Inventory_arabic_name") %>' /></td>
                                 <td> <asp:Label ID="lbl_Inventory_English_name" runat="server" Text='<%# Eval("Inventory_English_name") %>' /></td>
                                 <td> <asp:Label ID="lbl_Inventory_Location" runat="server" Text='<%# Eval("Inventory_Location") %>' /></td>
-                                <td> <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' /></td>
+                                <td> 
+                                    <asp:Label ID="lbl_Employee_Arabic_name" runat="server" Text='<%# Eval("Employee_Arabic_name") %>' />
+                                    <asp:Label ID="lbl_Employee_English_name" runat="server" Text='<%# Eval("Employee_English_name") %>' />
+                                </td>
                                 <td>
                                     <asp:LinkButton  runat="server" CommandArgument='<%# Eval("Inventory_Id") %>' OnClientClick="return confirm('هل أنت متأكد أنك تريد حذف؟');" OnClick="Delete" ><i class="fa fa-trash" style="font-size:18px;"></i></asp:LinkButton>
                                     <asp:LinkButton  runat="server" CommandArgument='<%# Eval("Inventory_Id") %>' OnClick="Edit"> <i class="fa fa-pencil" style="font-size:18px;"></i> </asp:LinkButton>

@@ -16,7 +16,7 @@
                 </h1>
             </div>
             <div class="col-lg-4">
-                <button style="background-color:#52a2da; color:white; border-style:none; height:40px; border-radius:7px;" runat="server" onserverclick="GoToAdd"><i class="fa fa-plus-circle" aria-hidden="true"></i> إضافة حالة أصل جديد</button>
+                <asp:LinkButton ID="ADD" CssClass="btn btn-primary" runat="server" OnClick="GoToAdd"></asp:LinkButton>
             </div>
         </div>
 
@@ -25,12 +25,12 @@
                 <!-- Simple Tables -->
                 <div class="card">
                     <div class="table-responsive" style="border-radius: 10px;" id="Grid">
-                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static">
+                        <asp:Repeater ID="The_Table" runat="server" ClientIDMode="Static" OnItemDataBound="The_Table_ItemDataBound">
                         <HeaderTemplate>
                             <table  cellspacing="0" style="width: 100%; font-size:11px" id="Table" class="datatable table table-striped table-bordered">
                                 <thead>
-                                    <th>نوع الشيك</th>
-                                    <th>cheque Type </th>
+                                    <th><asp:Label ID="lbl_1" runat="server"/></th>
+                                    <th><asp:Label ID="lbl_2" runat="server"/></th>
                                     <th></th>
                                 </thead>
                             <tbody>

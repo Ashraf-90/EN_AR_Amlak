@@ -11,6 +11,7 @@ namespace Main_Real_estate.English.Master_Panal
         private readonly MySqlConnection _sqlCon = Helper.GetConnection();
         protected void Page_Load(object sender, EventArgs e)
         {
+            language();
             try { Helper.GetDataReader("SELECT * FROM roles", _sqlCon, The_Table); }
             catch { Response.Write(@"<script language='javascript'>alert('لا يمكن عرض هذه الصفحة')</script>"); };
         }
@@ -59,6 +60,92 @@ namespace Main_Real_estate.English.Master_Panal
         protected void GoToAdd(object sender, EventArgs e)
         {
             Response.Redirect("Add_Role.aspx");
+        }
+
+        protected void The_Table_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            if (e.Item.ItemType == ListItemType.Header)
+            {
+                Label lbl_1 = (e.Item.FindControl("lbl_1") as Label);
+                Label lbl_2 = (e.Item.FindControl("lbl_2") as Label);
+                Label lbl_3 = (e.Item.FindControl("lbl_3") as Label);
+                Label lbl_4 = (e.Item.FindControl("lbl_4") as Label);
+                Label lbl_5 = (e.Item.FindControl("lbl_5") as Label);
+                Label lbl_6 = (e.Item.FindControl("lbl_6") as Label);
+                Label lbl_7 = (e.Item.FindControl("lbl_7") as Label);
+                Label lbl_8 = (e.Item.FindControl("lbl_8") as Label);
+                Label lbl_9 = (e.Item.FindControl("lbl_9") as Label);
+                Label lbl_10 = (e.Item.FindControl("lbl_10") as Label);
+                Label lbl_11 = (e.Item.FindControl("lbl_11") as Label);
+
+                DataTable Dt = new DataTable();
+                MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+                MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+                Da.Fill(Dt);
+                if (Dt.Rows.Count > 0)
+                {
+                    if (Session["Langues"].ToString() == "1")
+                    {
+                        lbl_1.Text = Dt.Rows[233]["EN"].ToString();
+                        lbl_2.Text = Dt.Rows[239]["EN"].ToString();
+                        lbl_3.Text = Dt.Rows[240]["EN"].ToString();
+                        lbl_4.Text = Dt.Rows[241]["EN"].ToString();
+                        lbl_5.Text = Dt.Rows[242]["EN"].ToString();
+                        lbl_6.Text = Dt.Rows[243]["EN"].ToString();
+                        lbl_7.Text = Dt.Rows[244]["EN"].ToString();
+                        lbl_8.Text = Dt.Rows[245]["EN"].ToString();
+                        lbl_9.Text = Dt.Rows[246]["EN"].ToString();
+                        lbl_10.Text = Dt.Rows[247]["EN"].ToString();
+                        lbl_11.Text = Dt.Rows[248]["EN"].ToString();
+                    }
+                    else
+                    {
+                        lbl_1.Text = Dt.Rows[233]["AR"].ToString();
+                        lbl_2.Text = Dt.Rows[239]["AR"].ToString();
+                        lbl_3.Text = Dt.Rows[240]["AR"].ToString();
+                        lbl_4.Text = Dt.Rows[241]["AR"].ToString();
+                        lbl_5.Text = Dt.Rows[242]["AR"].ToString();
+                        lbl_6.Text = Dt.Rows[243]["AR"].ToString();
+                        lbl_7.Text = Dt.Rows[244]["AR"].ToString();
+                        lbl_8.Text = Dt.Rows[245]["AR"].ToString();
+                        lbl_9.Text = Dt.Rows[246]["AR"].ToString();
+                        lbl_10.Text = Dt.Rows[247]["AR"].ToString();
+                        lbl_11.Text = Dt.Rows[248]["AR"].ToString();
+                    }
+                }
+            }
+        }
+
+
+        //******************************************************************************************************************************************
+        //************************************************** languages ****************************************************************
+        //******************************************************************************************************************************************
+
+        protected void language()
+        {
+
+            if (Session["Langues"] == null) { Session["Langues"] = "1"; }
+            _sqlCon.Open();
+            DataTable Dt = new DataTable();
+            MySqlCommand Cmd = new MySqlCommand("SELECT * FROM languages_master", _sqlCon);
+            MySqlDataAdapter Da = new MySqlDataAdapter(Cmd);
+            Da.Fill(Dt);
+            if (Dt.Rows.Count > 0)
+            {
+                if (Session["Langues"].ToString() == "1")
+                {
+                    lbl_titel.Text = Dt.Rows[307]["EN"].ToString();
+                    ADD.Text = Dt.Rows[54]["EN"].ToString();
+                }
+                else
+                {
+                    lbl_titel.Text = Dt.Rows[307]["AR"].ToString();
+                    ADD.Text = Dt.Rows[54]["AR"].ToString();
+                }
+            }
+            _sqlCon.Close();
+
         }
     }
 }

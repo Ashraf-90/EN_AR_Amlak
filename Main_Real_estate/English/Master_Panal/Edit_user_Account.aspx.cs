@@ -172,7 +172,7 @@ namespace Main_Real_estate.English.Master_Panal
                     Helper.LoadDropDownList("SELECT * FROM roles", _sqlCon, Role_DropDownList, "Role_name", "Role_ID");
                     Role_DropDownList.Items.Insert(0, "...............");
 
-                    lbl_user_Account_Name.Text = Dt.Rows[231]["EN"].ToString();
+                    lbl_titel_Edit_user_Account.Text = Dt.Rows[231]["EN"].ToString();
                     lbl_Employee.Text = Dt.Rows[223]["EN"].ToString();
                     lbl_Ar_First_Name.Text = Dt.Rows[224]["EN"].ToString();
                     lbl_Ar_Last_Name.Text = Dt.Rows[225]["EN"].ToString();
@@ -211,7 +211,7 @@ namespace Main_Real_estate.English.Master_Panal
 
 
 
-                    lbl_user_Account_Name.Text = Dt.Rows[231]["AR"].ToString();
+                    lbl_titel_Edit_user_Account.Text = Dt.Rows[231]["AR"].ToString();
                     lbl_Employee.Text = Dt.Rows[223]["AR"].ToString();
                     lbl_Ar_First_Name.Text = Dt.Rows[224]["AR"].ToString();
                     lbl_Ar_Last_Name.Text = Dt.Rows[225]["AR"].ToString();

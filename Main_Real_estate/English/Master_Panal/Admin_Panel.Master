@@ -270,7 +270,7 @@
                         <a class="collapse-item" href="Roles_List.aspx"><asp:Label ID="Label41" runat="server" /></a>
                         <a class="collapse-item" href="Department_List.aspx"><asp:Label ID="Label42" runat="server" /></a>
                         <a class="collapse-item" href="Employee_Level_List.aspx"><asp:Label ID="Label43" runat="server" /></a>
-                        <a class="collapse-item" href="Task_Type.aspx"><asp:Label ID="Label44" runat="server" /></a>
+                        <%--<a class="collapse-item" href="Task_Type.aspx"><asp:Label ID="Label44" runat="server" /></a>--%>
                     </div>
                 </div>
             </li>
