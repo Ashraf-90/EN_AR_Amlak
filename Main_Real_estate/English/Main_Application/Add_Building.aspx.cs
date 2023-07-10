@@ -218,6 +218,7 @@ namespace Main_Real_estate.English.Main_Application
                     cmd.Parameters.AddWithValue("@Entrance_Photo_Path", "No File");
                 }
                 cmd.ExecuteNonQuery();
+                _sqlCon.Close();
                 //********************************* Get Building ID To Add it in Half_Building_ID Col and Using it in New Units *******************************************
                 using (MySqlCommand Get_Building_ID = new MySqlCommand("SELECT MAX(Building_Id) AS LastInsertedID from building ", _sqlCon))
                 {
@@ -243,8 +244,8 @@ namespace Main_Real_estate.English.Main_Application
                 if (Session["Langues"].ToString() == "1") { lbl_Add_New_Unit.Text = "Add Units To Building" + txt_En_Bilding_Name.Text; }
                 else { lbl_Add_New_Unit.Text = " إضافة وحدة لبناء : " + txt_En_Bilding_Name.Text; }
 
-                Button3.Visible = true;
-                Button4.Visible = true;
+                //Button3.Visible = true;
+                //Button4.Visible = true;
                 _sqlCon.Close();
                 Page.SetFocus(Button3.ClientID);
             }

@@ -220,7 +220,7 @@ namespace Main_Real_estate.English.Main_Application
                 }
                 cmd.ExecuteNonQuery();
                 lbl_Success_Add_New_Ownership.Visible = true;
-                Button1.Visible = true; Button2.Visible = true;
+                //Button1.Visible = true; Button2.Visible = true;
 
                 //********************************* Get Ownership ID To  Using it in New Building *******************************************
                 using (MySqlCommand Get_Ownership_ID = new MySqlCommand("SELECT MAX(Owner_Ship_Id) AS LastInsertedID from owner_ship ", _sqlCon))

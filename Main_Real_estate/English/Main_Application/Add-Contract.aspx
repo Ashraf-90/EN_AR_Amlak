@@ -137,7 +137,7 @@
                 <!-- Simple Tables -->
                         <asp:GridView ID="Unit_GridView" runat="server" AutoGenerateColumns="False" 
                             BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4"
-                            ForeColor="Black" GridLines="Both">
+                            ForeColor="Black" GridLines="Both" OnRowDataBound="Unit_GridView_RowDataBound">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="" Visible="false">
@@ -168,6 +168,7 @@
                                   <asp:TemplateField HeaderText="نوع" >  <%--4--%>
                                     <ItemTemplate>
                                         <asp:Label ID="Unit_Arabic_Type" runat="server" Text='<%# Bind("Unit_Arabic_Type") %>'></asp:Label>
+                                        <asp:Label ID="Unit_English_Type" runat="server" Text='<%# Bind("Unit_English_Type") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

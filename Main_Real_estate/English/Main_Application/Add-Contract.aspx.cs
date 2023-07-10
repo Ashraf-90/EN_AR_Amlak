@@ -883,7 +883,7 @@ namespace Main_Real_estate.English.Main_Application
         public void refreshdata()
         {
             //string getUnitQuari = "SELECT * FROM units where half ='0' and building_Building_Id = '" + Building_Name_DropDownList.SelectedValue+"'";
-            string getUnitQuari = "SELECT U.* ,  UT.Unit_Arabic_Type " +
+            string getUnitQuari = "SELECT U.* ,  UT.* " +
                                   "FROM units U left join unit_type UT on (U.unit_type_Unit_Type_Id = UT.Unit_Type_Id) " +
                                   "where half ='0' and building_Building_Id ='"+ Building_Name_DropDownList.SelectedValue + "'";
             MySqlCommand getUnitCmd = new MySqlCommand(getUnitQuari, _sqlCon);
@@ -1727,5 +1727,24 @@ namespace Main_Real_estate.English.Main_Application
             _sqlCon.Close();
         }
 
+        protected void Unit_GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var Unit_Arabic_Type = ((Label)e.Row.FindControl("Unit_Arabic_Type"));
+                var Unit_English_Type = ((Label)e.Row.FindControl("Unit_English_Type"));
+
+
+
+                if (Session["Langues"].ToString() == "1")
+                {
+                    Unit_Arabic_Type.Visible= false; Unit_English_Type.Visible= true;
+                }
+                else
+                {
+                    Unit_Arabic_Type.Visible = true; Unit_English_Type.Visible = false;
+                }
+            }
+        }
     }
 }
