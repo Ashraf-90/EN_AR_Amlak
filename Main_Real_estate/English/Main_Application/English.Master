@@ -132,7 +132,7 @@
                 </li>
  <!-- ----------------------------------------------------------------------------------------------- -->     
       <li class="nav-item active" style="color:red; padding-bottom:10px;" runat="server" id="DashBoard_Div">
-        <a class="nav-link" href="DashBoard.aspx" style="color:#52a2da;">
+        <a runat="server" id="DB" onserverclick="DB_ServerClick" class="nav-link" href="DashBoard.aspx" style="color:#52a2da;">
           <i class="fa fa-tachometer" style="color:#52a2da; font-size:18px;"></i>
             <span style="color:#52a2da; font-size:20px;"><asp:Label runat="server" ID="lbl_Titel_Dashbard" Font-Size="20px" /></span>
         </a>

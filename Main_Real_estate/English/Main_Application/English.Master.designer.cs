@@ -78,6 +78,15 @@ namespace Main_Real_estate.English
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DashBoard_Div;
 
         /// <summary>
+        /// DB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor DB;
+
+        /// <summary>
         /// lbl_Titel_Dashbard control.
         /// </summary>
         /// <remarks>

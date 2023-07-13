@@ -352,6 +352,16 @@ namespace Main_Real_estate.English
             }
         }
 
-       
+        protected void DB_ServerClick(object sender, EventArgs e)
+        {
+            if (Session["Langues"].ToString() == "1")
+            {
+                Response.Redirect("ENDashBoard.aspx");
+            }
+            else
+            {
+                Response.Redirect("DashBoard.aspx");
+            }
+        }
     }
 }

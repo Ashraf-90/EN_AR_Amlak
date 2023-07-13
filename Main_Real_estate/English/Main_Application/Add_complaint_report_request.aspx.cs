@@ -525,7 +525,9 @@ namespace Main_Real_estate.English.Main_Application
                         _sqlCon.Close();
                     }
                 }
-                lbl_Success_Add_New_Maintenance.Text = "تمت الإضافة بنجاح";
+                if (Session["Langues"].ToString() == "1") { lbl_Success_Add_New_Maintenance.Text = "Added Successfully"; }
+                else { lbl_Success_Add_New_Maintenance.Text = "تمت الإضافة بنجاح"; }
+                    
             }
 
         }
@@ -820,7 +822,6 @@ namespace Main_Real_estate.English.Main_Application
 
 
                     lbl_titel_Add_New_Maintenance.Text = Dt.Rows[0]["EN"].ToString();
-                    lbl_Success_Add_New_Maintenance.Text = Dt.Rows[1]["EN"].ToString();
                     lbl_Complainte_Source.Text = Dt.Rows[2]["EN"].ToString();
                     lbl_Employee_Tenant.Text = Dt.Rows[3]["EN"].ToString();
                     lbl_Souorce_Name.Text = Dt.Rows[4]["EN"].ToString();
@@ -1007,7 +1008,6 @@ namespace Main_Real_estate.English.Main_Application
 
 
                     lbl_titel_Add_New_Maintenance.Text = Dt.Rows[0]["AR"].ToString();
-                    lbl_Success_Add_New_Maintenance.Text = Dt.Rows[1]["AR"].ToString();
                     lbl_Complainte_Source.Text = Dt.Rows[2]["AR"].ToString();
                     lbl_Employee_Tenant.Text = Dt.Rows[3]["AR"].ToString();
                     lbl_Souorce_Name.Text = Dt.Rows[4]["AR"].ToString();
